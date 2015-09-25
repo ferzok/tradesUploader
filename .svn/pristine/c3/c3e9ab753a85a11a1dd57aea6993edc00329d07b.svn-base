@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="testModel1111StoreContainer" CdmEntityContainer="testEntities1">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="testModel1111.Account">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="account_id" ColumnName="account_id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contracts">
+      <EntityTypeMapping TypeName="testModel1111.Contract">
+        <MappingFragment StoreEntitySet="Contracts">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Contract1" ColumnName="Contract" />
+          <ScalarProperty Name="Exchange" ColumnName="Exchange" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Leverage" ColumnName="Leverage" />
+          <ScalarProperty Name="ValueDate" ColumnName="ValueDate" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+          <ScalarProperty Name="Margin" ColumnName="Margin" />
+          <ScalarProperty Name="FlatMargin" ColumnName="FlatMargin" />
+          <ScalarProperty Name="Canbesettled" ColumnName="Canbesettled" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="commission" ColumnName="commission" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

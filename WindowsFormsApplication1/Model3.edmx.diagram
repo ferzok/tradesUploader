@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ae5319ad32654f3fbb8df85a8646c576" Name="Diagram1" >
+        <EntityTypeShape EntityType="Model3.Account" Width="1.5" PointX="8.6693801976132114" PointY="0.88018079143025951" />
+        <EntityTypeShape EntityType="Model3.Contract" Width="1.5" PointX="7.5826957093471172" PointY="21.476899082528845" />
+        <EntityTypeShape EntityType="Model3.CpTrade" Width="1.5" PointX="10.414507034427722" PointY="29.692487283466612" />
+        <EntityTypeShape EntityType="Model3.Ctrade" Width="1.5" PointX="5.9766911147053783" PointY="0.63842487364934053" />
+        <EntityTypeShape EntityType="Model3.DailyCheck" Width="1.5" PointX="3.6905962022443286" PointY="10.785583650127791" />
+        <EntityTypeShape EntityType="Model3.PenPaperTrade" Width="1.5" PointX="4.0763194337842616" PointY="10.376558949414902" />
+        <EntityTypeShape EntityType="Model3.Price" Width="1.5" PointX="10.697990644116882" PointY="28.028453318415419" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

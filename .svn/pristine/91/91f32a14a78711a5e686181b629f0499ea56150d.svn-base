@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1af5fb9bc49b44d68ba9b8753fbca0c5" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="EXANTE_testModel.Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXANTE_testModel.Contract" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXANTE_testModel.Ctrade" Width="1.5" PointX="9.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXANTE_testModel.Price" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXANTE_testModel.counterparty" Width="1.5" PointX="7.9045338853749136" PointY="5.8010432449174312" />
+        <EntityTypeShape EntityType="EXANTE_testModel.CpTrade" Width="1.5" PointX="11.25" PointY="0.5" />
+        <EntityTypeShape EntityType="EXANTE_testModel.PenPaperTrade" Width="1.5" PointX="9.3802670470347014" PointY="12.972503742655974" />
+        <EntityTypeShape EntityType="EXANTE_testModel.Mapping" Width="1.5" PointX="5.1712235571682559" PointY="4.9122225814090212" />
+        <EntityTypeShape EntityType="EXANTE_testModel.Reconcilation" Width="1.5" PointX="6.75" PointY="14.875" />
+        <EntityTypeShape EntityType="EXANTE_testModel.ABN_cashposition" Width="1.5" PointX="0.54453784997786292" PointY="11.980572720980538" />
+        <EntityTypeShape EntityType="EXANTE_testModel.DailyCheck" Width="1.5" PointX="4" PointY="16.125" />
+        <EntityTypeShape EntityType="EXANTE_testModel.ABNCashMapping" Width="1.5" PointX="3.1032120413627529" PointY="12.789910337324212" />
+        <EntityTypeShape EntityType="EXANTE_testModel.param" Width="1.5" PointX="5.8833787505903183" PointY="24.974144053167731" />
+        <EntityTypeShape EntityType="EXANTE_testModel.ABNReconResult" Width="1.5" PointX="12.875" PointY="9.875" />
+        <EntityTypeShape EntityType="EXANTE_testModel.FT" Width="1.5" PointX="0.035087769867427537" PointY="18.408106946576435" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

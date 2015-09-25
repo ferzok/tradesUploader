@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="testModelNamespace" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="testmodel" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="testModelNamespace.Account" />
+    <EntitySet Name="Contracts" EntityType="testModelNamespace.Contract" />
+  </EntityContainer>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="account_id" />
+    </Key>
+    <Property Name="account_id" Type="Decimal" Nullable="false" p1:StoreGeneratedPattern="Identity" Precision="20" Scale="0" />
+    <Property Name="Name" Type="String" MaxLength="255" Unicode="false" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="Contract">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Decimal" Nullable="false" p1:StoreGeneratedPattern="Identity" Precision="20" Scale="0" />
+    <Property Name="Contract1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Exchange" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Type" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Leverage" Type="Double" />
+    <Property Name="ValueDate" Type="DateTime" Precision="0" />
+    <Property Name="Currency" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="Margin" Type="Double" />
+    <Property Name="FlatMargin" Type="Double" />
+    <Property Name="Canbesettled" Type="Boolean" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+    <Property Name="commission" Type="Double" />
+    <Property Name="Timestamp" Type="DateTime" Precision="0" />
+    <Property Name="valid" Type="Int32" />
+    <Property Name="username" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+</Schema>

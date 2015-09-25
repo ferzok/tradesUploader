@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EXANTE_testModelStoreContainer" CdmEntityContainer="EXANTE_DBEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="EXANTE_testModel.Account">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="account_id" ColumnName="account_id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contracts">
+      <EntityTypeMapping TypeName="EXANTE_testModel.Contract">
+        <MappingFragment StoreEntitySet="Contracts">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Contract1" ColumnName="Contract" />
+          <ScalarProperty Name="Exchange" ColumnName="Exchange" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Leverage" ColumnName="Leverage" />
+          <ScalarProperty Name="ValueDate" ColumnName="ValueDate" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+          <ScalarProperty Name="Margin" ColumnName="Margin" />
+          <ScalarProperty Name="FlatMargin" ColumnName="FlatMargin" />
+          <ScalarProperty Name="Canbesettled" ColumnName="Canbesettled" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="commission" ColumnName="commission" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="fullid" ColumnName="fullid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ctrades">
+      <EntityTypeMapping TypeName="EXANTE_testModel.Ctrade">
+        <MappingFragment StoreEntitySet="Ctrades">
+          <ScalarProperty Name="trade_id" ColumnName="trade_id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="account_id" ColumnName="account_id" />
+          <ScalarProperty Name="symbol_id" ColumnName="symbol_id" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="cp_id" ColumnName="cp_id" />
+          <ScalarProperty Name="fees" ColumnName="fees" />
+          <ScalarProperty Name="value_date" ColumnName="value_date" />
+          <ScalarProperty Name="currency" ColumnName="currency" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="fullid" ColumnName="fullid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ctrades4">
+      <EntityTypeMapping TypeName="EXANTE_testModel.Ctrades4">
+        <MappingFragment StoreEntitySet="Ctrades4">
+          <ScalarProperty Name="trade_id" ColumnName="trade_id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="account_id" ColumnName="account_id" />
+          <ScalarProperty Name="symbol_id" ColumnName="symbol_id" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="cp_id" ColumnName="cp_id" />
+          <ScalarProperty Name="fees" ColumnName="fees" />
+          <ScalarProperty Name="value_date" ColumnName="value_date" />
+          <ScalarProperty Name="currency" ColumnName="currency" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prices">
+      <EntityTypeMapping TypeName="EXANTE_testModel.Price">
+        <MappingFragment StoreEntitySet="Prices">
+          <ScalarProperty Name="Ticker" ColumnName="Ticker" />
+          <ScalarProperty Name="Tenor" ColumnName="Tenor" />
+          <ScalarProperty Name="Price1" ColumnName="Price" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="Valid" ColumnName="Valid" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="full_id" ColumnName="full_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recon_mapping">
+      <EntityTypeMapping TypeName="EXANTE_testModel.Recon_mapping">
+        <MappingFragment StoreEntitySet="Recon_mapping">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="reconSymbol" ColumnName="reconSymbol" />
+          <ScalarProperty Name="importSymbol" ColumnName="importSymbol" />
+          <ScalarProperty Name="account_id" ColumnName="account_id" />
+          <ScalarProperty Name="Mty" ColumnName="Mty" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

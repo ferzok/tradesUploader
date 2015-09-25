@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EXANTE_testModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="EXANTE_testModelStoreContainer">
+    <EntitySet Name="Accounts" EntityType="EXANTE_testModel.Store.Accounts" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="Contracts" EntityType="EXANTE_testModel.Store.Contracts" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="Ctrades" EntityType="EXANTE_testModel.Store.Ctrades" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="Ctrades4" EntityType="EXANTE_testModel.Store.Ctrades4" store:Type="Tables" store:Schema="EXANTE_test" store:Name="Ctrades4">
+      <DefiningQuery>SELECT
+      `Ctrades4`.`trade_id`, 
+      `Ctrades4`.`Date`, 
+      `Ctrades4`.`account_id`, 
+      `Ctrades4`.`symbol_id`, 
+      `Ctrades4`.`qty`, 
+      `Ctrades4`.`price`, 
+      `Ctrades4`.`cp_id`, 
+      `Ctrades4`.`fees`, 
+      `Ctrades4`.`value_date`, 
+      `Ctrades4`.`currency`, 
+      `Ctrades4`.`Timestamp`, 
+      `Ctrades4`.`valid`, 
+      `Ctrades4`.`username`, 
+      `Ctrades4`.`order_id`
+      FROM `Ctrades4` AS `Ctrades4`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Prices" EntityType="EXANTE_testModel.Store.Prices" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="Recon_mapping" EntityType="EXANTE_testModel.Store.Recon_mapping" store:Type="Tables" store:Schema="EXANTE_test" store:Name="Recon_mapping">
+      <DefiningQuery>SELECT
+      `Recon_mapping`.`id`, 
+      `Recon_mapping`.`reconSymbol`, 
+      `Recon_mapping`.`importSymbol`, 
+      `Recon_mapping`.`account_id`, 
+      `Recon_mapping`.`Mty`, 
+      `Recon_mapping`.`Timestamp`, 
+      `Recon_mapping`.`valid`, 
+      `Recon_mapping`.`username`
+      FROM `Recon_mapping` AS `Recon_mapping`</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="account_id" />
+    </Key>
+    <Property Name="account_id" Type="varchar" Nullable="false" MaxLength="11" />
+    <Property Name="Name" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Contracts">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="id" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="Contract" Type="varchar" MaxLength="255" />
+    <Property Name="Exchange" Type="varchar" MaxLength="255" />
+    <Property Name="Type" Type="varchar" MaxLength="255" />
+    <Property Name="Leverage" Type="double" />
+    <Property Name="ValueDate" Type="date" />
+    <Property Name="Currency" Type="varchar" MaxLength="10" />
+    <Property Name="Margin" Type="double" />
+    <Property Name="FlatMargin" Type="double" />
+    <Property Name="Canbesettled" Type="bool" />
+    <Property Name="UpdateDate" Type="date" />
+    <Property Name="commission" Type="double" />
+    <Property Name="Timestamp" Type="timestamp" />
+    <Property Name="valid" Type="int" />
+    <Property Name="username" Type="varchar" MaxLength="255" />
+    <Property Name="fullid" Type="ubigint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Ctrades">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="trade_id" Type="ubigint" Nullable="false" />
+    <Property Name="Date" Type="timestamp" />
+    <Property Name="account_id" Type="varchar" MaxLength="255" />
+    <Property Name="symbol_id" Type="varchar" MaxLength="255" />
+    <Property Name="qty" Type="double" />
+    <Property Name="price" Type="double" />
+    <Property Name="cp_id" Type="varchar" MaxLength="255" />
+    <Property Name="fees" Type="double" />
+    <Property Name="value_date" Type="date" />
+    <Property Name="currency" Type="varchar" MaxLength="255" />
+    <Property Name="Timestamp" Type="timestamp" />
+    <Property Name="valid" Type="int" />
+    <Property Name="username" Type="varchar" MaxLength="255" />
+    <Property Name="order_id" Type="varchar" MaxLength="255" />
+    <Property Name="fullid" Type="ubigint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'EXANTE_test.Ctrades4' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Ctrades4">
+    <Key>
+      <PropertyRef Name="trade_id" />
+    </Key>
+    <Property Name="trade_id" Type="ubigint" Nullable="false" />
+    <Property Name="Date" Type="timestamp" />
+    <Property Name="account_id" Type="varchar" MaxLength="255" />
+    <Property Name="symbol_id" Type="varchar" MaxLength="255" />
+    <Property Name="qty" Type="double" />
+    <Property Name="price" Type="double" />
+    <Property Name="cp_id" Type="varchar" MaxLength="255" />
+    <Property Name="fees" Type="double" />
+    <Property Name="value_date" Type="date" />
+    <Property Name="currency" Type="varchar" MaxLength="255" />
+    <Property Name="Timestamp" Type="timestamp" />
+    <Property Name="valid" Type="int" />
+    <Property Name="username" Type="varchar" MaxLength="255" />
+    <Property Name="order_id" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Prices">
+    <Key>
+      <PropertyRef Name="full_id" />
+    </Key>
+    <Property Name="Ticker" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="Tenor" Type="date" />
+    <Property Name="Price" Type="double" />
+    <Property Name="Date" Type="date" />
+    <Property Name="Type" Type="varchar" MaxLength="255" />
+    <Property Name="id" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="Timestamp" Type="timestamp" />
+    <Property Name="Valid" Type="bool" />
+    <Property Name="Username" Type="varchar" MaxLength="255" />
+    <Property Name="full_id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'EXANTE_test.Recon_mapping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Recon_mapping">
+    <Key>
+      <PropertyRef Name="Timestamp" />
+    </Key>
+    <Property Name="id" Type="bigint" />
+    <Property Name="reconSymbol" Type="varchar" MaxLength="255" />
+    <Property Name="importSymbol" Type="varchar" MaxLength="255" />
+    <Property Name="account_id" Type="varchar" MaxLength="255" />
+    <Property Name="Mty" Type="double" />
+    <Property Name="Timestamp" Type="timestamp" Nullable="false" />
+    <Property Name="valid" Type="bigint" />
+    <Property Name="username" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6013: The table/view 'EXANTE_test.counterparty' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="counterparty">
+        <Property Name="cp_id" Type="int" />
+        <Property Name="Name" Type="varchar" MaxLength="255" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'EXANTE_test.Interest' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="Interest">
+        <Property Name="currency" Type="varchar" MaxLength="255" />
+        <Property Name="ForwardDate" Type="date" />
+        <Property Name="CurrentValueDate" Type="date" />
+        <Property Name="NewValueDate" Type="date" />
+        <Property Name="negative" Type="double" />
+        <Property Name="positive" Type="double" />
+        <Property Name="days" Type="int" />
+        <Property Name="id" Type="varchar" MaxLength="255" />
+        <Property Name="TimeStamp" Type="timestamp" />
+        <Property Name="valid" Type="bool" />
+        <Property Name="username" Type="varchar" MaxLength="255" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'EXANTE_test.Reconcilation' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="Reconcilation">
+        <Property Name="id" Type="bigint" />
+        <Property Name="symbol_id" Type="varchar" MaxLength="255" />
+        <Property Name="qty" Type="double" />
+        <Property Name="VariationMargin" Type="double" />
+        <Property Name="settlement" Type="double" />
+        <Property Name="account_id" Type="varchar" MaxLength="255" />
+        <Property Name="Timestamp" Type="timestamp" />
+        <Property Name="valid" Type="int" />
+        <Property Name="username" Type="varchar" MaxLength="255" />
+      </EntityType>-->
+</Schema>

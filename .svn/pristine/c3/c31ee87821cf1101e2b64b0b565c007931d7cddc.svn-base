@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EXANTE_testModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="EXANTE_q1" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="EXANTE_testModel.Account" />
+    <EntitySet Name="Contracts" EntityType="EXANTE_testModel.Contract" />
+    <EntitySet Name="Ctrades" EntityType="EXANTE_testModel.Ctrade" />
+    <EntitySet Name="Ctrades4" EntityType="EXANTE_testModel.Ctrades4" />
+    <EntitySet Name="Prices" EntityType="EXANTE_testModel.Price" />
+    <EntitySet Name="Recon_mapping" EntityType="EXANTE_testModel.Recon_mapping" />
+  </EntityContainer>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="account_id" />
+    </Key>
+    <Property Name="account_id" Type="String" Nullable="false" MaxLength="11" Unicode="false" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Contract">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="id" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Contract1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Exchange" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Type" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Leverage" Type="Double" />
+    <Property Name="ValueDate" Type="DateTime" Precision="0" />
+    <Property Name="Currency" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="Margin" Type="Double" />
+    <Property Name="FlatMargin" Type="Double" />
+    <Property Name="Canbesettled" Type="Boolean" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+    <Property Name="commission" Type="Double" />
+    <Property Name="Timestamp" Type="DateTime" Precision="0" />
+    <Property Name="valid" Type="Int32" />
+    <Property Name="username" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="fullid" Type="Decimal" Nullable="false" p1:StoreGeneratedPattern="Identity" Precision="20" Scale="0" />
+  </EntityType>
+  <EntityType Name="Ctrade">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="trade_id" Type="Decimal" Nullable="false" Precision="20" Scale="0" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="account_id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="symbol_id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="qty" Type="Double" />
+    <Property Name="price" Type="Double" />
+    <Property Name="cp_id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="fees" Type="Double" />
+    <Property Name="value_date" Type="DateTime" Precision="0" />
+    <Property Name="currency" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Timestamp" Type="DateTime" Precision="0" />
+    <Property Name="valid" Type="Int32" />
+    <Property Name="username" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="order_id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="fullid" Type="Decimal" Nullable="false" p1:StoreGeneratedPattern="Identity" Precision="20" Scale="0" />
+  </EntityType>
+  <EntityType Name="Ctrades4">
+    <Key>
+      <PropertyRef Name="trade_id" />
+    </Key>
+    <Property Name="trade_id" Type="Decimal" Nullable="false" Precision="20" Scale="0" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="account_id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="symbol_id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="qty" Type="Double" />
+    <Property Name="price" Type="Double" />
+    <Property Name="cp_id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="fees" Type="Double" />
+    <Property Name="value_date" Type="DateTime" Precision="0" />
+    <Property Name="currency" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Timestamp" Type="DateTime" Precision="0" />
+    <Property Name="valid" Type="Int32" />
+    <Property Name="username" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="order_id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Price">
+    <Key>
+      <PropertyRef Name="full_id" />
+    </Key>
+    <Property Name="Ticker" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Tenor" Type="DateTime" Precision="0" />
+    <Property Name="Price1" Type="Double" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Type" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="id" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Timestamp" Type="DateTime" Precision="0" />
+    <Property Name="Valid" Type="Boolean" />
+    <Property Name="Username" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="full_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Recon_mapping">
+    <Key>
+      <PropertyRef Name="Timestamp" />
+    </Key>
+    <Property Name="id" Type="Int64" />
+    <Property Name="reconSymbol" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="importSymbol" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="account_id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Mty" Type="Double" />
+    <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="valid" Type="Int64" />
+    <Property Name="username" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+</Schema>

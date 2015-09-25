@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="testModel1111.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="testModel1111StoreContainer">
+    <EntitySet Name="Accounts" EntityType="testModel1111.Store.Accounts" store:Type="Tables" Schema="test" />
+    <EntitySet Name="Contracts" EntityType="testModel1111.Store.Contracts" store:Type="Tables" Schema="test" />
+  </EntityContainer>
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="account_id" />
+    </Key>
+    <Property Name="account_id" Type="ubigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="char" />
+  </EntityType>
+  <EntityType Name="Contracts">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="ubigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Contract" Type="varchar" MaxLength="255" />
+    <Property Name="Exchange" Type="varchar" MaxLength="255" />
+    <Property Name="Type" Type="varchar" MaxLength="255" />
+    <Property Name="Leverage" Type="double" />
+    <Property Name="ValueDate" Type="date" />
+    <Property Name="Currency" Type="varchar" MaxLength="10" />
+    <Property Name="Margin" Type="double" />
+    <Property Name="FlatMargin" Type="double" />
+    <Property Name="Canbesettled" Type="bool" />
+    <Property Name="UpdateDate" Type="date" />
+    <Property Name="commission" Type="double" />
+    <Property Name="Timestamp" Type="timestamp" />
+    <Property Name="valid" Type="int" />
+    <Property Name="username" Type="varchar" MaxLength="255" />
+  </EntityType>
+</Schema>

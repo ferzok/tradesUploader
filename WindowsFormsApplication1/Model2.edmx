@@ -1,0 +1,648 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EXANTE_model.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="EXANTE_modelStoreContainer">
+          <EntitySet Name="Accounts" EntityType="EXANTE_model.Store.Accounts" store:Type="Tables" Schema="EXANTE_test" />
+          <EntitySet Name="Cfiles" EntityType="EXANTE_model.Store.Cfiles" store:Type="Tables" Schema="EXANTE_test" />
+          <EntitySet Name="Contracts" EntityType="EXANTE_model.Store.Contracts" store:Type="Tables" Schema="EXANTE_test" />
+          <EntitySet Name="counterparty" EntityType="EXANTE_model.Store.counterparty" store:Type="Tables" Schema="EXANTE_test" />
+          <EntitySet Name="CpTrades" EntityType="EXANTE_model.Store.CpTrades" store:Type="Tables" Schema="EXANTE_test" />
+          <EntitySet Name="Ctrades" EntityType="EXANTE_model.Store.Ctrades" store:Type="Tables" Schema="EXANTE_test" />
+          <EntitySet Name="DailyCheck" EntityType="EXANTE_model.Store.DailyCheck" store:Type="Tables" Schema="EXANTE_test" />
+          <EntitySet Name="Mapping" EntityType="EXANTE_model.Store.Mapping" store:Type="Tables" Schema="EXANTE_test" />
+          <EntitySet Name="PenPaperTrades" EntityType="EXANTE_model.Store.PenPaperTrades" store:Type="Tables" Schema="EXANTE_test" />
+          <EntitySet Name="Prices" EntityType="EXANTE_model.Store.Prices" store:Type="Tables" Schema="EXANTE_test" />
+        </EntityContainer>
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="account_id" />
+          </Key>
+          <Property Name="account_id" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="date" Type="date" />
+        </EntityType>
+        <EntityType Name="Cfiles">
+          <Key>
+            <PropertyRef Name="fullid" />
+          </Key>
+          <Property Name="cp_id" Type="varchar" MaxLength="20" />
+          <Property Name="Date" Type="date" />
+          <Property Name="file1" Type="longblob" />
+          <Property Name="valid" Type="int" />
+          <Property Name="username" Type="varchar" MaxLength="20" />
+          <Property Name="timestamp" Type="timestamp" />
+          <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="fullid" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="255" />
+          <Property Name="Contract" Type="varchar" MaxLength="255" />
+          <Property Name="Exchange" Type="varchar" MaxLength="255" />
+          <Property Name="Type" Type="varchar" MaxLength="255" />
+          <Property Name="Leverage" Type="double" />
+          <Property Name="ValueDate" Type="date" />
+          <Property Name="Currency" Type="varchar" MaxLength="10" />
+          <Property Name="Margin" Type="double" />
+          <Property Name="FlatMargin" Type="double" />
+          <Property Name="Canbesettled" Type="bool" />
+          <Property Name="UpdateDate" Type="date" />
+          <Property Name="commission" Type="double" />
+          <Property Name="Timestamp" Type="timestamp" />
+          <Property Name="valid" Type="int" />
+          <Property Name="username" Type="varchar" MaxLength="255" />
+          <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="counterparty">
+          <Key>
+            <PropertyRef Name="cp_id" />
+          </Key>
+          <Property Name="cp_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="CpTrades">
+          <Key>
+            <PropertyRef Name="FullId" />
+          </Key>
+          <Property Name="ReportDate" Type="date" />
+          <Property Name="TradeDate" Type="date" />
+          <Property Name="BrokerId" Type="varchar" MaxLength="20" />
+          <Property Name="Symbol" Type="varchar" MaxLength="255" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="Qty" Type="double" />
+          <Property Name="Price" Type="double" />
+          <Property Name="ValueDate" Type="date" />
+          <Property Name="cp_id" Type="int" />
+          <Property Name="ExchangeFees" Type="double" />
+          <Property Name="Fee" Type="double" />
+          <Property Name="CtradeId" Type="bigint" />
+          <Property Name="BOSymbol" Type="varchar" MaxLength="50" />
+          <Property Name="BOTradeNumber" Type="varchar" MaxLength="600" />
+          <Property Name="value" Type="double" />
+          <Property Name="Timestamp" Type="timestamp" Nullable="false" />
+          <Property Name="valid" Type="int" />
+          <Property Name="username" Type="varchar" MaxLength="20" />
+          <Property Name="FullId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BOcp" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Ctrades">
+          <Key>
+            <PropertyRef Name="fullid" />
+          </Key>
+          <Property Name="trade_id" Type="varchar" MaxLength="40" />
+          <Property Name="Date" Type="timestamp" />
+          <Property Name="account_id" Type="varchar" MaxLength="255" />
+          <Property Name="symbol_id" Type="varchar" MaxLength="255" />
+          <Property Name="qty" Type="double" />
+          <Property Name="price" Type="double" />
+          <Property Name="cp_id" Type="varchar" MaxLength="255" />
+          <Property Name="fees" Type="double" />
+          <Property Name="value_date" Type="date" />
+          <Property Name="currency" Type="varchar" MaxLength="255" />
+          <Property Name="tradeNumber" Type="bigint" />
+          <Property Name="Timestamp" Type="timestamp" />
+          <Property Name="valid" Type="int" />
+          <Property Name="username" Type="varchar" MaxLength="255" />
+          <Property Name="order_id" Type="varchar" MaxLength="255" />
+          <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="gatewayId" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="DailyCheck">
+          <Key>
+            <PropertyRef Name="fullid" />
+          </Key>
+          <Property Name="fullid" Type="ubigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="cp_id" Type="int" />
+          <Property Name="date" Type="date" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+          <Property Name="user" Type="varchar" MaxLength="50" />
+          <Property Name="valid" Type="bool" />
+          <Property Name="timestamp" Type="timestamp" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mapping">
+          <Key>
+            <PropertyRef Name="fullid" />
+          </Key>
+          <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BrockerSymbol" Type="varchar" MaxLength="255" />
+          <Property Name="BOSymbol" Type="varchar" MaxLength="255" />
+          <Property Name="Brocker" Type="varchar" MaxLength="255" />
+          <Property Name="MtyPrice" Type="double" />
+          <Property Name="MtyVolume" Type="double" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="Round" Type="int" />
+          <Property Name="Timestamp" Type="timestamp" Nullable="false" />
+          <Property Name="valid" Type="bigint" />
+          <Property Name="username" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PenPaperTrades">
+          <Key>
+            <PropertyRef Name="fullid" />
+          </Key>
+          <Property Name="TradeDate" Type="date" />
+          <Property Name="User" Type="varchar" MaxLength="100" />
+          <Property Name="Account" Type="varchar" MaxLength="100" />
+          <Property Name="Confimation" Type="varchar" MaxLength="400" />
+          <Property Name="Counterparty" Type="varchar" MaxLength="100" />
+          <Property Name="Base" Type="varchar" MaxLength="20" />
+          <Property Name="Variable" Type="varchar" MaxLength="10" />
+          <Property Name="NearVolume" Type="double" />
+          <Property Name="NearPrice" Type="double" />
+          <Property Name="NearDate" Type="date" />
+          <Property Name="NearValue" Type="double" />
+          <Property Name="FarVolume" Type="double" />
+          <Property Name="FarPrice" Type="double" />
+          <Property Name="FarDate" Type="date" />
+          <Property Name="FarValue" Type="double" />
+          <Property Name="DealtCurrency" Type="varchar" MaxLength="10" />
+          <Property Name="NearClientPrice" Type="double" />
+          <Property Name="FarClientPrice" Type="double" />
+          <Property Name="NearClientVolume" Type="double" />
+          <Property Name="FarClientVolume" Type="double" />
+          <Property Name="NearClientValue" Type="double" />
+          <Property Name="FarClientValue" Type="double" />
+          <Property Name="Markup" Type="double" />
+          <Property Name="MarkupCurrency" Type="varchar" MaxLength="10" />
+          <Property Name="ExanteCost" Type="double" />
+          <Property Name="CostPer1M" Type="double" />
+          <Property Name="Fees" Type="double" />
+          <Property Name="TradeType" Type="varchar" MaxLength="20" />
+          <Property Name="BOUser" Type="varchar" MaxLength="255" />
+          <Property Name="DateInputBO" Type="date" />
+          <Property Name="BOTradeIdNearLeg" Type="varchar" MaxLength="255" />
+          <Property Name="BOTradeIdFarLeg" Type="varchar" MaxLength="255" />
+          <Property Name="Comments" Type="varchar" MaxLength="255" />
+          <Property Name="Reconciled" Type="varchar" MaxLength="100" />
+          <Property Name="timestamp" Type="timestamp" />
+          <Property Name="valid" Type="int" />
+          <Property Name="username" Type="varchar" MaxLength="255" />
+          <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Prices">
+          <Key>
+            <PropertyRef Name="full_id" />
+          </Key>
+          <Property Name="Ticker" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Tenor" Type="date" />
+          <Property Name="Price" Type="double" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Type" Type="varchar" MaxLength="255" />
+          <Property Name="id" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Timestamp" Type="timestamp" />
+          <Property Name="Valid" Type="bool" />
+          <Property Name="Username" Type="varchar" MaxLength="255" />
+          <Property Name="full_id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6013: The table/view 'def.EXANTE_test.Interest' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="Interest">
+        <Property Name="currency" Type="varchar" MaxLength="255" />
+        <Property Name="ForwardDate" Type="date" />
+        <Property Name="CurrentValueDate" Type="date" />
+        <Property Name="NewValueDate" Type="date" />
+        <Property Name="negative" Type="double" />
+        <Property Name="positive" Type="double" />
+        <Property Name="days" Type="int" />
+        <Property Name="id" Type="varchar" MaxLength="255" />
+        <Property Name="TimeStamp" Type="timestamp" />
+        <Property Name="valid" Type="bool" />
+        <Property Name="username" Type="varchar" MaxLength="255" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'def.EXANTE_test.Reconcilation' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="Reconcilation">
+        <Property Name="id" Type="bigint" />
+        <Property Name="symbol_id" Type="varchar" MaxLength="255" />
+        <Property Name="qty" Type="double" />
+        <Property Name="VariationMargin" Type="double" />
+        <Property Name="settlement" Type="double" />
+        <Property Name="account_id" Type="varchar" MaxLength="255" />
+        <Property Name="Timestamp" Type="timestamp" />
+        <Property Name="valid" Type="int" />
+        <Property Name="username" Type="varchar" MaxLength="255" />
+      </EntityType>-->
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EXANTE_model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EXANTE_testEntities1" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="EXANTE_model.Account" />
+          <EntitySet Name="Cfiles" EntityType="EXANTE_model.Cfile" />
+          <EntitySet Name="Contracts" EntityType="EXANTE_model.Contract" />
+          <EntitySet Name="counterparties" EntityType="EXANTE_model.counterparty" />
+          <EntitySet Name="CpTrades" EntityType="EXANTE_model.CpTrade" />
+          <EntitySet Name="Ctrades" EntityType="EXANTE_model.Ctrade" />
+          <EntitySet Name="DailyChecks" EntityType="EXANTE_model.DailyCheck" />
+          <EntitySet Name="Mappings" EntityType="EXANTE_model.Mapping" />
+          <EntitySet Name="PenPaperTrades" EntityType="EXANTE_model.PenPaperTrade" />
+          <EntitySet Name="Prices" EntityType="EXANTE_model.Price" />
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="account_id" />
+          </Key>
+          <Property Name="account_id" Type="String" Nullable="false" MaxLength="11" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Cfile">
+          <Key>
+            <PropertyRef Name="fullid" />
+          </Key>
+          <Property Name="cp_id" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="file1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="valid" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="timestamp" Type="DateTime" Precision="0" />
+          <Property Name="fullid" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="fullid" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Contract1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Exchange" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Leverage" Type="Double" />
+          <Property Name="ValueDate" Type="DateTime" Precision="0" />
+          <Property Name="Currency" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Margin" Type="Double" />
+          <Property Name="FlatMargin" Type="Double" />
+          <Property Name="Canbesettled" Type="Boolean" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="commission" Type="Double" />
+          <Property Name="Timestamp" Type="DateTime" Precision="0" />
+          <Property Name="valid" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="fullid" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="counterparty">
+          <Key>
+            <PropertyRef Name="cp_id" />
+          </Key>
+          <Property Name="cp_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CpTrade">
+          <Key>
+            <PropertyRef Name="FullId" />
+          </Key>
+          <Property Name="ReportDate" Type="DateTime" Precision="0" />
+          <Property Name="TradeDate" Type="DateTime" Precision="0" />
+          <Property Name="BrokerId" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Symbol" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Qty" Type="Double" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="ValueDate" Type="DateTime" Precision="0" />
+          <Property Name="cp_id" Type="Int32" />
+          <Property Name="ExchangeFees" Type="Double" />
+          <Property Name="Fee" Type="Double" />
+          <Property Name="CtradeId" Type="Int64" />
+          <Property Name="BOSymbol" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="BOTradeNumber" Type="String" MaxLength="600" Unicode="false" FixedLength="false" />
+          <Property Name="value" Type="Double" />
+          <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="valid" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="FullId" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="BOcp" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Ctrade">
+          <Key>
+            <PropertyRef Name="fullid" />
+          </Key>
+          <Property Name="trade_id" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="account_id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="symbol_id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="qty" Type="Double" />
+          <Property Name="price" Type="Double" />
+          <Property Name="cp_id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="fees" Type="Double" />
+          <Property Name="value_date" Type="DateTime" Precision="0" />
+          <Property Name="currency" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="tradeNumber" Type="Int64" />
+          <Property Name="Timestamp" Type="DateTime" Precision="0" />
+          <Property Name="valid" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="order_id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="fullid" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="gatewayId" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DailyCheck">
+          <Key>
+            <PropertyRef Name="fullid" />
+          </Key>
+          <Property Name="fullid" Type="Decimal" Nullable="false" p1:StoreGeneratedPattern="Identity" Precision="20" Scale="0" />
+          <Property Name="cp_id" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="user" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="valid" Type="Boolean" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Mapping">
+          <Key>
+            <PropertyRef Name="fullid" />
+          </Key>
+          <Property Name="fullid" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="BrockerSymbol" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="BOSymbol" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Brocker" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="MtyPrice" Type="Double" />
+          <Property Name="MtyVolume" Type="Double" />
+          <Property Name="Type" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Round" Type="Int32" />
+          <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="valid" Type="Int64" />
+          <Property Name="username" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PenPaperTrade">
+          <Key>
+            <PropertyRef Name="fullid" />
+          </Key>
+          <Property Name="TradeDate" Type="DateTime" Precision="0" />
+          <Property Name="User" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Account" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Confimation" Type="String" MaxLength="400" Unicode="false" FixedLength="false" />
+          <Property Name="Counterparty" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Base" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Variable" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="NearVolume" Type="Double" />
+          <Property Name="NearPrice" Type="Double" />
+          <Property Name="NearDate" Type="DateTime" Precision="0" />
+          <Property Name="NearValue" Type="Double" />
+          <Property Name="FarVolume" Type="Double" />
+          <Property Name="FarPrice" Type="Double" />
+          <Property Name="FarDate" Type="DateTime" Precision="0" />
+          <Property Name="FarValue" Type="Double" />
+          <Property Name="DealtCurrency" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="NearClientPrice" Type="Double" />
+          <Property Name="FarClientPrice" Type="Double" />
+          <Property Name="NearClientVolume" Type="Double" />
+          <Property Name="FarClientVolume" Type="Double" />
+          <Property Name="NearClientValue" Type="Double" />
+          <Property Name="FarClientValue" Type="Double" />
+          <Property Name="Markup" Type="Double" />
+          <Property Name="MarkupCurrency" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ExanteCost" Type="Double" />
+          <Property Name="CostPer1M" Type="Double" />
+          <Property Name="Fees" Type="Double" />
+          <Property Name="TradeType" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="BOUser" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="DateInputBO" Type="DateTime" Precision="0" />
+          <Property Name="BOTradeIdNearLeg" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="BOTradeIdFarLeg" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Comments" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Reconciled" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="timestamp" Type="DateTime" Precision="0" />
+          <Property Name="valid" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="fullid" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="full_id" />
+          </Key>
+          <Property Name="Ticker" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Tenor" Type="DateTime" Precision="0" />
+          <Property Name="Price1" Type="Double" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Type" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="id" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Timestamp" Type="DateTime" Precision="0" />
+          <Property Name="Valid" Type="Boolean" />
+          <Property Name="Username" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="full_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EXANTE_modelStoreContainer" CdmEntityContainer="EXANTE_testEntities1">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="EXANTE_model.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="account_id" ColumnName="account_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cfiles">
+            <EntityTypeMapping TypeName="EXANTE_model.Cfile">
+              <MappingFragment StoreEntitySet="Cfiles">
+                <ScalarProperty Name="cp_id" ColumnName="cp_id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="file1" ColumnName="file1" />
+                <ScalarProperty Name="valid" ColumnName="valid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="fullid" ColumnName="fullid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="EXANTE_model.Contract">
+              <MappingFragment StoreEntitySet="Contracts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Contract1" ColumnName="Contract" />
+                <ScalarProperty Name="Exchange" ColumnName="Exchange" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Leverage" ColumnName="Leverage" />
+                <ScalarProperty Name="ValueDate" ColumnName="ValueDate" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Margin" ColumnName="Margin" />
+                <ScalarProperty Name="FlatMargin" ColumnName="FlatMargin" />
+                <ScalarProperty Name="Canbesettled" ColumnName="Canbesettled" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="commission" ColumnName="commission" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="valid" ColumnName="valid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="fullid" ColumnName="fullid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="counterparties">
+            <EntityTypeMapping TypeName="EXANTE_model.counterparty">
+              <MappingFragment StoreEntitySet="counterparty">
+                <ScalarProperty Name="cp_id" ColumnName="cp_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CpTrades">
+            <EntityTypeMapping TypeName="EXANTE_model.CpTrade">
+              <MappingFragment StoreEntitySet="CpTrades">
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="TradeDate" ColumnName="TradeDate" />
+                <ScalarProperty Name="BrokerId" ColumnName="BrokerId" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ValueDate" ColumnName="ValueDate" />
+                <ScalarProperty Name="cp_id" ColumnName="cp_id" />
+                <ScalarProperty Name="ExchangeFees" ColumnName="ExchangeFees" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+                <ScalarProperty Name="CtradeId" ColumnName="CtradeId" />
+                <ScalarProperty Name="BOSymbol" ColumnName="BOSymbol" />
+                <ScalarProperty Name="BOTradeNumber" ColumnName="BOTradeNumber" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="valid" ColumnName="valid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="FullId" ColumnName="FullId" />
+                <ScalarProperty Name="BOcp" ColumnName="BOcp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ctrades">
+            <EntityTypeMapping TypeName="EXANTE_model.Ctrade">
+              <MappingFragment StoreEntitySet="Ctrades">
+                <ScalarProperty Name="trade_id" ColumnName="trade_id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="account_id" ColumnName="account_id" />
+                <ScalarProperty Name="symbol_id" ColumnName="symbol_id" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="cp_id" ColumnName="cp_id" />
+                <ScalarProperty Name="fees" ColumnName="fees" />
+                <ScalarProperty Name="value_date" ColumnName="value_date" />
+                <ScalarProperty Name="currency" ColumnName="currency" />
+                <ScalarProperty Name="tradeNumber" ColumnName="tradeNumber" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="valid" ColumnName="valid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="fullid" ColumnName="fullid" />
+                <ScalarProperty Name="gatewayId" ColumnName="gatewayId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailyChecks">
+            <EntityTypeMapping TypeName="EXANTE_model.DailyCheck">
+              <MappingFragment StoreEntitySet="DailyCheck">
+                <ScalarProperty Name="fullid" ColumnName="fullid" />
+                <ScalarProperty Name="cp_id" ColumnName="cp_id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="user" ColumnName="user" />
+                <ScalarProperty Name="valid" ColumnName="valid" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mappings">
+            <EntityTypeMapping TypeName="EXANTE_model.Mapping">
+              <MappingFragment StoreEntitySet="Mapping">
+                <ScalarProperty Name="fullid" ColumnName="fullid" />
+                <ScalarProperty Name="BrockerSymbol" ColumnName="BrockerSymbol" />
+                <ScalarProperty Name="BOSymbol" ColumnName="BOSymbol" />
+                <ScalarProperty Name="Brocker" ColumnName="Brocker" />
+                <ScalarProperty Name="MtyPrice" ColumnName="MtyPrice" />
+                <ScalarProperty Name="MtyVolume" ColumnName="MtyVolume" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Round" ColumnName="Round" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="valid" ColumnName="valid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PenPaperTrades">
+            <EntityTypeMapping TypeName="EXANTE_model.PenPaperTrade">
+              <MappingFragment StoreEntitySet="PenPaperTrades">
+                <ScalarProperty Name="TradeDate" ColumnName="TradeDate" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Confimation" ColumnName="Confimation" />
+                <ScalarProperty Name="Counterparty" ColumnName="Counterparty" />
+                <ScalarProperty Name="Base" ColumnName="Base" />
+                <ScalarProperty Name="Variable" ColumnName="Variable" />
+                <ScalarProperty Name="NearVolume" ColumnName="NearVolume" />
+                <ScalarProperty Name="NearPrice" ColumnName="NearPrice" />
+                <ScalarProperty Name="NearDate" ColumnName="NearDate" />
+                <ScalarProperty Name="NearValue" ColumnName="NearValue" />
+                <ScalarProperty Name="FarVolume" ColumnName="FarVolume" />
+                <ScalarProperty Name="FarPrice" ColumnName="FarPrice" />
+                <ScalarProperty Name="FarDate" ColumnName="FarDate" />
+                <ScalarProperty Name="FarValue" ColumnName="FarValue" />
+                <ScalarProperty Name="DealtCurrency" ColumnName="DealtCurrency" />
+                <ScalarProperty Name="NearClientPrice" ColumnName="NearClientPrice" />
+                <ScalarProperty Name="FarClientPrice" ColumnName="FarClientPrice" />
+                <ScalarProperty Name="NearClientVolume" ColumnName="NearClientVolume" />
+                <ScalarProperty Name="FarClientVolume" ColumnName="FarClientVolume" />
+                <ScalarProperty Name="NearClientValue" ColumnName="NearClientValue" />
+                <ScalarProperty Name="FarClientValue" ColumnName="FarClientValue" />
+                <ScalarProperty Name="Markup" ColumnName="Markup" />
+                <ScalarProperty Name="MarkupCurrency" ColumnName="MarkupCurrency" />
+                <ScalarProperty Name="ExanteCost" ColumnName="ExanteCost" />
+                <ScalarProperty Name="CostPer1M" ColumnName="CostPer1M" />
+                <ScalarProperty Name="Fees" ColumnName="Fees" />
+                <ScalarProperty Name="TradeType" ColumnName="TradeType" />
+                <ScalarProperty Name="BOUser" ColumnName="BOUser" />
+                <ScalarProperty Name="DateInputBO" ColumnName="DateInputBO" />
+                <ScalarProperty Name="BOTradeIdNearLeg" ColumnName="BOTradeIdNearLeg" />
+                <ScalarProperty Name="BOTradeIdFarLeg" ColumnName="BOTradeIdFarLeg" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Reconciled" ColumnName="Reconciled" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="valid" ColumnName="valid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="fullid" ColumnName="fullid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prices">
+            <EntityTypeMapping TypeName="EXANTE_model.Price">
+              <MappingFragment StoreEntitySet="Prices">
+                <ScalarProperty Name="Ticker" ColumnName="Ticker" />
+                <ScalarProperty Name="Tenor" ColumnName="Tenor" />
+                <ScalarProperty Name="Price1" ColumnName="Price" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Valid" ColumnName="Valid" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="full_id" ColumnName="full_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
