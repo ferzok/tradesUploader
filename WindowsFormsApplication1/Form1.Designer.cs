@@ -55,7 +55,6 @@ namespace WindowsFormsApplication1
             this.VMOSL = new System.Windows.Forms.Button();
             this.Mac = new System.Windows.Forms.Button();
             this.LEK = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.PostToRecon = new System.Windows.Forms.Button();
             this.VMAton = new System.Windows.Forms.Button();
@@ -64,6 +63,9 @@ namespace WindowsFormsApplication1
             this.aBNPositionParsingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aBNFTParsingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bOFTUploadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cpCostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadFTBOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.BrockerComboBox = new System.Windows.Forms.ComboBox();
@@ -74,11 +76,11 @@ namespace WindowsFormsApplication1
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -176,11 +178,11 @@ namespace WindowsFormsApplication1
             // 
             // ADSS
             // 
-            this.ADSS.Location = new System.Drawing.Point(272, 190);
+            this.ADSS.Location = new System.Drawing.Point(271, 150);
             this.ADSS.Name = "ADSS";
             this.ADSS.Size = new System.Drawing.Size(90, 25);
             this.ADSS.TabIndex = 14;
-            this.ADSS.Text = "ADSS OREX";
+            this.ADSS.Text = "ADSS";
             this.ADSS.UseVisualStyleBackColor = true;
             this.ADSS.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -240,10 +242,10 @@ namespace WindowsFormsApplication1
             // 
             // LogTextBox
             // 
-            this.LogTextBox.Location = new System.Drawing.Point(12, 281);
+            this.LogTextBox.Location = new System.Drawing.Point(12, 289);
             this.LogTextBox.Multiline = true;
             this.LogTextBox.Name = "LogTextBox";
-            this.LogTextBox.Size = new System.Drawing.Size(447, 71);
+            this.LogTextBox.Size = new System.Drawing.Size(447, 63);
             this.LogTextBox.TabIndex = 22;
             // 
             // label4
@@ -288,9 +290,9 @@ namespace WindowsFormsApplication1
             // 
             // Mac
             // 
-            this.Mac.Location = new System.Drawing.Point(272, 121);
+            this.Mac.Location = new System.Drawing.Point(149, 248);
             this.Mac.Name = "Mac";
-            this.Mac.Size = new System.Drawing.Size(89, 27);
+            this.Mac.Size = new System.Drawing.Size(38, 27);
             this.Mac.TabIndex = 28;
             this.Mac.Text = "Mac";
             this.Mac.UseVisualStyleBackColor = true;
@@ -298,23 +300,13 @@ namespace WindowsFormsApplication1
             // 
             // LEK
             // 
-            this.LEK.Location = new System.Drawing.Point(272, 157);
+            this.LEK.Location = new System.Drawing.Point(271, 121);
             this.LEK.Name = "LEK";
-            this.LEK.Size = new System.Drawing.Size(90, 28);
+            this.LEK.Size = new System.Drawing.Size(90, 27);
             this.LEK.TabIndex = 29;
             this.LEK.Text = "Lek";
             this.LEK.UseVisualStyleBackColor = true;
             this.LEK.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(368, 150);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(89, 23);
-            this.button10.TabIndex = 32;
-            this.button10.Text = "Upload FT BO";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // numericUpDown1
             // 
@@ -340,9 +332,9 @@ namespace WindowsFormsApplication1
             // 
             // VMAton
             // 
-            this.VMAton.Location = new System.Drawing.Point(149, 190);
+            this.VMAton.Location = new System.Drawing.Point(371, 148);
             this.VMAton.Name = "VMAton";
-            this.VMAton.Size = new System.Drawing.Size(104, 25);
+            this.VMAton.Size = new System.Drawing.Size(89, 25);
             this.VMAton.TabIndex = 35;
             this.VMAton.Text = "VM Aton";
             this.VMAton.UseVisualStyleBackColor = true;
@@ -354,7 +346,7 @@ namespace WindowsFormsApplication1
             this.procedures});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(491, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(791, 24);
             this.menuStrip1.TabIndex = 36;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -363,7 +355,10 @@ namespace WindowsFormsApplication1
             this.procedures.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aBNPositionParsingToolStripMenuItem,
             this.aBNFTParsingToolStripMenuItem,
-            this.bOFTUploadingToolStripMenuItem});
+            this.bOFTUploadingToolStripMenuItem,
+            this.cpCostToolStripMenuItem,
+            this.updateOpenToolStripMenuItem,
+            this.uploadFTBOToolStripMenuItem});
             this.procedures.Name = "procedures";
             this.procedures.Size = new System.Drawing.Size(45, 20);
             this.procedures.Text = "Func";
@@ -388,6 +383,27 @@ namespace WindowsFormsApplication1
             this.bOFTUploadingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.bOFTUploadingToolStripMenuItem.Text = "BOFTUploading";
             this.bOFTUploadingToolStripMenuItem.Click += new System.EventHandler(this.bOFTUploadingToolStripMenuItem_Click);
+            // 
+            // cpCostToolStripMenuItem
+            // 
+            this.cpCostToolStripMenuItem.Name = "cpCostToolStripMenuItem";
+            this.cpCostToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cpCostToolStripMenuItem.Text = "CpCost";
+            this.cpCostToolStripMenuItem.Click += new System.EventHandler(this.cpCostToolStripMenuItem_Click);
+            // 
+            // updateOpenToolStripMenuItem
+            // 
+            this.updateOpenToolStripMenuItem.Name = "updateOpenToolStripMenuItem";
+            this.updateOpenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateOpenToolStripMenuItem.Text = "Update Open";
+            this.updateOpenToolStripMenuItem.Click += new System.EventHandler(this.updateOpenToolStripMenuItem_Click);
+            // 
+            // uploadFTBOToolStripMenuItem
+            // 
+            this.uploadFTBOToolStripMenuItem.Name = "uploadFTBOToolStripMenuItem";
+            this.uploadFTBOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uploadFTBOToolStripMenuItem.Text = "Upload FT BO";
+            this.uploadFTBOToolStripMenuItem.Click += new System.EventHandler(this.uploadFTBOToolStripMenuItem_Click);
             // 
             // label5
             // 
@@ -429,7 +445,7 @@ namespace WindowsFormsApplication1
             // 
             // OSL
             // 
-            this.OSL.Location = new System.Drawing.Point(370, 208);
+            this.OSL.Location = new System.Drawing.Point(149, 189);
             this.OSL.Name = "OSL";
             this.OSL.Size = new System.Drawing.Size(38, 23);
             this.OSL.TabIndex = 41;
@@ -439,7 +455,7 @@ namespace WindowsFormsApplication1
             // 
             // RJOButton
             // 
-            this.RJOButton.Location = new System.Drawing.Point(370, 237);
+            this.RJOButton.Location = new System.Drawing.Point(149, 218);
             this.RJOButton.Name = "RJOButton";
             this.RJOButton.Size = new System.Drawing.Size(42, 23);
             this.RJOButton.TabIndex = 42;
@@ -459,9 +475,9 @@ namespace WindowsFormsApplication1
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(272, 221);
+            this.button3.Location = new System.Drawing.Point(271, 179);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(89, 25);
+            this.button3.Size = new System.Drawing.Size(90, 25);
             this.button3.TabIndex = 44;
             this.button3.Text = "ADSS Balance";
             this.button3.UseVisualStyleBackColor = true;
@@ -469,17 +485,17 @@ namespace WindowsFormsApplication1
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(149, 221);
+            this.button4.Location = new System.Drawing.Point(193, 248);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(104, 23);
+            this.button4.Size = new System.Drawing.Size(65, 26);
             this.button4.TabIndex = 45;
-            this.button4.Text = "Mac balance";
+            this.button4.Text = "Mac bal";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(414, 210);
+            this.button5.Location = new System.Drawing.Point(193, 188);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(65, 24);
             this.button5.TabIndex = 46;
@@ -487,21 +503,11 @@ namespace WindowsFormsApplication1
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(359, 359);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(98, 23);
-            this.button6.TabIndex = 47;
-            this.button6.Text = "update open trades";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click_1);
-            // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(419, 237);
+            this.button7.Location = new System.Drawing.Point(193, 218);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(60, 23);
+            this.button7.Size = new System.Drawing.Size(65, 23);
             this.button7.TabIndex = 48;
             this.button7.Text = "OSL Bal";
             this.button7.UseVisualStyleBackColor = true;
@@ -509,9 +515,9 @@ namespace WindowsFormsApplication1
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(149, 250);
+            this.button8.Location = new System.Drawing.Point(271, 211);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(104, 23);
+            this.button8.Size = new System.Drawing.Size(42, 23);
             this.button8.TabIndex = 49;
             this.button8.Text = "CFH";
             this.button8.UseVisualStyleBackColor = true;
@@ -519,7 +525,7 @@ namespace WindowsFormsApplication1
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(370, 260);
+            this.button9.Location = new System.Drawing.Point(271, 248);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(89, 23);
             this.button9.TabIndex = 50;
@@ -529,22 +535,32 @@ namespace WindowsFormsApplication1
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(272, 252);
+            this.button11.Location = new System.Drawing.Point(314, 210);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(92, 23);
+            this.button11.Size = new System.Drawing.Size(54, 23);
             this.button11.TabIndex = 51;
-            this.button11.Text = "CFH balance";
+            this.button11.Text = "CFH bal";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click_1);
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(370, 210);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(89, 23);
+            this.button6.TabIndex = 52;
+            this.button6.Text = "Nissan";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.NissanButtonClick);
+            // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(491, 382);
+            this.ClientSize = new System.Drawing.Size(791, 415);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -558,7 +574,6 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.VMAton);
             this.Controls.Add(this.PostToRecon);
             this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.button10);
             this.Controls.Add(this.LEK);
             this.Controls.Add(this.Mac);
             this.Controls.Add(this.VMOSL);
@@ -620,7 +635,6 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button VMOSL;
         private System.Windows.Forms.Button Mac;
         private System.Windows.Forms.Button LEK;
-        private System.Windows.Forms.Button button10;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button PostToRecon;
         private System.Windows.Forms.Button VMAton;
@@ -639,11 +653,14 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.ToolStripMenuItem cpCostToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateOpenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uploadFTBOToolStripMenuItem;
+        private System.Windows.Forms.Button button6;
     }
 }
 

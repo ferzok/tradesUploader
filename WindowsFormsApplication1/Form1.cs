@@ -3069,7 +3069,7 @@ namespace WindowsFormsApplication1
                                    ct.BrokerId.Contains("ADSS") && ct.ReportDate <= (reportDate.Date) &&
                                    ct.ReportDate >= prevDate.Date
                                select ct).ToDictionary(k => (k.Qty.ToString() + k.exchangeOrderId), k => k);
-                var checkIdFT = (from ct in db.FTs
+                var checkIdFT = (from ct in db.FT
                                  where
                                      ct.brocker.Contains("ADSS") && ct.Type.Contains("PL") &&
                                      ct.ReportDate >= prevDate.Date
@@ -3284,7 +3284,7 @@ namespace WindowsFormsApplication1
             //   List<ABNReconResult> updatelist = null;
             var updatelist = new List<ABNReconResult>();
             var queryable = from ct in testexample.Ctrades
-                            where ct.valid == 1 && ct.BOtradeTimestamp >= prevreportdate && ct.Date < (nextdate.Date)
+                            where ct.valid == 1 && ct.BOtradeTimestamp >= prevreportdate && ct.BOtradeTimestamp < (nextdate.Date)
                             select ct;
             var boTradeslist = queryable.ToDictionary(k => k.tradeNumber, k => k);
 
@@ -3446,7 +3446,7 @@ namespace WindowsFormsApplication1
                 {
                     bosymbol = symbolvalue.BOSymbol;
                 }
-                dbentity.FTs.Add(new FT
+                dbentity.FT.Add(new FT
                     {
                         cp = row.Substring(54, 6).TrimEnd(),
                         brocker = "ABN",
@@ -3520,14 +3520,14 @@ WHERE TYPE = "VM" AND Brocker ="OPEN"  AND account_id LIKE  "UJL5180.%"
 AND ReportDate = "2015-09-01"*/
 
             var ftitems =
-                from ft in db.FTs
+                from ft in db.FT
                 where
                     ft.Type == "VM" && ft.brocker == "OPEN" && ft.account_id.Contains("UJL5180.0")
                 select ft;
             foreach (FT ftitem in ftitems)
             {
                 ftitem.account_id = "UJL5180.INV";
-                db.FTs.Attach(ftitem);
+                db.FT.Attach(ftitem);
                 db.Entry(ftitem).State = (System.Data.Entity.EntityState)EntityState.Modified;
                 SaveDBChanges(ref db);
             }
@@ -3540,7 +3540,7 @@ AND ReportDate = "2015-09-01"*/
             var db = new EXANTE_Entities(_currentConnection);
             var nextdate = vmDate.AddDays(1);
             var sum =
-                db.FTs.Where(
+                db.FT.Where(
                     o =>
                     (o.ReportDate >= vmDate.Date && o.ReportDate < nextdate.Date && o.valid == 1 && o.brocker == brocker))
                   .Sum(o => o.value);
@@ -3566,11 +3566,11 @@ AND ReportDate = "2015-09-01"*/
             var i = 0;
             var db = new EXANTE_Entities(_currentConnection);
             var nextdate = VMDate.AddDays(1);
-            var listtodelete = from recon in db.FTs
+            var listtodelete = from recon in db.FT
                                where recon.ReportDate >= VMDate.Date && recon.ReportDate < nextdate.Date
                                      && recon.Type.Contains("VM") && recon.cp.Contains(Brocker)
                                select recon;
-            db.FTs.RemoveRange(listtodelete);
+            db.FT.RemoveRange(listtodelete);
             SaveDBChanges(ref db);
 
             while (i < listofaccountpositions.Count)
@@ -3623,7 +3623,7 @@ AND ReportDate = "2015-09-01"*/
                 }
                 i++;
                 valueccy = GetValueccy(VMDate, fullTrade.Symbol);
-                db.FTs.Add(new FT
+                db.FT.Add(new FT
                     {
                         cp = Brocker,
                         brocker = Brocker,
@@ -5130,7 +5130,7 @@ AND ReportDate = "2015-09-01"*/
 
             if (sendPL)
             {
-                var FTfromDb = from ft in db.FTs
+                var FTfromDb = from ft in db.FT
                                where ft.valid == 1 && ft.brocker == acc.DBcpName &&
                                      ft.ReportDate >= reportdate.Date && ft.ReportDate < (nextdate.Date) &&
                                      ft.account_id == acc.BOaccountId && ft.Type == "PL"
@@ -6276,16 +6276,16 @@ AND ReportDate = "2015-09-01"*/
             if (!noparsingCheckbox.Checked)
             {
                 DateTime TimeStart = DateTime.Now;
-                LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start Lek trades uploading");
-                var LInitTrades = RJOTradeParsing();
-                var lCptrades = RJOConverting(LInitTrades);
+                LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start RJO trades uploading");
+                var LInitTrades = TradeParsing("RJO", "CSV", "FU");
+                var lCptrades = InitTradesConverting(LInitTrades,"RJO");
                 foreach (CpTrade cptrade in lCptrades)
                 {
                     db.CpTrades.Add(cptrade);
                 }
                 db.SaveChanges();
                 DateTime TimeEnd = DateTime.Now;
-                LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + "Lek trades uploading completed." +
+                LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + "RJO trades uploading completed." +
                                       (TimeEnd - TimeStart).ToString());
             }
             else
@@ -6325,12 +6325,12 @@ AND ReportDate = "2015-09-01"*/
             Console.WriteLine(""); // <-- For debugging use. */
         }
 
-        private List<CpTrade> RJOConverting(List<InitialTrade> lInitTrades)
+        private List<CpTrade> InitTradesConverting(List<InitialTrade> lInitTrades,string cp)
         {
             DateTime TimeStartConvert = DateTime.Now;
-            LogTextBox.AppendText("\r\n" + TimeStartConvert.ToLongTimeString() + ": " + "start RJO trades Converting");
+            LogTextBox.AppendText("\r\n" + TimeStartConvert.ToLongTimeString() + ": " + "start "+cp+" trades Converting");
             var db = new EXANTE_Entities(_currentConnection);
-            var symbolmap = getMapping("RJO");
+            var symbolmap = getMapping(cp);
             var lCpTrade = new List<CpTrade>();
             foreach (InitialTrade initTrade in lInitTrades)
             {
@@ -6339,7 +6339,9 @@ AND ReportDate = "2015-09-01"*/
                 var Price = initTrade.Price;
                 var Qty = initTrade.Qty;
                 var value = initTrade.value;
+
                 var ValueDate = initTrade.ValueDate;
+                //if (ValueDate == null) ValueDate = "";
                 String BOSymbol = null;
                 var key = initTrade.Symbol + type + ValueDate.Value.ToShortDateString();
                 
@@ -6349,11 +6351,10 @@ AND ReportDate = "2015-09-01"*/
                     BOSymbol = map.BOSymbol;
                     Price = Price*map.MtyPrice;
                     Qty = Qty*map.MtyVolume;
-                 //   value = value*map.Leverage;
+                    value = value*map.Leverage;
                     ValueDate = map.ValueDate;
                 }
-                //= GetSymbolLek(symbolmap, initTrade.Symbol, ref MtyVolume, contractdetails, ref MtyPrice, ref valuedate, ref Leverage);
-
+              
                 lCpTrade.Add(new CpTrade
                     {
                         ReportDate = initTrade.ReportDate,
@@ -6386,136 +6387,28 @@ AND ReportDate = "2015-09-01"*/
 
             db.Dispose();
             DateTime TimeEnd = DateTime.Now;
-            LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + "OPEN trades converting completed." +
+            LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + cp+" trades converting completed." +
                                   (TimeEnd - TimeStartConvert).ToString());
             return lCpTrade;
         }
 
-        private List<InitialTrade> RJOTradeParsing()
+        private List<InitialTrade> TradeParsing(string brocker, string filetype,string mappingtype)
         {
             DialogResult result = openFileDialog2.ShowDialog();
             var lInitTrades = new List<InitialTrade>();
 
             if (result == DialogResult.OK) // Test result.
             {
-                var symbolmap = getMapping("RJO");
+             //   var symbolmap = getMapping("RJO");
                 var db = new EXANTE_Entities(_currentConnection);
                 var cMapping = (from ct in db.ColumnMappings
-                                where ct.Brocker == "RJO" && ct.FileType == "CSV"
+                                where ct.Brocker == brocker && ct.FileType == filetype// "CSV"
                                 select ct).ToDictionary(k => k.Type, k => k);
-                lInitTrades.AddRange(ParseBrockerCsvToCpTrade(openFileDialog2.FileName, cMapping["FU"]));
-                var cpfromDb = from cp in db.counterparties
+                lInitTrades.AddRange(ParseBrockerCsvToCpTrade(openFileDialog2.FileName, cMapping[mappingtype]));
+               /* var cpfromDb = from cp in db.counterparties
                                select cp;
                 var cpdic = cpfromDb.ToDictionary(k => k.Name, k => k.cp_id);
-                var reader = new StreamReader(openFileDialog2.FileName);
-                /*  if (lineFromFile != null)
-                  {
-                      var rowstring = lineFromFile.Replace("\"", "").Split(Delimiter);
-                      var contractrow =
-                          from ct in db.Contracts
-                          where ct.valid == 1
-                          select ct;
-                      var contractdetails = contractrow.ToDictionary(k => k.id, k => k);
-                      while (!reader.EndOfStream)
-                      {
-                          lineFromFile = reader.ReadLine();
-                          double? MtyVolume = 1;
-                          double? MtyPrice = 1;
-                          string BoSymbol = null;
-                          double? Leverage = 1;
-                          //     int round = 10;
-
-                          if (lineFromFile == null) continue;
-                          rowstring = lineFromFile.Replace("\"", "").Split(CSVDelimeter);
-                          DateTime valuedate;
-                          var side = -1;
-                          double price = 0;
-                          var symbol_id = rowstring[idSymbol].TrimEnd();
-                          var typeoftrade = rowstring[idTypeofTrade].TrimEnd();
-                          string typeofInstrument = "ST";
-                          valuedate = DateTime.ParseExact(rowstring[iddeliverydate], "dd/MM/yy", CultureInfo.CurrentCulture);
-                          BoSymbol = GetSymbolLek(symbolmap, symbol_id, ref MtyVolume, contractdetails, ref MtyPrice, ref valuedate, ref Leverage);
-                          price = (double)(double.Parse(rowstring[idprice], CultureInfo.InvariantCulture) * MtyPrice);
-                          if ((rowstring[idMacside] == "B") || (rowstring[idMacside] == "BOT"))
-                          {
-                              side = 1;
-                          }
-                          reportdate = DateTime.ParseExact(rowstring[idReportDate], "dd/MM/yy", CultureInfo.CurrentCulture);
-                          var account_id = rowstring[idAccount].TrimEnd();
-
-                          var ccy = rowstring[idcurrency].TrimEnd();
-                          var TradeDate = DateTime.ParseExact(rowstring[idTradeDate], "dd/MM/yy",
-                                                              CultureInfo.CurrentCulture);
-                          var qty = rowstring[idqty].IndexOf(".") == -1
-                                        ? Convert.ToInt64(rowstring[idqty]) * side * MtyVolume
-                                        : double.Parse(rowstring[idqty], CultureInfo.InvariantCulture) * side * MtyVolume;
-                          var cp_id = getCPid(rowstring[idcp].Trim(), cpdic);
-                          var exchFees = double.Parse(rowstring[idexchfees], CultureInfo.InvariantCulture);
-                          var Fees = double.Parse(rowstring[idfees], CultureInfo.InvariantCulture);
-                          var exchangeOrderId = rowstring[idoftrade].TrimEnd();
-                          if (symbol_id.Contains("PUT") || symbol_id.Contains("CALL"))
-                          {
-                              typeofInstrument = "OP";
-                          }
-                          allfromfile.Add(new CpTrade
-                          {
-                              ReportDate = reportdate,
-                              TradeDate = TradeDate,
-                              BrokerId = "Lek",
-                              Symbol = symbol_id,
-                              Qty = qty,
-                              Price = price,
-                              ValueDate = valuedate,
-                              cp_id = cp_id,
-                              ExchangeFees = exchFees,
-                              Fee = Fees,
-                              Id = "",
-                              TypeOfTrade = typeoftrade,
-                              Type = typeofInstrument,
-                              BOSymbol = BoSymbol,
-                              BOTradeNumber = null,
-                              value =
-                                  Math.Round(Math.Round((double)(-price * qty * Leverage), 5), 2,
-                                             MidpointRounding.AwayFromZero),
-                              Timestamp = DateTime.UtcNow,
-                              valid = 1,
-                              username = "parser",
-                              //  FullId = null,
-                              BOcp = null,
-                              exchangeOrderId = exchangeOrderId,
-                              Comment = account_id,
-                              ExchFeeCcy = ccy,
-                              ClearingFeeCcy = ccy,
-                              ccy = ccy
-                          });
-                      }
-                  }
-                
-                  TradesParserStatus.Text = "DB updating";
-                  var i = 0;
-                  foreach (CpTrade tradeIndex in allfromfile)
-                  {
-                      db.CpTrades.Add(tradeIndex);
-                      i++;
-                  }
-
-                  try
-                  {
-                      db.SaveChanges();
-                  }
-                  catch (DbEntityValidationException dbEx)
-                  {
-                      foreach (var validationErrors in dbEx.EntityValidationErrors)
-                      {
-                          foreach (var validationError in validationErrors.ValidationErrors)
-                          {
-                              Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName,
-                                                     validationError.ErrorMessage);
-                          }
-                      }
-                  }
-                  LogTextBox.AppendText("\r\n" + "Lek: " + i + " trades have been added");
-                  return reportdate;*/
+                var reader = new StreamReader(openFileDialog2.FileName);*/
                 return lInitTrades;
             }
             else return lInitTrades;
@@ -6551,8 +6444,7 @@ AND ReportDate = "2015-09-01"*/
                 var tradeDate = DateTime.ParseExact(rowstring[(int) cMapping.cTradeDate], cMapping.DateFormat,
                                                     CultureInfo.CurrentCulture);
                 var reportdate = cMapping.cReportDate != null
-                                     ? DateTime.ParseExact(rowstring[(int) cMapping.cReportDate], cMapping.DateFormat,
-                                                           CultureInfo.CurrentCulture)
+                                     ? DateTime.ParseExact(rowstring[(int) cMapping.cReportDate], cMapping.ReportDateFormat,CultureInfo.CurrentCulture)
                                      : tradeDate;
                 //     var reportdate = DateTime.ParseExact(rowstring[(int)cMapping.cReportDate], cMapping.DateFormat, CultureInfo.CurrentCulture);
                 if (cMapping.cTradeTime != null)
@@ -6571,6 +6463,12 @@ AND ReportDate = "2015-09-01"*/
                 {
                     qty = Convert.ToDouble(rowstring[(int) cMapping.cQty]) -
                           Convert.ToDouble(rowstring[(int) cMapping.cQtySell]);
+                }
+                if (cMapping.cSide != null)
+                {
+                    if (rowstring[(int) cMapping.cSide].ToString() == "2") qty = -qty;
+                    if (rowstring[(int) cMapping.cSide].ToString().ToUpper() == "SELL") qty = -qty;
+                    if (rowstring[(int)cMapping.cSide].ToString().ToUpper() == "SLD") qty = -qty;
                 }
                 double price = 0;
                 var symbol_id = rowstring[(int) cMapping.cSymbol].TrimEnd();
@@ -6701,7 +6599,7 @@ AND ReportDate = "2015-09-01"*/
             var reportdate = ABNDate.Value;
             var db = new EXANTE_Entities(_currentConnection);
             var nextdate = reportdate.AddDays(1);
-            var cptradefromDb = (from ft in db.FTs
+            var cptradefromDb = (from ft in db.FT
                                  where ft.valid == 1 && 
                                    (ft.brocker == "INSTANT" ||ft.brocker == "EXANTE" ||ft.brocker == "MOEX-SPECTRA" || ft.brocker == "OPEN") &&
                                        ft.Type == "VM"  &&
@@ -6831,10 +6729,10 @@ AND ReportDate = "2015-09-01"*/
                     {
                         reportDate = ABNDate.Value.Date;
                     }
-                    /* var listtodelete = from ft in db.FTs
+                    /* var listtodelete = from ft in db.FT
                                        where ft.ccy == ccy && ft.cp == "ADSS" && reportDate.Date == ft.ReportDate
                                        select ft;
-                    db.FTs.RemoveRange(listtodelete);
+                    db.FT.RemoveRange(listtodelete);
                     db.SaveChanges();*/
                     CleanOldValue(db, ccy, "ADSS", reportDate.Date);
 
@@ -6867,7 +6765,7 @@ AND ReportDate = "2015-09-01"*/
                         t3=t3.Replace(" ", "");
                         var t2 = xlRange.Cells[i, idDebit].value2 != null ? Convert.ToDouble(xlRange.Cells[i, idDebit].Text.ToString().Replace(" ", "")) : 0;
                         t = t - t2;*/
-                        db.FTs.Add(new FT
+                        db.FT.Add(new FT
                             {
                                 ReportDate = reportDate.Date,
                                 cp = "ADSS",
@@ -6896,7 +6794,7 @@ AND ReportDate = "2015-09-01"*/
                                               reportDate.ToShortDateString());
                         comment = "Discrepancy in open cash and close cash of previous day";
                     }
-                    var movements = (from ft in db.FTs
+                    var movements = (from ft in db.FT
                                      where ft.ccy == ccy && ft.cp == "ADSS" && reportDate.Date == ft.ReportDate
                                      group ft by new {ft.symbol}
                                      into g
@@ -7223,7 +7121,7 @@ AND ReportDate = "2015-09-01"*/
                     SaveDBChanges(ref db);
                 }
 
-                /*db.FTs.Add(new FT
+                /*db.FT.Add(new FT
                             {
                                 ReportDate = reportDate.Date,
                                 cp = "Mac",
@@ -7343,7 +7241,7 @@ AND ReportDate = "2015-09-01"*/
                                          }
                                          if (ccy != "")
                                          {
-                                             db.FTs.Add(new FT
+                                             db.FT.Add(new FT
                                              {
                                                  ReportDate = reportDate.Date,
                                                  cp = "Mac",
@@ -7372,10 +7270,10 @@ AND ReportDate = "2015-09-01"*/
 
         private static void CleanOldValue(EXANTE_Entities db, string ccy, string account, DateTime reportDate)
         {
-            var listtodelete = from ft in db.FTs
+            var listtodelete = from ft in db.FT
                                where ft.ccy == ccy && ft.cp == account && reportDate.Date == ft.ReportDate
                                select ft;
-            db.FTs.RemoveRange(listtodelete);
+            db.FT.RemoveRange(listtodelete);
             db.SaveChanges();
         }
 
@@ -7389,7 +7287,7 @@ AND ReportDate = "2015-09-01"*/
             var reportdate = ABNDate.Value;
             var db = new EXANTE_Entities(_currentConnection);
             var nextdate = reportdate.AddDays(1);
-            var cptradefromDb = (from ft in db.FTs
+            var cptradefromDb = (from ft in db.FT
                                  where ft.valid == 1 && ft.brocker == "OPEN" &&
                                        ft.Type == "AF" &&
                                        ft.ReportDate >= reportdate.Date && ft.ReportDate < (nextdate.Date) &&
@@ -7410,7 +7308,7 @@ AND ReportDate = "2015-09-01"*/
             foreach (var VARIABLE in cptradefromDb)
             {
                 FTjson p = new FTjson();
-                p.operationType = "OTHER";
+                p.operationType = "COMMISSION";
                 p.comment = "Additional fees from cp:  " + VARIABLE.BOSymbol + "  for " + reportdate.ToShortDateString();
                 p.asset = VARIABLE.ccy;
                 p.symbolId = VARIABLE.BOSymbol;
@@ -7439,62 +7337,7 @@ AND ReportDate = "2015-09-01"*/
 
         private void button6_Click_1(object sender, EventArgs e)
         {
-            DialogResult result = openFileDialog2.ShowDialog();
-            var lInitTrades = new List<CpTrade>();
-            if (result == DialogResult.OK) // Test result.
-            {
-                DateTime TimeStart = DateTime.Now;
-                LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start OPEN trades uploading");
-
-                var db = new EXANTE_Entities(_currentConnection);
-                var cMapping = (from ct in db.ColumnMappings
-                                where ct.Brocker == "OPEN" && ct.FileType == "EXCEL"
-                                select ct).ToDictionary(k => k.Type, k => k);
-                Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
-                //Открываем книгу.                                                                                                                                                        
-                Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Open(openFileDialog2.FileName, 0, false, 5, "", "",
-                                                                                              false,
-                                                                                              Microsoft.Office.Interop.Excel
-                                                                                                       .XlPlatform.xlWindows,
-                                                                                              "",
-                                                                                              true, false, 0, true,
-                                                                                              false, false);
-                //Выбираем таблицу(лист).
-                Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
-                ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[cMapping["ST"].cTabName];
-                Microsoft.Office.Interop.Excel.Range xlRange = ObjWorkSheet.UsedRange;
-                var tradescounter = new Dictionary<DateTime, int>();
-                var i = cMapping["ST"].cLineStart;
-                var n = xlRange.Rows.Count;
-                var numberofchanges = 0;
-                while (i <= n)
-                {
-                    if (xlRange.Cells[i, cMapping["ST"].cTradeDate].value2 != null)
-                    {
-                        if ((xlRange.Cells[i, cMapping["ST"].cFee2].value2 != null)||(xlRange.Cells[i, cMapping["ST"].cFee3].value2 != null))
-                        {
-                            string currExchorder = xlRange.Cells[i, cMapping["ST"].cExchangeOrderId].value2;
-                            CpTrade currcptrade = (from ct in db.CpTrades
-                                                   where ct.BrokerId == "OPEN" && ct.exchangeOrderId.Contains(currExchorder)
-                                                   select ct).FirstOrDefault();
-                            if (currcptrade != null)
-                            {
-                                currcptrade.Fee2 = cMapping["ST"].cFee2 != null ? xlRange.Cells[i, cMapping["ST"].cFee2].value2 : null;
-                                currcptrade.Fee3 = cMapping["ST"].cFee3 != null ? xlRange.Cells[i, cMapping["ST"].cFee3].value2 : null;
-                                db.CpTrades.Attach(currcptrade);
-                                db.Entry(currcptrade).State = (System.Data.Entity.EntityState)EntityState.Modified;
-                            }
-                            SaveDBChanges(ref db);
-                            numberofchanges++;
-                        }
-                    }
-                    i++;
-                }
-                db.Dispose();
-                LogTextBox.AppendText("\r\n Updated trades " + numberofchanges.ToString());
-                //***
-
-            }
+          
 
         }
 
@@ -7859,15 +7702,12 @@ AND ReportDate = "2015-09-01"*/
 
         private void button9_Click(object sender, EventArgs e)
         {
-               DateTime TimeStart = DateTime.Now;
-                LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start Bloomberg uploading");
-
-                BloombergParsing();
-
-                DateTime TimeEnd = DateTime.Now;
-                LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + "Bloomberg uploading completed." +
-                                      (TimeEnd - TimeStart).ToString());
-            
+            // Parsing xls from bloomberg to DB and calculating Qty by accounts   
+            DateTime TimeStart = DateTime.Now;
+            LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start Bloomberg uploading");
+            BloombergParsing();
+            DateTime TimeEnd = DateTime.Now;
+            LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + "Bloomberg uploading completed." +(TimeEnd - TimeStart).ToString());
         }
 
         private void button11_Click_1(object sender, EventArgs e)
@@ -8009,6 +7849,254 @@ AND ReportDate = "2015-09-01"*/
             System.Runtime.InteropServices.Marshal.FinalReleaseComObject(ObjExcel);
             DateTime TimeEnd = DateTime.Now;
             LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + "start OPEN Balance Completed");
+        }
+
+        private void button12_Click_1(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cpCostToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var db = new EXANTE_Entities(_currentConnection);
+           var ctradeslist = (from r in db.Ctrades
+                               where r.BOtradeTimestamp.ToString().Contains("2015-09") && r.valid == 1
+                               select r).ToList();
+            var dCpCost = new Dictionary<string, CpCost>();
+            var i = 0;
+            foreach (Ctrade ctrade in ctradeslist)
+            {
+                i++;
+                var listcptrades = (from cp in db.CpTrades
+                                    where cp.TradeDate.ToString().Contains("2015-09") && cp.BOTradeNumber.Contains(ctrade.tradeNumber.ToString()) && cp.valid == 1
+                                    select cp).ToList();
+                double ExchFee = 0, cpFee = 0, sumQty = 0;
+                CpTrade item = null;
+                if (listcptrades.Count > 0)
+                {
+                    foreach (CpTrade trade in listcptrades)
+                    {
+                        if (trade.ExchangeFees != null) ExchFee = Math.Abs(ExchFee) + Math.Abs((double)trade.ExchangeFees);
+                        if (trade.Fee != null) cpFee = Math.Abs(cpFee) + Math.Abs((double)trade.Fee);
+                        if (trade.Fee2 != null) cpFee = Math.Abs(cpFee) + Math.Abs((double)trade.Fee2);
+                        if (trade.Fee3 != null) cpFee = Math.Abs(cpFee) + Math.Abs((double)trade.Fee3);
+                        sumQty = sumQty + (double)trade.Qty;
+                    }
+                    if (sumQty != 0)
+                    {
+                        ExchFee = -(double)(ExchFee * ctrade.qty / sumQty);
+                        cpFee = -(double)(cpFee * ctrade.qty / sumQty);
+                    }
+                    else
+                    {
+                        ExchFee = -(double)(ExchFee);
+                        cpFee = -(double)(cpFee);
+                    }
+                    item = listcptrades[0];
+                }
+                var id = ctrade.account_id + ctrade.symbol_id + ctrade.cp_id;
+                CpCost ElementCpcost;
+                if (dCpCost.TryGetValue(id, out ElementCpcost))
+                {
+                    ElementCpcost.BOFee = Math.Round((double)(ElementCpcost.BOFee + Math.Abs((double)ctrade.fees)), 2);
+                    ElementCpcost.CpFee = Math.Round((double)(ElementCpcost.CpFee + cpFee), 2);
+                    ElementCpcost.ExchFee = Math.Round((double)(ElementCpcost.ExchFee + ExchFee), 2);
+                    ElementCpcost.SumQty = ElementCpcost.SumQty + sumQty;
+                    ElementCpcost.NumberOfTrades = ElementCpcost.NumberOfTrades + listcptrades.Count();
+                    if ((item != null) && (ElementCpcost.CPsymbol != null))
+                    {
+                        ElementCpcost.CP = item.BrokerId;
+                        ElementCpcost.CpClearingCCY = item.ccy;
+                        ElementCpcost.CpExchCcy = item.ExchFeeCcy;
+                        ElementCpcost.CPsymbol = item.Symbol;
+                        ElementCpcost.NumberOfTrades = listcptrades.Count();
+                    }
+                }
+                else
+                {
+                    dCpCost.Add(id, new CpCost
+                    {
+                        Date = new DateTime(2015, 9, 1),
+                        account = ctrade.account_id,
+                        BOCcy = ctrade.currency,
+                        BOCp = ctrade.cp_id,
+                        BOFee = Math.Round(Math.Abs((double)ctrade.fees), 2),
+                        BOsymbol = ctrade.symbol_id,
+                        CP = item == null ? null : item.BrokerId,
+                        CpClearingCCY = item == null ? null : item.ccy,
+                        CpExchCcy = item == null ? null : item.ExchFeeCcy,
+                        CpFee = Math.Round(cpFee, 2),
+                        ExchFee = Math.Round(ExchFee, 2),
+                        CPsymbol = item == null ? null : item.Symbol,
+                        SumQty = sumQty,
+                        NumberOfTrades = item == null ? 0 : listcptrades.Count()
+                    });
+                }
+            }
+            foreach (KeyValuePair<string, CpCost> pair in dCpCost)
+            {
+                db.CpCost.Add(pair.Value);
+               SaveDBChanges(ref db);
+            }
+            // SaveDBChanges(ref db);
+            db.Dispose();
+        }
+
+        private void updateOpenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = openFileDialog2.ShowDialog();
+            var lInitTrades = new List<CpTrade>();
+            if (result == DialogResult.OK) // Test result.
+            {
+                DateTime TimeStart = DateTime.Now;
+                LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start OPEN trades uploading");
+
+                var db = new EXANTE_Entities(_currentConnection);
+                var cMapping = (from ct in db.ColumnMappings
+                                where ct.Brocker == "OPEN" && ct.FileType == "EXCEL"
+                                select ct).ToDictionary(k => k.Type, k => k);
+                Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
+                //Открываем книгу.                                                                                                                                                        
+                Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Open(openFileDialog2.FileName, 0, false, 5, "", "",
+                                                                                              false,
+                                                                                              Microsoft.Office.Interop.Excel
+                                                                                                       .XlPlatform.xlWindows,
+                                                                                              "",
+                                                                                              true, false, 0, true,
+                                                                                              false, false);
+                //Выбираем таблицу(лист).
+                Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
+                ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[cMapping["ST"].cTabName];
+                Microsoft.Office.Interop.Excel.Range xlRange = ObjWorkSheet.UsedRange;
+                var tradescounter = new Dictionary<DateTime, int>();
+                var i = cMapping["ST"].cLineStart;
+                var n = xlRange.Rows.Count;
+                var numberofchanges = 0;
+                while (i <= n)
+                {
+                    if (xlRange.Cells[i, cMapping["ST"].cTradeDate].value2 != null)
+                    {
+                        if ((xlRange.Cells[i, cMapping["ST"].cFee2].value2 != null) || (xlRange.Cells[i, cMapping["ST"].cFee3].value2 != null))
+                        {
+                            string currExchorder = xlRange.Cells[i, cMapping["ST"].cExchangeOrderId].value2;
+                            CpTrade currcptrade = (from ct in db.CpTrades
+                                                   where ct.BrokerId == "OPEN" && ct.exchangeOrderId.Contains(currExchorder)
+                                                   select ct).FirstOrDefault();
+                            if (currcptrade != null)
+                            {
+                                currcptrade.Fee2 = cMapping["ST"].cFee2 != null ? xlRange.Cells[i, cMapping["ST"].cFee2].value2 : null;
+                                currcptrade.Fee3 = cMapping["ST"].cFee3 != null ? xlRange.Cells[i, cMapping["ST"].cFee3].value2 : null;
+                                db.CpTrades.Attach(currcptrade);
+                                db.Entry(currcptrade).State = (System.Data.Entity.EntityState)EntityState.Modified;
+                            }
+                            SaveDBChanges(ref db);
+                            numberofchanges++;
+                        }
+                    }
+                    i++;
+                }
+                db.Dispose();
+                LogTextBox.AppendText("\r\n Updated trades " + numberofchanges.ToString());
+                //***
+
+            }
+        }
+
+        private void uploadFTBOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var db = new EXANTE_Entities(_currentConnection);
+            var reportdate = new DateTime(2012, 05, 14);
+            var prevdate = new DateTime(2012, 05, 04);
+            DateTime TimeStart = DateTime.Now;
+            var ftboitems =
+                (from ct in db.Ftboes
+                 where
+                     ct.botimestamp >= prevdate && ct.botimestamp <= reportdate &&
+                     (ct.symbolId == "" || ct.symbolId == null) && ct.tradeNumber != null
+                 select ct).ToList();
+            var index = 0;
+            var ctradeitems =
+                (from ct in db.Ctrades
+                 where ct.BOtradeTimestamp <= reportdate.Date && ct.BOtradeTimestamp >= prevdate.Date
+                 select ct).ToDictionary(k => (k.tradeNumber.ToString() + k.gatewayId), k => k.symbol_id);
+            foreach (Ftbo ftbo in ftboitems)
+            {
+                string symbolid;
+                if (ctradeitems.TryGetValue(ftbo.tradeNumber.ToString() + ftbo.gatewayId, out symbolid))
+                {
+                    ftbo.symbolId = symbolid;
+                    db.Ftboes.Attach(ftbo);
+                    db.Entry(ftbo).State = (System.Data.Entity.EntityState)EntityState.Modified;
+                    index++;
+                }
+                else
+                {
+                    LogTextBox.AppendText("\r\n" + "Didn't find trade for this id:" + ftbo.id + " " + ftbo.tradeNumber);
+                }
+            }
+            SaveDBChanges(ref db);
+            DateTime TimeFutureParsing = DateTime.Now;
+            db.Dispose();
+            LogTextBox.AppendText("\r\n" + TimeFutureParsing.ToLongTimeString() + " Updating symbol completed for " + index + " items. Time: " + (TimeFutureParsing - TimeStart).ToString() + "s");
+        }
+
+        private void NissanButtonClick(object sender, EventArgs e)
+        {
+            //Nissan file parsing and reconciliation
+            DateTime reportdate = ABNDate.Value; //todo Get report date
+            TradesParserStatus.Text = "Processing";
+            var db = new EXANTE_Entities(_currentConnection);
+            if (!noparsingCheckbox.Checked)
+            {
+                DateTime TimeStart = DateTime.Now;
+                LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start Nissan trades uploading");
+                var LInitTrades = TradeParsing("NISSAN", "CSV", "FU");
+                //**
+                var lCptrades = InitTradesConverting(LInitTrades,"NISSAN");
+                foreach (CpTrade cptrade in lCptrades)
+                {
+                    db.CpTrades.Add(cptrade);
+                }
+                SaveDBChanges(ref db);
+                DateTime TimeEnd = DateTime.Now;
+                LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + "Nissan trades uploading completed." +
+                                      (TimeEnd - TimeStart).ToString());
+            }
+            else
+            {
+                var nextdate = reportdate.AddDays(1);
+                var symbolmap = getMapping("RJO");
+                double? MtyVolume = 1;
+                double? MtyPrice = 1;
+                double? Leverage = 1;
+                var cptradefromDb = from cptrade in db.CpTrades
+                                    where cptrade.valid == 1 && cptrade.BrokerId == "RJO" &&
+                                          cptrade.ReportDate >= reportdate.Date && cptrade.ReportDate < (nextdate.Date) &&
+                                          cptrade.BOTradeNumber == null
+                                    select cptrade;
+                var contractrow =
+                    from ct in db.Contracts
+                    where ct.valid == 1
+                    select ct;
+                var contractdetails = contractrow.ToDictionary(k => k.id, k => k);
+
+                foreach (CpTrade cpTrade in cptradefromDb)
+                {
+                    DateTime valuedate = (DateTime)cpTrade.ValueDate;
+                    if (cpTrade.BOSymbol == null)
+                    {
+                        cpTrade.BOSymbol = GetSymbolLek(symbolmap, cpTrade.Symbol, ref MtyVolume, contractdetails,
+                                                        ref MtyPrice, ref valuedate, ref Leverage);
+                        cpTrade.Price = cpTrade.Price * MtyPrice;
+                        cpTrade.Qty = cpTrade.Qty * MtyVolume;
+                        //   cpTrade.value = cpTrade.value*Leverage;
+                        cpTrade.ValueDate = valuedate;
+                    }
+                }
+            }
+            RecProcess(reportdate, "RJO");
+            TradesParserStatus.Text = "Done";
+            Console.WriteLine(""); // <-- For debugging use. */
         }
     }
 

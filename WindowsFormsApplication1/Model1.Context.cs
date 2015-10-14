@@ -42,15 +42,14 @@ namespace WindowsFormsApplication1
         public DbSet<DBBORecon_mapping> DBBORecon_mapping { get; set; }
         public DbSet<ColumnMapping> ColumnMappings { get; set; }
         public DbSet<InitialTrade> InitialTrades { get; set; }
-        public DbSet<md_swaps_googlespsh> md_swaps_googlespsh { get; set; }
         public DbSet<param> @params { get; set; }
-        public DbSet<FT> FTs { get; set; }
         public DbSet<ADSSCashGroupped> ADSSCashGroupped { get; set; }
         public DbSet<RowBalance> RowBalance { get; set; }
         public DbSet<CashMapping> CashMapping { get; set; }
         public DbSet<CorporateActions> CorporateActions { get; set; }
         public DbSet<QtyByAccounts> QtyByAccounts { get; set; }
         public DbSet<cpmapping> cpmapping { get; set; }
-        public DbSet<test_> test_ { get; set; }
+        public DbSet<CpCost> CpCost { get; set; }
+        public DbSet<FT> FT { get; set; }
     }
 }

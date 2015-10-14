@@ -50,5 +50,6 @@ namespace WindowsFormsApplication1
         public Nullable<int> cOptionType { get; set; }
         public Nullable<int> cFee2 { get; set; }
         public Nullable<int> cFee3 { get; set; }
+        public string ReportDateFormat { get; set; }
     }
 }

@@ -10,6 +10,7 @@
     <EntitySet Name="Contracts" EntityType="EXANTE_testModel.Store.Contracts" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="CorporateActions" EntityType="EXANTE_testModel.Store.CorporateActions" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="counterparty" EntityType="EXANTE_testModel.Store.counterparty" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="CpCost" EntityType="EXANTE_testModel.Store.CpCost" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="cpmapping" EntityType="EXANTE_testModel.Store.cpmapping" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="CpPosition" EntityType="EXANTE_testModel.Store.CpPosition" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="CpTrades" EntityType="EXANTE_testModel.Store.CpTrades" store:Type="Tables" Schema="EXANTE_test" />
@@ -20,14 +21,12 @@
     <EntitySet Name="Ftbo" EntityType="EXANTE_testModel.Store.Ftbo" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="InitialTrades" EntityType="EXANTE_testModel.Store.InitialTrades" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="Mapping" EntityType="EXANTE_testModel.Store.Mapping" store:Type="Tables" Schema="EXANTE_test" />
-    <EntitySet Name="md_swaps_googlespsh" EntityType="EXANTE_testModel.Store.md_swaps_googlespsh" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="params" EntityType="EXANTE_testModel.Store.params" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="PenPaperTrades" EntityType="EXANTE_testModel.Store.PenPaperTrades" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="Prices" EntityType="EXANTE_testModel.Store.Prices" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="QtyByAccounts" EntityType="EXANTE_testModel.Store.QtyByAccounts" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="Reconcilation" EntityType="EXANTE_testModel.Store.Reconcilation" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="RowBalance" EntityType="EXANTE_testModel.Store.RowBalance" store:Type="Tables" Schema="EXANTE_test" />
-    <EntitySet Name="test$" EntityType="EXANTE_testModel.Store.test$" store:Type="Tables" Schema="EXANTE_test" />
   </EntityContainer>
   <EntityType Name="ABN_cashposition">
     <Key>
@@ -142,7 +141,7 @@
     <Property Name="cTradeTime" Type="int" />
     <Property Name="cLineStart" Type="int" />
     <Property Name="cTabName" Type="varchar" MaxLength="20" />
-    <Property Name="DateFormat" Type="varchar" MaxLength="10" />
+    <Property Name="DateFormat" Type="varchar" MaxLength="20" />
     <Property Name="Replacesymbols" Type="varchar" MaxLength="5" />
     <Property Name="cSide" Type="int" />
     <Property Name="Delimeter" Type="varchar" MaxLength="1" />
@@ -152,6 +151,7 @@
     <Property Name="cOptionType" Type="int" />
     <Property Name="cFee2" Type="int" />
     <Property Name="cFee3" Type="int" />
+    <Property Name="ReportDateFormat" Type="varchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Contracts">
     <Key>
@@ -203,6 +203,26 @@
     </Key>
     <Property Name="cp_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="CpCost">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="Date" Type="date" />
+    <Property Name="account" Type="varchar" MaxLength="11" />
+    <Property Name="BOsymbol" Type="varchar" MaxLength="100" />
+    <Property Name="CPsymbol" Type="varchar" MaxLength="100" />
+    <Property Name="BOCp" Type="varchar" MaxLength="30" />
+    <Property Name="CP" Type="varchar" MaxLength="30" />
+    <Property Name="SumQty" Type="double" />
+    <Property Name="NumberOfTrades" Type="double" />
+    <Property Name="BOFee" Type="double" />
+    <Property Name="ExchFee" Type="double" />
+    <Property Name="CpFee" Type="double" />
+    <Property Name="CpExchCcy" Type="varchar" MaxLength="3" />
+    <Property Name="CpClearingCCY" Type="varchar" MaxLength="3" />
+    <Property Name="BOCcy" Type="varchar" MaxLength="3" />
+    <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
   </EntityType>
   <EntityType Name="cpmapping">
     <Key>
@@ -339,7 +359,7 @@
     <Property Name="value" Type="double" />
     <Property Name="brocker" Type="varchar" MaxLength="15" />
     <Property Name="Type" Type="varchar" MaxLength="2" />
-    <Property Name="Comment" Type="varchar" MaxLength="50" />
+    <Property Name="Comment" Type="varchar" MaxLength="80" />
     <Property Name="Reference" Type="bigint" />
     <Property Name="User" Type="varchar" MaxLength="20" />
     <Property Name="valid" Type="int" />
@@ -422,29 +442,6 @@
     <Property Name="Timestamp" Type="timestamp" Nullable="false" />
     <Property Name="valid" Type="bigint" />
     <Property Name="username" Type="varchar" MaxLength="255" />
-  </EntityType>
-  <EntityType Name="md_swaps_googlespsh">
-    <Key>
-      <PropertyRef Name="fullid" />
-    </Key>
-    <Property Name="account" Type="varchar" MaxLength="20" />
-    <Property Name="Date" Type="date" />
-    <Property Name="Pair" Type="varchar" MaxLength="6" />
-    <Property Name="FaceValue" Type="double" />
-    <Property Name="NearLeg" Type="date" />
-    <Property Name="FarLeg" Type="date" />
-    <Property Name="OpenPrice" Type="double" />
-    <Property Name="MarketPrice" Type="double" />
-    <Property Name="NearLegSpotPrice" Type="double" />
-    <Property Name="CurrentSpotPrice" Type="double" />
-    <Property Name="PnLNearLeg" Type="double" />
-    <Property Name="TradePnL" Type="double" />
-    <Property Name="1Payable" Type="double" />
-    <Property Name="ccy" Type="varchar" MaxLength="3" />
-    <Property Name="timestamp" Type="timestamp" />
-    <Property Name="valid" Type="int" />
-    <Property Name="username" Type="varchar" MaxLength="100" />
-    <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
   </EntityType>
   <EntityType Name="params">
     <Key>
@@ -553,19 +550,5 @@
     <Property Name="Exchange" Type="varchar" MaxLength="20" />
     <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="account" Type="varchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="test$">
-    <Key>
-      <PropertyRef Name="symbolId" />
-    </Key>
-    <Property Name="F1" Type="varchar" MaxLength="255" />
-    <Property Name="symbolId" Type="varchar" Nullable="false" MaxLength="255" />
-    <Property Name="leverageRate" Type="double" />
-    <Property Name="isin" Type="varchar" MaxLength="255" />
-    <Property Name="feedMpi" Type="double" />
-    <Property Name="exchangeName" Type="varchar" MaxLength="255" />
-    <Property Name="description" Type="varchar" MaxLength="255" />
-    <Property Name="currency" Type="varchar" MaxLength="255" />
-    <Property Name="contractMultiplier" Type="double" />
   </EntityType>
 </Schema>
