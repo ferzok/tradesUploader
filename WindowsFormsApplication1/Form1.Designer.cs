@@ -81,6 +81,8 @@ namespace WindowsFormsApplication1
             this.button9 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -527,7 +529,7 @@ namespace WindowsFormsApplication1
             // 
             this.button9.Location = new System.Drawing.Point(271, 248);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(89, 23);
+            this.button9.Size = new System.Drawing.Size(52, 23);
             this.button9.TabIndex = 50;
             this.button9.Text = "bloomberg";
             this.button9.UseVisualStyleBackColor = true;
@@ -553,9 +555,31 @@ namespace WindowsFormsApplication1
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.NissanButtonClick);
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(329, 248);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 23);
+            this.button10.TabIndex = 53;
+            this.button10.Text = "Mac position";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click_1);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(410, 248);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(48, 23);
+            this.button12.TabIndex = 54;
+            this.button12.Text = "IS-PRIME";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click_2);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(791, 415);
+            this.Controls.Add(this.button12);
+            this.Controls.Add(this.button10);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button9);
@@ -661,6 +685,8 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.ToolStripMenuItem updateOpenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uploadFTBOToolStripMenuItem;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button12;
     }
 }
 

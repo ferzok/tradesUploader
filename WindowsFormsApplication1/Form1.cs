@@ -534,6 +534,7 @@ namespace WindowsFormsApplication1
                     "OPEN",
                     "CFH",
                     "MOEX-SPECTRA",
+                    "IS-PRIME",
                     ""
                 };
             var mltytrades = MultyTradesCheckBox.Checked;
@@ -3661,7 +3662,7 @@ AND ReportDate = "2015-09-01"*/
             var key = "";
             if (indexofOption > 0)
             {
-                key = symbol.Substring(0, indexofOption);
+                key = symbol.Substring(0, indexofOption)+".";
             }
             else key = symbol;
 
@@ -3670,8 +3671,9 @@ AND ReportDate = "2015-09-01"*/
 
             var map =
                 (from ct in db.Mappings
-                 where ct.valid == 1 && ct.Brocker == "OPEN" && ct.Type == "FORTS" && ct.BOSymbol.Contains(key)
+                 where ct.valid == 1 && ct.Brocker == "OPEN" && ct.Type == "FORTS" && ct.BOSymbol==key
                  select ct.Round).ToList();
+            
             if ((map.Count > 0) && (map[0] == 1))
             {
                 var ccyrateFromDblinq =
@@ -6283,7 +6285,7 @@ AND ReportDate = "2015-09-01"*/
                 {
                     db.CpTrades.Add(cptrade);
                 }
-                db.SaveChanges();
+                SaveDBChanges(ref db);
                 DateTime TimeEnd = DateTime.Now;
                 LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + "RJO trades uploading completed." +
                                       (TimeEnd - TimeStart).ToString());
@@ -6341,7 +6343,7 @@ AND ReportDate = "2015-09-01"*/
                 var value = initTrade.value;
 
                 var ValueDate = initTrade.ValueDate;
-                //if (ValueDate == null) ValueDate = "";
+                if (ValueDate == null) ValueDate = new DateTime(2011, 01, 01);
                 String BOSymbol = null;
                 var key = initTrade.Symbol + type + ValueDate.Value.ToShortDateString();
                 
@@ -6439,10 +6441,19 @@ AND ReportDate = "2015-09-01"*/
             while (!reader.EndOfStream)
             {
                 lineFromFile = reader.ReadLine();
-                var rowstring =
-                    lineFromFile.Replace(cMapping.Replacesymbols, "").Split(Convert.ToChar(cMapping.Delimeter));
-                var tradeDate = DateTime.ParseExact(rowstring[(int) cMapping.cTradeDate], cMapping.DateFormat,
-                                                    CultureInfo.CurrentCulture);
+                if (cMapping.Replacesymbols == "ST")
+                {
+                    lineFromFile = lineFromFile.Replace("\"", "");
+                }
+                else
+                {
+                    lineFromFile = lineFromFile.Replace(cMapping.Replacesymbols, "");
+                }
+                var rowstring = lineFromFile.Split(Convert.ToChar(cMapping.Delimeter));
+                var tradeDate = cMapping.cTradeDate != null
+                                     ? DateTime.ParseExact(rowstring[(int) cMapping.cTradeDate], cMapping.DateFormat,CultureInfo.CurrentCulture)
+                                     : new DateTime(2011, 01, 01);
+                    
                 var reportdate = cMapping.cReportDate != null
                                      ? DateTime.ParseExact(rowstring[(int) cMapping.cReportDate], cMapping.ReportDateFormat,CultureInfo.CurrentCulture)
                                      : tradeDate;
@@ -7692,7 +7703,7 @@ AND ReportDate = "2015-09-01"*/
                         db.Entry(cpTrade).State = (System.Data.Entity.EntityState)EntityState.Modified;
                     }
                 }
-                db.SaveChanges();
+                SaveDBChanges(ref db);
             }
 
             RecProcess(reportdate, "CFH");
@@ -8049,7 +8060,7 @@ AND ReportDate = "2015-09-01"*/
             if (!noparsingCheckbox.Checked)
             {
                 DateTime TimeStart = DateTime.Now;
-                LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start Nissan trades uploading");
+                LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start NISSAN trades uploading");
                 var LInitTrades = TradeParsing("NISSAN", "CSV", "FU");
                 //**
                 var lCptrades = InitTradesConverting(LInitTrades,"NISSAN");
@@ -8059,18 +8070,18 @@ AND ReportDate = "2015-09-01"*/
                 }
                 SaveDBChanges(ref db);
                 DateTime TimeEnd = DateTime.Now;
-                LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + "Nissan trades uploading completed." +
+                LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + "NISSAN trades uploading completed." +
                                       (TimeEnd - TimeStart).ToString());
             }
             else
             {
                 var nextdate = reportdate.AddDays(1);
-                var symbolmap = getMapping("RJO");
+                var symbolmap = getMapping("NISSAN");
                 double? MtyVolume = 1;
                 double? MtyPrice = 1;
                 double? Leverage = 1;
                 var cptradefromDb = from cptrade in db.CpTrades
-                                    where cptrade.valid == 1 && cptrade.BrokerId == "RJO" &&
+                                    where cptrade.valid == 1 && cptrade.BrokerId == "NISSAN" &&
                                           cptrade.ReportDate >= reportdate.Date && cptrade.ReportDate < (nextdate.Date) &&
                                           cptrade.BOTradeNumber == null
                                     select cptrade;
@@ -8094,9 +8105,57 @@ AND ReportDate = "2015-09-01"*/
                     }
                 }
             }
-            RecProcess(reportdate, "RJO");
+            RecProcess(reportdate, "NISSAN");
             TradesParserStatus.Text = "Done";
             Console.WriteLine(""); // <-- For debugging use. */
+        }
+
+        private void button10_Click_1(object sender, EventArgs e)
+        {
+            DateTime reportdate = ABNDate.Value; //todo Get report date from xml Processing date
+            TradesParserStatus.Text = "Processing";
+            if (!noparsingCheckbox.Checked)
+            {
+                DateTime TimeStart = DateTime.Now;
+                LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start Mac position uploading");
+
+                var LInitPos = TradeParsing("Mac", "CSV", "PO");
+              
+
+                DateTime TimeEnd = DateTime.Now;
+                LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + "Mac position uploading completed." +
+                                      (TimeEnd - TimeStart).ToString());
+            }
+            TradesParserStatus.Text = "Done";
+            Console.WriteLine(""); // <-- For debugging use. */
+        }
+
+        private void button12_Click_2(object sender, EventArgs e)
+        {
+            DateTime reportdate = ABNDate.Value; //todo Get report date from xml Processing date
+            TradesParserStatus.Text = "Processing";
+            var db = new EXANTE_Entities(_currentConnection);
+            if (!noparsingCheckbox.Checked)
+            {
+                DateTime TimeStart = DateTime.Now;
+                LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start IS-PRIME trades uploading");
+
+                var LInitTrades = TradeParsing("IS-PRIME", "CSV", "FX");
+                var lCptrades = InitTradesConverting(LInitTrades, "IS-PRIME");
+                foreach (CpTrade cptrade in lCptrades)
+                {
+                    db.CpTrades.Add(cptrade);
+                }
+                SaveDBChanges(ref db);
+
+                DateTime TimeEnd = DateTime.Now;
+                LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + "IS-PRIME trades uploading completed." +
+                                      (TimeEnd - TimeStart).ToString());
+            }
+            
+            RecProcess(reportdate, "IS-PRIME");
+            db.Dispose();
+            TradesParserStatus.Text = "Done";
         }
     }
 
