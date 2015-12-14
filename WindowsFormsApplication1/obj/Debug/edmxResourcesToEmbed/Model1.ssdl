@@ -124,9 +124,11 @@
     <Property Name="cBrokerId" Type="int" />
     <Property Name="cSymbol" Type="int" />
     <Property Name="cType" Type="int" />
+    <Property Name="cSide" Type="int" />
     <Property Name="cQtySell" Type="int" />
     <Property Name="cQty" Type="int" />
     <Property Name="cPrice" Type="int" />
+    <Property Name="cPriceSell" Type="int" />
     <Property Name="cValuedate" Type="int" />
     <Property Name="cExchangeFees" Type="int" />
     <Property Name="cExchFeeCcy" Type="int" />
@@ -143,7 +145,6 @@
     <Property Name="cTabName" Type="varchar" MaxLength="20" />
     <Property Name="DateFormat" Type="varchar" MaxLength="20" />
     <Property Name="Replacesymbols" Type="varchar" MaxLength="5" />
-    <Property Name="cSide" Type="int" />
     <Property Name="Delimeter" Type="varchar" MaxLength="1" />
     <Property Name="Mty" Type="int" />
     <Property Name="ValueDateFormat" Type="varchar" MaxLength="10" />
@@ -152,6 +153,7 @@
     <Property Name="cFee2" Type="int" />
     <Property Name="cFee3" Type="int" />
     <Property Name="ReportDateFormat" Type="varchar" MaxLength="10" />
+    <Property Name="cAccount" Type="int" />
   </EntityType>
   <EntityType Name="Contracts">
     <Key>
@@ -442,6 +444,8 @@
     <Property Name="Timestamp" Type="timestamp" Nullable="false" />
     <Property Name="valid" Type="bigint" />
     <Property Name="username" Type="varchar" MaxLength="255" />
+    <Property Name="MtyStrike" Type="double" />
+    <Property Name="UseDayInTicker" Type="bool" />
   </EntityType>
   <EntityType Name="params">
     <Key>

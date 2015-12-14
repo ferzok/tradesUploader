@@ -83,6 +83,7 @@ namespace WindowsFormsApplication1
             this.button6 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -247,7 +248,7 @@ namespace WindowsFormsApplication1
             this.LogTextBox.Location = new System.Drawing.Point(12, 289);
             this.LogTextBox.Multiline = true;
             this.LogTextBox.Name = "LogTextBox";
-            this.LogTextBox.Size = new System.Drawing.Size(447, 63);
+            this.LogTextBox.Size = new System.Drawing.Size(447, 93);
             this.LogTextBox.TabIndex = 22;
             // 
             // label4
@@ -348,7 +349,7 @@ namespace WindowsFormsApplication1
             this.procedures});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(791, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(587, 24);
             this.menuStrip1.TabIndex = 36;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -575,9 +576,20 @@ namespace WindowsFormsApplication1
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click_2);
             // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(466, 120);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(75, 151);
+            this.button13.TabIndex = 55;
+            this.button13.Text = "Mac";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(791, 415);
+            this.ClientSize = new System.Drawing.Size(587, 413);
+            this.Controls.Add(this.button13);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button6);
@@ -687,6 +699,7 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button13;
     }
 }
 

@@ -129,9 +129,11 @@
           <Property Name="cBrokerId" Type="int" />
           <Property Name="cSymbol" Type="int" />
           <Property Name="cType" Type="int" />
+          <Property Name="cSide" Type="int" />
           <Property Name="cQtySell" Type="int" />
           <Property Name="cQty" Type="int" />
           <Property Name="cPrice" Type="int" />
+          <Property Name="cPriceSell" Type="int" />
           <Property Name="cValuedate" Type="int" />
           <Property Name="cExchangeFees" Type="int" />
           <Property Name="cExchFeeCcy" Type="int" />
@@ -148,7 +150,6 @@
           <Property Name="cTabName" Type="varchar" MaxLength="20" />
           <Property Name="DateFormat" Type="varchar" MaxLength="20" />
           <Property Name="Replacesymbols" Type="varchar" MaxLength="5" />
-          <Property Name="cSide" Type="int" />
           <Property Name="Delimeter" Type="varchar" MaxLength="1" />
           <Property Name="Mty" Type="int" />
           <Property Name="ValueDateFormat" Type="varchar" MaxLength="10" />
@@ -157,6 +158,7 @@
           <Property Name="cFee2" Type="int" />
           <Property Name="cFee3" Type="int" />
           <Property Name="ReportDateFormat" Type="varchar" MaxLength="10" />
+          <Property Name="cAccount" Type="int" />
         </EntityType>
         <EntityType Name="Contracts">
           <Key>
@@ -447,6 +449,8 @@
           <Property Name="Timestamp" Type="timestamp" Nullable="false" />
           <Property Name="valid" Type="bigint" />
           <Property Name="username" Type="varchar" MaxLength="255" />
+          <Property Name="MtyStrike" Type="double" />
+          <Property Name="UseDayInTicker" Type="bool" />
         </EntityType>
         <EntityType Name="params">
           <Key>
@@ -765,6 +769,8 @@
           <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="0" />
           <Property Type="Int64" Name="valid" />
           <Property Type="String" Name="username" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="MtyStrike" />
+          <Property Type="Boolean" Name="UseDayInTicker" />
         </EntityType>
         <EntityType Name="Reconcilation">
           <Key>
@@ -935,6 +941,8 @@
           <Property Type="Int32" Name="cFee2" />
           <Property Type="Int32" Name="cFee3" />
           <Property Type="String" Name="ReportDateFormat" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="cPriceSell" />
+          <Property Type="Int32" Name="cAccount" />
         </EntityType>
         <EntityType Name="InitialTrade">
           <Key>
@@ -1035,7 +1043,7 @@
           <Property Type="DateTime" Name="PayableDate" />
           <Property Type="Double" Name="DividendAmount" />
           <Property Type="String" Name="DividendFrqncy" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="DividendType" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DividendType" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="Timestamp" />
           <Property Type="Double" Name="BOQty" />
           <Property Type="DateTime" Name="LastTradeDate" />
@@ -1288,6 +1296,8 @@
           <EntitySetMapping Name="Mappings">
             <EntityTypeMapping TypeName="EXANTE_testModel.Mapping">
               <MappingFragment StoreEntitySet="Mapping">
+                <ScalarProperty Name="UseDayInTicker" ColumnName="UseDayInTicker" />
+                <ScalarProperty Name="MtyStrike" ColumnName="MtyStrike" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="valid" ColumnName="valid" />
                 <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
@@ -1440,6 +1450,8 @@
           <EntitySetMapping Name="ColumnMappings">
             <EntityTypeMapping TypeName="EXANTE_testModel.ColumnMapping">
               <MappingFragment StoreEntitySet="ColumnMapping">
+                <ScalarProperty Name="cAccount" ColumnName="cAccount" />
+                <ScalarProperty Name="cPriceSell" ColumnName="cPriceSell" />
                 <ScalarProperty Name="ReportDateFormat" ColumnName="ReportDateFormat" />
                 <ScalarProperty Name="cFee3" ColumnName="cFee3" />
                 <ScalarProperty Name="cFee2" ColumnName="cFee2" />

@@ -51,5 +51,7 @@ namespace WindowsFormsApplication1
         public Nullable<int> cFee2 { get; set; }
         public Nullable<int> cFee3 { get; set; }
         public string ReportDateFormat { get; set; }
+        public Nullable<int> cPriceSell { get; set; }
+        public Nullable<int> cAccount { get; set; }
     }
 }

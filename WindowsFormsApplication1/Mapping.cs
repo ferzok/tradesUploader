@@ -25,5 +25,7 @@ namespace WindowsFormsApplication1
         public System.DateTime Timestamp { get; set; }
         public Nullable<long> valid { get; set; }
         public string username { get; set; }
+        public Nullable<double> MtyStrike { get; set; }
+        public Nullable<bool> UseDayInTicker { get; set; }
     }
 }

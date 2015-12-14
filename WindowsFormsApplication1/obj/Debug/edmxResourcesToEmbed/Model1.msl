@@ -172,6 +172,8 @@
     <EntitySetMapping Name="Mappings">
       <EntityTypeMapping TypeName="EXANTE_testModel.Mapping">
         <MappingFragment StoreEntitySet="Mapping">
+          <ScalarProperty Name="UseDayInTicker" ColumnName="UseDayInTicker" />
+          <ScalarProperty Name="MtyStrike" ColumnName="MtyStrike" />
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="valid" ColumnName="valid" />
           <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
@@ -324,6 +326,8 @@
     <EntitySetMapping Name="ColumnMappings">
       <EntityTypeMapping TypeName="EXANTE_testModel.ColumnMapping">
         <MappingFragment StoreEntitySet="ColumnMapping">
+          <ScalarProperty Name="cAccount" ColumnName="cAccount" />
+          <ScalarProperty Name="cPriceSell" ColumnName="cPriceSell" />
           <ScalarProperty Name="ReportDateFormat" ColumnName="ReportDateFormat" />
           <ScalarProperty Name="cFee3" ColumnName="cFee3" />
           <ScalarProperty Name="cFee2" ColumnName="cFee2" />

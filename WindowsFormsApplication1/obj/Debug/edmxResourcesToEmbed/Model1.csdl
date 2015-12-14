@@ -205,6 +205,8 @@
     <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="0" />
     <Property Type="Int64" Name="valid" />
     <Property Type="String" Name="username" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="MtyStrike" />
+    <Property Type="Boolean" Name="UseDayInTicker" />
   </EntityType>
   <EntityType Name="Reconcilation">
     <Key>
@@ -375,6 +377,8 @@
     <Property Type="Int32" Name="cFee2" />
     <Property Type="Int32" Name="cFee3" />
     <Property Type="String" Name="ReportDateFormat" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="cPriceSell" />
+    <Property Type="Int32" Name="cAccount" />
   </EntityType>
   <EntityType Name="InitialTrade">
     <Key>
@@ -475,7 +479,7 @@
     <Property Type="DateTime" Name="PayableDate" />
     <Property Type="Double" Name="DividendAmount" />
     <Property Type="String" Name="DividendFrqncy" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="DividendType" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DividendType" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Type="DateTime" Name="Timestamp" />
     <Property Type="Double" Name="BOQty" />
     <Property Type="DateTime" Name="LastTradeDate" />

@@ -30,7 +30,7 @@
         <EntityTypeShape EntityType="EXANTE_testModel.QtyByAccounts" Width="1.5" PointX="16.75" PointY="0.75" />
         <EntityTypeShape EntityType="EXANTE_testModel.cpmapping" Width="1.5" PointX="16.75" PointY="4.75" />
         <EntityTypeShape EntityType="EXANTE_testModel.CpCost" Width="1.5" PointX="16.75" PointY="7.75" />
-        <EntityTypeShape EntityType="EXANTE_testModel.FT" Width="1.5" PointX="8.9326692823938423" PointY="9.230997015364" />
+        <EntityTypeShape EntityType="EXANTE_testModel.FT" Width="1.5" PointX="6.875" PointY="11.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
