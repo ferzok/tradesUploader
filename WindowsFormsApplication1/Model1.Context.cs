@@ -51,5 +51,7 @@ namespace WindowsFormsApplication1
         public DbSet<cpmapping> cpmapping { get; set; }
         public DbSet<CpCost> CpCost { get; set; }
         public DbSet<FT> FT { get; set; }
+        public DbSet<Emir> Emir { get; set; }
+        public DbSet<Emir_Mapping> Emir_Mapping { get; set; }
     }
 }

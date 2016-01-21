@@ -17,6 +17,8 @@
     <EntitySet Name="Ctrades" EntityType="EXANTE_testModel.Store.Ctrades" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="DailyCheck" EntityType="EXANTE_testModel.Store.DailyCheck" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="DBBORecon_mapping" EntityType="EXANTE_testModel.Store.DBBORecon_mapping" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="Emir" EntityType="EXANTE_testModel.Store.Emir" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="Emir_Mapping" EntityType="EXANTE_testModel.Store.Emir_Mapping" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="FT" EntityType="EXANTE_testModel.Store.FT" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="Ftbo" EntityType="EXANTE_testModel.Store.Ftbo" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="InitialTrades" EntityType="EXANTE_testModel.Store.InitialTrades" store:Type="Tables" Schema="EXANTE_test" />
@@ -348,6 +350,158 @@
     <Property Name="user" Type="varchar" MaxLength="20" />
     <Property Name="NameProcess" Type="varchar" MaxLength="20" />
   </EntityType>
+  <EntityType Name="Emir">
+    <Key>
+      <PropertyRef Name="UTI" />
+    </Key>
+    <Property Name="Pre-novation UTI" Type="varchar" MaxLength="50" />
+    <Property Name="Common Data Delegated" Type="varchar" MaxLength="50" />
+    <Property Name="Reporting Firm ID" Type="varchar" MaxLength="50" />
+    <Property Name="Other Counterparty ID" Type="varchar" MaxLength="50" />
+    <Property Name="Other Counterparty ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Reporting Firm Corporate Name" Type="varchar" MaxLength="50" />
+    <Property Name="Reporting Firm Registered Office" Type="varchar" MaxLength="50" />
+    <Property Name="Reporting Firm Country Code of Branch" Type="varchar" MaxLength="50" />
+    <Property Name="Reporting Firm Corporate Sector" Type="varchar" MaxLength="50" />
+    <Property Name="Reporting Firm Financial Status" Type="varchar" MaxLength="50" />
+    <Property Name="Broker ID" Type="varchar" MaxLength="50" />
+    <Property Name="Broker ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Submitting Entity ID" Type="varchar" MaxLength="50" />
+    <Property Name="Submitting Entity ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Clearing Member ID" Type="varchar" MaxLength="50" />
+    <Property Name="Clearing Member ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Beneficiary ID" Type="varchar" MaxLength="50" />
+    <Property Name="Beneficiary ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Trading Capacity" Type="varchar" MaxLength="50" />
+    <Property Name="Buy / Sell Indicator" Type="varchar" MaxLength="1" />
+    <Property Name="Counterparty EEA Status" Type="varchar" MaxLength="1" />
+    <Property Name="Commercial / Treasury Activity" Type="varchar" MaxLength="50" />
+    <Property Name="Above Clearing Threshold" Type="varchar" MaxLength="50" />
+    <Property Name="Mark to Market Value" Type="varchar" MaxLength="50" />
+    <Property Name="Mark to Market Currency" Type="varchar" MaxLength="50" />
+    <Property Name="Valuation Date" Type="timestamp" />
+    <Property Name="Valuation Time" Type="time" />
+    <Property Name="Valuation Type" Type="varchar" MaxLength="50" />
+    <Property Name="Collateral Type" Type="varchar" MaxLength="50" />
+    <Property Name="Collateral Portfolio" Type="varchar" MaxLength="50" />
+    <Property Name="Collateral Portfolio Code" Type="varchar" MaxLength="50" />
+    <Property Name="Collateral Value" Type="varchar" MaxLength="50" />
+    <Property Name="Collateral Value Currency" Type="varchar" MaxLength="50" />
+    <Property Name="Fund Manager ID" Type="varchar" MaxLength="50" />
+    <Property Name="Fund Manager ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Instrument ID Taxonomy" Type="varchar" MaxLength="50" />
+    <Property Name="Instrument ID" Type="varchar" MaxLength="50" />
+    <Property Name="ETD Asset Class Type" Type="varchar" MaxLength="50" />
+    <Property Name="Instrument Classification" Type="varchar" MaxLength="50" />
+    <Property Name="Underlying Instrument ID" Type="varchar" MaxLength="50" />
+    <Property Name="Underlying Instrument ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Notional Currency 1" Type="varchar" MaxLength="50" />
+    <Property Name="Notional Currency 2" Type="varchar" MaxLength="50" />
+    <Property Name="Deliverable Currency" Type="varchar" MaxLength="50" />
+    <Property Name="UTI" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="MiFID Transaction Reference Number" Type="varchar" MaxLength="50" />
+    <Property Name="Venue ID" Type="varchar" MaxLength="50" />
+    <Property Name="Compression Exercise" Type="varchar" MaxLength="50" />
+    <Property Name="Price / Rate" Type="varchar" MaxLength="50" />
+    <Property Name="Price Notation" Type="varchar" MaxLength="50" />
+    <Property Name="Notional" Type="varchar" MaxLength="50" />
+    <Property Name="Price Multiplier" Type="varchar" MaxLength="50" />
+    <Property Name="Quantity" Type="varchar" MaxLength="50" />
+    <Property Name="Up Front Payment" Type="varchar" MaxLength="50" />
+    <Property Name="Upfront Payment Currency" Type="varchar" MaxLength="50" />
+    <Property Name="Delivery Type" Type="varchar" MaxLength="50" />
+    <Property Name="Execution Timestamp" Type="timestamp" />
+    <Property Name="Effective Date" Type="date" />
+    <Property Name="Maturity Date" Type="date" />
+    <Property Name="Termination Date" Type="date" />
+    <Property Name="Settlement Date" Type="date" />
+    <Property Name="Master Agreement" Type="varchar" MaxLength="50" />
+    <Property Name="Master Agreement Version" Type="varchar" MaxLength="50" />
+    <Property Name="Confirmation Timestamp" Type="timestamp" />
+    <Property Name="Confirmation Type" Type="varchar" MaxLength="50" />
+    <Property Name="Clearing Obligation" Type="varchar" MaxLength="50" />
+    <Property Name="Cleared" Type="varchar" MaxLength="50" />
+    <Property Name="Clearing Timestamp" Type="timestamp" />
+    <Property Name="CCP ID" Type="varchar" MaxLength="50" />
+    <Property Name="CCP ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Intragroup" Type="varchar" MaxLength="50" />
+    <Property Name="Fixed Rate Leg 1" Type="varchar" MaxLength="50" />
+    <Property Name="Fixed Rate Leg 2" Type="varchar" MaxLength="50" />
+    <Property Name="Fixed Rate Day Count" Type="varchar" MaxLength="50" />
+    <Property Name="Fixed Leg Payment Frequency" Type="varchar" MaxLength="50" />
+    <Property Name="Floating Rate Payment Frequency" Type="varchar" MaxLength="50" />
+    <Property Name="Floating Rate Reset Frequency" Type="varchar" MaxLength="50" />
+    <Property Name="Floating Rate Leg 1" Type="varchar" MaxLength="50" />
+    <Property Name="Floating Rate Leg 2" Type="varchar" MaxLength="50" />
+    <Property Name="Currency 2" Type="varchar" MaxLength="50" />
+    <Property Name="Exchange Rate 1" Type="varchar" MaxLength="50" />
+    <Property Name="Forward Exchange Rate" Type="varchar" MaxLength="50" />
+    <Property Name="Exchange Rate Basis" Type="varchar" MaxLength="50" />
+    <Property Name="Commodity Base" Type="varchar" MaxLength="50" />
+    <Property Name="Commodity Details" Type="varchar" MaxLength="50" />
+    <Property Name="Delivery Point" Type="varchar" MaxLength="50" />
+    <Property Name="Interconnection Point" Type="varchar" MaxLength="50" />
+    <Property Name="Load Type" Type="varchar" MaxLength="50" />
+    <Property Name="Delivery Start Timestamp" Type="timestamp" />
+    <Property Name="Delivery End Timestamp" Type="timestamp" />
+    <Property Name="Contract Capacity" Type="varchar" MaxLength="50" />
+    <Property Name="Quantity Unit" Type="varchar" MaxLength="50" />
+    <Property Name="Price Per Time Interval Quantities" Type="varchar" MaxLength="50" />
+    <Property Name="Put / Call" Type="varchar" MaxLength="50" />
+    <Property Name="Option Exercise Type" Type="varchar" MaxLength="50" />
+    <Property Name="Strike Price" Type="varchar" MaxLength="50" />
+    <Property Name="Action Type" Type="varchar" MaxLength="50" />
+    <Property Name="Action Type Details" Type="varchar" MaxLength="50" />
+    <Property Name="Message Type" Type="varchar" MaxLength="50" />
+    <Property Name="Notional 2" Type="varchar" MaxLength="50" />
+    <Property Name="PUTI" Type="varchar" MaxLength="50" />
+    <Property Name="Instrument Description" Type="varchar" MaxLength="50" />
+    <Property Name="Internal ID" Type="varchar" MaxLength="50" />
+    <Property Name="Event Timestamp" Type="timestamp" />
+    <Property Name="Reporting TimeStamp" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="Emir_Mapping">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="Brocker" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="filetype" Type="varchar" Nullable="false" MaxLength="3" />
+    <Property Name="InstrumentType" Type="varchar" MaxLength="2" />
+    <Property Name="cLineStart" Type="int" Nullable="false" />
+    <Property Name="CpSymbol" Type="varchar" MaxLength="50" />
+    <Property Name="VenueId" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="InstrumentIDTaxonomy" Type="varchar" MaxLength="1" />
+    <Property Name="InstrumentID" Type="varchar" MaxLength="2" />
+    <Property Name="InstrumentClassification" Type="varchar" MaxLength="2" />
+    <Property Name="NotionalCurrency1" Type="varchar" MaxLength="3" />
+    <Property Name="DeliverableCurrency" Type="varchar" MaxLength="3" />
+    <Property Name="PriceNotation" Type="varchar" MaxLength="3" />
+    <Property Name="PriceMultiplier" Type="double" />
+    <Property Name="DeliveryType" Type="varchar" MaxLength="1" />
+    <Property Name="ConfirmationType" Type="varchar" MaxLength="1" />
+    <Property Name="ClearingObligation" Type="varchar" MaxLength="1" />
+    <Property Name="Cleared" Type="varchar" MaxLength="1" />
+    <Property Name="CommodityBase" Type="varchar" MaxLength="2" />
+    <Property Name="CommodityDetails" Type="varchar" MaxLength="2" />
+    <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Delimeter" Type="varchar" MaxLength="1" />
+    <Property Name="cp" Type="varchar" Nullable="false" MaxLength="21" />
+    <Property Name="cBuySell" Type="int" Nullable="false" />
+    <Property Name="BOSymbol" Type="varchar" MaxLength="50" />
+    <Property Name="UnderlyingInstrumentID" Type="varchar" MaxLength="2" />
+    <Property Name="UnderlyingInstrumentIDType" Type="varchar" MaxLength="1" />
+    <Property Name="FloatingRatePaymentFrequency" Type="varchar" MaxLength="2" />
+    <Property Name="FloatingRateResetFrequency" Type="varchar" MaxLength="2" />
+    <Property Name="FloatingRateLeg2" Type="varchar" MaxLength="10" />
+    <Property Name="Currency2" Type="varchar" MaxLength="3" />
+    <Property Name="ForwardExchangeRate" Type="double" />
+    <Property Name="ExchangeRateBasis" Type="varchar" MaxLength="7" />
+    <Property Name="PutCall" Type="varchar" MaxLength="1" />
+    <Property Name="OptionExerciseType" Type="varchar" MaxLength="1" />
+    <Property Name="StrikePrice" Type="double" />
+    <Property Name="MaturityDate" Type="date" />
+    <Property Name="CPValueDate" Type="date" />
+  </EntityType>
   <EntityType Name="FT">
     <Key>
       <PropertyRef Name="fullid" />
@@ -446,6 +600,7 @@
     <Property Name="username" Type="varchar" MaxLength="255" />
     <Property Name="MtyStrike" Type="double" />
     <Property Name="UseDayInTicker" Type="bool" />
+    <Property Name="calendar" Type="tinyint" />
   </EntityType>
   <EntityType Name="params">
     <Key>

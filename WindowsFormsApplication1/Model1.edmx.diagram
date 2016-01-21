@@ -31,6 +31,8 @@
         <EntityTypeShape EntityType="EXANTE_testModel.cpmapping" Width="1.5" PointX="16.75" PointY="4.75" />
         <EntityTypeShape EntityType="EXANTE_testModel.CpCost" Width="1.5" PointX="16.75" PointY="7.75" />
         <EntityTypeShape EntityType="EXANTE_testModel.FT" Width="1.5" PointX="6.875" PointY="11.25" />
+        <EntityTypeShape EntityType="EXANTE_testModel.Emir" Width="1.5" PointX="11.688031906116768" PointY="26.920902547855352" />
+        <EntityTypeShape EntityType="EXANTE_testModel.Emir_Mapping" Width="1.5" PointX="5.9704383434590129" PointY="29.556449605876789" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

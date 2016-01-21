@@ -27,5 +27,6 @@ namespace WindowsFormsApplication1
         public string username { get; set; }
         public Nullable<double> MtyStrike { get; set; }
         public Nullable<bool> UseDayInTicker { get; set; }
+        public Nullable<sbyte> calendar { get; set; }
     }
 }
