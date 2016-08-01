@@ -53,5 +53,7 @@ namespace WindowsFormsApplication1
         public DbSet<FT> FT { get; set; }
         public DbSet<Emir> Emir { get; set; }
         public DbSet<Emir_Mapping> Emir_Mapping { get; set; }
+        public DbSet<md_swaps_googlespsh> md_swaps_googlespsh { get; set; }
+        public DbSet<RJO_listccy> RJO_listccy { get; set; }
     }
 }

@@ -119,5 +119,9 @@ namespace WindowsFormsApplication1
         public string Internal_ID { get; set; }
         public Nullable<System.DateTime> Event_Timestamp { get; set; }
         public Nullable<System.DateTime> Reporting_TimeStamp { get; set; }
+        public System.DateTime ReportDate { get; set; }
+        public string cp { get; set; }
+        public System.DateTime Timestamp { get; set; }
+        public Nullable<bool> Status { get; set; }
     }
 }

@@ -40,10 +40,8 @@ namespace WindowsFormsApplication1
             this.button1 = new System.Windows.Forms.Button();
             this.ABNDate = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.atonrecstartbutton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.ADSS = new System.Windows.Forms.Button();
-            this.FASTMATCH = new System.Windows.Forms.Button();
             this.MultyTradesCheckBox = new System.Windows.Forms.CheckBox();
             this.CliffCheckBox = new System.Windows.Forms.CheckBox();
             this.noparsingCheckbox = new System.Windows.Forms.CheckBox();
@@ -57,15 +55,21 @@ namespace WindowsFormsApplication1
             this.LEK = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.PostToRecon = new System.Windows.Forms.Button();
-            this.VMAton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.procedures = new System.Windows.Forms.ToolStripMenuItem();
-            this.aBNPositionParsingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aBNFTParsingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bOFTUploadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cpCostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadFTBOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fastmatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aBNPositionParsingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cFHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cFHReconciliationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cFHBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.atonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vMAtonToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.atonReconciliationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.BrockerComboBox = new System.Windows.Forms.ComboBox();
@@ -77,15 +81,28 @@ namespace WindowsFormsApplication1
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button18 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
+            this.button20 = new System.Windows.Forms.Button();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button22 = new System.Windows.Forms.Button();
+            this.button23 = new System.Windows.Forms.Button();
+            this.button24 = new System.Windows.Forms.Button();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button26 = new System.Windows.Forms.Button();
+            this.button27 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button28 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -167,16 +184,6 @@ namespace WindowsFormsApplication1
             this.label3.TabIndex = 7;
             this.label3.Text = "ABN Report Date";
             // 
-            // atonrecstartbutton
-            // 
-            this.atonrecstartbutton.Location = new System.Drawing.Point(370, 121);
-            this.atonrecstartbutton.Name = "atonrecstartbutton";
-            this.atonrecstartbutton.Size = new System.Drawing.Size(89, 23);
-            this.atonrecstartbutton.TabIndex = 11;
-            this.atonrecstartbutton.Text = "Aton";
-            this.atonrecstartbutton.UseVisualStyleBackColor = true;
-            this.atonrecstartbutton.Click += new System.EventHandler(this.atonrecstartbutton_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -190,16 +197,6 @@ namespace WindowsFormsApplication1
             this.ADSS.Text = "ADSS";
             this.ADSS.UseVisualStyleBackColor = true;
             this.ADSS.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // FASTMATCH
-            // 
-            this.FASTMATCH.Location = new System.Drawing.Point(370, 179);
-            this.FASTMATCH.Name = "FASTMATCH";
-            this.FASTMATCH.Size = new System.Drawing.Size(89, 23);
-            this.FASTMATCH.TabIndex = 17;
-            this.FASTMATCH.Text = "FASTMATCH";
-            this.FASTMATCH.UseVisualStyleBackColor = true;
-            this.FASTMATCH.Click += new System.EventHandler(this.button4_Click);
             // 
             // MultyTradesCheckBox
             // 
@@ -335,45 +332,31 @@ namespace WindowsFormsApplication1
             this.PostToRecon.UseVisualStyleBackColor = true;
             this.PostToRecon.Click += new System.EventHandler(this.button11_Click);
             // 
-            // VMAton
-            // 
-            this.VMAton.Location = new System.Drawing.Point(371, 148);
-            this.VMAton.Name = "VMAton";
-            this.VMAton.Size = new System.Drawing.Size(89, 25);
-            this.VMAton.TabIndex = 35;
-            this.VMAton.Text = "VM Aton";
-            this.VMAton.UseVisualStyleBackColor = true;
-            this.VMAton.Click += new System.EventHandler(this.button12_Click);
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.procedures});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(587, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(709, 24);
             this.menuStrip1.TabIndex = 36;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // procedures
             // 
             this.procedures.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aBNPositionParsingToolStripMenuItem,
             this.aBNFTParsingToolStripMenuItem,
             this.bOFTUploadingToolStripMenuItem,
             this.cpCostToolStripMenuItem,
             this.updateOpenToolStripMenuItem,
-            this.uploadFTBOToolStripMenuItem});
+            this.uploadFTBOToolStripMenuItem,
+            this.fastmatchToolStripMenuItem,
+            this.aBNPositionParsingToolStripMenuItem,
+            this.cFHToolStripMenuItem,
+            this.atonToolStripMenuItem});
             this.procedures.Name = "procedures";
             this.procedures.Size = new System.Drawing.Size(45, 20);
             this.procedures.Text = "Func";
-            // 
-            // aBNPositionParsingToolStripMenuItem
-            // 
-            this.aBNPositionParsingToolStripMenuItem.Name = "aBNPositionParsingToolStripMenuItem";
-            this.aBNPositionParsingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aBNPositionParsingToolStripMenuItem.Text = "ABNPositionParsing";
-            this.aBNPositionParsingToolStripMenuItem.Click += new System.EventHandler(this.aBNPositionParsingToolStripMenuItem_Click);
             // 
             // aBNFTParsingToolStripMenuItem
             // 
@@ -409,6 +392,66 @@ namespace WindowsFormsApplication1
             this.uploadFTBOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.uploadFTBOToolStripMenuItem.Text = "Upload FT BO";
             this.uploadFTBOToolStripMenuItem.Click += new System.EventHandler(this.uploadFTBOToolStripMenuItem_Click);
+            // 
+            // fastmatchToolStripMenuItem
+            // 
+            this.fastmatchToolStripMenuItem.Name = "fastmatchToolStripMenuItem";
+            this.fastmatchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fastmatchToolStripMenuItem.Text = "Fastmatch";
+            this.fastmatchToolStripMenuItem.Click += new System.EventHandler(this.fastmatchToolStripMenuItem_Click);
+            // 
+            // aBNPositionParsingToolStripMenuItem
+            // 
+            this.aBNPositionParsingToolStripMenuItem.Name = "aBNPositionParsingToolStripMenuItem";
+            this.aBNPositionParsingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aBNPositionParsingToolStripMenuItem.Text = "ABNPositionParsing";
+            this.aBNPositionParsingToolStripMenuItem.Click += new System.EventHandler(this.aBNPositionParsingToolStripMenuItem_Click);
+            // 
+            // cFHToolStripMenuItem
+            // 
+            this.cFHToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cFHReconciliationToolStripMenuItem,
+            this.cFHBalanceToolStripMenuItem});
+            this.cFHToolStripMenuItem.Name = "cFHToolStripMenuItem";
+            this.cFHToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cFHToolStripMenuItem.Text = "CFH";
+            // 
+            // cFHReconciliationToolStripMenuItem
+            // 
+            this.cFHReconciliationToolStripMenuItem.Name = "cFHReconciliationToolStripMenuItem";
+            this.cFHReconciliationToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.cFHReconciliationToolStripMenuItem.Text = "CFH Reconciliation";
+            this.cFHReconciliationToolStripMenuItem.Click += new System.EventHandler(this.cFHReconciliationToolStripMenuItem_Click);
+            // 
+            // cFHBalanceToolStripMenuItem
+            // 
+            this.cFHBalanceToolStripMenuItem.Name = "cFHBalanceToolStripMenuItem";
+            this.cFHBalanceToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.cFHBalanceToolStripMenuItem.Text = "CFH Balance";
+            this.cFHBalanceToolStripMenuItem.Click += new System.EventHandler(this.cFHBalanceToolStripMenuItem_Click);
+            // 
+            // atonToolStripMenuItem
+            // 
+            this.atonToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.vMAtonToolStripMenuItem1,
+            this.atonReconciliationToolStripMenuItem});
+            this.atonToolStripMenuItem.Name = "atonToolStripMenuItem";
+            this.atonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.atonToolStripMenuItem.Text = "Aton";
+            // 
+            // vMAtonToolStripMenuItem1
+            // 
+            this.vMAtonToolStripMenuItem1.Name = "vMAtonToolStripMenuItem1";
+            this.vMAtonToolStripMenuItem1.Size = new System.Drawing.Size(178, 22);
+            this.vMAtonToolStripMenuItem1.Text = "VM Aton";
+            this.vMAtonToolStripMenuItem1.Click += new System.EventHandler(this.vMAtonToolStripMenuItem1_Click);
+            // 
+            // atonReconciliationToolStripMenuItem
+            // 
+            this.atonReconciliationToolStripMenuItem.Name = "atonReconciliationToolStripMenuItem";
+            this.atonReconciliationToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.atonReconciliationToolStripMenuItem.Text = "Aton Reconciliation";
+            this.atonReconciliationToolStripMenuItem.Click += new System.EventHandler(this.atonReconciliationToolStripMenuItem_Click);
             // 
             // label5
             // 
@@ -460,9 +503,9 @@ namespace WindowsFormsApplication1
             // 
             // RJOButton
             // 
-            this.RJOButton.Location = new System.Drawing.Point(149, 218);
+            this.RJOButton.Location = new System.Drawing.Point(367, 121);
             this.RJOButton.Name = "RJOButton";
-            this.RJOButton.Size = new System.Drawing.Size(42, 23);
+            this.RJOButton.Size = new System.Drawing.Size(75, 23);
             this.RJOButton.TabIndex = 42;
             this.RJOButton.Text = "RJO";
             this.RJOButton.UseVisualStyleBackColor = true;
@@ -490,7 +533,7 @@ namespace WindowsFormsApplication1
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(193, 248);
+            this.button4.Location = new System.Drawing.Point(193, 245);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(65, 26);
             this.button4.TabIndex = 45;
@@ -510,23 +553,13 @@ namespace WindowsFormsApplication1
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(193, 218);
+            this.button7.Location = new System.Drawing.Point(201, 218);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(65, 23);
+            this.button7.Size = new System.Drawing.Size(57, 23);
             this.button7.TabIndex = 48;
             this.button7.Text = "OSL Bal";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.GetOslBalance);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(271, 211);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(42, 23);
-            this.button8.TabIndex = 49;
-            this.button8.Text = "CFH";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click_1);
             // 
             // button9
             // 
@@ -538,21 +571,11 @@ namespace WindowsFormsApplication1
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(314, 210);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(54, 23);
-            this.button11.TabIndex = 51;
-            this.button11.Text = "CFH bal";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click_1);
-            // 
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(370, 210);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(89, 23);
+            this.button6.Size = new System.Drawing.Size(72, 23);
             this.button6.TabIndex = 52;
             this.button6.Text = "Nissan";
             this.button6.UseVisualStyleBackColor = true;
@@ -582,7 +605,7 @@ namespace WindowsFormsApplication1
             // 
             this.button13.Location = new System.Drawing.Point(466, 195);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 76);
+            this.button13.Size = new System.Drawing.Size(75, 23);
             this.button13.TabIndex = 55;
             this.button13.Text = "Mac";
             this.button13.UseVisualStyleBackColor = true;
@@ -607,18 +630,181 @@ namespace WindowsFormsApplication1
             this.button15.Text = "Mac Emir";
             this.button15.UseVisualStyleBackColor = true;
             // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(138, 219);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(56, 23);
+            this.button16.TabIndex = 58;
+            this.button16.Text = "OSL Int";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(466, 224);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(73, 25);
+            this.button17.TabIndex = 59;
+            this.button17.Text = "MT";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(464, 255);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(75, 25);
+            this.button18.TabIndex = 60;
+            this.button18.Text = "MT send";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(466, 287);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(75, 23);
+            this.button19.TabIndex = 61;
+            this.button19.Text = "OSL DEX";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.DEXParsing);
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(367, 152);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(75, 23);
+            this.button20.TabIndex = 62;
+            this.button20.Text = "RJO Cash";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(466, 346);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(75, 23);
+            this.button21.TabIndex = 63;
+            this.button21.Text = "belarta";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.BelartaClick);
+            // 
+            // button22
+            // 
+            this.button22.Location = new System.Drawing.Point(367, 179);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(75, 23);
+            this.button22.TabIndex = 64;
+            this.button22.Text = "Renesource";
+            this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.button22_Click);
+            // 
+            // button23
+            // 
+            this.button23.Location = new System.Drawing.Point(547, 195);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(101, 23);
+            this.button23.TabIndex = 65;
+            this.button23.Text = "Updating links";
+            this.button23.UseVisualStyleBackColor = true;
+            this.button23.Click += new System.EventHandler(this.button23_Click);
+            // 
+            // button24
+            // 
+            this.button24.Location = new System.Drawing.Point(464, 161);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(75, 23);
+            this.button24.TabIndex = 66;
+            this.button24.Text = "Rene ST";
+            this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
+            // 
+            // button25
+            // 
+            this.button25.Location = new System.Drawing.Point(466, 317);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(75, 23);
+            this.button25.TabIndex = 67;
+            this.button25.Text = "IB Belarta";
+            this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
+            // 
+            // button26
+            // 
+            this.button26.Location = new System.Drawing.Point(556, 161);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(75, 23);
+            this.button26.TabIndex = 68;
+            this.button26.Text = "Rene GLF";
+            this.button26.UseVisualStyleBackColor = true;
+            this.button26.Click += new System.EventHandler(this.button26_Click);
+            // 
+            // button27
+            // 
+            this.button27.Location = new System.Drawing.Point(556, 124);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(75, 23);
+            this.button27.TabIndex = 69;
+            this.button27.Text = "RJO FT";
+            this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.button27_Click);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(271, 211);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(90, 23);
+            this.button8.TabIndex = 70;
+            this.button8.Text = "ItInvest";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click_1);
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(547, 225);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 71;
+            this.button11.Text = "Axi";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click_2);
+            // 
+            // button28
+            // 
+            this.button28.Location = new System.Drawing.Point(556, 257);
+            this.button28.Name = "button28";
+            this.button28.Size = new System.Drawing.Size(75, 23);
+            this.button28.TabIndex = 72;
+            this.button28.Text = "LMAX";
+            this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.button28_Click);
+            // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(587, 413);
+            this.ClientSize = new System.Drawing.Size(709, 413);
+            this.Controls.Add(this.button28);
+            this.Controls.Add(this.button11);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button27);
+            this.Controls.Add(this.button26);
+            this.Controls.Add(this.button25);
+            this.Controls.Add(this.button24);
+            this.Controls.Add(this.button23);
+            this.Controls.Add(this.button22);
+            this.Controls.Add(this.button21);
+            this.Controls.Add(this.button20);
+            this.Controls.Add(this.button19);
+            this.Controls.Add(this.button18);
+            this.Controls.Add(this.button17);
+            this.Controls.Add(this.button16);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button11);
             this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -630,7 +816,6 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.BrockerComboBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.VMAton);
             this.Controls.Add(this.PostToRecon);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.LEK);
@@ -644,9 +829,7 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.noparsingCheckbox);
             this.Controls.Add(this.CliffCheckBox);
             this.Controls.Add(this.MultyTradesCheckBox);
-            this.Controls.Add(this.FASTMATCH);
             this.Controls.Add(this.ADSS);
-            this.Controls.Add(this.atonrecstartbutton);
             this.Controls.Add(this.ABNDate);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
@@ -679,10 +862,8 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DateTimePicker ABNDate;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button atonrecstartbutton;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button ADSS;
-        private System.Windows.Forms.Button FASTMATCH;
         private System.Windows.Forms.CheckBox MultyTradesCheckBox;
         private System.Windows.Forms.CheckBox CliffCheckBox;
         private System.Windows.Forms.CheckBox noparsingCheckbox;
@@ -696,7 +877,6 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button LEK;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button PostToRecon;
-        private System.Windows.Forms.Button VMAton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem procedures;
         private System.Windows.Forms.ToolStripMenuItem aBNPositionParsingToolStripMenuItem;
@@ -713,9 +893,7 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button11;
         private System.Windows.Forms.ToolStripMenuItem cpCostToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateOpenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uploadFTBOToolStripMenuItem;
@@ -725,6 +903,28 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.ToolStripMenuItem fastmatchToolStripMenuItem;
+        private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.Button button26;
+        private System.Windows.Forms.Button button27;
+        private System.Windows.Forms.ToolStripMenuItem cFHToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cFHReconciliationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cFHBalanceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem atonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vMAtonToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem atonReconciliationToolStripMenuItem;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button28;
     }
 }
 

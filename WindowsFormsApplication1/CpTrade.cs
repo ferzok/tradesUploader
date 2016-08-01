@@ -43,5 +43,8 @@ namespace WindowsFormsApplication1
         public string ReconAccount { get; set; }
         public Nullable<double> Fee2 { get; set; }
         public Nullable<double> Fee3 { get; set; }
+        public Nullable<double> Interest { get; set; }
+        public string account { get; set; }
+        public string TradeId { get; set; }
     }
 }

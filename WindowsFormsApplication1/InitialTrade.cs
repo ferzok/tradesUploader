@@ -38,5 +38,8 @@ namespace WindowsFormsApplication1
         public string OptionType { get; set; }
         public Nullable<double> Fee2 { get; set; }
         public Nullable<double> Fee3 { get; set; }
+        public Nullable<double> AccruedInterest { get; set; }
+        public string Account { get; set; }
+        public string TradeId { get; set; }
     }
 }

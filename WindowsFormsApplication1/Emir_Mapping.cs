@@ -44,12 +44,21 @@ namespace WindowsFormsApplication1
         public string FloatingRateResetFrequency { get; set; }
         public string FloatingRateLeg2 { get; set; }
         public string Currency2 { get; set; }
-        public Nullable<double> ForwardExchangeRate { get; set; }
         public string ExchangeRateBasis { get; set; }
-        public string PutCall { get; set; }
-        public string OptionExerciseType { get; set; }
-        public Nullable<double> StrikePrice { get; set; }
         public Nullable<System.DateTime> MaturityDate { get; set; }
         public Nullable<System.DateTime> CPValueDate { get; set; }
+        public string OptionType { get; set; }
+        public Nullable<int> cPutCall { get; set; }
+        public Nullable<int> cStrikePrice { get; set; }
+        public string OptionExerciseType { get; set; }
+        public Nullable<double> ForwardExchangeRateMty { get; set; }
+        public string link { get; set; }
+        public string NotionalCurrency2 { get; set; }
+        public Nullable<int> TimeDifference { get; set; }
+        public Nullable<int> CpMtyPrice { get; set; }
+        public string InstrumentDescription { get; set; }
+        public Nullable<double> FixedRateLeg1 { get; set; }
+        public string FixedRateDayCount { get; set; }
+        public string FixedLegPaymentFrequency { get; set; }
     }
 }
