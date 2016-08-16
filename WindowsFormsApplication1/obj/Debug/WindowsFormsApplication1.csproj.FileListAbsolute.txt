@@ -67,9 +67,6 @@ D:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\bin\Debug\EntityFramewor
 D:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\bin\Debug\EntityFramework.SqlServer.xml
 D:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\bin\Debug\MySql.Data.dll
 D:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\bin\Debug\mysql.data.entity.EF6.dll
-C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
-C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
-C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
 C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
 C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.manifest
 C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.application
@@ -88,6 +85,9 @@ C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\bin\Debug\HtmlAgilityPac
 C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\bin\Debug\HtmlAgilityPack.xml
 C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\bin\Debug\itextsharp.xml
 C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\bin\Debug\Newtonsoft.Json.xml
+C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
 C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe.manifest
 C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.application
 C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe

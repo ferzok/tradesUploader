@@ -37,6 +37,7 @@
     <EntitySetMapping Name="Ctrades">
       <EntityTypeMapping TypeName="EXANTE_testModel.Ctrade">
         <MappingFragment StoreEntitySet="Ctrades">
+          <ScalarProperty Name="EntityLegalMalta" ColumnName="EntityLegalMalta" />
           <ScalarProperty Name="orderPos" ColumnName="orderPos" />
           <ScalarProperty Name="CpTimestamp" ColumnName="CpTimestamp" />
           <ScalarProperty Name="Value" ColumnName="Value" />
@@ -195,12 +196,12 @@
     <EntitySetMapping Name="Reconcilations">
       <EntityTypeMapping TypeName="EXANTE_testModel.Reconcilation">
         <MappingFragment StoreEntitySet="Reconcilation">
+          <ScalarProperty Name="BOTradenumber" ColumnName="BOTradenumber" />
+          <ScalarProperty Name="CpFull_id" ColumnName="CpFull_id" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="valid" ColumnName="valid" />
           <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-          <ScalarProperty Name="Ctrade_id" ColumnName="Ctrade_id" />
-          <ScalarProperty Name="CpTrade_id" ColumnName="CpTrade_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -538,6 +539,7 @@
     <EntitySetMapping Name="FT">
       <EntityTypeMapping TypeName="EXANTE_testModel.FT">
         <MappingFragment StoreEntitySet="FT">
+          <ScalarProperty Name="Posted" ColumnName="Posted" />
           <ScalarProperty Name="counterccy" ColumnName="counterccy" />
           <ScalarProperty Name="ValueCCY" ColumnName="ValueCCY" />
           <ScalarProperty Name="JOURNALACCOUNTCODE" ColumnName="JOURNALACCOUNTCODE" />

@@ -14,11 +14,11 @@ namespace WindowsFormsApplication1
     
     public partial class Reconcilation
     {
-        public Nullable<long> CpTrade_id { get; set; }
-        public Nullable<long> Ctrade_id { get; set; }
         public Nullable<System.DateTime> Timestamp { get; set; }
         public Nullable<short> valid { get; set; }
         public string username { get; set; }
         public long id { get; set; }
+        public Nullable<long> CpFull_id { get; set; }
+        public Nullable<long> BOTradenumber { get; set; }
     }
 }

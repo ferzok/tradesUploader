@@ -336,6 +336,7 @@
           <Property Name="Value" Type="double" />
           <Property Name="CpTimestamp" Type="timestamp" />
           <Property Name="orderPos" Type="int" />
+          <Property Name="EntityLegalMalta" Type="bool" />
         </EntityType>
         <EntityType Name="DailyCheck">
           <Key>
@@ -540,7 +541,7 @@
           <Property Name="ccy" Type="varchar" MaxLength="3" />
           <Property Name="value" Type="double" />
           <Property Name="brocker" Type="varchar" MaxLength="15" />
-          <Property Name="Type" Type="varchar" MaxLength="2" />
+          <Property Name="Type" Type="varchar" MaxLength="10" />
           <Property Name="Comment" Type="varchar" MaxLength="80" />
           <Property Name="Reference" Type="bigint" />
           <Property Name="User" Type="varchar" MaxLength="20" />
@@ -553,6 +554,7 @@
           <Property Name="JOURNALACCOUNTCODE" Type="varchar" MaxLength="4" />
           <Property Name="ValueCCY" Type="double" />
           <Property Name="counterccy" Type="varchar" MaxLength="3" />
+          <Property Name="Posted" Type="timestamp" />
         </EntityType>
         <EntityType Name="Ftbo">
           <Key>
@@ -740,8 +742,8 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="CpTrade_id" Type="bigint" />
-          <Property Name="Ctrade_id" Type="bigint" />
+          <Property Name="CpFull_id" Type="bigint" />
+          <Property Name="BOTradenumber" Type="bigint" />
           <Property Name="Timestamp" Type="timestamp" />
           <Property Name="valid" Type="int" />
           <Property Name="username" Type="varchar" MaxLength="255" />
@@ -868,6 +870,7 @@
           <Property Type="Double" Name="Value" />
           <Property Type="DateTime" Name="CpTimestamp" />
           <Property Type="Int32" Name="orderPos" />
+          <Property Type="Boolean" Name="EntityLegalMalta" />
         </EntityType>
         <EntityType Name="Price">
           <Key>
@@ -994,12 +997,12 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int64" Name="CpTrade_id" />
-          <Property Type="Int64" Name="Ctrade_id" />
           <Property Type="DateTime" Name="Timestamp" Precision="0" />
           <Property Type="Int16" Name="valid" />
           <Property Type="String" Name="username" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="CpFull_id" />
+          <Property Type="Int64" Name="BOTradenumber" />
         </EntityType>
         <EntityType Name="ABN_cashposition">
           <Key>
@@ -1342,6 +1345,7 @@
           <Property Type="String" Name="JOURNALACCOUNTCODE" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Type="Double" Name="ValueCCY" />
           <Property Type="String" Name="counterccy" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Posted" />
         </EntityType>
         <EntityType Name="Emir">
           <Key>
@@ -1581,6 +1585,7 @@
           <EntitySetMapping Name="Ctrades">
             <EntityTypeMapping TypeName="EXANTE_testModel.Ctrade">
               <MappingFragment StoreEntitySet="Ctrades">
+                <ScalarProperty Name="EntityLegalMalta" ColumnName="EntityLegalMalta" />
                 <ScalarProperty Name="orderPos" ColumnName="orderPos" />
                 <ScalarProperty Name="CpTimestamp" ColumnName="CpTimestamp" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
@@ -1739,13 +1744,13 @@
           <EntitySetMapping Name="Reconcilations">
             <EntityTypeMapping TypeName="EXANTE_testModel.Reconcilation">
               <MappingFragment StoreEntitySet="Reconcilation">
+                <ScalarProperty Name="BOTradenumber" ColumnName="BOTradenumber" />
+                <ScalarProperty Name="CpFull_id" ColumnName="CpFull_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="valid" ColumnName="valid" />
                 <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-                <ScalarProperty Name="Ctrade_id" ColumnName="Ctrade_id" />
-                <ScalarProperty Name="CpTrade_id" ColumnName="CpTrade_id" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ABN_cashposition">
@@ -2082,6 +2087,7 @@
           <EntitySetMapping Name="FT">
             <EntityTypeMapping TypeName="EXANTE_testModel.FT">
               <MappingFragment StoreEntitySet="FT">
+                <ScalarProperty Name="Posted" ColumnName="Posted" />
                 <ScalarProperty Name="counterccy" ColumnName="counterccy" />
                 <ScalarProperty Name="ValueCCY" ColumnName="ValueCCY" />
                 <ScalarProperty Name="JOURNALACCOUNTCODE" ColumnName="JOURNALACCOUNTCODE" />

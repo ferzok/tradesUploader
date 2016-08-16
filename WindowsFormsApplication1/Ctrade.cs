@@ -40,5 +40,6 @@ namespace WindowsFormsApplication1
         public Nullable<double> Value { get; set; }
         public Nullable<System.DateTime> CpTimestamp { get; set; }
         public Nullable<int> orderPos { get; set; }
+        public Nullable<bool> EntityLegalMalta { get; set; }
     }
 }

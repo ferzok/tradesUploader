@@ -331,6 +331,7 @@
     <Property Name="Value" Type="double" />
     <Property Name="CpTimestamp" Type="timestamp" />
     <Property Name="orderPos" Type="int" />
+    <Property Name="EntityLegalMalta" Type="bool" />
   </EntityType>
   <EntityType Name="DailyCheck">
     <Key>
@@ -535,7 +536,7 @@
     <Property Name="ccy" Type="varchar" MaxLength="3" />
     <Property Name="value" Type="double" />
     <Property Name="brocker" Type="varchar" MaxLength="15" />
-    <Property Name="Type" Type="varchar" MaxLength="2" />
+    <Property Name="Type" Type="varchar" MaxLength="10" />
     <Property Name="Comment" Type="varchar" MaxLength="80" />
     <Property Name="Reference" Type="bigint" />
     <Property Name="User" Type="varchar" MaxLength="20" />
@@ -548,6 +549,7 @@
     <Property Name="JOURNALACCOUNTCODE" Type="varchar" MaxLength="4" />
     <Property Name="ValueCCY" Type="double" />
     <Property Name="counterccy" Type="varchar" MaxLength="3" />
+    <Property Name="Posted" Type="timestamp" />
   </EntityType>
   <EntityType Name="Ftbo">
     <Key>
@@ -735,8 +737,8 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="CpTrade_id" Type="bigint" />
-    <Property Name="Ctrade_id" Type="bigint" />
+    <Property Name="CpFull_id" Type="bigint" />
+    <Property Name="BOTradenumber" Type="bigint" />
     <Property Name="Timestamp" Type="timestamp" />
     <Property Name="valid" Type="int" />
     <Property Name="username" Type="varchar" MaxLength="255" />

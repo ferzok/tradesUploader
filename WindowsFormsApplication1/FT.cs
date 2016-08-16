@@ -35,5 +35,6 @@ namespace WindowsFormsApplication1
         public string JOURNALACCOUNTCODE { get; set; }
         public Nullable<double> ValueCCY { get; set; }
         public string counterccy { get; set; }
+        public Nullable<System.DateTime> Posted { get; set; }
     }
 }

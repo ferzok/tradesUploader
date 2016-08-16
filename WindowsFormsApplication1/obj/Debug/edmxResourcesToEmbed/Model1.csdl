@@ -94,6 +94,7 @@
     <Property Type="Double" Name="Value" />
     <Property Type="DateTime" Name="CpTimestamp" />
     <Property Type="Int32" Name="orderPos" />
+    <Property Type="Boolean" Name="EntityLegalMalta" />
   </EntityType>
   <EntityType Name="Price">
     <Key>
@@ -220,12 +221,12 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Type="Int64" Name="CpTrade_id" />
-    <Property Type="Int64" Name="Ctrade_id" />
     <Property Type="DateTime" Name="Timestamp" Precision="0" />
     <Property Type="Int16" Name="valid" />
     <Property Type="String" Name="username" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="Int64" Name="id" Nullable="false" />
+    <Property Type="Int64" Name="CpFull_id" />
+    <Property Type="Int64" Name="BOTradenumber" />
   </EntityType>
   <EntityType Name="ABN_cashposition">
     <Key>
@@ -568,6 +569,7 @@
     <Property Type="String" Name="JOURNALACCOUNTCODE" MaxLength="4" FixedLength="false" Unicode="false" />
     <Property Type="Double" Name="ValueCCY" />
     <Property Type="String" Name="counterccy" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Posted" />
   </EntityType>
   <EntityType Name="Emir">
     <Key>
