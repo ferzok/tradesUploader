@@ -56,5 +56,6 @@ namespace WindowsFormsApplication1
         public Nullable<int> cInterest { get; set; }
         public string TimeFormat { get; set; }
         public Nullable<int> cTradeId { get; set; }
+        public string Account { get; set; }
     }
 }

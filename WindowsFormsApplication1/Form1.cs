@@ -3452,15 +3452,12 @@ namespace WindowsFormsApplication1
         {
             TradesParserStatus.Text = "Processing";
             updateFORTSccyrates();
-          //  calcualteVM(ABNDate.Value, "M&L");
-            
-       calcualteVM(ABNDate.Value, "MOEX");
-
-
-calcualteVM(ABNDate.Value, "EXANTE");
-calcualteVM(ABNDate.Value, "MOEX-SPECTRA");
-            calcualteVM(ABNDate.Value, "OPEN");
-           calcualteVM(ABNDate.Value, "INSTANT");
+          calcualteVM(ABNDate.Value, "M&L");
+          calcualteVM(ABNDate.Value, "MOEX");
+          calcualteVM(ABNDate.Value, "EXANTE");
+         calcualteVM(ABNDate.Value, "MOEX-SPECTRA");
+          calcualteVM(ABNDate.Value, "OPEN");
+          calcualteVM(ABNDate.Value, "INSTANT");
 
 
 
@@ -4058,7 +4055,7 @@ calcualteVM(ABNDate.Value, "MOEX-SPECTRA");
                 DateTime TimeStart = DateTime.Now;
                 LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start Mac trades uploading");
 
-                var LInitTrades = TradeParsing("Mac", "CSV", "FU");
+                var LInitTrades = TradeParsing("Mac", "CSV", "FU","Main");
                 var lCptrades = InitTradesConverting(LInitTrades, "Mac");
 
 
@@ -5674,10 +5671,10 @@ break;*/
                     Price = Price*map.MtyPrice;
                     Qty = Qty*map.MtyVolume;
                     value = value*map.Leverage;
-                    ValueDate = map.ValueDate;
+                    if(type!="FX")ValueDate = map.ValueDate;
                     type = map.Type;
                 }
-                if (Qty > 0) value = -Math.Abs((double)value);
+                if ((Qty > 0)&&(value!=null)) value = -Math.Abs((double)value);
                 double? fee = null;
                 if (initTrade.Fee != null) fee = -Math.Abs((double) initTrade.Fee);
                 lCpTrade.Add(new CpTrade
@@ -5796,17 +5793,17 @@ break;*/
 
         private void OSL_Click(object sender, EventArgs e)
         {
-            FORTSReconciliation("OPEN");
+            FORTSReconciliation("OPEN",null);
         }
 
-        private void FORTSReconciliation(string cp)
+        private void FORTSReconciliation(string cp,string identify)
         {
             DateTime reportdate = ABNDate.Value; //todo Get report date from xml Processing date
             TradesParserStatus.Text = "Processing";
             var db = new EXANTE_Entities(_currentConnection);
             if (!noparsingCheckbox.Checked)
             {
-                var lInitTrades = OpenParsing(cp);
+                var lInitTrades = OpenParsing(cp, identify);
                 var lCptrades = OpenConverting(lInitTrades, cp);
                 foreach (CpTrade cptrade in lCptrades)
                 {
@@ -5892,7 +5889,7 @@ break;*/
                         }
                     }
                 }
-                db.SaveChanges();
+               SaveDBChanges(ref db);
             }
 
             RecProcess(reportdate, cp);
@@ -5900,7 +5897,7 @@ break;*/
             Console.WriteLine(""); // <-- For debugging use. */
         }
 
-        private List<InitialTrade> OpenParsing(string cp)
+        private List<InitialTrade> OpenParsing(string cp,string identify)
         {
             DialogResult result = openFileDialog2.ShowDialog();
             var lInitTrades = new List<InitialTrade>();
@@ -5911,10 +5908,9 @@ break;*/
 
                 var db = new EXANTE_Entities(_currentConnection);
                 var cMapping = (from ct in db.ColumnMappings
-                                where ct.Brocker == cp && ct.FileType == "EXCEL"
+                                where ct.Brocker == cp && ct.FileType == "EXCEL" && ct.Account == identify
                                 select ct).ToDictionary(k => k.Type, k => k);
-                if (cMapping["FU"].cTabName == null || CheckTabExist(openFileDialog2.FileName, cMapping["FU"].cTabName))
-                    removeOverallRows(openFileDialog2.FileName, cMapping["FU"].cTabName, cMapping["FU"].cLineStart);
+                //if (cMapping["FU"].cTabName == null || CheckTabExist(openFileDialog2.FileName, cMapping["FU"].cTabName))removeOverallRows(openFileDialog2.FileName, cMapping["FU"].cTabName, cMapping["FU"].cLineStart);
                 List<InitialTrade> inittrades;
                 if (cMapping.ContainsKey("ST") && cMapping["ST"].Brocker != "Renesource")
                 {
@@ -6385,7 +6381,7 @@ break;*/
             {
                 DateTime TimeStart = DateTime.Now;
                 LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start RJO trades uploading");
-                var LInitTrades = TradeParsing("RJO", "CSV", "FU");
+                var LInitTrades = TradeParsing("RJO", "CSV", "FU", "Main");
                 var lCptrades = InitTradesConverting(LInitTrades, "RJO");
                 foreach (CpTrade cptrade in lCptrades)
                 {
@@ -6564,7 +6560,7 @@ break;*/
             return lCpTrade;
         }
 
-        private List<InitialTrade> TradeParsing(string brocker, string filetype, string mappingtype)
+        private List<InitialTrade> TradeParsing(string brocker, string filetype, string mappingtype,string identify)
         {
             DialogResult result = openFileDialog2.ShowDialog();
             var lInitTrades = new List<InitialTrade>();
@@ -6574,7 +6570,7 @@ break;*/
                 //   var symbolmap = getMapping("RJO");
                 var db = new EXANTE_Entities(_currentConnection);
                 var cMapping = (from ct in db.ColumnMappings
-                                where ct.Brocker == brocker && ct.FileType == filetype
+                                where ct.Brocker == brocker && ct.FileType == filetype && ct.Account == identify
                                 // "CSV"
                                 select ct).ToDictionary(k => k.Type, k => k);
                 if (filetype == "CSV")
@@ -6873,8 +6869,8 @@ break;*/
             var cptradefromDb = (from ft in db.FT
                                  where ft.valid == 1 &&
                                        (
-                                      // ft.brocker == "M&L"
-                                      ft.brocker == "MOEX" ||
+                                       ft.brocker == "M&L" ||
+                                     ft.brocker == "MOEX" ||
                                         ft.brocker == "INSTANT" || ft.brocker == "EXANTE" ||
                                           ft.brocker == "MOEX-SPECTRA" ||
                                           ft.brocker == "OPEN"
@@ -8458,7 +8454,7 @@ break;*/
             {
                 DateTime TimeStart = DateTime.Now;
                 LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start NISSAN trades uploading");
-                var LInitTrades = TradeParsing("NISSAN", "CSV", "FU");
+                var LInitTrades = TradeParsing("NISSAN", "CSV", "FU", "Main");
                 //**
                 var lCptrades = InitTradesConverting(LInitTrades, "NISSAN");
                 foreach (CpTrade cptrade in lCptrades)
@@ -8516,7 +8512,7 @@ break;*/
                 DateTime TimeStart = DateTime.Now;
                 LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start Mac position uploading");
 
-                var LInitPos = TradeParsing("Mac", "CSV", "PO");
+                var LInitPos = TradeParsing("Mac", "CSV", "PO", "Main");
 
 
                 DateTime TimeEnd = DateTime.Now;
@@ -8537,7 +8533,7 @@ break;*/
                 DateTime TimeStart = DateTime.Now;
                 LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start IS-PRIME trades uploading");
 
-                var LInitTrades = TradeParsing("IS-PRIME", "CSV", "FX");
+                var LInitTrades = TradeParsing("IS-PRIME", "CSV", "FX", "Main");
                 var lCptrades = InitTradesConverting(LInitTrades, "IS-PRIME");
                 foreach (CpTrade cptrade in lCptrades)
                 {
@@ -8569,7 +8565,7 @@ break;*/
                 DateTime TimeStart = DateTime.Now;
                 LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start Mac trades uploading");
 
-                var LInitTrades = TradeParsing("MAC_EMIR", "CSV", "FU");
+                var LInitTrades = TradeParsing("MAC_EMIR", "CSV", "FU", "Main");
                 var lCptrades = InitTradesConverting(LInitTrades, "IS-PRIME");
                 foreach (CpTrade cptrade in lCptrades)
                 {
@@ -8877,7 +8873,7 @@ break;*/
                 DateTime TimeStart = DateTime.Now;
                 LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start Belarta trades uploading");
 
-                var LInitTrades = TradeParsing("Belarta", "EXCEL", "FX");
+                var LInitTrades = TradeParsing("Belarta", "EXCEL", "FX", "Main");
                 var lCptrades = InitTradesConverting(LInitTrades, "Belarta");
                 foreach (CpTrade cptrade in lCptrades)
                 {
@@ -8913,7 +8909,8 @@ break;*/
             //    var strAdsTrade = "https://backoffice-recon.exante.eu:443/api/v1.5/accounts/ADS1450.002/trade";
             const string conStr = "https://backoffice.exante.eu:443/api/v1.5/accounts/"; // "ZAM1452.001/trade";
             var token = GetToken("https://authdb.exante.eu/api/1.0/auth/session", "backoffice");
-
+            //var token = GetToken("https://authdb.prod.ghcg.com/api/1.0/auth/session", "backoffice");
+            
             var reportdate = ABNDate.Value;
             var acc = new BOaccount
                 {
@@ -9245,13 +9242,13 @@ break;*/
 
         private void BelartaClick(object sender, EventArgs e)
         {
-            DialogResult result = openFileDialog2.ShowDialog();
+       //     DialogResult result = openFileDialog2.ShowDialog();
             var lInitTrades = new List<InitialTrade>();
 
-            if (result == DialogResult.OK) // Test result.
-            {
+        //    if (result == DialogResult.OK) // Test result.
+        //    {
                 var db = new EXANTE_Entities(_currentConnection);
-                var reader = new StreamReader(openFileDialog2.FileName);
+            //    var reader = new StreamReader(openFileDialog2.FileName);
                 /*      HtmlWeb web = new HtmlWeb();
                      HtmlAgilityPack.HtmlDocument doc = web.Load("http://moex.com/ru/derivatives/currency-rate.aspx");
                      HtmlNodeCollection tags = doc.DocumentNode.SelectNodes("//abc//tag");
@@ -9259,16 +9256,43 @@ break;*/
 
 
                 HtmlAgilityPack.HtmlDocument document = new HtmlAgilityPack.HtmlDocument();
-                //     string htmlString = "c:/test.htm";
-                document.LoadHtml(openFileDialog2.FileName);
-                HtmlNodeCollection collection = document.DocumentNode.SelectNodes("//a");
-                foreach (HtmlNode link in collection)
+                string htmlString = "c:/test.htm";
+                document.LoadHtml(htmlString);
+             //   HtmlNodeCollection collection = document.DocumentNode.SelectNodes("//a");
+            //Closed Transactions:
+          //  var dom = CsQuery.CQ.CreateFromFile(htmlString);
+
+
+           // var trNodes = document.GetElementbyId("Closed Transactions"); //.ChildNodes.Where(x => x.Name == «tr»);
+
+
+            var a = document.DocumentNode.SelectSingleNode("<b>Closed Transactions:</b>");
+            var table = document.GetElementbyId("table5");
+            var tableRows = table.ChildNodes
+                                .Where(cn => cn.NodeType == HtmlNodeType.Element)
+                                .Skip(2);
+            HtmlNodeCollection nodes = document.DocumentNode.SelectNodes("//h3[contains(concat(' ', @class, ' '), ' r ')]/a");
+            if (nodes != null)
+                foreach (HtmlNode node in nodes)
+                    Console.WriteLine(node.GetAttributeValue("href", null));
+
+            List<HtmlNode> toftitle = document.DocumentNode.Descendants().Where(x => (x.Name == "tr" && x.Attributes["class"] != null &&x.Attributes["class"].Value.Contains("block_content"))).ToList();
+
+         /*   HtmlNodeCollection nodes = document.DocumentNode.SelectNodes("//h3[contains(concat(' ', @class, ' '), ' r ')]/a");
+            if (nodes != null)
+                foreach (HtmlNode node in nodes)
+                    yield return node.GetAttributeValue("href", null);
+*/
+
+            var t = 1;
+
+            /*foreach (HtmlNode link in collection)
                 {
                     string target = link.Attributes["href"].Value;
-                }
+                }*/
 
-                // var currate = 1; // = GetPage(initialstring, "/tr", "</td", list);
-                /*             var index = 15;
+            // var currate = 1; // = GetPage(initialstring, "/tr", "</td", list);
+            /*             var index = 15;
                      //  while ((index < currate.Count()) && (currate[index][0].IndexOf("Курс основного") == -1)) index++;
                      while ((index < currate.Count()) && (currate[index][0].IndexOf("18.08.2014") == -1)) index++;
                      var temp = "";
@@ -9284,12 +9308,12 @@ break;*/
                      HtmlAgilityPack.HtmlDocument doc = web.Load("http://moex.com/ru/derivatives/currency-rate.aspx");
                      HtmlNodeCollection tags = doc.DocumentNode.SelectNodes("//abc//tag");
                          */
-            }
+            //   }
         }
 
         private void button22_Click(object sender, EventArgs e)
         {
-            FORTSReconciliation("Renesource");
+            FORTSReconciliation("Renesource", "Main");
             var db = new EXANTE_Entities(_currentConnection);
             db.Database.ExecuteSqlCommand(
                 "UPDATE CpTrades AS cp INNER JOIN Contracts AS c ON c.id = cp.BOSymbol SET cp.value = - cp.Qty*cp.Price*c.Leverage WHERE cp.BrokerId LIKE '%Rene%' AND ReportDate > '2016-06-01'");
@@ -9562,7 +9586,7 @@ break;*/
             {
                 DateTime TimeStart = DateTime.Now;
                 LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start Renesource trades uploading");
-                var LInitTrades = TradeParsing("Renesource", "EXCEL", "ST");
+                var LInitTrades = TradeParsing("Renesource", "EXCEL", "ST", "RUEQ0288");
                 var lCptrades = InitTradesConverting(LInitTrades, "Renesource");
                 foreach (CpTrade cptrade in lCptrades)
                 {
@@ -9629,7 +9653,7 @@ break;*/
             {
                 DateTime TimeStart = DateTime.Now;
                 LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start IB Belarta trades uploading");
-                var LInitTrades = TradeParsing("BelartaIB", "EXCEL", "ST");
+                var LInitTrades = TradeParsing("BelartaIB", "EXCEL", "ST", "Main");
                 var lCptrades = InitTradesConverting(LInitTrades, "BelartaIB", true, "BelartaIB");
                 foreach (CpTrade cptrade in lCptrades)
                 {
@@ -9686,7 +9710,7 @@ break;*/
             {
                 DateTime TimeStart = DateTime.Now;
                 LogTextBox.AppendText("\r\n" + TimeStart.ToLongTimeString() + ": " + "start Renesource trades uploading");
-                var LInitTrades = TradeParsing("Renesource", "EXCEL", "FX");
+                var LInitTrades = TradeParsing("Renesource", "EXCEL", "FX", "GLFO0288");
                 var lCptrades = InitTradesConverting(LInitTrades, "Renesource");
                 foreach (CpTrade cptrade in lCptrades)
                 {
@@ -10122,7 +10146,7 @@ break;*/
 
         private void button8_Click_1(object sender, EventArgs e)
         {
-            FORTSReconciliation("ITInvest");
+            FORTSReconciliation("ITInvest",null);
             var db = new EXANTE_Entities(_currentConnection);
             db.Database.ExecuteSqlCommand(
                 "UPDATE CpTrades AS cp INNER JOIN Contracts AS c ON c.id = cp.BOSymbol SET cp.value = - cp.Qty*cp.Price*c.Leverage WHERE cp.BrokerId LIKE '%ITInvest' AND ReportDate > '2016-06-01'");
@@ -10135,7 +10159,9 @@ break;*/
             var db = new EXANTE_Entities(_currentConnection);
             if (!noparsingCheckbox.Checked)
             {
-                reportdate = AxiPdfParser(reportdate);
+               
+               reportdate = AxiPdfParser(reportdate);
+
             }
             RecProcess(reportdate, "Axi");
         }
@@ -10154,10 +10180,10 @@ break;*/
             return value;
         }
 
-        private static int AxiPdfGetStarRow(string[] rows)
+        private static int AxiPdfGetStarRow(string[] rows, string Abstractname)
         {
             int i_row = 0;
-            while ((i_row < rows.Length) && (!rows[i_row].Contains("NEW TRADING ACTIVITY")))
+            while ((i_row < rows.Length) && (!rows[i_row].Contains(Abstractname)))
                 {
                     i_row++;
                 }
@@ -10168,13 +10194,20 @@ break;*/
                     i_row++;
                 }
             }
-            if (rows[i_row].Contains("LONP100 ML INVEST"))
+            if (i_row == rows.Length)
             {
-                return i_row + 1;
+                return -1;
             }
             else
             {
-                return -1;
+                if (rows[i_row].Contains("LONP100 ML INVEST"))
+                {
+                    return i_row + 1;
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
             }
         }
 
@@ -10186,10 +10219,14 @@ break;*/
             DialogResult result = openFileDialog2.ShowDialog();
             if (result == DialogResult.OK) // Test result.
             {
+                  foreach (string oFilename in openFileDialog2.FileNames)
+                 {
+
+
                 var checkId = (from ct in db.CpTrades
                                where ct.TradeDate.ToString().Contains("2016-0") && ct.BrokerId == "Axi"
                                select ct).ToDictionary(k => k.exchangeOrderId.ToString(), k => k.FullId);
-                PdfReader reader = new PdfReader(openFileDialog2.FileName);
+                PdfReader reader = new PdfReader(oFilename);
                 var count = reader.NumberOfPages;
                 string txt = "";
                 var i = 1;
@@ -10199,93 +10236,245 @@ break;*/
                 string tempdate = txt.Substring(indexDate, indexDateEnd - indexDate);
                 if (tempdate.Length < 11) tempdate = "0" + tempdate;
                 reportdate = DateTime.ParseExact(tempdate, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
-                while (i <= count && !txt.Contains("NEW TRADING ACTIVITY"))
+
+                while (i <= count && !txt.Contains("ROLLOVER TRADE DETAILS") && !txt.Contains("NEW TRADING ACTIVITY"))
                 {
                     i++;
                     txt = PdfTextExtractor.GetTextFromPage(reader, i, new LocationTextExtractionStrategy());
                 }
-                var dicCpCtrades = new Dictionary<string,List< CpTrade>>();
+                var dicCpCtrades = new Dictionary<string, List<CpTrade>>();
                 var flagStop = false;
                 var i_row = 0;
-                var rows = txt.Split('\n');
-                i_row = AxiPdfGetStarRow(rows);
-                var account = rows[i_row - 1];
-                while ((i < count) && (!flagStop))
+                string[] rows;
+                string account;
+                string type;
+
+                if (txt.Contains("ROLLOVER TRADE DETAILS"))
                 {
-                    txt = PdfTextExtractor.GetTextFromPage(reader, i, new LocationTextExtractionStrategy());
                     rows = txt.Split('\n');
-                    if (i_row != -1)
+                    i_row = AxiPdfGetStarRow(rows, "ROLLOVER TRADE DETAILS");
+                    if(i_row!=-1){
+                    account = rows[i_row - 1];
+                    dicCpCtrades = new Dictionary<string, List<CpTrade>>();
+                    type = "FX";
+                    while ((i < count) && (!flagStop))
                     {
-                         while ((i_row < rows.Length) &&(!rows[i_row].Contains("CASH MOVEMENTS")))
+                        txt = PdfTextExtractor.GetTextFromPage(reader, i, new LocationTextExtractionStrategy());
+                        rows = txt.Split('\n');
+                        if (i_row != -1)
                         {
-                            if (rows[i_row].Contains("Amount"))
+                            while ((i_row < rows.Length) && (!rows[i_row].Contains("Page")) &&
+                                   (!rows[i_row].Contains("CASH MOVEMENTS")) &&
+                                   (!rows[i_row].Contains("SETTLING TRADE DETAILS")) &&
+                                   (!rows[i_row].Contains("NEW TRADING ACTIVITY")))
                             {
-                                i_row = i_row + 2;
-                            }
-                            else
-                            {
-                                if ((rows[i_row].Contains("NEW")) || (rows[i_row].Contains("SETTLED")))
+                                var traderow = rows[i_row].TrimStart().TrimEnd().Replace("  ", " ").Split(' ');
+                                if (traderow.Count() == 1)
                                 {
-                                    var traderow = rows[i_row].TrimStart().TrimEnd().Replace("  ", " ").Split(' ');
-                                    var add = 0;
-                                    string tradenumber = "";
-                                    if ((traderow[0].TrimStart().TrimEnd() == "NEW") || (traderow[0].TrimEnd().TrimStart() == "SETTLED"))
-                                    {
-                                        add = 1;
-                                        tradenumber = rows[i_row + 1].TrimStart();
-                                    }
-                                    else
-                                    {
-                                        tradenumber = traderow[0];
-                                    }
-                                    var type = traderow[1-add];
-                                    tempdate = traderow[3 - add];
-                                    if (tempdate.Length < 11) tempdate = "0" + tempdate;
-                                    var tradedate = DateTime.ParseExact(tempdate, "dd-MMM-yyyy",
+                                    var tempvalue = traderow[0];
+                                    i_row++;
+                                    traderow = rows[i_row].TrimStart().TrimEnd().Replace("  ", " ").Split(' ');
+                                    Array.Resize(ref traderow, traderow.Length + 1);
+                                    traderow[traderow.Length - 1] = tempvalue;
+                                    LogTextBox.AppendText("\r\n" +  "Pay attention to value: " + tempvalue );
+                                                                      //  traderow.SetValue(tempvalue, traderow.Count());
+                                }
+                                var add = 0;
+                                string tradenumber;
+                                var sp = traderow[0].Split('-');
+                                if (traderow[0].Split('-').Count() > 1)
+                                {
+                                    add = 1;
+                                    tradenumber = rows[i_row + 1].TrimStart();
+                                }
+                                else
+                                {
+                                    tradenumber = traderow[0];
+                                }
+
+                                tempdate = traderow[1 - add];
+                                if (tempdate.Length < 11) tempdate = "0" + tempdate;
+                                var tradedate = DateTime.ParseExact(tempdate, "dd-MMM-yyyy",
+                                                                    CultureInfo.InvariantCulture);
+                                tempdate = traderow[2 - add];
+                                if (tempdate.Length < 11) tempdate = "0" + tempdate;
+                                var nearvaluedate = DateTime.ParseExact(tempdate, "dd-MMM-yyyy",
                                                                         CultureInfo.InvariantCulture);
-                                    tempdate =traderow[4 - add];
-                                    if (tempdate.Length < 11) tempdate = "0" + tempdate;
-                                    var valuedate = DateTime.ParseExact(tempdate, "dd-MMM-yyyy",
+                                tempdate = traderow[3 - add];
+                                if (tempdate.Length < 11) tempdate = "0" + tempdate;
+                                var farrvaluedate = DateTime.ParseExact(tempdate, "dd-MMM-yyyy",
                                                                         CultureInfo.InvariantCulture);
-                                 //   if (!dicCpCtrades.ContainsKey(tradenumber) && (type == "NEW") && (!checkId.ContainsKey(tradenumber)))
-                                    if ((type == "NEW") && (!checkId.ContainsKey(tradenumber)))
-                                    {
-                                        if (!dicCpCtrades.ContainsKey(tradenumber))
+                                var Qty = AxiPdfGetNegativeValue(traderow[9 - add]);
+                                if ((!checkId.ContainsKey(tradenumber + "NearLeg")))
+                                {
+                                    dicCpCtrades.Add(tradenumber + "NearLeg", new List<CpTrade>());
+                                    dicCpCtrades[tradenumber + "NearLeg"].Add(new CpTrade()
                                         {
-                                            dicCpCtrades.Add(tradenumber, new List<CpTrade>());
+                                            account = account,
+                                            BrokerId = "Axi",
+                                            BOcp = null,
+                                            BOSymbol = null,
+                                            BOTradeNumber = null,
+                                            valid = 1,
+                                            Timestamp = DateTime.UtcNow,
+                                            exchangeOrderId = tradenumber + "NearLeg",
+                                            ccy = traderow[8 - add],
+                                            ReportDate = reportdate,
+                                            TradeDate = tradedate,
+                                            Symbol = traderow[4 - add],
+                                            Type = type,
+                                            TypeOfTrade = "Swap",
+                                            Qty = Qty,
+                                            Price = Convert.ToDouble(traderow[10 - add]),
+                                            ValueDate = nearvaluedate,
+                                            value = AxiPdfGetNegativeValue(traderow[12 - add])
+                                        });
+                                }
+                                if ((!checkId.ContainsKey(tradenumber + "FarLeg")))
+                                {
+                                    dicCpCtrades.Add(tradenumber + "FarLeg", new List<CpTrade>());
+                                    var farprice = AxiPdfGetNegativeValue(traderow[11 - add]);
+                                    if (traderow[11 - add].Contains("("))
+                                    {
+                                        farprice = AxiPdfGetNegativeValue(traderow[12 - add]);
+                                        LogTextBox.AppendText("\r\n" + "Pay attention to value: " + farprice.ToString());   
+                                    }
+                                    if ((Math.Abs(Convert.ToDouble(traderow[10 - add]) / farprice) > 1.2) || (Math.Abs(Convert.ToDouble(traderow[10 - add]) / farprice) < 0.8))
+                                        {
+                                            farprice = AxiPdfGetNegativeValue(traderow[12 - add]);
+                                            LogTextBox.AppendText("\r\n" + "Pay attention to value: " + farprice.ToString());   
                                         }
-                                        dicCpCtrades[tradenumber].Add(new CpTrade()
+
+                                    
+                                    dicCpCtrades[tradenumber + "FarLeg"].Add(new CpTrade()
+                                        {
+                                            account = account,
+                                            BrokerId = "Axi",
+                                            BOcp = null,
+                                            BOSymbol = null,
+                                            BOTradeNumber = null,
+                                            valid = 1,
+                                            Timestamp = DateTime.UtcNow,
+                                            exchangeOrderId = tradenumber + "FarLeg",
+                                            ccy = traderow[8 - add],
+                                            ReportDate = reportdate,
+                                            TradeDate = tradedate,
+                                            Symbol = traderow[4 - add],
+                                            Type = type,
+                                            TypeOfTrade = "Swap",
+                                            Qty = -Qty,
+                                            Price = farprice,
+                                            ValueDate = farrvaluedate,
+                                            value = Qty*farprice
+                                        });
+                                }
+                                i_row = i_row + add + 1;
+                            }
+                            if ((i_row < rows.Length) &&
+                                ((rows[i_row].Contains("CASH MOVEMENTS")) || (txt.Contains("NEW TRADING ACTIVITY")) ||
+                                 (txt.Contains("SETTLING TRADE DETAILS"))))
+                            {
+                                flagStop = true;
+                            }
+                        }
+                        i_row = 0;
+                        i++;
+                    }
+                }
+                }
+                txt = PdfTextExtractor.GetTextFromPage(reader, i, new LocationTextExtractionStrategy());
+                while (i < count && !txt.Contains("NEW TRADING ACTIVITY"))
+                {
+                    i++;
+                    txt = PdfTextExtractor.GetTextFromPage(reader, i, new LocationTextExtractionStrategy());
+                }
+                if (txt.Contains("NEW TRADING ACTIVITY"))
+                {
+                    flagStop = false;
+                    i_row = 0;
+                    rows = txt.Split('\n');
+                    i_row = AxiPdfGetStarRow(rows, "NEW TRADING ACTIVITY");
+                    account = rows[i_row - 1];
+                    while ((i < count) && (!flagStop))
+                    {
+                        txt = PdfTextExtractor.GetTextFromPage(reader, i, new LocationTextExtractionStrategy());
+                        rows = txt.Split('\n');
+                        if (i_row != -1)
+                        {
+                            while ((i_row < rows.Length) && (!rows[i_row].Contains("Page")) &&
+                                   (!rows[i_row].Contains("CASH MOVEMENTS")))
+                            {
+                                if (rows[i_row].Contains("Amount"))
+                                {
+                                    i_row = i_row + 2;
+                                }
+                                else
+                                {
+                                    if ((rows[i_row].Contains("NEW")) || (rows[i_row].Contains("SETTLED")))
+                                    {
+                                        var traderow = rows[i_row].TrimStart().TrimEnd().Replace("  ", " ").Split(' ');
+                                        var add = 0;
+                                        string tradenumber = "";
+                                        if ((traderow[0].TrimStart().TrimEnd() == "NEW") ||
+                                            (traderow[0].TrimEnd().TrimStart() == "SETTLED"))
+                                        {
+                                            add = 1;
+                                            tradenumber = rows[i_row + 1].TrimStart();
+                                        }
+                                        else
+                                        {
+                                            tradenumber = traderow[0];
+                                        }
+                                        type = traderow[1 - add];
+                                        tempdate = traderow[3 - add];
+                                        if (tempdate.Length < 11) tempdate = "0" + tempdate;
+                                        var tradedate = DateTime.ParseExact(tempdate, "dd-MMM-yyyy",
+                                                                            CultureInfo.InvariantCulture);
+                                        tempdate = traderow[4 - add];
+                                        if (tempdate.Length < 11) tempdate = "0" + tempdate;
+                                        var valuedate = DateTime.ParseExact(tempdate, "dd-MMM-yyyy",
+                                                                            CultureInfo.InvariantCulture);
+                                        //   if (!dicCpCtrades.ContainsKey(tradenumber) && (type == "NEW") && (!checkId.ContainsKey(tradenumber)))
+                                        if ((type == "NEW") && (!checkId.ContainsKey(tradenumber)))
+                                        {
+                                            if (!dicCpCtrades.ContainsKey(tradenumber))
                                             {
-                                                account = account,
-                                                BrokerId = "Axi",
-                                                BOcp = null,
-                                                BOSymbol = null,
-                                                BOTradeNumber = null,
-                                                valid = 1,
-                                                Timestamp = DateTime.UtcNow,
-                                                exchangeOrderId = tradenumber,
-                                                ccy = traderow[7 - add],
-                                                ReportDate = reportdate,
-                                                TradeDate =tradedate,
-                                                Symbol = traderow[5 - add],
-                                                Type = traderow[2 - add],
-                                                Qty = AxiPdfGetNegativeValue(traderow[8 - add]),
-                                                Price = Convert.ToDouble(traderow[9 - add]),
-                                                ValueDate =valuedate,
-                                                value = AxiPdfGetNegativeValue(traderow[10 - add])
-                                            });
+                                                dicCpCtrades.Add(tradenumber, new List<CpTrade>());
+                                            }
+                                            dicCpCtrades[tradenumber].Add(new CpTrade()
+                                                {
+                                                    account = account,
+                                                    BrokerId = "Axi",
+                                                    BOcp = null,
+                                                    BOSymbol = null,
+                                                    BOTradeNumber = null,
+                                                    valid = 1,
+                                                    Timestamp = DateTime.UtcNow,
+                                                    exchangeOrderId = tradenumber,
+                                                    ccy = traderow[7 - add],
+                                                    ReportDate = reportdate,
+                                                    TradeDate = tradedate,
+                                                    Symbol = traderow[5 - add],
+                                                    Type = traderow[2 - add],
+                                                    TypeOfTrade = "Trade",
+                                                    Qty = AxiPdfGetNegativeValue(traderow[8 - add]),
+                                                    Price = Convert.ToDouble(traderow[9 - add]),
+                                                    ValueDate = valuedate,
+                                                    value = AxiPdfGetNegativeValue(traderow[10 - add])
+                                                });
+                                        }
                                     }
                                 }
+                                i_row++;
                             }
-                            i_row++;
+                            if ((i_row < rows.Length) && (rows[i_row].Contains("CASH MOVEMENTS")))
+                            {
+                                flagStop = true;
+                            }
                         }
-                        if ((i_row<rows.Length)&&(rows[i_row].Contains("CASH MOVEMENTS")))
-                        {
-                            flagStop = true;
-                        }
+                        i_row = 0;
+                        i++;
                     }
-                    i_row = 0;
-                    i++;
                 }
                 foreach (KeyValuePair<string, List<CpTrade>> valuePair in dicCpCtrades)
                 {
@@ -10297,9 +10486,17 @@ break;*/
                     {
                         if (valuePair.Value.Count == 2)
                         {
-                            if (((valuePair.Value[0].Symbol != "JPY/USD") && (valuePair.Value[0].Symbol != "CHF/USD") && (valuePair.Value[0].Symbol != "CAD/USD") && (!valuePair.Value[0].Symbol.Contains("THB/"))&& (!valuePair.Value[0].Symbol.Contains("TRY/"))
-                                && (valuePair.Value[0].Symbol != "MXN/USD") && (valuePair.Value[0].Symbol != "NOK/USD") && (valuePair.Value[0].Symbol != "RUB/USD") &&
-                                (valuePair.Value[0].Symbol.Contains("/USD"))) || (!valuePair.Value[0].Symbol.Contains("USD")))
+                            if (((valuePair.Value[0].Symbol != "JPY/USD") &&
+                                 (valuePair.Value[0].Symbol != "CHF/USD") &&
+                                 (valuePair.Value[0].Symbol != "CAD/USD") &&
+                                  (valuePair.Value[0].Symbol != "CAD/EUR") &&
+                                 (!valuePair.Value[0].Symbol.Contains("THB/")) &&
+                                 (!valuePair.Value[0].Symbol.Contains("TRY/"))
+                                 && (valuePair.Value[0].Symbol != "MXN/USD") &&
+                                 (valuePair.Value[0].Symbol != "NOK/USD") &&
+                                 (valuePair.Value[0].Symbol != "RUB/USD") &&
+                                 (valuePair.Value[0].Symbol.Contains("/USD"))) ||
+                                (!valuePair.Value[0].Symbol.Contains("USD")))
                             {
                                 db.CpTrades.Add(valuePair.Value[0]);
                             }
@@ -10313,15 +10510,22 @@ break;*/
                             throw new NotImplementedException();
                         }
                     }
+                    SaveDBChanges(ref db);
                 }
-                 DateTime TimeEnd = DateTime.Now;
-                 LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + dicCpCtrades.Count + " trades Axi uploading completed." +
+
+
+                DateTime TimeEnd = DateTime.Now;
+                LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + dicCpCtrades.Count +
+                                      " trades Axi uploading completed." +
                                       (TimeEnd - TimeStart).ToString());
-              /*  foreach (KeyValuePair<string, CpTrade> keyValuePair in dicCpCtrades)
-                {
-                    db.CpTrades.Add(keyValuePair.Value);
-                }*/
-                SaveDBChanges(ref db);
+                LogTextBox.AppendText("\r\n" + oFilename.ToString());
+                      
+                /*  foreach (KeyValuePair<string, CpTrade> keyValuePair in dicCpCtrades)
+                      {
+                          db.CpTrades.Add(keyValuePair.Value);
+                      }*/
+            }
+            SaveDBChanges(ref db);
                 db.Dispose();
             }
             return reportdate;
@@ -10333,7 +10537,7 @@ break;*/
             var db = new EXANTE_Entities(_currentConnection);
             if (!noparsingCheckbox.Checked)
             {
-                var lInitTrades = TradeParsing("LMAX", "CSV", "FX");
+                var lInitTrades = TradeParsing("LMAX", "CSV", "FX", "Main");
                 var lCptrades = OpenConverting(lInitTrades, "LMAX");
                 foreach (CpTrade cptrade in lCptrades)
                 {
@@ -10438,6 +10642,15 @@ break;*/
                 LogTextBox.AppendText("\r\n Uploaded FT for " + reportdate.ToShortDateString() + ": " +
                                       tradesqty.ToString() + "/" + cptradefromDb.Count);
             }
+        }
+
+        private void button30_Click(object sender, EventArgs e)
+        {
+            FORTSReconciliation("Renesource", "UMAC0288");
+            var db = new EXANTE_Entities(_currentConnection);
+            db.Database.ExecuteSqlCommand(
+                "UPDATE CpTrades AS cp INNER JOIN Contracts AS c ON c.id = cp.BOSymbol SET cp.value = - cp.Qty*cp.Price*c.Leverage WHERE cp.BrokerId LIKE '%Rene%' AND ReportDate > '2016-06-01'");
+            db.Dispose();
         }
     }
 

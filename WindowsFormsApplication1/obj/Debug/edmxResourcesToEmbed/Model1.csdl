@@ -391,6 +391,7 @@
     <Property Type="Int32" Name="cInterest" />
     <Property Type="String" Name="TimeFormat" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Type="Int32" Name="cTradeId" />
+    <Property Type="String" Name="Account" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="InitialTrade">
     <Key>
@@ -523,6 +524,7 @@
     <Property Type="String" Name="cp" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="bosettcp" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Boolean" Name="MaltaEntity" />
   </EntityType>
   <EntityType Name="CpCost">
     <Key>

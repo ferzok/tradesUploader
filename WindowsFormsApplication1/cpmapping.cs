@@ -17,5 +17,6 @@ namespace WindowsFormsApplication1
         public string cp { get; set; }
         public string bosettcp { get; set; }
         public long id { get; set; }
+        public Nullable<bool> MaltaEntity { get; set; }
     }
 }

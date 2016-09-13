@@ -16,7 +16,7 @@ namespace WindowsFormsApplication1
     public partial class EXANTE_Entities : DbContext
     {
         public EXANTE_Entities(string s)
-            : base(s)
+            : base("name=EXANTE_Entities")
         {
         }
     

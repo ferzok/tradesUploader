@@ -331,6 +331,7 @@
     <EntitySetMapping Name="ColumnMappings">
       <EntityTypeMapping TypeName="EXANTE_testModel.ColumnMapping">
         <MappingFragment StoreEntitySet="ColumnMapping">
+          <ScalarProperty Name="Account" ColumnName="Account" />
           <ScalarProperty Name="cTradeId" ColumnName="cTradeId" />
           <ScalarProperty Name="TimeFormat" ColumnName="TimeFormat" />
           <ScalarProperty Name="cInterest" ColumnName="cInterest" />
@@ -509,6 +510,7 @@
     <EntitySetMapping Name="cpmapping">
       <EntityTypeMapping TypeName="EXANTE_testModel.cpmapping">
         <MappingFragment StoreEntitySet="cpmapping">
+          <ScalarProperty Name="MaltaEntity" ColumnName="MaltaEntity" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="bosettcp" ColumnName="bosettcp" />
           <ScalarProperty Name="cp" ColumnName="cp" />

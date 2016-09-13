@@ -122,6 +122,7 @@
     <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Brocker" Type="varchar" MaxLength="15" />
     <Property Name="Type" Type="varchar" MaxLength="10" />
+    <Property Name="Account" Type="varchar" MaxLength="10" />
     <Property Name="FileType" Type="varchar" MaxLength="5" />
     <Property Name="cReportDate" Type="int" />
     <Property Name="cTradeDate" Type="int" />
@@ -240,6 +241,7 @@
     <Property Name="cp" Type="varchar" MaxLength="50" />
     <Property Name="bosettcp" Type="varchar" MaxLength="50" />
     <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MaltaEntity" Type="bool" />
   </EntityType>
   <EntityType Name="CpPosition">
     <Key>

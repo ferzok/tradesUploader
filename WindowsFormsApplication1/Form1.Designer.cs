@@ -105,6 +105,7 @@ namespace WindowsFormsApplication1
             this.button28 = new System.Windows.Forms.Button();
             this.button29 = new System.Windows.Forms.Button();
             this.checkBoxMalta = new System.Windows.Forms.CheckBox();
+            this.button30 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -340,7 +341,7 @@ namespace WindowsFormsApplication1
             this.procedures});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(709, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(727, 24);
             this.menuStrip1.TabIndex = 36;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -706,7 +707,7 @@ namespace WindowsFormsApplication1
             // 
             this.button23.Location = new System.Drawing.Point(547, 195);
             this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(101, 23);
+            this.button23.Size = new System.Drawing.Size(84, 23);
             this.button23.TabIndex = 65;
             this.button23.Text = "Updating links";
             this.button23.UseVisualStyleBackColor = true;
@@ -718,7 +719,7 @@ namespace WindowsFormsApplication1
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(75, 23);
             this.button24.TabIndex = 66;
-            this.button24.Text = "Rene ST";
+            this.button24.Text = "Rene RUEQ";
             this.button24.UseVisualStyleBackColor = true;
             this.button24.Click += new System.EventHandler(this.button24_Click);
             // 
@@ -734,9 +735,9 @@ namespace WindowsFormsApplication1
             // 
             // button26
             // 
-            this.button26.Location = new System.Drawing.Point(556, 161);
+            this.button26.Location = new System.Drawing.Point(548, 161);
             this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(75, 23);
+            this.button26.Size = new System.Drawing.Size(83, 23);
             this.button26.TabIndex = 68;
             this.button26.Text = "Rene GLF";
             this.button26.UseVisualStyleBackColor = true;
@@ -744,7 +745,7 @@ namespace WindowsFormsApplication1
             // 
             // button27
             // 
-            this.button27.Location = new System.Drawing.Point(556, 124);
+            this.button27.Location = new System.Drawing.Point(548, 124);
             this.button27.Name = "button27";
             this.button27.Size = new System.Drawing.Size(75, 23);
             this.button27.TabIndex = 69;
@@ -766,7 +767,7 @@ namespace WindowsFormsApplication1
             // 
             this.button11.Location = new System.Drawing.Point(547, 225);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.Size = new System.Drawing.Size(84, 23);
             this.button11.TabIndex = 71;
             this.button11.Text = "Axi";
             this.button11.UseVisualStyleBackColor = true;
@@ -774,9 +775,9 @@ namespace WindowsFormsApplication1
             // 
             // button28
             // 
-            this.button28.Location = new System.Drawing.Point(556, 257);
+            this.button28.Location = new System.Drawing.Point(548, 257);
             this.button28.Name = "button28";
-            this.button28.Size = new System.Drawing.Size(75, 23);
+            this.button28.Size = new System.Drawing.Size(83, 23);
             this.button28.TabIndex = 72;
             this.button28.Text = "LMAX";
             this.button28.UseVisualStyleBackColor = true;
@@ -804,9 +805,20 @@ namespace WindowsFormsApplication1
             this.checkBoxMalta.Text = "Malta";
             this.checkBoxMalta.UseVisualStyleBackColor = true;
             // 
+            // button30
+            // 
+            this.button30.Location = new System.Drawing.Point(638, 161);
+            this.button30.Name = "button30";
+            this.button30.Size = new System.Drawing.Size(71, 23);
+            this.button30.TabIndex = 75;
+            this.button30.Text = "Rene UMA";
+            this.button30.UseVisualStyleBackColor = true;
+            this.button30.Click += new System.EventHandler(this.button30_Click);
+            // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(709, 413);
+            this.ClientSize = new System.Drawing.Size(727, 413);
+            this.Controls.Add(this.button30);
             this.Controls.Add(this.checkBoxMalta);
             this.Controls.Add(this.button29);
             this.Controls.Add(this.button28);
@@ -953,6 +965,7 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button button28;
         private System.Windows.Forms.Button button29;
         private System.Windows.Forms.CheckBox checkBoxMalta;
+        private System.Windows.Forms.Button button30;
     }
 }
 

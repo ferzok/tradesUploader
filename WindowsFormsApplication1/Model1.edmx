@@ -127,6 +127,7 @@
           <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Brocker" Type="varchar" MaxLength="15" />
           <Property Name="Type" Type="varchar" MaxLength="10" />
+          <Property Name="Account" Type="varchar" MaxLength="10" />
           <Property Name="FileType" Type="varchar" MaxLength="5" />
           <Property Name="cReportDate" Type="int" />
           <Property Name="cTradeDate" Type="int" />
@@ -245,6 +246,7 @@
           <Property Name="cp" Type="varchar" MaxLength="50" />
           <Property Name="bosettcp" Type="varchar" MaxLength="50" />
           <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MaltaEntity" Type="bool" />
         </EntityType>
         <EntityType Name="CpPosition">
           <Key>
@@ -1167,6 +1169,7 @@
           <Property Type="Int32" Name="cInterest" />
           <Property Type="String" Name="TimeFormat" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="cTradeId" />
+          <Property Type="String" Name="Account" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="InitialTrade">
           <Key>
@@ -1299,6 +1302,7 @@
           <Property Type="String" Name="cp" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="bosettcp" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="MaltaEntity" />
         </EntityType>
         <EntityType Name="CpCost">
           <Key>
@@ -1879,6 +1883,7 @@
           <EntitySetMapping Name="ColumnMappings">
             <EntityTypeMapping TypeName="EXANTE_testModel.ColumnMapping">
               <MappingFragment StoreEntitySet="ColumnMapping">
+                <ScalarProperty Name="Account" ColumnName="Account" />
                 <ScalarProperty Name="cTradeId" ColumnName="cTradeId" />
                 <ScalarProperty Name="TimeFormat" ColumnName="TimeFormat" />
                 <ScalarProperty Name="cInterest" ColumnName="cInterest" />
@@ -2057,6 +2062,7 @@
           <EntitySetMapping Name="cpmapping">
             <EntityTypeMapping TypeName="EXANTE_testModel.cpmapping">
               <MappingFragment StoreEntitySet="cpmapping">
+                <ScalarProperty Name="MaltaEntity" ColumnName="MaltaEntity" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="bosettcp" ColumnName="bosettcp" />
                 <ScalarProperty Name="cp" ColumnName="cp" />
