@@ -63,6 +63,7 @@
     <Property Name="fullid" Type="Int64" Nullable="false" />
     <Property Type="String" Name="isin" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="description" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="NumberOfUnderline" />
   </EntityType>
   <EntityType Name="Ctrade">
     <Key>
@@ -331,6 +332,16 @@
     <Property Type="String" Name="user" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="category" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="type" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="internalComment" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="symbolType" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="baseCurrency" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="settlementCurrency" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="settlementCurrencyMovement" />
+    <Property Type="Double" Name="exchangeCommission" />
+    <Property Type="String" Name="settlementCounterparty" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="transferId" />
+    <Property Type="String" Name="clientCounterparty" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="exanteCounterparty" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="DBBORecon_mapping">
     <Key>

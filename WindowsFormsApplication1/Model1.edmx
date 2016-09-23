@@ -191,6 +191,7 @@
           <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="isin" Type="varchar" MaxLength="50" />
           <Property Name="description" Type="varchar" MaxLength="150" />
+          <Property Name="NumberOfUnderline" Type="double" />
         </EntityType>
         <EntityType Name="CorporateActions">
           <Key>
@@ -583,6 +584,16 @@
           <Property Name="user" Type="varchar" MaxLength="20" />
           <Property Name="category" Type="varchar" MaxLength="20" />
           <Property Name="type" Type="varchar" MaxLength="10" />
+          <Property Name="internalComment" Type="varchar" MaxLength="200" />
+          <Property Name="symbolType" Type="varchar" MaxLength="20" />
+          <Property Name="baseCurrency" Type="varchar" MaxLength="3" />
+          <Property Name="settlementCurrency" Type="varchar" MaxLength="3" />
+          <Property Name="settlementCurrencyMovement" Type="double" />
+          <Property Name="exchangeCommission" Type="double" />
+          <Property Name="settlementCounterparty" Type="varchar" MaxLength="200" />
+          <Property Name="transferId" Type="bigint" />
+          <Property Name="clientCounterparty" Type="varchar" MaxLength="50" />
+          <Property Name="exanteCounterparty" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="InitialTrades">
           <Key>
@@ -841,6 +852,7 @@
           <Property Name="fullid" Type="Int64" Nullable="false" />
           <Property Type="String" Name="isin" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="description" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="NumberOfUnderline" />
         </EntityType>
         <EntityType Name="Ctrade">
           <Key>
@@ -1109,6 +1121,16 @@
           <Property Type="String" Name="user" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="category" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="type" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="internalComment" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="symbolType" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="baseCurrency" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="settlementCurrency" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="settlementCurrencyMovement" />
+          <Property Type="Double" Name="exchangeCommission" />
+          <Property Type="String" Name="settlementCounterparty" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="transferId" />
+          <Property Type="String" Name="clientCounterparty" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="exanteCounterparty" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DBBORecon_mapping">
           <Key>
@@ -1565,6 +1587,7 @@
           <EntitySetMapping Name="Contracts">
             <EntityTypeMapping TypeName="EXANTE_testModel.Contract">
               <MappingFragment StoreEntitySet="Contracts">
+                <ScalarProperty Name="NumberOfUnderline" ColumnName="NumberOfUnderline" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="isin" ColumnName="isin" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -1842,6 +1865,16 @@
           <EntitySetMapping Name="Ftboes">
             <EntityTypeMapping TypeName="EXANTE_testModel.Ftbo">
               <MappingFragment StoreEntitySet="Ftbo">
+                <ScalarProperty Name="exanteCounterparty" ColumnName="exanteCounterparty" />
+                <ScalarProperty Name="clientCounterparty" ColumnName="clientCounterparty" />
+                <ScalarProperty Name="transferId" ColumnName="transferId" />
+                <ScalarProperty Name="settlementCounterparty" ColumnName="settlementCounterparty" />
+                <ScalarProperty Name="exchangeCommission" ColumnName="exchangeCommission" />
+                <ScalarProperty Name="settlementCurrencyMovement" ColumnName="settlementCurrencyMovement" />
+                <ScalarProperty Name="settlementCurrency" ColumnName="settlementCurrency" />
+                <ScalarProperty Name="baseCurrency" ColumnName="baseCurrency" />
+                <ScalarProperty Name="symbolType" ColumnName="symbolType" />
+                <ScalarProperty Name="internalComment" ColumnName="internalComment" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="category" ColumnName="category" />
                 <ScalarProperty Name="user" ColumnName="user" />

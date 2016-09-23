@@ -186,6 +186,7 @@
     <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="isin" Type="varchar" MaxLength="50" />
     <Property Name="description" Type="varchar" MaxLength="150" />
+    <Property Name="NumberOfUnderline" Type="double" />
   </EntityType>
   <EntityType Name="CorporateActions">
     <Key>
@@ -578,6 +579,16 @@
     <Property Name="user" Type="varchar" MaxLength="20" />
     <Property Name="category" Type="varchar" MaxLength="20" />
     <Property Name="type" Type="varchar" MaxLength="10" />
+    <Property Name="internalComment" Type="varchar" MaxLength="200" />
+    <Property Name="symbolType" Type="varchar" MaxLength="20" />
+    <Property Name="baseCurrency" Type="varchar" MaxLength="3" />
+    <Property Name="settlementCurrency" Type="varchar" MaxLength="3" />
+    <Property Name="settlementCurrencyMovement" Type="double" />
+    <Property Name="exchangeCommission" Type="double" />
+    <Property Name="settlementCounterparty" Type="varchar" MaxLength="200" />
+    <Property Name="transferId" Type="bigint" />
+    <Property Name="clientCounterparty" Type="varchar" MaxLength="50" />
+    <Property Name="exanteCounterparty" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="InitialTrades">
     <Key>

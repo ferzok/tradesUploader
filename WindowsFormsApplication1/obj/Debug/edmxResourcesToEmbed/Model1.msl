@@ -13,6 +13,7 @@
     <EntitySetMapping Name="Contracts">
       <EntityTypeMapping TypeName="EXANTE_testModel.Contract">
         <MappingFragment StoreEntitySet="Contracts">
+          <ScalarProperty Name="NumberOfUnderline" ColumnName="NumberOfUnderline" />
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="isin" ColumnName="isin" />
           <ScalarProperty Name="id" ColumnName="id" />
@@ -290,6 +291,16 @@
     <EntitySetMapping Name="Ftboes">
       <EntityTypeMapping TypeName="EXANTE_testModel.Ftbo">
         <MappingFragment StoreEntitySet="Ftbo">
+          <ScalarProperty Name="exanteCounterparty" ColumnName="exanteCounterparty" />
+          <ScalarProperty Name="clientCounterparty" ColumnName="clientCounterparty" />
+          <ScalarProperty Name="transferId" ColumnName="transferId" />
+          <ScalarProperty Name="settlementCounterparty" ColumnName="settlementCounterparty" />
+          <ScalarProperty Name="exchangeCommission" ColumnName="exchangeCommission" />
+          <ScalarProperty Name="settlementCurrencyMovement" ColumnName="settlementCurrencyMovement" />
+          <ScalarProperty Name="settlementCurrency" ColumnName="settlementCurrency" />
+          <ScalarProperty Name="baseCurrency" ColumnName="baseCurrency" />
+          <ScalarProperty Name="symbolType" ColumnName="symbolType" />
+          <ScalarProperty Name="internalComment" ColumnName="internalComment" />
           <ScalarProperty Name="type" ColumnName="type" />
           <ScalarProperty Name="category" ColumnName="category" />
           <ScalarProperty Name="user" ColumnName="user" />

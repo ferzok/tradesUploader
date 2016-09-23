@@ -32,5 +32,6 @@ namespace WindowsFormsApplication1
         public long fullid { get; set; }
         public string isin { get; set; }
         public string description { get; set; }
+        public Nullable<double> NumberOfUnderline { get; set; }
     }
 }

@@ -35,5 +35,15 @@ namespace WindowsFormsApplication1
         public string user { get; set; }
         public string category { get; set; }
         public string type { get; set; }
+        public string internalComment { get; set; }
+        public string symbolType { get; set; }
+        public string baseCurrency { get; set; }
+        public string settlementCurrency { get; set; }
+        public Nullable<double> settlementCurrencyMovement { get; set; }
+        public Nullable<double> exchangeCommission { get; set; }
+        public string settlementCounterparty { get; set; }
+        public Nullable<long> transferId { get; set; }
+        public string clientCounterparty { get; set; }
+        public string exanteCounterparty { get; set; }
     }
 }

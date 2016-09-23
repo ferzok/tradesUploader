@@ -5434,11 +5434,11 @@ break;*/
                     DateTime TimeUpdateBalanceStart = DateTime.Now;
                     LogTextBox.AppendText("\r\n" + TimeUpdateBalanceStart + ": " + "start FT BO uploading");
 
-                    var reportdate = new DateTime(2011, 01, 01);
+                    var reportdate = new DateTime(2016, 09, 20);
+                    DateTime TimeStart = DateTime.Now;
                     var db = new EXANTE_Entities(_currentConnection);
                     db.Database.CommandTimeout = 300;
                     var reader = new StreamReader(oFilename);
-                    var allfromFile = new List<Ctrade>();
                     var lineFromFile = reader.ReadLine();
                     var index = 0;
                     var Rowindex = 0;
@@ -5453,18 +5453,26 @@ break;*/
                         int idasset = 0;
                         int idsum = 0;
                         int idwho = 0;
-                        int idgatewayId = 0;
+                        int idsymbolId = 0;
                         int idtradeNumber = 0;
                         int idcomment = 0;
                         int idinternalComment = 0;
-                        int idsymbolId = 0;
+                        int idsymbolType = 0;
                         int idvalueDate = 0;
                         int idorderId = 0;
                         int idorderPos = 0;
                         int idprice = 0;
                         int idclientType = 0;
                         int idexecutionCounterparty = 0;
-
+                        int idcategory = 0;
+                        int idbaseCurrency = 0;
+                        int idsettlementCurrency = 0;
+                        int idsettlementCurrencyMovement = 0;
+                        int idexchangeCommission = 0;
+                        int idsettlementCounterparty = 0;
+                        int idtransferId = 0;
+                        int idclientCounterparty = 0;
+                        int idexanteCounterparty = 0;
                         for (var i = 0; i < rowstring.Length; i++)
                         {
                             switch (rowstring[i])
@@ -5499,8 +5507,8 @@ break;*/
                                 case "orderId":
                                     idorderId = i;
                                     break;
-                                case "gatewayId":
-                                    idgatewayId = i;
+                                case "symbolId":
+                                    idsymbolId = i;
                                     break;
                                 case "comment":
                                     idcomment = i;
@@ -5520,8 +5528,35 @@ break;*/
                                 case "executionCounterparty":
                                     idexecutionCounterparty = i;
                                     break;
-                                case "symbolId":
-                                    idsymbolId = i;
+                                case "category":
+                                    idcategory = i;
+                                    break;
+                                case "symbolType":
+                                    idsymbolType = i;
+                                    break;
+                                case "baseCurrency":
+                                    idbaseCurrency = i;
+                                    break;
+                                case "transferId":
+                                    idtransferId = i;
+                                    break;
+                                case "clientCounterparty":
+                                    idclientCounterparty = i;
+                                    break;
+                                case "exanteCounterparty":
+                                    idexanteCounterparty = i;
+                                    break;
+                                case "settlementCounterparty":
+                                    idsettlementCounterparty = i;
+                                    break;
+                                case "exchangeCommission":
+                                    idexchangeCommission = i;
+                                    break;
+                                case "settlementCurrency":
+                                    idsettlementCurrency = i;
+                                    break;
+                                case "settlementCurrencyMovement":
+                                    idsettlementCurrencyMovement = i;
                                     break;
                                 default:
                                     LogTextBox.AppendText("Additional fields in the FT.file!");
@@ -5530,30 +5565,84 @@ break;*/
                         }
                         var checkId =
                             (from ct in db.Ftboes
-                             where ct.botimestamp.ToString().Contains("2015-01")
+                             where ct.botimestamp.ToString().Contains("2016-09")
                              select ct.id).ToDictionary(k => k, k => k);
-                        //        select ct).ToDictionary(k => (k.tradeNumber.ToString()+k.gatewayId+k.asset+k.operationType), k => k); ;
                         while (!reader.EndOfStream)
                         {
                             Rowindex++;
                             lineFromFile = reader.ReadLine();
                             if (lineFromFile == null) continue;
                             rowstring = lineFromFile.Split(Delimiter);
-                            //    string id = string.Concat(rowstring[idtradeNumber], rowstring[idgatewayId],rowstring[idasset],rowstring[idoperationType]);
                             var id = Convert.ToInt64(rowstring[idid]);
                             if (!checkId.ContainsKey(id))
                             {
                                 index++;
+                            /*    var id1 = Convert.ToInt64(rowstring[idid]);
+                                var accountId = rowstring[idaccountId];
+                                var baseCurrency = rowstring[idbaseCurrency];
+                                var transferId = rowstring[idtransferId] == ""
+                                                   ? (int?)null
+                                                   : Convert.ToInt32(rowstring[idtransferId]);
+                                var settlementCurrencyMovement = rowstring[idsettlementCurrencyMovement] == ""
+                                                   ? (double?)null
+                                                   : Convert.ToDouble(rowstring[idsettlementCurrencyMovement]);
+                                var settlementCurrency = rowstring[idsettlementCurrency];
+                                var clientCounterparty = rowstring[idclientCounterparty];
+                                var exchangeCommission = rowstring[idexchangeCommission] == ""
+                                                   ? (double?)null
+                                                   : Convert.ToDouble(rowstring[idexchangeCommission]);
+                                var settlementCounterparty = rowstring[idsettlementCounterparty];
+                                var exanteCounterparty = rowstring[idexanteCounterparty];
+                                var asset = rowstring[idasset];
+                                var botimestamp = Convert.ToDateTime(rowstring[idtimestamp]);
+                                var clientType = rowstring[idclientType];
+                                var comment = rowstring[idcomment] + rowstring[idinternalComment];
+                                var executionCounterparty = rowstring[idexecutionCounterparty];
+                                var symbolType = rowstring[idsymbolType];
+                                var category = rowstring[idcategory];
+                                var operationType = rowstring[idoperationType];
+                                var orderId = rowstring[idorderId];
+                                var orderPos = rowstring[idorderPos] == ""
+                                                   ? (long?) null
+                                                   : Int64.Parse(rowstring[idorderPos]);
+                                var price = rowstring[idprice] == "" ? (double?) null : double.Parse(rowstring[idprice]);
+                                var sum = double.Parse(rowstring[idsum]);
+                                var who = rowstring[idwho];
+                                var tradeNumber =
+                                    rowstring[idtradeNumber] == ""
+                                        ? (long?) null
+                                        : Int64.Parse(rowstring[idtradeNumber]);
+                                var symbolId = rowstring[idsymbolId];
+                                var valueDate =
+                                    rowstring[idvalueDate] == ""
+                                        ? (DateTime?) null
+                                        : DateTime.Parse(rowstring[idvalueDate]);*/
+                                
                                 db.Ftboes.Add(new Ftbo()
                                     {
                                         id = Convert.ToInt64(rowstring[idid]),
                                         accountId = rowstring[idaccountId],
+                                        baseCurrency= rowstring[idbaseCurrency],
+                                        transferId = rowstring[idtransferId] == ""
+                                                   ? (int?)null
+                                                   : Convert.ToInt32(rowstring[idtransferId]),
+                                        settlementCurrencyMovement = rowstring[idsettlementCurrencyMovement] == ""
+                                                   ? (double?)null
+                                                   : Convert.ToDouble(rowstring[idsettlementCurrencyMovement]),
+                                        settlementCurrency= rowstring[idsettlementCurrency],
+                                        clientCounterparty=rowstring[idclientCounterparty],
+                                        exchangeCommission = rowstring[idexchangeCommission] == ""
+                                                   ? (double?)null
+                                                   : Convert.ToDouble(rowstring[idexchangeCommission]),
+                                        settlementCounterparty= rowstring[idsettlementCounterparty],
+                                        exanteCounterparty = rowstring[idexanteCounterparty],
                                         asset = rowstring[idasset],
                                         botimestamp = Convert.ToDateTime(rowstring[idtimestamp]),
                                         clientType = rowstring[idclientType],
                                         comment = rowstring[idcomment] + rowstring[idinternalComment],
                                         executionCounterparty = rowstring[idexecutionCounterparty],
-                                        gatewayId = rowstring[idgatewayId],
+                                        symbolType = rowstring[idsymbolType],
+                                        category= rowstring[idcategory],
                                         operationType = rowstring[idoperationType],
                                         orderId = rowstring[idorderId],
                                         orderPos =
@@ -5579,53 +5668,19 @@ break;*/
 
                                 if (index%200 == 0)
                                 {
-                                    try
-                                    {
-                                        db.SaveChanges();
-                                    }
-                                    catch (DbEntityValidationException dbEx)
-                                    {
-                                        foreach (var validationErrors in dbEx.EntityValidationErrors)
-                                        {
-                                            foreach (var validationError in validationErrors.ValidationErrors)
-                                            {
-                                                Trace.TraceInformation("Property: {0} Error: {1}",
-                                                                       validationError.PropertyName,
-                                                                       validationError.ErrorMessage);
-                                            }
-                                        }
-                                    }
+                                    SaveDBChanges(ref db);
                                 }
                             }
                         }
                     }
 
                     TradesParserStatus.Text = "DB updating";
-                    try
-                    {
-                        db.SaveChanges();
-                    }
-                    catch (DbEntityValidationException dbEx)
-                    {
-                        foreach (var validationErrors in dbEx.EntityValidationErrors)
-                        {
-                            foreach (var validationError in validationErrors.ValidationErrors)
-                            {
-                                Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName,
-                                                       validationError.ErrorMessage);
-                            }
-                        }
-                    }
-
-
-
+                    SaveDBChanges(ref db);
                     TradesParserStatus.Text = "Done";
                     DateTime TimeFutureParsing = DateTime.Now;
                     db.Dispose();
-                    LogTextBox.AppendText("\r\n" + TimeFutureParsing.ToLongTimeString() + ": " +
-                                          "FT parsing completed for " + oFilename + "." + index +
-                                          " items have been uploaded. Time: " +
-                                          (TimeFutureParsing - TimeUpdateBalanceStart).ToString() + "s");
+                    LogTextBox.AppendText("\r\n" + TimeFutureParsing.ToLongTimeString() + ": " +"FT parsing completed for " + oFilename + "." + index +
+                                          " items have been uploaded. Time: " +(TimeFutureParsing - TimeUpdateBalanceStart).ToString() + "s");
                 }
             }
         }
@@ -6205,7 +6260,11 @@ break;*/
                         }
                         else
                         {
-                            qty = xlRange.Cells[i, cMapping.cQty].value2 - xlRange.Cells[i, cMapping.cQtySell].value2;
+                            double qtybuy=0;
+                            if (xlRange.Cells[i, cMapping.cQty].value2 != null) qtybuy = xlRange.Cells[i, cMapping.cQty].value2;
+                            double qtysell = 0;
+                            if (xlRange.Cells[i, cMapping.cQtySell].value2 != null) qtysell = xlRange.Cells[i, cMapping.cQtySell].value2;
+                            qty = qtybuy - qtysell;
                         }
 
                         var ReportDate = reportdate;
@@ -8211,7 +8270,7 @@ break;*/
                                 where r.BOtradeTimestamp.ToString().Contains("2015-12") && r.valid == 1
                                 select r).ToList();*/
             var ctradeslist = (from r in db.Ctrades
-                               where r.BOtradeTimestamp.ToString().Contains("2016-01") && r.valid == 1
+                               where r.BOtradeTimestamp.ToString().Contains("2016-08") && r.valid == 1
                                select new cpCost_cTrade
                                    {
                                        symbol_id = r.symbol_id,
@@ -8227,7 +8286,7 @@ break;*/
             var i = 0;
             var allcptrades = (from cp in db.CpTrades
                                where
-                                   cp.TradeDate.ToString().Contains("2016-01") && cp.valid == 1 &&
+                                   cp.TradeDate.ToString().Contains("2016-08") && cp.valid == 1 &&
                                    cp.BOTradeNumber != null
                                select new cpCost_cpTrade
                                    {
@@ -8242,7 +8301,7 @@ break;*/
                                        Qty = cp.Qty,
                                        BOTradeNumber = cp.BOTradeNumber
                                    }).ToList();
-            //foreach()
+            var n = ctradeslist.Count;
 
             foreach (cpCost_cTrade ctrade in ctradeslist)
             {
@@ -8408,8 +8467,8 @@ break;*/
         private void uploadFTBOToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var db = new EXANTE_Entities(_currentConnection);
-            var reportdate = new DateTime(2012, 05, 14);
-            var prevdate = new DateTime(2012, 05, 04);
+            var reportdate = new DateTime(2016, 09, 20);
+            var prevdate = new DateTime(2016, 09, 01);
             DateTime TimeStart = DateTime.Now;
             var ftboitems =
                 (from ct in db.Ftboes
@@ -10490,6 +10549,8 @@ break;*/
                                  (valuePair.Value[0].Symbol != "CHF/USD") &&
                                  (valuePair.Value[0].Symbol != "CAD/USD") &&
                                   (valuePair.Value[0].Symbol != "CAD/EUR") &&
+                                   (valuePair.Value[0].Symbol != "AUD/EUR") &&
+                                    (valuePair.Value[0].Symbol != "CHF/GBP") &&
                                  (!valuePair.Value[0].Symbol.Contains("THB/")) &&
                                  (!valuePair.Value[0].Symbol.Contains("TRY/"))
                                  && (valuePair.Value[0].Symbol != "MXN/USD") &&
