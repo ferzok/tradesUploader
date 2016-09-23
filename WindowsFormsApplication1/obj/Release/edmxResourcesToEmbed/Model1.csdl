@@ -12,6 +12,25 @@
     <EntitySet Name="Reconcilations" EntityType="EXANTE_testModel.Reconcilation" />
     <EntitySet Name="ABN_cashposition" EntityType="EXANTE_testModel.ABN_cashposition" />
     <EntitySet Name="DailyChecks" EntityType="EXANTE_testModel.DailyCheck" />
+    <EntitySet Name="ABNReconResults" EntityType="EXANTE_testModel.ABNReconResult" />
+    <EntitySet Name="CpPositions" EntityType="EXANTE_testModel.CpPosition" />
+    <EntitySet Name="Ftboes" EntityType="EXANTE_testModel.Ftbo" />
+    <EntitySet Name="DBBORecon_mapping" EntityType="EXANTE_testModel.DBBORecon_mapping" />
+    <EntitySet Name="ColumnMappings" EntityType="EXANTE_testModel.ColumnMapping" />
+    <EntitySet Name="InitialTrades" EntityType="EXANTE_testModel.InitialTrade" />
+    <EntitySet Name="params" EntityType="EXANTE_testModel.param" />
+    <EntitySet Name="ADSSCashGroupped" EntityType="EXANTE_testModel.ADSSCashGroupped" />
+    <EntitySet Name="RowBalance" EntityType="EXANTE_testModel.RowBalance" />
+    <EntitySet Name="CashMapping" EntityType="EXANTE_testModel.CashMapping" />
+    <EntitySet Name="CorporateActions" EntityType="EXANTE_testModel.CorporateActions" />
+    <EntitySet Name="QtyByAccounts" EntityType="EXANTE_testModel.QtyByAccounts" />
+    <EntitySet Name="cpmapping" EntityType="EXANTE_testModel.cpmapping" />
+    <EntitySet Name="CpCost" EntityType="EXANTE_testModel.CpCost" />
+    <EntitySet Name="FT" EntityType="EXANTE_testModel.FT" />
+    <EntitySet Name="Emir" EntityType="EXANTE_testModel.Emir" />
+    <EntitySet Name="Emir_Mapping" EntityType="EXANTE_testModel.Emir_Mapping" />
+    <EntitySet Name="md_swaps_googlespsh" EntityType="EXANTE_testModel.md_swaps_googlespsh" />
+    <EntitySet Name="RJO_listccy" EntityType="EXANTE_testModel.RJO_listccy" />
   </EntityContainer>
   <EntityType Name="Account">
     <Key>
@@ -24,8 +43,9 @@
   <EntityType Name="Contract">
     <Key>
       <PropertyRef Name="fullid" />
+      <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" Nullable="false" />
     <Property Name="Contract1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="Exchange" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="Type" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
@@ -41,15 +61,17 @@
     <Property Name="valid" Type="Int32" />
     <Property Name="username" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="fullid" Type="Int64" Nullable="false" />
+    <Property Type="String" Name="isin" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="description" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="NumberOfUnderline" />
   </EntityType>
   <EntityType Name="Ctrade">
     <Key>
       <PropertyRef Name="fullid" />
     </Key>
-    <Property Name="trade_id" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
     <Property Name="Date" Type="DateTime" Precision="0" />
     <Property Name="account_id" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-    <Property Name="symbol_id" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="symbol_id" Type="String" MaxLength="100" Unicode="false" FixedLength="false" Nullable="false" />
     <Property Name="qty" Type="Double" />
     <Property Name="price" Type="Double" />
     <Property Name="cp_id" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
@@ -67,6 +89,13 @@
     <Property Type="Boolean" Name="RecStatus" Nullable="false" />
     <Property Type="String" Name="tradeType" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Type="DateTime" Name="deliveryDate" Precision="0" />
+    <Property Type="String" Name="SettlementCp" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="mty" />
+    <Property Type="String" Name="ExchangeOrderId" />
+    <Property Type="Double" Name="Value" />
+    <Property Type="DateTime" Name="CpTimestamp" />
+    <Property Type="Int32" Name="orderPos" />
+    <Property Type="Boolean" Name="EntityLegalMalta" />
   </EntityType>
   <EntityType Name="Price">
     <Key>
@@ -77,9 +106,9 @@
     <Property Name="Price1" Type="Double" />
     <Property Name="Date" Type="DateTime" Precision="0" />
     <Property Name="Type" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="id" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="Timestamp" Type="DateTime" Precision="0" />
-    <Property Name="Valid" Type="Boolean" />
+    <Property Name="id" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Timestamp" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="Valid" Type="Int32" Nullable="false" />
     <Property Name="Username" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="full_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
   </EntityType>
@@ -117,6 +146,15 @@
     <Property Type="String" Name="TypeOfTrade" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="Comment" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="Id" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ExchFeeCcy" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ClearingFeeCcy" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ccy" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ReconAccount" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="Fee2" />
+    <Property Type="Double" Name="Fee3" />
+    <Property Type="Double" Name="Interest" />
+    <Property Type="String" Name="account" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TradeId" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="PenPaperTrade">
     <Key>
@@ -176,17 +214,20 @@
     <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="0" />
     <Property Type="Int64" Name="valid" />
     <Property Type="String" Name="username" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="MtyStrike" />
+    <Property Type="Boolean" Name="UseDayInTicker" />
+    <Property Type="SByte" Name="calendar" />
   </EntityType>
   <EntityType Name="Reconcilation">
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Type="Int64" Name="CpTrade_id" />
-    <Property Type="Int64" Name="Ctrade_id" />
     <Property Type="DateTime" Name="Timestamp" Precision="0" />
     <Property Type="Int16" Name="valid" />
     <Property Type="String" Name="username" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="Int64" Name="id" Nullable="false" />
+    <Property Type="Int64" Name="CpFull_id" />
+    <Property Type="Int64" Name="BOTradenumber" />
   </EntityType>
   <EntityType Name="ABN_cashposition">
     <Key>
@@ -213,5 +254,530 @@
     <Property Type="Boolean" Name="valid" />
     <Property Type="DateTime" Name="timestamp" Nullable="false" Precision="0" />
     <Property Type="String" Name="Table" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ABNReconResult">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Type="DateTime" Name="ReportDate" Nullable="false" />
+    <Property Type="DateTime" Name="TradeDate" />
+    <Property Type="String" Name="Symbol" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="Qty" />
+    <Property Type="Double" Name="Price" />
+    <Property Type="DateTime" Name="ValueDate" />
+    <Property Type="String" Name="ABN_cp" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BOSymbol" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BOTradeNumber" MaxLength="600" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BOcp" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="Mty" />
+    <Property Type="Double" Name="Value" />
+    <Property Type="DateTime" Name="BODate" />
+    <Property Type="String" Name="TypeOfTrade" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COMMENT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="ExchFee" />
+    <Property Type="String" Name="ExchFeeCcy" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="ClearFee" />
+    <Property Type="String" Name="ClearingFeeCcy" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="fullid" Nullable="false" />
+    <Property Type="Double" Name="BOfee" />
+    <Property Type="String" Name="BOCurrency" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BOAccount" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CpPosition">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="DateTime" Name="ReportDate" />
+    <Property Type="String" Name="Brocker" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TradeDate" />
+    <Property Type="String" Name="Symbol" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="Qty" />
+    <Property Type="Double" Name="Price" />
+    <Property Type="String" Name="BOSymbol" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="ValueDate" />
+    <Property Type="Int32" Name="cp_id" />
+    <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OptionType" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="Strike" />
+    <Property Type="Double" Name="Value" />
+    <Property Type="String" Name="ccy" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Timestamp" Nullable="false" />
+    <Property Type="Int32" Name="valid" />
+    <Property Type="String" Name="username" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Ftbo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int64" Name="id" Nullable="false" />
+    <Property Type="String" Name="accountId" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="botimestamp" />
+    <Property Type="String" Name="operationType" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="asset" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="sum" />
+    <Property Type="String" Name="who" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gatewayId" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="tradeNumber" />
+    <Property Type="String" Name="comment" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="symbolId" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="valueDate" />
+    <Property Type="String" Name="orderId" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="orderPos" />
+    <Property Type="Double" Name="price" />
+    <Property Type="String" Name="clientType" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="executionCounterparty" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="timestamp" />
+    <Property Type="String" Name="user" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="category" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="type" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="internalComment" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="symbolType" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="baseCurrency" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="settlementCurrency" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="settlementCurrencyMovement" />
+    <Property Type="Double" Name="exchangeCommission" />
+    <Property Type="String" Name="settlementCounterparty" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="transferId" />
+    <Property Type="String" Name="clientCounterparty" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="exanteCounterparty" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DBBORecon_mapping">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Type="Int64" Name="fullid" Nullable="false" />
+    <Property Type="String" Name="boaccountid" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="dbcp" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="accountNameCP" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="valid" />
+    <Property Type="DateTime" Name="timestamp" Nullable="false" />
+    <Property Type="String" Name="user" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NameProcess" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ColumnMapping">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Type="Int64" Name="fullid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Brocker" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Type" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FileType" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="cReportDate" />
+    <Property Type="Int32" Name="cTradeDate" />
+    <Property Type="Int32" Name="cBrokerId" />
+    <Property Type="Int32" Name="cSymbol" />
+    <Property Type="Int32" Name="cType" />
+    <Property Type="Int32" Name="cQty" />
+    <Property Type="Int32" Name="cPrice" />
+    <Property Type="Int32" Name="cValuedate" />
+    <Property Type="Int32" Name="cExchangeFees" />
+    <Property Type="Int32" Name="cFee" />
+    <Property Type="Int32" Name="cValue" />
+    <Property Type="Int32" Name="cExchangeOrderId" />
+    <Property Type="Int32" Name="cTypeOfTrade" />
+    <Property Type="Int32" Name="cComment" />
+    <Property Type="Int32" Name="cExchFeeCcy" />
+    <Property Type="Int32" Name="cCcy" />
+    <Property Type="Int32" Name="cTradeTime" />
+    <Property Type="Int32" Name="cLineStart" />
+    <Property Type="String" Name="cTabName" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="cQtySell" />
+    <Property Type="String" Name="DateFormat" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Replacesymbols" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="cSide" />
+    <Property Type="String" Name="Delimeter" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="Mty" />
+    <Property Type="String" Name="ValueDateFormat" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="cClearingFee" />
+    <Property Type="Int32" Name="cClearingFeeCcy" />
+    <Property Type="Int32" Name="cStrike" />
+    <Property Type="Int32" Name="cOptionType" />
+    <Property Type="Int32" Name="cFee2" />
+    <Property Type="Int32" Name="cFee3" />
+    <Property Type="String" Name="ReportDateFormat" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="cPriceSell" />
+    <Property Type="Int32" Name="cAccount" />
+    <Property Type="Int32" Name="cInterest" />
+    <Property Type="String" Name="TimeFormat" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="cTradeId" />
+    <Property Type="String" Name="Account" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="InitialTrade">
+    <Key>
+      <PropertyRef Name="FullId" />
+    </Key>
+    <Property Type="DateTime" Name="ReportDate" />
+    <Property Type="DateTime" Name="TradeDate" />
+    <Property Type="String" Name="BrokerId" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Symbol" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="Qty" />
+    <Property Type="Double" Name="Price" />
+    <Property Type="DateTime" Name="ValueDate" />
+    <Property Type="Int32" Name="cp_id" />
+    <Property Type="Double" Name="ExchangeFees" />
+    <Property Type="Double" Name="Fee" />
+    <Property Type="Double" Name="value" />
+    <Property Type="DateTime" Name="Timestamp" Nullable="false" />
+    <Property Type="Int64" Name="FullId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="exchangeOrderId" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TypeOfTrade" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Comment" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ExchFeeCcy" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ClearingFeeCcy" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ccy" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="Strike" />
+    <Property Type="String" Name="OptionType" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="Fee2" />
+    <Property Type="Double" Name="Fee3" />
+    <Property Type="Double" Name="AccruedInterest" />
+    <Property Type="String" Name="Account" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TradeId" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="param">
+    <Key>
+      <PropertyRef Name="view_name" />
+      <PropertyRef Name="connection_id" />
+    </Key>
+    <Property Type="String" Name="view_name" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="param1_val" />
+    <Property Type="Int64" Name="connection_id" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ADSSCashGroupped">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Type="DateTime" Name="ReportDate" Nullable="false" />
+    <Property Type="String" Name="Currency" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="OpeningCash" />
+    <Property Type="Double" Name="ClosingCash" />
+    <Property Type="Double" Name="Trades" />
+    <Property Type="Double" Name="SWAPs" />
+    <Property Type="Double" Name="Deposit" />
+    <Property Type="Int64" Name="fullid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="comment" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="Commission" />
+    <Property Type="String" Name="Cp" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="OptionPremium" />
+    <Property Type="DateTime" Name="timestamp" />
+    <Property Type="Double" Name="ExcessShortage" />
+    <Property Type="Double" Name="NAV" />
+    <Property Type="Double" Name="Interest" />
+  </EntityType>
+  <EntityType Name="RowBalance">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Type="String" Name="cp" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="ReportDate" />
+    <Property Type="String" Name="Type" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ccy" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="Value" />
+    <Property Type="String" Name="Comment" MaxLength="170" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Timestamp" Nullable="false" />
+    <Property Type="String" Name="Exchange" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="fullid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="account" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CashMapping">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Type="String" Name="ABNField" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Reportfield" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Group" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Timestamp" Nullable="false" />
+    <Property Type="Int64" Name="fullid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="FieldNumber" />
+    <Property Type="String" Name="cp" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CorporateActions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="symbolId" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="isin" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DeclaredDate" />
+    <Property Type="DateTime" Name="ExDate" />
+    <Property Type="DateTime" Name="RecordDate" />
+    <Property Type="DateTime" Name="PayableDate" />
+    <Property Type="Double" Name="DividendAmount" />
+    <Property Type="String" Name="DividendFrqncy" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DividendType" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Timestamp" />
+    <Property Type="Double" Name="BOQty" />
+    <Property Type="DateTime" Name="LastTradeDate" />
+    <Property Type="DateTime" Name="ReportDate" />
+    <Property Type="String" Name="Comment" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="QtyByAccounts">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="DateTime" Name="ReportDate" />
+    <Property Type="String" Name="Account_id" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="Qty" />
+    <Property Type="DateTime" Name="ExDate" />
+    <Property Type="DateTime" Name="LastTradeDate" />
+    <Property Type="String" Name="Symbol" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="isin" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="id" Nullable="false" />
+    <Property Type="DateTime" Name="timestamp" />
+    <Property Type="String" Name="Cp" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="cpmapping">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="String" Name="cp" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="bosettcp" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Boolean" Name="MaltaEntity" />
+  </EntityType>
+  <EntityType Name="CpCost">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Type="DateTime" Name="Date" />
+    <Property Type="String" Name="account" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BOsymbol" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CPsymbol" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BOCp" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CP" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="SumQty" />
+    <Property Type="Double" Name="NumberOfTrades" />
+    <Property Type="Double" Name="BOFee" />
+    <Property Type="Double" Name="ExchFee" />
+    <Property Type="Double" Name="CpFee" />
+    <Property Type="String" Name="CpExchCcy" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CpClearingCCY" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BOCcy" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="fullid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="FT">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Type="Int64" Name="fullid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="DateTime" Name="ReportDate" />
+    <Property Type="String" Name="cp" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="account_id" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="symbol" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ccy" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="value" />
+    <Property Type="String" Name="brocker" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Type" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Comment" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="Reference" />
+    <Property Type="String" Name="User" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="valid" />
+    <Property Type="DateTime" Name="timestamp" Nullable="false" />
+    <Property Type="String" Name="BOSymbol" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="ValueDate" />
+    <Property Type="DateTime" Name="TradeDate" />
+    <Property Type="String" Name="GrossPositionIndicator" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="JOURNALACCOUNTCODE" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="ValueCCY" />
+    <Property Type="String" Name="counterccy" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Posted" />
+  </EntityType>
+  <EntityType Name="Emir">
+    <Key>
+      <PropertyRef Name="UTI" />
+    </Key>
+    <Property Type="String" Name="Pre_novation_UTI" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Common_Data_Delegated" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Reporting_Firm_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Other_Counterparty_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Other_Counterparty_ID_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Reporting_Firm_Corporate_Name" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Reporting_Firm_Registered_Office" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Reporting_Firm_Country_Code_of_Branch" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Reporting_Firm_Corporate_Sector" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Reporting_Firm_Financial_Status" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Broker_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Broker_ID_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Submitting_Entity_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Submitting_Entity_ID_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Clearing_Member_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Clearing_Member_ID_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Beneficiary_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Beneficiary_ID_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Trading_Capacity" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Buy___Sell_Indicator" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Counterparty_EEA_Status" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Commercial___Treasury_Activity" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Above_Clearing_Threshold" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Mark_to_Market_Value" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Mark_to_Market_Currency" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Valuation_Date" />
+    <Property Type="Time" Name="Valuation_Time" />
+    <Property Type="String" Name="Valuation_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Collateral_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Collateral_Portfolio" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Collateral_Portfolio_Code" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Collateral_Value" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Collateral_Value_Currency" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Fund_Manager_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Fund_Manager_ID_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Instrument_ID_Taxonomy" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Instrument_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ETD_Asset_Class_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Instrument_Classification" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Underlying_Instrument_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Underlying_Instrument_ID_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Notional_Currency_1" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Notional_Currency_2" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Deliverable_Currency" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UTI" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MiFID_Transaction_Reference_Number" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Venue_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Compression_Exercise" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Price___Rate" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Price_Notation" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Notional" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Price_Multiplier" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Quantity" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Up_Front_Payment" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Upfront_Payment_Currency" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Delivery_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Execution_Timestamp" />
+    <Property Type="DateTime" Name="Effective_Date" />
+    <Property Type="DateTime" Name="Maturity_Date" />
+    <Property Type="DateTime" Name="Termination_Date" />
+    <Property Type="DateTime" Name="Settlement_Date" />
+    <Property Type="String" Name="Master_Agreement" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Master_Agreement_Version" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Confirmation_Timestamp" />
+    <Property Type="String" Name="Confirmation_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Clearing_Obligation" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Cleared" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Clearing_Timestamp" />
+    <Property Type="String" Name="CCP_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CCP_ID_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Intragroup" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Fixed_Rate_Leg_1" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Fixed_Rate_Leg_2" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Fixed_Rate_Day_Count" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Fixed_Leg_Payment_Frequency" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Floating_Rate_Payment_Frequency" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Floating_Rate_Reset_Frequency" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Floating_Rate_Leg_1" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Floating_Rate_Leg_2" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Currency_2" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Exchange_Rate_1" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Forward_Exchange_Rate" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Exchange_Rate_Basis" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Commodity_Base" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Commodity_Details" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Delivery_Point" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Interconnection_Point" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Load_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Delivery_Start_Timestamp" />
+    <Property Type="DateTime" Name="Delivery_End_Timestamp" />
+    <Property Type="String" Name="Contract_Capacity" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Quantity_Unit" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Price_Per_Time_Interval_Quantities" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Put___Call" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Option_Exercise_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Strike_Price" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Action_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Action_Type_Details" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Message_Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Notional_2" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PUTI" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Instrument_Description" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Internal_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Event_Timestamp" />
+    <Property Type="DateTime" Name="Reporting_TimeStamp" />
+    <Property Type="DateTime" Name="ReportDate" Nullable="false" />
+    <Property Type="String" Name="cp" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Timestamp" Nullable="false" />
+    <Property Type="Boolean" Name="Status" />
+  </EntityType>
+  <EntityType Name="Emir_Mapping">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Type="String" Name="Brocker" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Type="String" Name="InstrumentType" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CpSymbol" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="VenueId" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Type="String" Name="InstrumentIDTaxonomy" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="InstrumentID" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="InstrumentClassification" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NotionalCurrency1" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DeliverableCurrency" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PriceNotation" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="PriceMultiplier" />
+    <Property Type="String" Name="DeliveryType" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ConfirmationType" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ClearingObligation" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Cleared" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CommodityBase" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CommodityDetails" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="fullid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="filetype" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Type="Int32" Name="cLineStart" Nullable="false" />
+    <Property Type="String" Name="Delimeter" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="cp" MaxLength="21" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Type="Int32" Name="cBuySell" Nullable="false" />
+    <Property Type="String" Name="BOSymbol" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UnderlyingInstrumentID" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UnderlyingInstrumentIDType" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FloatingRatePaymentFrequency" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FloatingRateResetFrequency" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FloatingRateLeg2" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Currency2" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ExchangeRateBasis" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="MaturityDate" />
+    <Property Type="DateTime" Name="CPValueDate" />
+    <Property Type="String" Name="OptionType" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="cPutCall" />
+    <Property Type="Int32" Name="cStrikePrice" />
+    <Property Type="String" Name="OptionExerciseType" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="ForwardExchangeRateMty" />
+    <Property Type="String" Name="link" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NotionalCurrency2" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="TimeDifference" />
+    <Property Type="Int32" Name="CpMtyPrice" />
+    <Property Type="String" Name="InstrumentDescription" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="FixedRateLeg1" />
+    <Property Type="String" Name="FixedRateDayCount" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FixedLegPaymentFrequency" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="md_swaps_googlespsh">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Type="String" Name="account" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Date" />
+    <Property Type="String" Name="Pair" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="FaceValue" />
+    <Property Type="DateTime" Name="NearLeg" />
+    <Property Type="DateTime" Name="FarLeg" />
+    <Property Type="Double" Name="OpenPrice" />
+    <Property Type="Double" Name="MarketPrice" />
+    <Property Type="Double" Name="NearLegSpotPrice" />
+    <Property Type="Double" Name="CurrentSpotPrice" />
+    <Property Type="Double" Name="PnLNearLeg" />
+    <Property Type="Double" Name="TradePnL" />
+    <Property Type="Double" Name="C1Payable" />
+    <Property Type="String" Name="ccy" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="timestamp" />
+    <Property Type="Int32" Name="valid" />
+    <Property Type="String" Name="username" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="fullid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="RJO_listccy">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="String" Name="Ccy" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="valid" />
   </EntityType>
 </Schema>

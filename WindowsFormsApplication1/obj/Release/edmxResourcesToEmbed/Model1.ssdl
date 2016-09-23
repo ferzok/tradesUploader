@@ -2,16 +2,35 @@
 <Schema Namespace="EXANTE_testModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="EXANTE_testModelStoreContainer">
     <EntitySet Name="ABN_cashposition" EntityType="EXANTE_testModel.Store.ABN_cashposition" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="ABNReconResults" EntityType="EXANTE_testModel.Store.ABNReconResults" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="Accounts" EntityType="EXANTE_testModel.Store.Accounts" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="ADSSCashGroupped" EntityType="EXANTE_testModel.Store.ADSSCashGroupped" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="CashMapping" EntityType="EXANTE_testModel.Store.CashMapping" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="ColumnMapping" EntityType="EXANTE_testModel.Store.ColumnMapping" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="Contracts" EntityType="EXANTE_testModel.Store.Contracts" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="CorporateActions" EntityType="EXANTE_testModel.Store.CorporateActions" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="counterparty" EntityType="EXANTE_testModel.Store.counterparty" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="CpCost" EntityType="EXANTE_testModel.Store.CpCost" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="cpmapping" EntityType="EXANTE_testModel.Store.cpmapping" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="CpPosition" EntityType="EXANTE_testModel.Store.CpPosition" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="CpTrades" EntityType="EXANTE_testModel.Store.CpTrades" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="Ctrades" EntityType="EXANTE_testModel.Store.Ctrades" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="DailyCheck" EntityType="EXANTE_testModel.Store.DailyCheck" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="DBBORecon_mapping" EntityType="EXANTE_testModel.Store.DBBORecon_mapping" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="Emir" EntityType="EXANTE_testModel.Store.Emir" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="Emir_Mapping" EntityType="EXANTE_testModel.Store.Emir_Mapping" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="FT" EntityType="EXANTE_testModel.Store.FT" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="Ftbo" EntityType="EXANTE_testModel.Store.Ftbo" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="InitialTrades" EntityType="EXANTE_testModel.Store.InitialTrades" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="Mapping" EntityType="EXANTE_testModel.Store.Mapping" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="md_swaps_googlespsh" EntityType="EXANTE_testModel.Store.md_swaps_googlespsh" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="params" EntityType="EXANTE_testModel.Store.params" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="PenPaperTrades" EntityType="EXANTE_testModel.Store.PenPaperTrades" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="Prices" EntityType="EXANTE_testModel.Store.Prices" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="QtyByAccounts" EntityType="EXANTE_testModel.Store.QtyByAccounts" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="Reconcilation" EntityType="EXANTE_testModel.Store.Reconcilation" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="RJO_listccy" EntityType="EXANTE_testModel.Store.RJO_listccy" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="RowBalance" EntityType="EXANTE_testModel.Store.RowBalance" store:Type="Tables" Schema="EXANTE_test" />
   </EntityContainer>
   <EntityType Name="ABN_cashposition">
     <Key>
@@ -26,6 +45,35 @@
     <Property Name="TimeStamp" Type="timestamp" Nullable="false" />
     <Property Name="FullId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
   </EntityType>
+  <EntityType Name="ABNReconResults">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="ReportDate" Type="date" Nullable="false" />
+    <Property Name="TradeDate" Type="datetime" />
+    <Property Name="Symbol" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="TYPE" Type="varchar" MaxLength="50" />
+    <Property Name="Qty" Type="double" />
+    <Property Name="Price" Type="double" />
+    <Property Name="ValueDate" Type="date" />
+    <Property Name="ABN_cp" Type="varchar" MaxLength="50" />
+    <Property Name="BOSymbol" Type="varchar" MaxLength="50" />
+    <Property Name="BOTradeNumber" Type="varchar" MaxLength="600" />
+    <Property Name="BOcp" Type="varchar" MaxLength="30" />
+    <Property Name="Mty" Type="double" />
+    <Property Name="Value" Type="double" />
+    <Property Name="BODate" Type="datetime" />
+    <Property Name="TypeOfTrade" Type="varchar" MaxLength="10" />
+    <Property Name="COMMENT" Type="varchar" MaxLength="50" />
+    <Property Name="ExchFee" Type="double" />
+    <Property Name="ExchFeeCcy" Type="varchar" MaxLength="3" />
+    <Property Name="ClearFee" Type="double" />
+    <Property Name="ClearingFeeCcy" Type="varchar" MaxLength="3" />
+    <Property Name="fullid" Type="bigint" Nullable="false" />
+    <Property Name="BOfee" Type="double" />
+    <Property Name="BOCurrency" Type="varchar" MaxLength="3" />
+    <Property Name="BOAccount" Type="varchar" MaxLength="20" />
+  </EntityType>
   <EntityType Name="Accounts">
     <Key>
       <PropertyRef Name="account_id" />
@@ -34,11 +82,93 @@
     <Property Name="Name" Type="varchar" MaxLength="255" />
     <Property Name="date" Type="date" />
   </EntityType>
-  <EntityType Name="Contracts">
+  <EntityType Name="ADSSCashGroupped">
     <Key>
       <PropertyRef Name="fullid" />
     </Key>
-    <Property Name="id" Type="varchar" MaxLength="255" />
+    <Property Name="ReportDate" Type="date" Nullable="false" />
+    <Property Name="Currency" Type="varchar" Nullable="false" MaxLength="6" />
+    <Property Name="OpeningCash" Type="double" />
+    <Property Name="ClosingCash" Type="double" />
+    <Property Name="Trades" Type="double" />
+    <Property Name="SWAPs" Type="double" />
+    <Property Name="Commission" Type="double" />
+    <Property Name="Deposit" Type="double" />
+    <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="comment" Type="varchar" MaxLength="120" />
+    <Property Name="Cp" Type="varchar" MaxLength="10" />
+    <Property Name="OptionPremium" Type="double" />
+    <Property Name="timestamp" Type="timestamp" />
+    <Property Name="ExcessShortage" Type="double" />
+    <Property Name="NAV" Type="double" />
+    <Property Name="Interest" Type="double" />
+  </EntityType>
+  <EntityType Name="CashMapping">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="ABNField" Type="varchar" MaxLength="50" />
+    <Property Name="Reportfield" Type="varchar" MaxLength="50" />
+    <Property Name="Group" Type="varchar" MaxLength="10" />
+    <Property Name="Timestamp" Type="timestamp" Nullable="false" />
+    <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FieldNumber" Type="int" />
+    <Property Name="cp" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ColumnMapping">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Brocker" Type="varchar" MaxLength="15" />
+    <Property Name="Type" Type="varchar" MaxLength="10" />
+    <Property Name="Account" Type="varchar" MaxLength="10" />
+    <Property Name="FileType" Type="varchar" MaxLength="5" />
+    <Property Name="cReportDate" Type="int" />
+    <Property Name="cTradeDate" Type="int" />
+    <Property Name="cBrokerId" Type="int" />
+    <Property Name="cSymbol" Type="int" />
+    <Property Name="cType" Type="int" />
+    <Property Name="cSide" Type="int" />
+    <Property Name="cQtySell" Type="int" />
+    <Property Name="cQty" Type="int" />
+    <Property Name="cPrice" Type="int" />
+    <Property Name="cPriceSell" Type="int" />
+    <Property Name="cValuedate" Type="int" />
+    <Property Name="cExchangeFees" Type="int" />
+    <Property Name="cExchFeeCcy" Type="int" />
+    <Property Name="cClearingFee" Type="int" />
+    <Property Name="cClearingFeeCcy" Type="int" />
+    <Property Name="cFee" Type="int" />
+    <Property Name="cCcy" Type="int" />
+    <Property Name="cValue" Type="int" />
+    <Property Name="cExchangeOrderId" Type="int" />
+    <Property Name="cTypeOfTrade" Type="int" />
+    <Property Name="cComment" Type="int" />
+    <Property Name="cTradeTime" Type="int" />
+    <Property Name="cLineStart" Type="int" />
+    <Property Name="cTabName" Type="varchar" MaxLength="20" />
+    <Property Name="DateFormat" Type="varchar" MaxLength="20" />
+    <Property Name="Replacesymbols" Type="varchar" MaxLength="5" />
+    <Property Name="Delimeter" Type="varchar" MaxLength="1" />
+    <Property Name="Mty" Type="int" />
+    <Property Name="ValueDateFormat" Type="varchar" MaxLength="10" />
+    <Property Name="cStrike" Type="int" />
+    <Property Name="cOptionType" Type="int" />
+    <Property Name="cFee2" Type="int" />
+    <Property Name="cFee3" Type="int" />
+    <Property Name="ReportDateFormat" Type="varchar" MaxLength="10" />
+    <Property Name="cAccount" Type="int" />
+    <Property Name="cInterest" Type="int" />
+    <Property Name="TimeFormat" Type="varchar" MaxLength="10" />
+    <Property Name="cTradeId" Type="int" />
+  </EntityType>
+  <EntityType Name="Contracts">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="id" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="Contract" Type="varchar" MaxLength="255" />
     <Property Name="Exchange" Type="varchar" MaxLength="255" />
     <Property Name="Type" Type="varchar" MaxLength="255" />
@@ -54,6 +184,29 @@
     <Property Name="valid" Type="int" />
     <Property Name="username" Type="varchar" MaxLength="255" />
     <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="isin" Type="varchar" MaxLength="50" />
+    <Property Name="description" Type="varchar" MaxLength="150" />
+    <Property Name="NumberOfUnderline" Type="double" />
+  </EntityType>
+  <EntityType Name="CorporateActions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="symbolId" Type="varchar" MaxLength="50" />
+    <Property Name="isin" Type="varchar" MaxLength="20" />
+    <Property Name="DeclaredDate" Type="date" />
+    <Property Name="ExDate" Type="date" />
+    <Property Name="RecordDate" Type="date" />
+    <Property Name="PayableDate" Type="date" />
+    <Property Name="DividendAmount" Type="double" />
+    <Property Name="DividendFrqncy" Type="varchar" MaxLength="20" />
+    <Property Name="DividendType" Type="varchar" MaxLength="20" />
+    <Property Name="Timestamp" Type="timestamp" />
+    <Property Name="BOQty" Type="double" />
+    <Property Name="LastTradeDate" Type="timestamp" />
+    <Property Name="ReportDate" Type="date" />
+    <Property Name="Comment" Type="varchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="counterparty">
     <Key>
@@ -61,6 +214,58 @@
     </Key>
     <Property Name="cp_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="CpCost">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="Date" Type="date" />
+    <Property Name="account" Type="varchar" MaxLength="11" />
+    <Property Name="BOsymbol" Type="varchar" MaxLength="100" />
+    <Property Name="CPsymbol" Type="varchar" MaxLength="100" />
+    <Property Name="BOCp" Type="varchar" MaxLength="30" />
+    <Property Name="CP" Type="varchar" MaxLength="30" />
+    <Property Name="SumQty" Type="double" />
+    <Property Name="NumberOfTrades" Type="double" />
+    <Property Name="BOFee" Type="double" />
+    <Property Name="ExchFee" Type="double" />
+    <Property Name="CpFee" Type="double" />
+    <Property Name="CpExchCcy" Type="varchar" MaxLength="3" />
+    <Property Name="CpClearingCCY" Type="varchar" MaxLength="3" />
+    <Property Name="BOCcy" Type="varchar" MaxLength="3" />
+    <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="cpmapping">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="cp" Type="varchar" MaxLength="50" />
+    <Property Name="bosettcp" Type="varchar" MaxLength="50" />
+    <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MaltaEntity" Type="bool" />
+  </EntityType>
+  <EntityType Name="CpPosition">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="ReportDate" Type="date" />
+    <Property Name="Brocker" Type="varchar" MaxLength="20" />
+    <Property Name="TradeDate" Type="date" />
+    <Property Name="Symbol" Type="varchar" MaxLength="100" />
+    <Property Name="Qty" Type="double" />
+    <Property Name="Price" Type="double" />
+    <Property Name="BOSymbol" Type="varchar" MaxLength="50" />
+    <Property Name="ValueDate" Type="date" />
+    <Property Name="cp_id" Type="int" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="OptionType" Type="varchar" MaxLength="1" />
+    <Property Name="Strike" Type="double" />
+    <Property Name="Value" Type="double" />
+    <Property Name="ccy" Type="varchar" MaxLength="3" />
+    <Property Name="Timestamp" Type="timestamp" Nullable="false" />
+    <Property Name="valid" Type="int" />
+    <Property Name="username" Type="varchar" MaxLength="20" />
+    <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
   </EntityType>
   <EntityType Name="CpTrades">
     <Key>
@@ -89,21 +294,30 @@
     <Property Name="exchangeOrderId" Type="varchar" MaxLength="100" />
     <Property Name="TypeOfTrade" Type="varchar" MaxLength="30" />
     <Property Name="Comment" Type="varchar" MaxLength="50" />
+    <Property Name="ExchFeeCcy" Type="varchar" MaxLength="3" />
+    <Property Name="ClearingFeeCcy" Type="varchar" MaxLength="3" />
+    <Property Name="ccy" Type="varchar" MaxLength="3" />
+    <Property Name="ReconAccount" Type="varchar" MaxLength="11" />
+    <Property Name="Fee2" Type="double" />
+    <Property Name="Fee3" Type="double" />
+    <Property Name="Interest" Type="double" />
+    <Property Name="account" Type="varchar" MaxLength="50" />
+    <Property Name="TradeId" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="Ctrades">
     <Key>
       <PropertyRef Name="fullid" />
     </Key>
-    <Property Name="trade_id" Type="varchar" MaxLength="40" />
+    <Property Name="ExchangeOrderId" Type="varchar" MaxLength="60" />
     <Property Name="Date" Type="timestamp" />
     <Property Name="account_id" Type="varchar" MaxLength="20" />
-    <Property Name="symbol_id" Type="varchar" MaxLength="100" />
+    <Property Name="symbol_id" Type="varchar" Nullable="false" MaxLength="40" />
     <Property Name="qty" Type="double" />
     <Property Name="price" Type="double" />
     <Property Name="cp_id" Type="varchar" MaxLength="20" />
     <Property Name="fees" Type="double" />
     <Property Name="value_date" Type="date" />
-    <Property Name="currency" Type="varchar" MaxLength="20" />
+    <Property Name="currency" Type="varchar" MaxLength="10" />
     <Property Name="tradeNumber" Type="bigint" />
     <Property Name="Timestamp" Type="timestamp" />
     <Property Name="valid" Type="int" />
@@ -115,6 +329,12 @@
     <Property Name="RecStatus" Type="bool" Nullable="false" />
     <Property Name="tradeType" Type="varchar" MaxLength="20" />
     <Property Name="deliveryDate" Type="date" />
+    <Property Name="SettlementCp" Type="varchar" MaxLength="50" />
+    <Property Name="mty" Type="bigint" />
+    <Property Name="Value" Type="double" />
+    <Property Name="CpTimestamp" Type="timestamp" />
+    <Property Name="orderPos" Type="int" />
+    <Property Name="EntityLegalMalta" Type="bool" />
   </EntityType>
   <EntityType Name="DailyCheck">
     <Key>
@@ -128,6 +348,279 @@
     <Property Name="valid" Type="bool" />
     <Property Name="timestamp" Type="timestamp" Nullable="false" />
     <Property Name="Table" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="DBBORecon_mapping">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="fullid" Type="bigint" Nullable="false" />
+    <Property Name="boaccountid" Type="varchar" MaxLength="11" />
+    <Property Name="dbcp" Type="varchar" MaxLength="30" />
+    <Property Name="accountNameCP" Type="varchar" MaxLength="40" />
+    <Property Name="valid" Type="int" />
+    <Property Name="timestamp" Type="timestamp" Nullable="false" />
+    <Property Name="user" Type="varchar" MaxLength="20" />
+    <Property Name="NameProcess" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Emir">
+    <Key>
+      <PropertyRef Name="UTI" />
+    </Key>
+    <Property Name="ReportDate" Type="date" Nullable="false" />
+    <Property Name="cp" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="Status" Type="bool" />
+    <Property Name="Timestamp" Type="timestamp" Nullable="false" />
+    <Property Name="Pre-novation UTI" Type="varchar" MaxLength="50" />
+    <Property Name="Common Data Delegated" Type="varchar" MaxLength="50" />
+    <Property Name="Reporting Firm ID" Type="varchar" MaxLength="50" />
+    <Property Name="Other Counterparty ID" Type="varchar" MaxLength="50" />
+    <Property Name="Other Counterparty ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Reporting Firm Corporate Name" Type="varchar" MaxLength="50" />
+    <Property Name="Reporting Firm Registered Office" Type="varchar" MaxLength="50" />
+    <Property Name="Reporting Firm Country Code of Branch" Type="varchar" MaxLength="50" />
+    <Property Name="Reporting Firm Corporate Sector" Type="varchar" MaxLength="50" />
+    <Property Name="Reporting Firm Financial Status" Type="varchar" MaxLength="50" />
+    <Property Name="Broker ID" Type="varchar" MaxLength="50" />
+    <Property Name="Broker ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Submitting Entity ID" Type="varchar" MaxLength="50" />
+    <Property Name="Submitting Entity ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Clearing Member ID" Type="varchar" MaxLength="50" />
+    <Property Name="Clearing Member ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Beneficiary ID" Type="varchar" MaxLength="50" />
+    <Property Name="Beneficiary ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Trading Capacity" Type="varchar" MaxLength="50" />
+    <Property Name="Buy / Sell Indicator" Type="varchar" MaxLength="1" />
+    <Property Name="Counterparty EEA Status" Type="varchar" MaxLength="1" />
+    <Property Name="Commercial / Treasury Activity" Type="varchar" MaxLength="50" />
+    <Property Name="Above Clearing Threshold" Type="varchar" MaxLength="50" />
+    <Property Name="Mark to Market Value" Type="varchar" MaxLength="50" />
+    <Property Name="Mark to Market Currency" Type="varchar" MaxLength="50" />
+    <Property Name="Valuation Date" Type="timestamp" />
+    <Property Name="Valuation Time" Type="time" />
+    <Property Name="Valuation Type" Type="varchar" MaxLength="50" />
+    <Property Name="Collateral Type" Type="varchar" MaxLength="50" />
+    <Property Name="Collateral Portfolio" Type="varchar" MaxLength="50" />
+    <Property Name="Collateral Portfolio Code" Type="varchar" MaxLength="50" />
+    <Property Name="Collateral Value" Type="varchar" MaxLength="50" />
+    <Property Name="Collateral Value Currency" Type="varchar" MaxLength="50" />
+    <Property Name="Fund Manager ID" Type="varchar" MaxLength="50" />
+    <Property Name="Fund Manager ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Instrument ID Taxonomy" Type="varchar" MaxLength="50" />
+    <Property Name="Instrument ID" Type="varchar" MaxLength="50" />
+    <Property Name="ETD Asset Class Type" Type="varchar" MaxLength="50" />
+    <Property Name="Instrument Classification" Type="varchar" MaxLength="50" />
+    <Property Name="Underlying Instrument ID" Type="varchar" MaxLength="50" />
+    <Property Name="Underlying Instrument ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Notional Currency 1" Type="varchar" MaxLength="50" />
+    <Property Name="Notional Currency 2" Type="varchar" MaxLength="50" />
+    <Property Name="Deliverable Currency" Type="varchar" MaxLength="50" />
+    <Property Name="UTI" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="MiFID Transaction Reference Number" Type="varchar" MaxLength="50" />
+    <Property Name="Venue ID" Type="varchar" MaxLength="50" />
+    <Property Name="Compression Exercise" Type="varchar" MaxLength="50" />
+    <Property Name="Price / Rate" Type="varchar" MaxLength="50" />
+    <Property Name="Price Notation" Type="varchar" MaxLength="50" />
+    <Property Name="Notional" Type="varchar" MaxLength="50" />
+    <Property Name="Price Multiplier" Type="varchar" MaxLength="50" />
+    <Property Name="Quantity" Type="varchar" MaxLength="50" />
+    <Property Name="Up Front Payment" Type="varchar" MaxLength="50" />
+    <Property Name="Upfront Payment Currency" Type="varchar" MaxLength="50" />
+    <Property Name="Delivery Type" Type="varchar" MaxLength="50" />
+    <Property Name="Execution Timestamp" Type="timestamp" />
+    <Property Name="Effective Date" Type="date" />
+    <Property Name="Maturity Date" Type="date" />
+    <Property Name="Termination Date" Type="date" />
+    <Property Name="Settlement Date" Type="date" />
+    <Property Name="Master Agreement" Type="varchar" MaxLength="50" />
+    <Property Name="Master Agreement Version" Type="varchar" MaxLength="50" />
+    <Property Name="Confirmation Timestamp" Type="timestamp" />
+    <Property Name="Confirmation Type" Type="varchar" MaxLength="50" />
+    <Property Name="Clearing Obligation" Type="varchar" MaxLength="50" />
+    <Property Name="Cleared" Type="varchar" MaxLength="50" />
+    <Property Name="Clearing Timestamp" Type="timestamp" />
+    <Property Name="CCP ID" Type="varchar" MaxLength="50" />
+    <Property Name="CCP ID Type" Type="varchar" MaxLength="50" />
+    <Property Name="Intragroup" Type="varchar" MaxLength="50" />
+    <Property Name="Fixed Rate Leg 1" Type="varchar" MaxLength="50" />
+    <Property Name="Fixed Rate Leg 2" Type="varchar" MaxLength="50" />
+    <Property Name="Fixed Rate Day Count" Type="varchar" MaxLength="50" />
+    <Property Name="Fixed Leg Payment Frequency" Type="varchar" MaxLength="50" />
+    <Property Name="Floating Rate Payment Frequency" Type="varchar" MaxLength="50" />
+    <Property Name="Floating Rate Reset Frequency" Type="varchar" MaxLength="50" />
+    <Property Name="Floating Rate Leg 1" Type="varchar" MaxLength="50" />
+    <Property Name="Floating Rate Leg 2" Type="varchar" MaxLength="50" />
+    <Property Name="Currency 2" Type="varchar" MaxLength="50" />
+    <Property Name="Exchange Rate 1" Type="varchar" MaxLength="50" />
+    <Property Name="Forward Exchange Rate" Type="varchar" MaxLength="50" />
+    <Property Name="Exchange Rate Basis" Type="varchar" MaxLength="50" />
+    <Property Name="Commodity Base" Type="varchar" MaxLength="50" />
+    <Property Name="Commodity Details" Type="varchar" MaxLength="50" />
+    <Property Name="Delivery Point" Type="varchar" MaxLength="50" />
+    <Property Name="Interconnection Point" Type="varchar" MaxLength="50" />
+    <Property Name="Load Type" Type="varchar" MaxLength="50" />
+    <Property Name="Delivery Start Timestamp" Type="timestamp" />
+    <Property Name="Delivery End Timestamp" Type="timestamp" />
+    <Property Name="Contract Capacity" Type="varchar" MaxLength="50" />
+    <Property Name="Quantity Unit" Type="varchar" MaxLength="50" />
+    <Property Name="Price Per Time Interval Quantities" Type="varchar" MaxLength="50" />
+    <Property Name="Put / Call" Type="varchar" MaxLength="50" />
+    <Property Name="Option Exercise Type" Type="varchar" MaxLength="50" />
+    <Property Name="Strike Price" Type="varchar" MaxLength="50" />
+    <Property Name="Action Type" Type="varchar" MaxLength="50" />
+    <Property Name="Action Type Details" Type="varchar" MaxLength="50" />
+    <Property Name="Message Type" Type="varchar" MaxLength="50" />
+    <Property Name="Notional 2" Type="varchar" MaxLength="50" />
+    <Property Name="PUTI" Type="varchar" MaxLength="50" />
+    <Property Name="Instrument Description" Type="varchar" MaxLength="120" />
+    <Property Name="Internal ID" Type="varchar" MaxLength="50" />
+    <Property Name="Event Timestamp" Type="timestamp" />
+    <Property Name="Reporting TimeStamp" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="Emir_Mapping">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="Brocker" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="filetype" Type="varchar" Nullable="false" MaxLength="3" />
+    <Property Name="InstrumentType" Type="varchar" MaxLength="2" />
+    <Property Name="cLineStart" Type="int" Nullable="false" />
+    <Property Name="CpSymbol" Type="varchar" MaxLength="50" />
+    <Property Name="VenueId" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="InstrumentIDTaxonomy" Type="varchar" MaxLength="1" />
+    <Property Name="InstrumentID" Type="varchar" MaxLength="20" />
+    <Property Name="InstrumentClassification" Type="varchar" MaxLength="6" />
+    <Property Name="UnderlyingInstrumentID" Type="varchar" MaxLength="20" />
+    <Property Name="UnderlyingInstrumentIDType" Type="varchar" MaxLength="1" />
+    <Property Name="MaturityDate" Type="date" />
+    <Property Name="CPValueDate" Type="date" />
+    <Property Name="OptionType" Type="varchar" MaxLength="2" />
+    <Property Name="NotionalCurrency1" Type="varchar" MaxLength="3" />
+    <Property Name="NotionalCurrency2" Type="varchar" MaxLength="3" />
+    <Property Name="DeliverableCurrency" Type="varchar" MaxLength="3" />
+    <Property Name="PriceNotation" Type="varchar" MaxLength="3" />
+    <Property Name="PriceMultiplier" Type="double" />
+    <Property Name="DeliveryType" Type="varchar" MaxLength="1" />
+    <Property Name="ConfirmationType" Type="varchar" MaxLength="1" />
+    <Property Name="ClearingObligation" Type="varchar" MaxLength="1" />
+    <Property Name="Cleared" Type="varchar" MaxLength="1" />
+    <Property Name="CommodityBase" Type="varchar" MaxLength="2" />
+    <Property Name="CommodityDetails" Type="varchar" MaxLength="2" />
+    <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Delimeter" Type="varchar" MaxLength="1" />
+    <Property Name="cp" Type="varchar" Nullable="false" MaxLength="21" />
+    <Property Name="cBuySell" Type="int" Nullable="false" />
+    <Property Name="BOSymbol" Type="varchar" MaxLength="50" />
+    <Property Name="FloatingRatePaymentFrequency" Type="varchar" MaxLength="2" />
+    <Property Name="FloatingRateResetFrequency" Type="varchar" MaxLength="2" />
+    <Property Name="FloatingRateLeg2" Type="varchar" MaxLength="10" />
+    <Property Name="Currency2" Type="varchar" MaxLength="3" />
+    <Property Name="ForwardExchangeRateMty" Type="double" />
+    <Property Name="ExchangeRateBasis" Type="varchar" MaxLength="7" />
+    <Property Name="cPutCall" Type="int" />
+    <Property Name="OptionExerciseType" Type="varchar" MaxLength="1" />
+    <Property Name="cStrikePrice" Type="int" />
+    <Property Name="link" Type="varchar" MaxLength="200" />
+    <Property Name="TimeDifference" Type="int" />
+    <Property Name="CpMtyPrice" Type="int" />
+    <Property Name="InstrumentDescription" Type="varchar" MaxLength="120" />
+    <Property Name="FixedRateLeg1" Type="double" />
+    <Property Name="FixedRateDayCount" Type="varchar" MaxLength="50" />
+    <Property Name="FixedLegPaymentFrequency" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="FT">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ReportDate" Type="date" />
+    <Property Name="cp" Type="varchar" MaxLength="15" />
+    <Property Name="account_id" Type="varchar" MaxLength="20" />
+    <Property Name="symbol" Type="varchar" MaxLength="50" />
+    <Property Name="ccy" Type="varchar" MaxLength="3" />
+    <Property Name="value" Type="double" />
+    <Property Name="brocker" Type="varchar" MaxLength="15" />
+    <Property Name="Type" Type="varchar" MaxLength="10" />
+    <Property Name="Comment" Type="varchar" MaxLength="80" />
+    <Property Name="Reference" Type="bigint" />
+    <Property Name="User" Type="varchar" MaxLength="20" />
+    <Property Name="valid" Type="int" />
+    <Property Name="timestamp" Type="timestamp" Nullable="false" />
+    <Property Name="BOSymbol" Type="varchar" MaxLength="100" />
+    <Property Name="ValueDate" Type="date" />
+    <Property Name="TradeDate" Type="date" />
+    <Property Name="GrossPositionIndicator" Type="varchar" MaxLength="1" />
+    <Property Name="JOURNALACCOUNTCODE" Type="varchar" MaxLength="4" />
+    <Property Name="ValueCCY" Type="double" />
+    <Property Name="counterccy" Type="varchar" MaxLength="3" />
+    <Property Name="Posted" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="Ftbo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" Nullable="false" />
+    <Property Name="accountId" Type="varchar" MaxLength="50" />
+    <Property Name="botimestamp" Type="timestamp" />
+    <Property Name="operationType" Type="varchar" MaxLength="40" />
+    <Property Name="asset" Type="varchar" MaxLength="30" />
+    <Property Name="sum" Type="double" />
+    <Property Name="who" Type="varchar" MaxLength="20" />
+    <Property Name="gatewayId" Type="varchar" MaxLength="50" />
+    <Property Name="tradeNumber" Type="bigint" />
+    <Property Name="comment" Type="varchar" MaxLength="200" />
+    <Property Name="symbolId" Type="varchar" MaxLength="50" />
+    <Property Name="valueDate" Type="date" />
+    <Property Name="orderId" Type="varchar" MaxLength="40" />
+    <Property Name="orderPos" Type="bigint" />
+    <Property Name="price" Type="double" />
+    <Property Name="clientType" Type="varchar" MaxLength="20" />
+    <Property Name="executionCounterparty" Type="varchar" MaxLength="30" />
+    <Property Name="timestamp" Type="timestamp" />
+    <Property Name="user" Type="varchar" MaxLength="20" />
+    <Property Name="category" Type="varchar" MaxLength="20" />
+    <Property Name="type" Type="varchar" MaxLength="10" />
+    <Property Name="internalComment" Type="varchar" MaxLength="200" />
+    <Property Name="symbolType" Type="varchar" MaxLength="20" />
+    <Property Name="baseCurrency" Type="varchar" MaxLength="3" />
+    <Property Name="settlementCurrency" Type="varchar" MaxLength="3" />
+    <Property Name="settlementCurrencyMovement" Type="double" />
+    <Property Name="exchangeCommission" Type="double" />
+    <Property Name="settlementCounterparty" Type="varchar" MaxLength="200" />
+    <Property Name="transferId" Type="bigint" />
+    <Property Name="clientCounterparty" Type="varchar" MaxLength="50" />
+    <Property Name="exanteCounterparty" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="InitialTrades">
+    <Key>
+      <PropertyRef Name="FullId" />
+    </Key>
+    <Property Name="ReportDate" Type="date" />
+    <Property Name="TradeDate" Type="datetime" />
+    <Property Name="BrokerId" Type="varchar" MaxLength="20" />
+    <Property Name="Symbol" Type="varchar" MaxLength="100" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="Qty" Type="double" />
+    <Property Name="Price" Type="double" />
+    <Property Name="ValueDate" Type="date" />
+    <Property Name="cp_id" Type="int" />
+    <Property Name="ExchangeFees" Type="double" />
+    <Property Name="Fee" Type="double" />
+    <Property Name="value" Type="double" />
+    <Property Name="Timestamp" Type="timestamp" Nullable="false" />
+    <Property Name="FullId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="exchangeOrderId" Type="varchar" MaxLength="100" />
+    <Property Name="TypeOfTrade" Type="varchar" MaxLength="30" />
+    <Property Name="Comment" Type="varchar" MaxLength="50" />
+    <Property Name="ExchFeeCcy" Type="varchar" MaxLength="3" />
+    <Property Name="ClearingFeeCcy" Type="varchar" MaxLength="3" />
+    <Property Name="ccy" Type="varchar" MaxLength="3" />
+    <Property Name="Strike" Type="double" />
+    <Property Name="OptionType" Type="varchar" MaxLength="4" />
+    <Property Name="Fee2" Type="double" />
+    <Property Name="Fee3" Type="double" />
+    <Property Name="AccruedInterest" Type="double" />
+    <Property Name="Account" Type="varchar" MaxLength="50" />
+    <Property Name="TradeId" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="Mapping">
     <Key>
@@ -144,6 +637,41 @@
     <Property Name="Timestamp" Type="timestamp" Nullable="false" />
     <Property Name="valid" Type="bigint" />
     <Property Name="username" Type="varchar" MaxLength="255" />
+    <Property Name="MtyStrike" Type="double" />
+    <Property Name="UseDayInTicker" Type="bool" />
+    <Property Name="calendar" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="md_swaps_googlespsh">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="account" Type="varchar" MaxLength="20" />
+    <Property Name="Date" Type="date" />
+    <Property Name="Pair" Type="varchar" MaxLength="6" />
+    <Property Name="FaceValue" Type="double" />
+    <Property Name="NearLeg" Type="date" />
+    <Property Name="FarLeg" Type="date" />
+    <Property Name="OpenPrice" Type="double" />
+    <Property Name="MarketPrice" Type="double" />
+    <Property Name="NearLegSpotPrice" Type="double" />
+    <Property Name="CurrentSpotPrice" Type="double" />
+    <Property Name="PnLNearLeg" Type="double" />
+    <Property Name="TradePnL" Type="double" />
+    <Property Name="1Payable" Type="double" />
+    <Property Name="ccy" Type="varchar" MaxLength="3" />
+    <Property Name="timestamp" Type="timestamp" />
+    <Property Name="valid" Type="int" />
+    <Property Name="username" Type="varchar" MaxLength="100" />
+    <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="params">
+    <Key>
+      <PropertyRef Name="view_name" />
+      <PropertyRef Name="connection_id" />
+    </Key>
+    <Property Name="view_name" Type="varchar" Nullable="false" MaxLength="250" />
+    <Property Name="param1_val" Type="int" />
+    <Property Name="connection_id" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="PenPaperTrades">
     <Key>
@@ -197,21 +725,59 @@
     <Property Name="Price" Type="double" />
     <Property Name="Date" Type="date" />
     <Property Name="Type" Type="varchar" MaxLength="255" />
-    <Property Name="id" Type="varchar" Nullable="false" MaxLength="255" />
-    <Property Name="Timestamp" Type="timestamp" />
-    <Property Name="Valid" Type="bool" />
+    <Property Name="id" Type="varchar" MaxLength="255" />
+    <Property Name="Timestamp" Type="timestamp" Nullable="false" />
+    <Property Name="Valid" Type="int" Nullable="false" />
     <Property Name="Username" Type="varchar" MaxLength="255" />
-    <Property Name="full_id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="full_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="QtyByAccounts">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="ReportDate" Type="date" />
+    <Property Name="Account_id" Type="varchar" MaxLength="30" />
+    <Property Name="Qty" Type="double" />
+    <Property Name="ExDate" Type="date" />
+    <Property Name="LastTradeDate" Type="datetime" />
+    <Property Name="Symbol" Type="varchar" MaxLength="30" />
+    <Property Name="isin" Type="varchar" MaxLength="15" />
+    <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="timestamp" Type="timestamp" />
+    <Property Name="Cp" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="Reconcilation">
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="CpTrade_id" Type="bigint" />
-    <Property Name="Ctrade_id" Type="bigint" />
+    <Property Name="CpFull_id" Type="bigint" />
+    <Property Name="BOTradenumber" Type="bigint" />
     <Property Name="Timestamp" Type="timestamp" />
     <Property Name="valid" Type="int" />
     <Property Name="username" Type="varchar" MaxLength="255" />
     <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="RJO_listccy">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="Ccy" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="valid" Type="int" />
+  </EntityType>
+  <EntityType Name="RowBalance">
+    <Key>
+      <PropertyRef Name="fullid" />
+    </Key>
+    <Property Name="cp" Type="varchar" MaxLength="10" />
+    <Property Name="ReportDate" Type="date" />
+    <Property Name="Type" Type="varchar" MaxLength="100" />
+    <Property Name="ccy" Type="varchar" MaxLength="25" />
+    <Property Name="Value" Type="double" />
+    <Property Name="Comment" Type="varchar" MaxLength="170" />
+    <Property Name="Timestamp" Type="timestamp" Nullable="false" />
+    <Property Name="Exchange" Type="varchar" MaxLength="20" />
+    <Property Name="fullid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="account" Type="varchar" MaxLength="50" />
   </EntityType>
 </Schema>

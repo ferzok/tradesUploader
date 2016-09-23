@@ -1,21 +1,27 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WindowsFormsApplication1.Properties" GeneratedClassName="Settings">
+
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)"
+              GeneratedClassNamespace="WindowsFormsApplication1.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="testConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;password=GftwV4Be3QtKQt;User Id=az;server=az.dev.ghcg.com;database=test&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <DesignTimeValue Profile="(Default)">
+        &lt;?xml version="1.0" encoding="utf-16"?&gt;
+        &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+        &lt;ConnectionString&gt;password=GftwV4Be3QtKQt;User Id=az;server=az.dev.ghcg.com;database=test&lt;/ConnectionString&gt;
+        &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
+        &lt;/SerializableConnectionString&gt;
+      </DesignTimeValue>
       <Value Profile="(Default)">password=GftwV4Be3QtKQt;User Id=az;server=az.dev.ghcg.com;database=test</Value>
     </Setting>
     <Setting Name="EXANTE_testConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;server=ext-padma.ghcg.com;User Id=az;password=GftwV4Be3QtKQt;Persist Security Info=True;database=EXANTE_test&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <DesignTimeValue Profile="(Default)">
+        &lt;?xml version="1.0" encoding="utf-16"?&gt;
+        &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+        &lt;ConnectionString&gt;server=ext-padma.ghcg.com;User Id=az;password=GftwV4Be3QtKQt;Persist Security Info=True;database=EXANTE_test&lt;/ConnectionString&gt;
+        &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
+        &lt;/SerializableConnectionString&gt;
+      </DesignTimeValue>
       <Value Profile="(Default)">server=ext-padma.ghcg.com;User Id=az;password=GftwV4Be3QtKQt;Persist Security Info=True;database=EXANTE_test</Value>
     </Setting>
   </Settings>

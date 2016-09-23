@@ -13,6 +13,9 @@
     <EntitySetMapping Name="Contracts">
       <EntityTypeMapping TypeName="EXANTE_testModel.Contract">
         <MappingFragment StoreEntitySet="Contracts">
+          <ScalarProperty Name="NumberOfUnderline" ColumnName="NumberOfUnderline" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="isin" ColumnName="isin" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="Contract1" ColumnName="Contract" />
           <ScalarProperty Name="Exchange" ColumnName="Exchange" />
@@ -35,13 +38,19 @@
     <EntitySetMapping Name="Ctrades">
       <EntityTypeMapping TypeName="EXANTE_testModel.Ctrade">
         <MappingFragment StoreEntitySet="Ctrades">
+          <ScalarProperty Name="EntityLegalMalta" ColumnName="EntityLegalMalta" />
+          <ScalarProperty Name="orderPos" ColumnName="orderPos" />
+          <ScalarProperty Name="CpTimestamp" ColumnName="CpTimestamp" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="ExchangeOrderId" ColumnName="ExchangeOrderId" />
+          <ScalarProperty Name="mty" ColumnName="mty" />
+          <ScalarProperty Name="SettlementCp" ColumnName="SettlementCp" />
           <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
           <ScalarProperty Name="tradeType" ColumnName="tradeType" />
           <ScalarProperty Name="RecStatus" ColumnName="RecStatus" />
           <ScalarProperty Name="BOtradeTimestamp" ColumnName="BOtradeTimestamp" />
           <ScalarProperty Name="gatewayId" ColumnName="gatewayId" />
           <ScalarProperty Name="tradeNumber" ColumnName="tradeNumber" />
-          <ScalarProperty Name="trade_id" ColumnName="trade_id" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="account_id" ColumnName="account_id" />
           <ScalarProperty Name="symbol_id" ColumnName="symbol_id" />
@@ -86,6 +95,15 @@
     <EntitySetMapping Name="CpTrades">
       <EntityTypeMapping TypeName="EXANTE_testModel.CpTrade">
         <MappingFragment StoreEntitySet="CpTrades">
+          <ScalarProperty Name="TradeId" ColumnName="TradeId" />
+          <ScalarProperty Name="account" ColumnName="account" />
+          <ScalarProperty Name="Interest" ColumnName="Interest" />
+          <ScalarProperty Name="Fee3" ColumnName="Fee3" />
+          <ScalarProperty Name="Fee2" ColumnName="Fee2" />
+          <ScalarProperty Name="ReconAccount" ColumnName="ReconAccount" />
+          <ScalarProperty Name="ccy" ColumnName="ccy" />
+          <ScalarProperty Name="ClearingFeeCcy" ColumnName="ClearingFeeCcy" />
+          <ScalarProperty Name="ExchFeeCcy" ColumnName="ExchFeeCcy" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Comment" ColumnName="Comment" />
           <ScalarProperty Name="TypeOfTrade" ColumnName="TypeOfTrade" />
@@ -159,6 +177,9 @@
     <EntitySetMapping Name="Mappings">
       <EntityTypeMapping TypeName="EXANTE_testModel.Mapping">
         <MappingFragment StoreEntitySet="Mapping">
+          <ScalarProperty Name="calendar" ColumnName="calendar" />
+          <ScalarProperty Name="UseDayInTicker" ColumnName="UseDayInTicker" />
+          <ScalarProperty Name="MtyStrike" ColumnName="MtyStrike" />
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="valid" ColumnName="valid" />
           <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
@@ -176,12 +197,12 @@
     <EntitySetMapping Name="Reconcilations">
       <EntityTypeMapping TypeName="EXANTE_testModel.Reconcilation">
         <MappingFragment StoreEntitySet="Reconcilation">
+          <ScalarProperty Name="BOTradenumber" ColumnName="BOTradenumber" />
+          <ScalarProperty Name="CpFull_id" ColumnName="CpFull_id" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="valid" ColumnName="valid" />
           <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-          <ScalarProperty Name="Ctrade_id" ColumnName="Ctrade_id" />
-          <ScalarProperty Name="CpTrade_id" ColumnName="CpTrade_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -210,6 +231,549 @@
           <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="cp_id" ColumnName="cp_id" />
           <ScalarProperty Name="fullid" ColumnName="fullid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ABNReconResults">
+      <EntityTypeMapping TypeName="EXANTE_testModel.ABNReconResult">
+        <MappingFragment StoreEntitySet="ABNReconResults">
+          <ScalarProperty Name="BOAccount" ColumnName="BOAccount" />
+          <ScalarProperty Name="BOCurrency" ColumnName="BOCurrency" />
+          <ScalarProperty Name="BOfee" ColumnName="BOfee" />
+          <ScalarProperty Name="fullid" ColumnName="fullid" />
+          <ScalarProperty Name="ClearingFeeCcy" ColumnName="ClearingFeeCcy" />
+          <ScalarProperty Name="ClearFee" ColumnName="ClearFee" />
+          <ScalarProperty Name="ExchFeeCcy" ColumnName="ExchFeeCcy" />
+          <ScalarProperty Name="ExchFee" ColumnName="ExchFee" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="TypeOfTrade" ColumnName="TypeOfTrade" />
+          <ScalarProperty Name="BODate" ColumnName="BODate" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Mty" ColumnName="Mty" />
+          <ScalarProperty Name="BOcp" ColumnName="BOcp" />
+          <ScalarProperty Name="BOTradeNumber" ColumnName="BOTradeNumber" />
+          <ScalarProperty Name="BOSymbol" ColumnName="BOSymbol" />
+          <ScalarProperty Name="ABN_cp" ColumnName="ABN_cp" />
+          <ScalarProperty Name="ValueDate" ColumnName="ValueDate" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+          <ScalarProperty Name="TradeDate" ColumnName="TradeDate" />
+          <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CpPositions">
+      <EntityTypeMapping TypeName="EXANTE_testModel.CpPosition">
+        <MappingFragment StoreEntitySet="CpPosition">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="ccy" ColumnName="ccy" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Strike" ColumnName="Strike" />
+          <ScalarProperty Name="OptionType" ColumnName="OptionType" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="cp_id" ColumnName="cp_id" />
+          <ScalarProperty Name="ValueDate" ColumnName="ValueDate" />
+          <ScalarProperty Name="BOSymbol" ColumnName="BOSymbol" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+          <ScalarProperty Name="TradeDate" ColumnName="TradeDate" />
+          <ScalarProperty Name="Brocker" ColumnName="Brocker" />
+          <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ftboes">
+      <EntityTypeMapping TypeName="EXANTE_testModel.Ftbo">
+        <MappingFragment StoreEntitySet="Ftbo">
+          <ScalarProperty Name="exanteCounterparty" ColumnName="exanteCounterparty" />
+          <ScalarProperty Name="clientCounterparty" ColumnName="clientCounterparty" />
+          <ScalarProperty Name="transferId" ColumnName="transferId" />
+          <ScalarProperty Name="settlementCounterparty" ColumnName="settlementCounterparty" />
+          <ScalarProperty Name="exchangeCommission" ColumnName="exchangeCommission" />
+          <ScalarProperty Name="settlementCurrencyMovement" ColumnName="settlementCurrencyMovement" />
+          <ScalarProperty Name="settlementCurrency" ColumnName="settlementCurrency" />
+          <ScalarProperty Name="baseCurrency" ColumnName="baseCurrency" />
+          <ScalarProperty Name="symbolType" ColumnName="symbolType" />
+          <ScalarProperty Name="internalComment" ColumnName="internalComment" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+          <ScalarProperty Name="executionCounterparty" ColumnName="executionCounterparty" />
+          <ScalarProperty Name="clientType" ColumnName="clientType" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="orderPos" ColumnName="orderPos" />
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="valueDate" ColumnName="valueDate" />
+          <ScalarProperty Name="symbolId" ColumnName="symbolId" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="tradeNumber" ColumnName="tradeNumber" />
+          <ScalarProperty Name="gatewayId" ColumnName="gatewayId" />
+          <ScalarProperty Name="who" ColumnName="who" />
+          <ScalarProperty Name="sum" ColumnName="sum" />
+          <ScalarProperty Name="asset" ColumnName="asset" />
+          <ScalarProperty Name="operationType" ColumnName="operationType" />
+          <ScalarProperty Name="botimestamp" ColumnName="botimestamp" />
+          <ScalarProperty Name="accountId" ColumnName="accountId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DBBORecon_mapping">
+      <EntityTypeMapping TypeName="EXANTE_testModel.DBBORecon_mapping">
+        <MappingFragment StoreEntitySet="DBBORecon_mapping">
+          <ScalarProperty Name="NameProcess" ColumnName="NameProcess" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="accountNameCP" ColumnName="accountNameCP" />
+          <ScalarProperty Name="dbcp" ColumnName="dbcp" />
+          <ScalarProperty Name="boaccountid" ColumnName="boaccountid" />
+          <ScalarProperty Name="fullid" ColumnName="fullid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ColumnMappings">
+      <EntityTypeMapping TypeName="EXANTE_testModel.ColumnMapping">
+        <MappingFragment StoreEntitySet="ColumnMapping">
+          <ScalarProperty Name="Account" ColumnName="Account" />
+          <ScalarProperty Name="cTradeId" ColumnName="cTradeId" />
+          <ScalarProperty Name="TimeFormat" ColumnName="TimeFormat" />
+          <ScalarProperty Name="cInterest" ColumnName="cInterest" />
+          <ScalarProperty Name="cAccount" ColumnName="cAccount" />
+          <ScalarProperty Name="cPriceSell" ColumnName="cPriceSell" />
+          <ScalarProperty Name="ReportDateFormat" ColumnName="ReportDateFormat" />
+          <ScalarProperty Name="cFee3" ColumnName="cFee3" />
+          <ScalarProperty Name="cFee2" ColumnName="cFee2" />
+          <ScalarProperty Name="cOptionType" ColumnName="cOptionType" />
+          <ScalarProperty Name="cStrike" ColumnName="cStrike" />
+          <ScalarProperty Name="cClearingFeeCcy" ColumnName="cClearingFeeCcy" />
+          <ScalarProperty Name="cClearingFee" ColumnName="cClearingFee" />
+          <ScalarProperty Name="ValueDateFormat" ColumnName="ValueDateFormat" />
+          <ScalarProperty Name="Mty" ColumnName="Mty" />
+          <ScalarProperty Name="Delimeter" ColumnName="Delimeter" />
+          <ScalarProperty Name="cSide" ColumnName="cSide" />
+          <ScalarProperty Name="Replacesymbols" ColumnName="Replacesymbols" />
+          <ScalarProperty Name="DateFormat" ColumnName="DateFormat" />
+          <ScalarProperty Name="cQtySell" ColumnName="cQtySell" />
+          <ScalarProperty Name="cTabName" ColumnName="cTabName" />
+          <ScalarProperty Name="cLineStart" ColumnName="cLineStart" />
+          <ScalarProperty Name="cTradeTime" ColumnName="cTradeTime" />
+          <ScalarProperty Name="cCcy" ColumnName="cCcy" />
+          <ScalarProperty Name="cExchFeeCcy" ColumnName="cExchFeeCcy" />
+          <ScalarProperty Name="cComment" ColumnName="cComment" />
+          <ScalarProperty Name="cTypeOfTrade" ColumnName="cTypeOfTrade" />
+          <ScalarProperty Name="cExchangeOrderId" ColumnName="cExchangeOrderId" />
+          <ScalarProperty Name="cValue" ColumnName="cValue" />
+          <ScalarProperty Name="cFee" ColumnName="cFee" />
+          <ScalarProperty Name="cExchangeFees" ColumnName="cExchangeFees" />
+          <ScalarProperty Name="cValuedate" ColumnName="cValuedate" />
+          <ScalarProperty Name="cPrice" ColumnName="cPrice" />
+          <ScalarProperty Name="cQty" ColumnName="cQty" />
+          <ScalarProperty Name="cType" ColumnName="cType" />
+          <ScalarProperty Name="cSymbol" ColumnName="cSymbol" />
+          <ScalarProperty Name="cBrokerId" ColumnName="cBrokerId" />
+          <ScalarProperty Name="cTradeDate" ColumnName="cTradeDate" />
+          <ScalarProperty Name="cReportDate" ColumnName="cReportDate" />
+          <ScalarProperty Name="FileType" ColumnName="FileType" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Brocker" ColumnName="Brocker" />
+          <ScalarProperty Name="fullid" ColumnName="fullid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InitialTrades">
+      <EntityTypeMapping TypeName="EXANTE_testModel.InitialTrade">
+        <MappingFragment StoreEntitySet="InitialTrades">
+          <ScalarProperty Name="TradeId" ColumnName="TradeId" />
+          <ScalarProperty Name="Account" ColumnName="Account" />
+          <ScalarProperty Name="AccruedInterest" ColumnName="AccruedInterest" />
+          <ScalarProperty Name="Fee3" ColumnName="Fee3" />
+          <ScalarProperty Name="Fee2" ColumnName="Fee2" />
+          <ScalarProperty Name="OptionType" ColumnName="OptionType" />
+          <ScalarProperty Name="Strike" ColumnName="Strike" />
+          <ScalarProperty Name="ccy" ColumnName="ccy" />
+          <ScalarProperty Name="ClearingFeeCcy" ColumnName="ClearingFeeCcy" />
+          <ScalarProperty Name="ExchFeeCcy" ColumnName="ExchFeeCcy" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="TypeOfTrade" ColumnName="TypeOfTrade" />
+          <ScalarProperty Name="exchangeOrderId" ColumnName="exchangeOrderId" />
+          <ScalarProperty Name="FullId" ColumnName="FullId" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="Fee" ColumnName="Fee" />
+          <ScalarProperty Name="ExchangeFees" ColumnName="ExchangeFees" />
+          <ScalarProperty Name="cp_id" ColumnName="cp_id" />
+          <ScalarProperty Name="ValueDate" ColumnName="ValueDate" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+          <ScalarProperty Name="BrokerId" ColumnName="BrokerId" />
+          <ScalarProperty Name="TradeDate" ColumnName="TradeDate" />
+          <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="params">
+      <EntityTypeMapping TypeName="EXANTE_testModel.param">
+        <MappingFragment StoreEntitySet="params">
+          <ScalarProperty Name="connection_id" ColumnName="connection_id" />
+          <ScalarProperty Name="param1_val" ColumnName="param1_val" />
+          <ScalarProperty Name="view_name" ColumnName="view_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ADSSCashGroupped">
+      <EntityTypeMapping TypeName="EXANTE_testModel.ADSSCashGroupped">
+        <MappingFragment StoreEntitySet="ADSSCashGroupped">
+          <ScalarProperty Name="Interest" ColumnName="Interest" />
+          <ScalarProperty Name="NAV" ColumnName="NAV" />
+          <ScalarProperty Name="ExcessShortage" ColumnName="ExcessShortage" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+          <ScalarProperty Name="OptionPremium" ColumnName="OptionPremium" />
+          <ScalarProperty Name="Cp" ColumnName="Cp" />
+          <ScalarProperty Name="Commission" ColumnName="Commission" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="fullid" ColumnName="fullid" />
+          <ScalarProperty Name="Deposit" ColumnName="Deposit" />
+          <ScalarProperty Name="SWAPs" ColumnName="SWAPs" />
+          <ScalarProperty Name="Trades" ColumnName="Trades" />
+          <ScalarProperty Name="ClosingCash" ColumnName="ClosingCash" />
+          <ScalarProperty Name="OpeningCash" ColumnName="OpeningCash" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+          <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RowBalance">
+      <EntityTypeMapping TypeName="EXANTE_testModel.RowBalance">
+        <MappingFragment StoreEntitySet="RowBalance">
+          <ScalarProperty Name="account" ColumnName="account" />
+          <ScalarProperty Name="fullid" ColumnName="fullid" />
+          <ScalarProperty Name="Exchange" ColumnName="Exchange" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="ccy" ColumnName="ccy" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+          <ScalarProperty Name="cp" ColumnName="cp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CashMapping">
+      <EntityTypeMapping TypeName="EXANTE_testModel.CashMapping">
+        <MappingFragment StoreEntitySet="CashMapping">
+          <ScalarProperty Name="cp" ColumnName="cp" />
+          <ScalarProperty Name="FieldNumber" ColumnName="FieldNumber" />
+          <ScalarProperty Name="fullid" ColumnName="fullid" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="Group" ColumnName="Group" />
+          <ScalarProperty Name="Reportfield" ColumnName="Reportfield" />
+          <ScalarProperty Name="ABNField" ColumnName="ABNField" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CorporateActions">
+      <EntityTypeMapping TypeName="EXANTE_testModel.CorporateActions">
+        <MappingFragment StoreEntitySet="CorporateActions">
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+          <ScalarProperty Name="LastTradeDate" ColumnName="LastTradeDate" />
+          <ScalarProperty Name="BOQty" ColumnName="BOQty" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="DividendType" ColumnName="DividendType" />
+          <ScalarProperty Name="DividendFrqncy" ColumnName="DividendFrqncy" />
+          <ScalarProperty Name="DividendAmount" ColumnName="DividendAmount" />
+          <ScalarProperty Name="PayableDate" ColumnName="PayableDate" />
+          <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+          <ScalarProperty Name="ExDate" ColumnName="ExDate" />
+          <ScalarProperty Name="DeclaredDate" ColumnName="DeclaredDate" />
+          <ScalarProperty Name="isin" ColumnName="isin" />
+          <ScalarProperty Name="symbolId" ColumnName="symbolId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QtyByAccounts">
+      <EntityTypeMapping TypeName="EXANTE_testModel.QtyByAccounts">
+        <MappingFragment StoreEntitySet="QtyByAccounts">
+          <ScalarProperty Name="Cp" ColumnName="Cp" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="isin" ColumnName="isin" />
+          <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+          <ScalarProperty Name="LastTradeDate" ColumnName="LastTradeDate" />
+          <ScalarProperty Name="ExDate" ColumnName="ExDate" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Account_id" ColumnName="Account_id" />
+          <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cpmapping">
+      <EntityTypeMapping TypeName="EXANTE_testModel.cpmapping">
+        <MappingFragment StoreEntitySet="cpmapping">
+          <ScalarProperty Name="MaltaEntity" ColumnName="MaltaEntity" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="bosettcp" ColumnName="bosettcp" />
+          <ScalarProperty Name="cp" ColumnName="cp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CpCost">
+      <EntityTypeMapping TypeName="EXANTE_testModel.CpCost">
+        <MappingFragment StoreEntitySet="CpCost">
+          <ScalarProperty Name="fullid" ColumnName="fullid" />
+          <ScalarProperty Name="BOCcy" ColumnName="BOCcy" />
+          <ScalarProperty Name="CpClearingCCY" ColumnName="CpClearingCCY" />
+          <ScalarProperty Name="CpExchCcy" ColumnName="CpExchCcy" />
+          <ScalarProperty Name="CpFee" ColumnName="CpFee" />
+          <ScalarProperty Name="ExchFee" ColumnName="ExchFee" />
+          <ScalarProperty Name="BOFee" ColumnName="BOFee" />
+          <ScalarProperty Name="NumberOfTrades" ColumnName="NumberOfTrades" />
+          <ScalarProperty Name="SumQty" ColumnName="SumQty" />
+          <ScalarProperty Name="CP" ColumnName="CP" />
+          <ScalarProperty Name="BOCp" ColumnName="BOCp" />
+          <ScalarProperty Name="CPsymbol" ColumnName="CPsymbol" />
+          <ScalarProperty Name="BOsymbol" ColumnName="BOsymbol" />
+          <ScalarProperty Name="account" ColumnName="account" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FT">
+      <EntityTypeMapping TypeName="EXANTE_testModel.FT">
+        <MappingFragment StoreEntitySet="FT">
+          <ScalarProperty Name="Posted" ColumnName="Posted" />
+          <ScalarProperty Name="counterccy" ColumnName="counterccy" />
+          <ScalarProperty Name="ValueCCY" ColumnName="ValueCCY" />
+          <ScalarProperty Name="JOURNALACCOUNTCODE" ColumnName="JOURNALACCOUNTCODE" />
+          <ScalarProperty Name="GrossPositionIndicator" ColumnName="GrossPositionIndicator" />
+          <ScalarProperty Name="TradeDate" ColumnName="TradeDate" />
+          <ScalarProperty Name="ValueDate" ColumnName="ValueDate" />
+          <ScalarProperty Name="BOSymbol" ColumnName="BOSymbol" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="Reference" ColumnName="Reference" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="brocker" ColumnName="brocker" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="ccy" ColumnName="ccy" />
+          <ScalarProperty Name="symbol" ColumnName="symbol" />
+          <ScalarProperty Name="account_id" ColumnName="account_id" />
+          <ScalarProperty Name="cp" ColumnName="cp" />
+          <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+          <ScalarProperty Name="fullid" ColumnName="fullid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emir">
+      <EntityTypeMapping TypeName="EXANTE_testModel.Emir">
+        <MappingFragment StoreEntitySet="Emir">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="cp" ColumnName="cp" />
+          <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+          <ScalarProperty Name="Reporting_TimeStamp" ColumnName="Reporting TimeStamp" />
+          <ScalarProperty Name="Event_Timestamp" ColumnName="Event Timestamp" />
+          <ScalarProperty Name="Internal_ID" ColumnName="Internal ID" />
+          <ScalarProperty Name="Instrument_Description" ColumnName="Instrument Description" />
+          <ScalarProperty Name="PUTI" ColumnName="PUTI" />
+          <ScalarProperty Name="Notional_2" ColumnName="Notional 2" />
+          <ScalarProperty Name="Message_Type" ColumnName="Message Type" />
+          <ScalarProperty Name="Action_Type_Details" ColumnName="Action Type Details" />
+          <ScalarProperty Name="Action_Type" ColumnName="Action Type" />
+          <ScalarProperty Name="Strike_Price" ColumnName="Strike Price" />
+          <ScalarProperty Name="Option_Exercise_Type" ColumnName="Option Exercise Type" />
+          <ScalarProperty Name="Put___Call" ColumnName="Put / Call" />
+          <ScalarProperty Name="Price_Per_Time_Interval_Quantities" ColumnName="Price Per Time Interval Quantities" />
+          <ScalarProperty Name="Quantity_Unit" ColumnName="Quantity Unit" />
+          <ScalarProperty Name="Contract_Capacity" ColumnName="Contract Capacity" />
+          <ScalarProperty Name="Delivery_End_Timestamp" ColumnName="Delivery End Timestamp" />
+          <ScalarProperty Name="Delivery_Start_Timestamp" ColumnName="Delivery Start Timestamp" />
+          <ScalarProperty Name="Load_Type" ColumnName="Load Type" />
+          <ScalarProperty Name="Interconnection_Point" ColumnName="Interconnection Point" />
+          <ScalarProperty Name="Delivery_Point" ColumnName="Delivery Point" />
+          <ScalarProperty Name="Commodity_Details" ColumnName="Commodity Details" />
+          <ScalarProperty Name="Commodity_Base" ColumnName="Commodity Base" />
+          <ScalarProperty Name="Exchange_Rate_Basis" ColumnName="Exchange Rate Basis" />
+          <ScalarProperty Name="Forward_Exchange_Rate" ColumnName="Forward Exchange Rate" />
+          <ScalarProperty Name="Exchange_Rate_1" ColumnName="Exchange Rate 1" />
+          <ScalarProperty Name="Currency_2" ColumnName="Currency 2" />
+          <ScalarProperty Name="Floating_Rate_Leg_2" ColumnName="Floating Rate Leg 2" />
+          <ScalarProperty Name="Floating_Rate_Leg_1" ColumnName="Floating Rate Leg 1" />
+          <ScalarProperty Name="Floating_Rate_Reset_Frequency" ColumnName="Floating Rate Reset Frequency" />
+          <ScalarProperty Name="Floating_Rate_Payment_Frequency" ColumnName="Floating Rate Payment Frequency" />
+          <ScalarProperty Name="Fixed_Leg_Payment_Frequency" ColumnName="Fixed Leg Payment Frequency" />
+          <ScalarProperty Name="Fixed_Rate_Day_Count" ColumnName="Fixed Rate Day Count" />
+          <ScalarProperty Name="Fixed_Rate_Leg_2" ColumnName="Fixed Rate Leg 2" />
+          <ScalarProperty Name="Fixed_Rate_Leg_1" ColumnName="Fixed Rate Leg 1" />
+          <ScalarProperty Name="Intragroup" ColumnName="Intragroup" />
+          <ScalarProperty Name="CCP_ID_Type" ColumnName="CCP ID Type" />
+          <ScalarProperty Name="CCP_ID" ColumnName="CCP ID" />
+          <ScalarProperty Name="Clearing_Timestamp" ColumnName="Clearing Timestamp" />
+          <ScalarProperty Name="Cleared" ColumnName="Cleared" />
+          <ScalarProperty Name="Clearing_Obligation" ColumnName="Clearing Obligation" />
+          <ScalarProperty Name="Confirmation_Type" ColumnName="Confirmation Type" />
+          <ScalarProperty Name="Confirmation_Timestamp" ColumnName="Confirmation Timestamp" />
+          <ScalarProperty Name="Master_Agreement_Version" ColumnName="Master Agreement Version" />
+          <ScalarProperty Name="Master_Agreement" ColumnName="Master Agreement" />
+          <ScalarProperty Name="Settlement_Date" ColumnName="Settlement Date" />
+          <ScalarProperty Name="Termination_Date" ColumnName="Termination Date" />
+          <ScalarProperty Name="Maturity_Date" ColumnName="Maturity Date" />
+          <ScalarProperty Name="Effective_Date" ColumnName="Effective Date" />
+          <ScalarProperty Name="Execution_Timestamp" ColumnName="Execution Timestamp" />
+          <ScalarProperty Name="Delivery_Type" ColumnName="Delivery Type" />
+          <ScalarProperty Name="Upfront_Payment_Currency" ColumnName="Upfront Payment Currency" />
+          <ScalarProperty Name="Up_Front_Payment" ColumnName="Up Front Payment" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price_Multiplier" ColumnName="Price Multiplier" />
+          <ScalarProperty Name="Notional" ColumnName="Notional" />
+          <ScalarProperty Name="Price_Notation" ColumnName="Price Notation" />
+          <ScalarProperty Name="Price___Rate" ColumnName="Price / Rate" />
+          <ScalarProperty Name="Compression_Exercise" ColumnName="Compression Exercise" />
+          <ScalarProperty Name="Venue_ID" ColumnName="Venue ID" />
+          <ScalarProperty Name="MiFID_Transaction_Reference_Number" ColumnName="MiFID Transaction Reference Number" />
+          <ScalarProperty Name="UTI" ColumnName="UTI" />
+          <ScalarProperty Name="Deliverable_Currency" ColumnName="Deliverable Currency" />
+          <ScalarProperty Name="Notional_Currency_2" ColumnName="Notional Currency 2" />
+          <ScalarProperty Name="Notional_Currency_1" ColumnName="Notional Currency 1" />
+          <ScalarProperty Name="Underlying_Instrument_ID_Type" ColumnName="Underlying Instrument ID Type" />
+          <ScalarProperty Name="Underlying_Instrument_ID" ColumnName="Underlying Instrument ID" />
+          <ScalarProperty Name="Instrument_Classification" ColumnName="Instrument Classification" />
+          <ScalarProperty Name="ETD_Asset_Class_Type" ColumnName="ETD Asset Class Type" />
+          <ScalarProperty Name="Instrument_ID" ColumnName="Instrument ID" />
+          <ScalarProperty Name="Instrument_ID_Taxonomy" ColumnName="Instrument ID Taxonomy" />
+          <ScalarProperty Name="Fund_Manager_ID_Type" ColumnName="Fund Manager ID Type" />
+          <ScalarProperty Name="Fund_Manager_ID" ColumnName="Fund Manager ID" />
+          <ScalarProperty Name="Collateral_Value_Currency" ColumnName="Collateral Value Currency" />
+          <ScalarProperty Name="Collateral_Value" ColumnName="Collateral Value" />
+          <ScalarProperty Name="Collateral_Portfolio_Code" ColumnName="Collateral Portfolio Code" />
+          <ScalarProperty Name="Collateral_Portfolio" ColumnName="Collateral Portfolio" />
+          <ScalarProperty Name="Collateral_Type" ColumnName="Collateral Type" />
+          <ScalarProperty Name="Valuation_Type" ColumnName="Valuation Type" />
+          <ScalarProperty Name="Valuation_Time" ColumnName="Valuation Time" />
+          <ScalarProperty Name="Valuation_Date" ColumnName="Valuation Date" />
+          <ScalarProperty Name="Mark_to_Market_Currency" ColumnName="Mark to Market Currency" />
+          <ScalarProperty Name="Mark_to_Market_Value" ColumnName="Mark to Market Value" />
+          <ScalarProperty Name="Above_Clearing_Threshold" ColumnName="Above Clearing Threshold" />
+          <ScalarProperty Name="Commercial___Treasury_Activity" ColumnName="Commercial / Treasury Activity" />
+          <ScalarProperty Name="Counterparty_EEA_Status" ColumnName="Counterparty EEA Status" />
+          <ScalarProperty Name="Buy___Sell_Indicator" ColumnName="Buy / Sell Indicator" />
+          <ScalarProperty Name="Trading_Capacity" ColumnName="Trading Capacity" />
+          <ScalarProperty Name="Beneficiary_ID_Type" ColumnName="Beneficiary ID Type" />
+          <ScalarProperty Name="Beneficiary_ID" ColumnName="Beneficiary ID" />
+          <ScalarProperty Name="Clearing_Member_ID_Type" ColumnName="Clearing Member ID Type" />
+          <ScalarProperty Name="Clearing_Member_ID" ColumnName="Clearing Member ID" />
+          <ScalarProperty Name="Submitting_Entity_ID_Type" ColumnName="Submitting Entity ID Type" />
+          <ScalarProperty Name="Submitting_Entity_ID" ColumnName="Submitting Entity ID" />
+          <ScalarProperty Name="Broker_ID_Type" ColumnName="Broker ID Type" />
+          <ScalarProperty Name="Broker_ID" ColumnName="Broker ID" />
+          <ScalarProperty Name="Reporting_Firm_Financial_Status" ColumnName="Reporting Firm Financial Status" />
+          <ScalarProperty Name="Reporting_Firm_Corporate_Sector" ColumnName="Reporting Firm Corporate Sector" />
+          <ScalarProperty Name="Reporting_Firm_Country_Code_of_Branch" ColumnName="Reporting Firm Country Code of Branch" />
+          <ScalarProperty Name="Reporting_Firm_Registered_Office" ColumnName="Reporting Firm Registered Office" />
+          <ScalarProperty Name="Reporting_Firm_Corporate_Name" ColumnName="Reporting Firm Corporate Name" />
+          <ScalarProperty Name="Other_Counterparty_ID_Type" ColumnName="Other Counterparty ID Type" />
+          <ScalarProperty Name="Other_Counterparty_ID" ColumnName="Other Counterparty ID" />
+          <ScalarProperty Name="Reporting_Firm_ID" ColumnName="Reporting Firm ID" />
+          <ScalarProperty Name="Common_Data_Delegated" ColumnName="Common Data Delegated" />
+          <ScalarProperty Name="Pre_novation_UTI" ColumnName="Pre-novation UTI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emir_Mapping">
+      <EntityTypeMapping TypeName="EXANTE_testModel.Emir_Mapping">
+        <MappingFragment StoreEntitySet="Emir_Mapping">
+          <ScalarProperty Name="FixedLegPaymentFrequency" ColumnName="FixedLegPaymentFrequency" />
+          <ScalarProperty Name="FixedRateDayCount" ColumnName="FixedRateDayCount" />
+          <ScalarProperty Name="FixedRateLeg1" ColumnName="FixedRateLeg1" />
+          <ScalarProperty Name="InstrumentDescription" ColumnName="InstrumentDescription" />
+          <ScalarProperty Name="CpMtyPrice" ColumnName="CpMtyPrice" />
+          <ScalarProperty Name="TimeDifference" ColumnName="TimeDifference" />
+          <ScalarProperty Name="NotionalCurrency2" ColumnName="NotionalCurrency2" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="ForwardExchangeRateMty" ColumnName="ForwardExchangeRateMty" />
+          <ScalarProperty Name="OptionExerciseType" ColumnName="OptionExerciseType" />
+          <ScalarProperty Name="cStrikePrice" ColumnName="cStrikePrice" />
+          <ScalarProperty Name="cPutCall" ColumnName="cPutCall" />
+          <ScalarProperty Name="OptionType" ColumnName="OptionType" />
+          <ScalarProperty Name="CPValueDate" ColumnName="CPValueDate" />
+          <ScalarProperty Name="MaturityDate" ColumnName="MaturityDate" />
+          <ScalarProperty Name="ExchangeRateBasis" ColumnName="ExchangeRateBasis" />
+          <ScalarProperty Name="Currency2" ColumnName="Currency2" />
+          <ScalarProperty Name="FloatingRateLeg2" ColumnName="FloatingRateLeg2" />
+          <ScalarProperty Name="FloatingRateResetFrequency" ColumnName="FloatingRateResetFrequency" />
+          <ScalarProperty Name="FloatingRatePaymentFrequency" ColumnName="FloatingRatePaymentFrequency" />
+          <ScalarProperty Name="UnderlyingInstrumentIDType" ColumnName="UnderlyingInstrumentIDType" />
+          <ScalarProperty Name="UnderlyingInstrumentID" ColumnName="UnderlyingInstrumentID" />
+          <ScalarProperty Name="BOSymbol" ColumnName="BOSymbol" />
+          <ScalarProperty Name="cBuySell" ColumnName="cBuySell" />
+          <ScalarProperty Name="cp" ColumnName="cp" />
+          <ScalarProperty Name="Delimeter" ColumnName="Delimeter" />
+          <ScalarProperty Name="cLineStart" ColumnName="cLineStart" />
+          <ScalarProperty Name="filetype" ColumnName="filetype" />
+          <ScalarProperty Name="fullid" ColumnName="fullid" />
+          <ScalarProperty Name="CommodityDetails" ColumnName="CommodityDetails" />
+          <ScalarProperty Name="CommodityBase" ColumnName="CommodityBase" />
+          <ScalarProperty Name="Cleared" ColumnName="Cleared" />
+          <ScalarProperty Name="ClearingObligation" ColumnName="ClearingObligation" />
+          <ScalarProperty Name="ConfirmationType" ColumnName="ConfirmationType" />
+          <ScalarProperty Name="DeliveryType" ColumnName="DeliveryType" />
+          <ScalarProperty Name="PriceMultiplier" ColumnName="PriceMultiplier" />
+          <ScalarProperty Name="PriceNotation" ColumnName="PriceNotation" />
+          <ScalarProperty Name="DeliverableCurrency" ColumnName="DeliverableCurrency" />
+          <ScalarProperty Name="NotionalCurrency1" ColumnName="NotionalCurrency1" />
+          <ScalarProperty Name="InstrumentClassification" ColumnName="InstrumentClassification" />
+          <ScalarProperty Name="InstrumentID" ColumnName="InstrumentID" />
+          <ScalarProperty Name="InstrumentIDTaxonomy" ColumnName="InstrumentIDTaxonomy" />
+          <ScalarProperty Name="VenueId" ColumnName="VenueId" />
+          <ScalarProperty Name="CpSymbol" ColumnName="CpSymbol" />
+          <ScalarProperty Name="InstrumentType" ColumnName="InstrumentType" />
+          <ScalarProperty Name="Brocker" ColumnName="Brocker" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="md_swaps_googlespsh">
+      <EntityTypeMapping TypeName="EXANTE_testModel.md_swaps_googlespsh">
+        <MappingFragment StoreEntitySet="md_swaps_googlespsh">
+          <ScalarProperty Name="fullid" ColumnName="fullid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+          <ScalarProperty Name="ccy" ColumnName="ccy" />
+          <ScalarProperty Name="C1Payable" ColumnName="1Payable" />
+          <ScalarProperty Name="TradePnL" ColumnName="TradePnL" />
+          <ScalarProperty Name="PnLNearLeg" ColumnName="PnLNearLeg" />
+          <ScalarProperty Name="CurrentSpotPrice" ColumnName="CurrentSpotPrice" />
+          <ScalarProperty Name="NearLegSpotPrice" ColumnName="NearLegSpotPrice" />
+          <ScalarProperty Name="MarketPrice" ColumnName="MarketPrice" />
+          <ScalarProperty Name="OpenPrice" ColumnName="OpenPrice" />
+          <ScalarProperty Name="FarLeg" ColumnName="FarLeg" />
+          <ScalarProperty Name="NearLeg" ColumnName="NearLeg" />
+          <ScalarProperty Name="FaceValue" ColumnName="FaceValue" />
+          <ScalarProperty Name="Pair" ColumnName="Pair" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="account" ColumnName="account" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RJO_listccy">
+      <EntityTypeMapping TypeName="EXANTE_testModel.RJO_listccy">
+        <MappingFragment StoreEntitySet="RJO_listccy">
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Ccy" ColumnName="Ccy" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
