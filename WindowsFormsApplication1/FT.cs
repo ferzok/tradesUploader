@@ -36,5 +36,6 @@ namespace WindowsFormsApplication1
         public Nullable<double> ValueCCY { get; set; }
         public string counterccy { get; set; }
         public Nullable<System.DateTime> Posted { get; set; }
+        public string orderId { get; set; }
     }
 }

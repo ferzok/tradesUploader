@@ -552,6 +552,7 @@
     <EntitySetMapping Name="FT">
       <EntityTypeMapping TypeName="EXANTE_testModel.FT">
         <MappingFragment StoreEntitySet="FT">
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
           <ScalarProperty Name="Posted" ColumnName="Posted" />
           <ScalarProperty Name="counterccy" ColumnName="counterccy" />
           <ScalarProperty Name="ValueCCY" ColumnName="ValueCCY" />

@@ -42,7 +42,7 @@ namespace WindowsFormsApplication1
         public Nullable<double> settlementCurrencyMovement { get; set; }
         public Nullable<double> exchangeCommission { get; set; }
         public string settlementCounterparty { get; set; }
-        public Nullable<long> transferId { get; set; }
+        public string transferId { get; set; }
         public string clientCounterparty { get; set; }
         public string exanteCounterparty { get; set; }
     }

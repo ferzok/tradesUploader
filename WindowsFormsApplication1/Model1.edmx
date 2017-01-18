@@ -165,7 +165,7 @@
           <Property Name="ReportDateFormat" Type="varchar" MaxLength="10" />
           <Property Name="cAccount" Type="int" />
           <Property Name="cInterest" Type="int" />
-          <Property Name="TimeFormat" Type="varchar" MaxLength="10" />
+          <Property Name="TimeFormat" Type="varchar" MaxLength="20" />
           <Property Name="cTradeId" Type="int" />
         </EntityType>
         <EntityType Name="Contracts">
@@ -558,6 +558,7 @@
           <Property Name="ValueCCY" Type="double" />
           <Property Name="counterccy" Type="varchar" MaxLength="3" />
           <Property Name="Posted" Type="timestamp" />
+          <Property Name="orderId" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Ftbo">
           <Key>
@@ -591,7 +592,7 @@
           <Property Name="settlementCurrencyMovement" Type="double" />
           <Property Name="exchangeCommission" Type="double" />
           <Property Name="settlementCounterparty" Type="varchar" MaxLength="200" />
-          <Property Name="transferId" Type="bigint" />
+          <Property Name="transferId" Type="varchar" MaxLength="100" />
           <Property Name="clientCounterparty" Type="varchar" MaxLength="50" />
           <Property Name="exanteCounterparty" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -1128,7 +1129,7 @@
           <Property Type="Double" Name="settlementCurrencyMovement" />
           <Property Type="Double" Name="exchangeCommission" />
           <Property Type="String" Name="settlementCounterparty" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Int64" Name="transferId" />
+          <Property Type="String" Name="transferId" />
           <Property Type="String" Name="clientCounterparty" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="exanteCounterparty" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
@@ -1189,7 +1190,7 @@
           <Property Type="Int32" Name="cPriceSell" />
           <Property Type="Int32" Name="cAccount" />
           <Property Type="Int32" Name="cInterest" />
-          <Property Type="String" Name="TimeFormat" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TimeFormat" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="cTradeId" />
           <Property Type="String" Name="Account" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
@@ -1372,6 +1373,7 @@
           <Property Type="Double" Name="ValueCCY" />
           <Property Type="String" Name="counterccy" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="Posted" />
+          <Property Type="String" Name="orderId" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Emir">
           <Key>
@@ -2126,6 +2128,7 @@
           <EntitySetMapping Name="FT">
             <EntityTypeMapping TypeName="EXANTE_testModel.FT">
               <MappingFragment StoreEntitySet="FT">
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
                 <ScalarProperty Name="Posted" ColumnName="Posted" />
                 <ScalarProperty Name="counterccy" ColumnName="counterccy" />
                 <ScalarProperty Name="ValueCCY" ColumnName="ValueCCY" />

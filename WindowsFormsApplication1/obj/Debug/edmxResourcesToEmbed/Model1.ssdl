@@ -553,6 +553,7 @@
     <Property Name="ValueCCY" Type="double" />
     <Property Name="counterccy" Type="varchar" MaxLength="3" />
     <Property Name="Posted" Type="timestamp" />
+    <Property Name="orderId" Type="varchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="Ftbo">
     <Key>
@@ -586,7 +587,7 @@
     <Property Name="settlementCurrencyMovement" Type="double" />
     <Property Name="exchangeCommission" Type="double" />
     <Property Name="settlementCounterparty" Type="varchar" MaxLength="200" />
-    <Property Name="transferId" Type="bigint" />
+    <Property Name="transferId" Type="varchar" MaxLength="100" />
     <Property Name="clientCounterparty" Type="varchar" MaxLength="50" />
     <Property Name="exanteCounterparty" Type="varchar" MaxLength="50" />
   </EntityType>

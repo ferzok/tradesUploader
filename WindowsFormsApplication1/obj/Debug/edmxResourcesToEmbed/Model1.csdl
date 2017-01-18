@@ -339,7 +339,7 @@
     <Property Type="Double" Name="settlementCurrencyMovement" />
     <Property Type="Double" Name="exchangeCommission" />
     <Property Type="String" Name="settlementCounterparty" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Type="Int64" Name="transferId" />
+    <Property Type="String" Name="transferId" />
     <Property Type="String" Name="clientCounterparty" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="exanteCounterparty" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
@@ -583,6 +583,7 @@
     <Property Type="Double" Name="ValueCCY" />
     <Property Type="String" Name="counterccy" MaxLength="3" FixedLength="false" Unicode="false" />
     <Property Type="DateTime" Name="Posted" />
+    <Property Type="String" Name="orderId" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Emir">
     <Key>

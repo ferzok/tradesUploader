@@ -38,7 +38,7 @@ namespace WindowsFormsApplication1
             this.label2 = new System.Windows.Forms.Label();
             this.Fortsnextday = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
-            this.ABNDate = new System.Windows.Forms.DateTimePicker();
+            this.InputDate = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.ADSS = new System.Windows.Forms.Button();
@@ -87,7 +87,6 @@ namespace WindowsFormsApplication1
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
@@ -99,13 +98,15 @@ namespace WindowsFormsApplication1
             this.button24 = new System.Windows.Forms.Button();
             this.button25 = new System.Windows.Forms.Button();
             this.button26 = new System.Windows.Forms.Button();
-            this.button27 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button28 = new System.Windows.Forms.Button();
             this.button29 = new System.Windows.Forms.Button();
             this.checkBoxMalta = new System.Windows.Forms.CheckBox();
             this.button30 = new System.Windows.Forms.Button();
+            this.button31 = new System.Windows.Forms.Button();
+            this.button32 = new System.Windows.Forms.Button();
+            this.button33 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -114,7 +115,7 @@ namespace WindowsFormsApplication1
             // 
             this.TradesParser.Location = new System.Drawing.Point(188, 63);
             this.TradesParser.Name = "TradesParser";
-            this.TradesParser.Size = new System.Drawing.Size(173, 29);
+            this.TradesParser.Size = new System.Drawing.Size(86, 29);
             this.TradesParser.TabIndex = 0;
             this.TradesParser.Text = "Trades parser";
             this.TradesParser.UseVisualStyleBackColor = true;
@@ -170,13 +171,13 @@ namespace WindowsFormsApplication1
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.ABNReconButtonClick);
             // 
-            // ABNDate
+            // InputDate
             // 
-            this.ABNDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.ABNDate.Location = new System.Drawing.Point(104, 95);
-            this.ABNDate.Name = "ABNDate";
-            this.ABNDate.Size = new System.Drawing.Size(72, 20);
-            this.ABNDate.TabIndex = 8;
+            this.InputDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.InputDate.Location = new System.Drawing.Point(104, 95);
+            this.InputDate.Name = "InputDate";
+            this.InputDate.Size = new System.Drawing.Size(72, 20);
+            this.InputDate.TabIndex = 8;
             // 
             // label3
             // 
@@ -341,7 +342,7 @@ namespace WindowsFormsApplication1
             this.procedures});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(727, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(649, 24);
             this.menuStrip1.TabIndex = 36;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -360,6 +361,7 @@ namespace WindowsFormsApplication1
             this.procedures.Name = "procedures";
             this.procedures.Size = new System.Drawing.Size(45, 20);
             this.procedures.Text = "Func";
+            this.procedures.Click += new System.EventHandler(this.procedures_Click);
             // 
             // aBNFTParsingToolStripMenuItem
             // 
@@ -576,9 +578,9 @@ namespace WindowsFormsApplication1
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(370, 210);
+            this.button6.Location = new System.Drawing.Point(367, 210);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(72, 23);
+            this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 52;
             this.button6.Text = "Nissan";
             this.button6.UseVisualStyleBackColor = true;
@@ -624,15 +626,6 @@ namespace WindowsFormsApplication1
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(466, 124);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 33);
-            this.button15.TabIndex = 57;
-            this.button15.Text = "Mac Emir";
-            this.button15.UseVisualStyleBackColor = true;
-            // 
             // button16
             // 
             this.button16.Location = new System.Drawing.Point(138, 219);
@@ -649,7 +642,7 @@ namespace WindowsFormsApplication1
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(73, 25);
             this.button17.TabIndex = 59;
-            this.button17.Text = "MT";
+            this.button17.Text = "MT4";
             this.button17.UseVisualStyleBackColor = true;
             this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
@@ -695,7 +688,7 @@ namespace WindowsFormsApplication1
             // 
             // button22
             // 
-            this.button22.Location = new System.Drawing.Point(367, 179);
+            this.button22.Location = new System.Drawing.Point(467, 125);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(75, 23);
             this.button22.TabIndex = 64;
@@ -715,7 +708,7 @@ namespace WindowsFormsApplication1
             // 
             // button24
             // 
-            this.button24.Location = new System.Drawing.Point(464, 161);
+            this.button24.Location = new System.Drawing.Point(467, 158);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(75, 23);
             this.button24.TabIndex = 66;
@@ -735,23 +728,13 @@ namespace WindowsFormsApplication1
             // 
             // button26
             // 
-            this.button26.Location = new System.Drawing.Point(548, 161);
+            this.button26.Location = new System.Drawing.Point(547, 158);
             this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(83, 23);
+            this.button26.Size = new System.Drawing.Size(71, 23);
             this.button26.TabIndex = 68;
             this.button26.Text = "Rene GLF";
             this.button26.UseVisualStyleBackColor = true;
             this.button26.Click += new System.EventHandler(this.button26_Click);
-            // 
-            // button27
-            // 
-            this.button27.Location = new System.Drawing.Point(548, 124);
-            this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(75, 23);
-            this.button27.TabIndex = 69;
-            this.button27.Text = "RJO FT";
-            this.button27.UseVisualStyleBackColor = true;
-            this.button27.Click += new System.EventHandler(this.button27_Click);
             // 
             // button8
             // 
@@ -765,9 +748,9 @@ namespace WindowsFormsApplication1
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(547, 225);
+            this.button11.Location = new System.Drawing.Point(367, 181);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(84, 23);
+            this.button11.Size = new System.Drawing.Size(75, 23);
             this.button11.TabIndex = 71;
             this.button11.Text = "Axi";
             this.button11.UseVisualStyleBackColor = true;
@@ -779,7 +762,7 @@ namespace WindowsFormsApplication1
             this.button28.Name = "button28";
             this.button28.Size = new System.Drawing.Size(83, 23);
             this.button28.TabIndex = 72;
-            this.button28.Text = "LMAX";
+            this.button28.Text = "Belarta LMAX";
             this.button28.UseVisualStyleBackColor = true;
             this.button28.Click += new System.EventHandler(this.button28_Click);
             // 
@@ -807,7 +790,7 @@ namespace WindowsFormsApplication1
             // 
             // button30
             // 
-            this.button30.Location = new System.Drawing.Point(638, 161);
+            this.button30.Location = new System.Drawing.Point(547, 125);
             this.button30.Name = "button30";
             this.button30.Size = new System.Drawing.Size(71, 23);
             this.button30.TabIndex = 75;
@@ -815,16 +798,48 @@ namespace WindowsFormsApplication1
             this.button30.UseVisualStyleBackColor = true;
             this.button30.Click += new System.EventHandler(this.button30_Click);
             // 
+            // button31
+            // 
+            this.button31.Location = new System.Drawing.Point(548, 224);
+            this.button31.Name = "button31";
+            this.button31.Size = new System.Drawing.Size(75, 23);
+            this.button31.TabIndex = 76;
+            this.button31.Text = "Expiration";
+            this.button31.UseVisualStyleBackColor = true;
+            this.button31.Click += new System.EventHandler(this.button31_Click);
+            // 
+            // button32
+            // 
+            this.button32.Location = new System.Drawing.Point(276, 63);
+            this.button32.Name = "button32";
+            this.button32.Size = new System.Drawing.Size(85, 29);
+            this.button32.TabIndex = 77;
+            this.button32.Text = "AutoUpdate";
+            this.button32.UseVisualStyleBackColor = true;
+            this.button32.Click += new System.EventHandler(this.button32_Click);
+            // 
+            // button33
+            // 
+            this.button33.Location = new System.Drawing.Point(548, 289);
+            this.button33.Name = "button33";
+            this.button33.Size = new System.Drawing.Size(75, 23);
+            this.button33.TabIndex = 78;
+            this.button33.Text = "Belarta BCS";
+            this.button33.UseVisualStyleBackColor = true;
+            this.button33.Click += new System.EventHandler(this.button33_Click);
+            // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(727, 413);
+            this.ClientSize = new System.Drawing.Size(649, 413);
+            this.Controls.Add(this.button33);
+            this.Controls.Add(this.button32);
+            this.Controls.Add(this.button31);
             this.Controls.Add(this.button30);
             this.Controls.Add(this.checkBoxMalta);
             this.Controls.Add(this.button29);
             this.Controls.Add(this.button28);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button8);
-            this.Controls.Add(this.button27);
             this.Controls.Add(this.button26);
             this.Controls.Add(this.button25);
             this.Controls.Add(this.button24);
@@ -836,7 +851,6 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.button18);
             this.Controls.Add(this.button17);
             this.Controls.Add(this.button16);
-            this.Controls.Add(this.button15);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button12);
@@ -868,7 +882,7 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.CliffCheckBox);
             this.Controls.Add(this.MultyTradesCheckBox);
             this.Controls.Add(this.ADSS);
-            this.Controls.Add(this.ABNDate);
+            this.Controls.Add(this.InputDate);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Fortsnextday);
@@ -898,7 +912,7 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker Fortsnextday;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DateTimePicker ABNDate;
+        private System.Windows.Forms.DateTimePicker InputDate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button ADSS;
@@ -940,7 +954,6 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
@@ -953,7 +966,6 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.Button button25;
         private System.Windows.Forms.Button button26;
-        private System.Windows.Forms.Button button27;
         private System.Windows.Forms.ToolStripMenuItem cFHToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cFHReconciliationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cFHBalanceToolStripMenuItem;
@@ -966,6 +978,9 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button button29;
         private System.Windows.Forms.CheckBox checkBoxMalta;
         private System.Windows.Forms.Button button30;
+        private System.Windows.Forms.Button button31;
+        private System.Windows.Forms.Button button32;
+        private System.Windows.Forms.Button button33;
     }
 }
 
