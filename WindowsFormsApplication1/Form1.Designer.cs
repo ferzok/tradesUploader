@@ -107,6 +107,8 @@ namespace WindowsFormsApplication1
             this.button31 = new System.Windows.Forms.Button();
             this.button32 = new System.Windows.Forms.Button();
             this.button33 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button27 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -828,9 +830,31 @@ namespace WindowsFormsApplication1
             this.button33.UseVisualStyleBackColor = true;
             this.button33.Click += new System.EventHandler(this.button33_Click);
             // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(548, 317);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(75, 23);
+            this.button15.TabIndex = 79;
+            this.button15.Text = "Post PerFee";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click_1);
+            // 
+            // button27
+            // 
+            this.button27.Location = new System.Drawing.Point(467, 55);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(75, 23);
+            this.button27.TabIndex = 80;
+            this.button27.Text = "RJO belarta";
+            this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.RJO_belarta_click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(649, 413);
+            this.Controls.Add(this.button27);
+            this.Controls.Add(this.button15);
             this.Controls.Add(this.button33);
             this.Controls.Add(this.button32);
             this.Controls.Add(this.button31);
@@ -981,6 +1005,8 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button button31;
         private System.Windows.Forms.Button button32;
         private System.Windows.Forms.Button button33;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button27;
     }
 }
 

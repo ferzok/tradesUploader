@@ -544,7 +544,7 @@
           <Property Name="ccy" Type="varchar" MaxLength="3" />
           <Property Name="value" Type="double" />
           <Property Name="brocker" Type="varchar" MaxLength="15" />
-          <Property Name="Type" Type="varchar" MaxLength="10" />
+          <Property Name="Type" Type="varchar" MaxLength="30" />
           <Property Name="Comment" Type="varchar" MaxLength="80" />
           <Property Name="Reference" Type="bigint" />
           <Property Name="User" Type="varchar" MaxLength="20" />
