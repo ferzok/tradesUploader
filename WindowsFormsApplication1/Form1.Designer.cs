@@ -69,27 +69,28 @@ namespace WindowsFormsApplication1
             this.aBNPositionParsingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.aBNFTParsingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.updateABNSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oSLParsingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oSLFeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oSLACIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oSLBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oSLDEXParsingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.BrockerComboBox = new System.Windows.Forms.ComboBox();
             this.checkBoxAllDates = new System.Windows.Forms.CheckBox();
-            this.OSL = new System.Windows.Forms.Button();
             this.RJOButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
@@ -114,9 +115,9 @@ namespace WindowsFormsApplication1
             // 
             // TradesParser
             // 
-            this.TradesParser.Location = new System.Drawing.Point(188, 63);
+            this.TradesParser.Location = new System.Drawing.Point(197, 100);
             this.TradesParser.Name = "TradesParser";
-            this.TradesParser.Size = new System.Drawing.Size(86, 29);
+            this.TradesParser.Size = new System.Drawing.Size(86, 27);
             this.TradesParser.TabIndex = 0;
             this.TradesParser.Text = "Trades parser";
             this.TradesParser.UseVisualStyleBackColor = true;
@@ -167,7 +168,7 @@ namespace WindowsFormsApplication1
             // 
             // ADSS
             // 
-            this.ADSS.Location = new System.Drawing.Point(271, 156);
+            this.ADSS.Location = new System.Drawing.Point(289, 160);
             this.ADSS.Name = "ADSS";
             this.ADSS.Size = new System.Drawing.Size(90, 25);
             this.ADSS.TabIndex = 14;
@@ -249,19 +250,19 @@ namespace WindowsFormsApplication1
             // 
             // VMOSL
             // 
-            this.VMOSL.Location = new System.Drawing.Point(138, 156);
+            this.VMOSL.Location = new System.Drawing.Point(127, 160);
             this.VMOSL.Name = "VMOSL";
-            this.VMOSL.Size = new System.Drawing.Size(56, 28);
+            this.VMOSL.Size = new System.Drawing.Size(75, 24);
             this.VMOSL.TabIndex = 27;
-            this.VMOSL.Text = "VM OSL";
+            this.VMOSL.Text = "VM";
             this.VMOSL.UseVisualStyleBackColor = true;
             this.VMOSL.Click += new System.EventHandler(this.VmClick);
             // 
             // Mac
             // 
-            this.Mac.Location = new System.Drawing.Point(138, 248);
+            this.Mac.Location = new System.Drawing.Point(289, 248);
             this.Mac.Name = "Mac";
-            this.Mac.Size = new System.Drawing.Size(56, 27);
+            this.Mac.Size = new System.Drawing.Size(90, 23);
             this.Mac.TabIndex = 28;
             this.Mac.Text = "Mac";
             this.Mac.UseVisualStyleBackColor = true;
@@ -269,9 +270,9 @@ namespace WindowsFormsApplication1
             // 
             // LEK
             // 
-            this.LEK.Location = new System.Drawing.Point(139, 123);
+            this.LEK.Location = new System.Drawing.Point(127, 133);
             this.LEK.Name = "LEK";
-            this.LEK.Size = new System.Drawing.Size(56, 27);
+            this.LEK.Size = new System.Drawing.Size(75, 21);
             this.LEK.TabIndex = 29;
             this.LEK.Text = "Lek";
             this.LEK.UseVisualStyleBackColor = true;
@@ -291,9 +292,9 @@ namespace WindowsFormsApplication1
             // 
             // PostToRecon
             // 
-            this.PostToRecon.Location = new System.Drawing.Point(371, 63);
+            this.PostToRecon.Location = new System.Drawing.Point(384, 100);
             this.PostToRecon.Name = "PostToRecon";
-            this.PostToRecon.Size = new System.Drawing.Size(88, 29);
+            this.PostToRecon.Size = new System.Drawing.Size(75, 25);
             this.PostToRecon.TabIndex = 34;
             this.PostToRecon.Text = "Post";
             this.PostToRecon.UseVisualStyleBackColor = true;
@@ -319,7 +320,8 @@ namespace WindowsFormsApplication1
             this.fastmatchToolStripMenuItem,
             this.cFHToolStripMenuItem,
             this.atonToolStripMenuItem,
-            this.aBNToolStripMenuItem});
+            this.aBNToolStripMenuItem,
+            this.oSLToolStripMenuItem});
             this.procedures.Name = "procedures";
             this.procedures.Size = new System.Drawing.Size(45, 20);
             this.procedures.Text = "Func";
@@ -445,6 +447,53 @@ namespace WindowsFormsApplication1
             this.updateABNSheetToolStripMenuItem.Text = "UpdateABNSheet";
             this.updateABNSheetToolStripMenuItem.Click += new System.EventHandler(this.updateABNSheetToolStripMenuItem_Click);
             // 
+            // oSLToolStripMenuItem
+            // 
+            this.oSLToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.oSLParsingToolStripMenuItem,
+            this.oSLFeesToolStripMenuItem,
+            this.oSLACIToolStripMenuItem,
+            this.oSLBalanceToolStripMenuItem,
+            this.oSLDEXParsingToolStripMenuItem});
+            this.oSLToolStripMenuItem.Name = "oSLToolStripMenuItem";
+            this.oSLToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.oSLToolStripMenuItem.Text = "OSL";
+            // 
+            // oSLParsingToolStripMenuItem
+            // 
+            this.oSLParsingToolStripMenuItem.Name = "oSLParsingToolStripMenuItem";
+            this.oSLParsingToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.oSLParsingToolStripMenuItem.Text = "OSL Parsing";
+            this.oSLParsingToolStripMenuItem.Click += new System.EventHandler(this.oSLParsingToolStripMenuItem_Click);
+            // 
+            // oSLFeesToolStripMenuItem
+            // 
+            this.oSLFeesToolStripMenuItem.Name = "oSLFeesToolStripMenuItem";
+            this.oSLFeesToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.oSLFeesToolStripMenuItem.Text = "OSL Post Fees";
+            this.oSLFeesToolStripMenuItem.Click += new System.EventHandler(this.oSLFeesToolStripMenuItem_Click);
+            // 
+            // oSLACIToolStripMenuItem
+            // 
+            this.oSLACIToolStripMenuItem.Name = "oSLACIToolStripMenuItem";
+            this.oSLACIToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.oSLACIToolStripMenuItem.Text = "OSL Post ACI";
+            this.oSLACIToolStripMenuItem.Click += new System.EventHandler(this.oSLACIToolStripMenuItem_Click);
+            // 
+            // oSLBalanceToolStripMenuItem
+            // 
+            this.oSLBalanceToolStripMenuItem.Name = "oSLBalanceToolStripMenuItem";
+            this.oSLBalanceToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.oSLBalanceToolStripMenuItem.Text = "OSL Balance";
+            this.oSLBalanceToolStripMenuItem.Click += new System.EventHandler(this.oSLBalanceToolStripMenuItem_Click);
+            // 
+            // oSLDEXParsingToolStripMenuItem
+            // 
+            this.oSLDEXParsingToolStripMenuItem.Name = "oSLDEXParsingToolStripMenuItem";
+            this.oSLDEXParsingToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.oSLDEXParsingToolStripMenuItem.Text = "OSL DEX Parsing";
+            this.oSLDEXParsingToolStripMenuItem.Click += new System.EventHandler(this.oSLDEXParsingToolStripMenuItem_Click);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -483,19 +532,9 @@ namespace WindowsFormsApplication1
             this.checkBoxAllDates.Text = "All dates";
             this.checkBoxAllDates.UseVisualStyleBackColor = true;
             // 
-            // OSL
-            // 
-            this.OSL.Location = new System.Drawing.Point(138, 191);
-            this.OSL.Name = "OSL";
-            this.OSL.Size = new System.Drawing.Size(56, 23);
-            this.OSL.TabIndex = 41;
-            this.OSL.Text = "OSL";
-            this.OSL.UseVisualStyleBackColor = true;
-            this.OSL.Click += new System.EventHandler(this.OSL_Click);
-            // 
             // RJOButton
             // 
-            this.RJOButton.Location = new System.Drawing.Point(367, 123);
+            this.RJOButton.Location = new System.Drawing.Point(384, 131);
             this.RJOButton.Name = "RJOButton";
             this.RJOButton.Size = new System.Drawing.Size(75, 23);
             this.RJOButton.TabIndex = 42;
@@ -505,17 +544,17 @@ namespace WindowsFormsApplication1
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(201, 155);
+            this.button2.Location = new System.Drawing.Point(208, 160);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(64, 29);
+            this.button2.Size = new System.Drawing.Size(75, 25);
             this.button2.TabIndex = 43;
-            this.button2.Text = "Send";
+            this.button2.Text = "Send VM";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(271, 189);
+            this.button3.Location = new System.Drawing.Point(289, 189);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(90, 25);
             this.button3.TabIndex = 44;
@@ -525,37 +564,17 @@ namespace WindowsFormsApplication1
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(200, 248);
+            this.button4.Location = new System.Drawing.Point(208, 248);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(65, 26);
+            this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 45;
             this.button4.Text = "Mac bal";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(201, 191);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(64, 24);
-            this.button5.TabIndex = 46;
-            this.button5.Text = "OSL Fees";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(201, 219);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(64, 23);
-            this.button7.TabIndex = 48;
-            this.button7.Text = "OSL Bal";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.GetOslBalance);
-            // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(367, 248);
+            this.button9.Location = new System.Drawing.Point(464, 316);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 50;
@@ -565,7 +584,7 @@ namespace WindowsFormsApplication1
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(367, 219);
+            this.button6.Location = new System.Drawing.Point(208, 131);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 52;
@@ -575,9 +594,9 @@ namespace WindowsFormsApplication1
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(271, 248);
+            this.button10.Location = new System.Drawing.Point(127, 248);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(90, 26);
+            this.button10.Size = new System.Drawing.Size(75, 23);
             this.button10.TabIndex = 53;
             this.button10.Text = "Mac position";
             this.button10.UseVisualStyleBackColor = true;
@@ -585,9 +604,9 @@ namespace WindowsFormsApplication1
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(201, 123);
+            this.button12.Location = new System.Drawing.Point(385, 248);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(64, 23);
+            this.button12.Size = new System.Drawing.Size(74, 23);
             this.button12.TabIndex = 54;
             this.button12.Text = "IS-PRIME";
             this.button12.UseVisualStyleBackColor = true;
@@ -595,7 +614,7 @@ namespace WindowsFormsApplication1
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(466, 195);
+            this.button13.Location = new System.Drawing.Point(466, 115);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(75, 23);
             this.button13.TabIndex = 55;
@@ -605,7 +624,7 @@ namespace WindowsFormsApplication1
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(466, 84);
+            this.button14.Location = new System.Drawing.Point(466, 144);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(75, 33);
             this.button14.TabIndex = 56;
@@ -613,19 +632,9 @@ namespace WindowsFormsApplication1
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
-            // button16
-            // 
-            this.button16.Location = new System.Drawing.Point(138, 219);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(56, 23);
-            this.button16.TabIndex = 58;
-            this.button16.Text = "OSL Int";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
-            // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(466, 224);
+            this.button17.Location = new System.Drawing.Point(548, 346);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(73, 25);
             this.button17.TabIndex = 59;
@@ -635,7 +644,7 @@ namespace WindowsFormsApplication1
             // 
             // button18
             // 
-            this.button18.Location = new System.Drawing.Point(464, 255);
+            this.button18.Location = new System.Drawing.Point(466, 224);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(75, 25);
             this.button18.TabIndex = 60;
@@ -643,21 +652,11 @@ namespace WindowsFormsApplication1
             this.button18.UseVisualStyleBackColor = true;
             this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
-            // button19
-            // 
-            this.button19.Location = new System.Drawing.Point(466, 287);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(75, 23);
-            this.button19.TabIndex = 61;
-            this.button19.Text = "OSL DEX";
-            this.button19.UseVisualStyleBackColor = true;
-            this.button19.Click += new System.EventHandler(this.DEXParsing);
-            // 
             // button20
             // 
-            this.button20.Location = new System.Drawing.Point(367, 157);
+            this.button20.Location = new System.Drawing.Point(384, 160);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(75, 23);
+            this.button20.Size = new System.Drawing.Size(75, 25);
             this.button20.TabIndex = 62;
             this.button20.Text = "RJO Cash";
             this.button20.UseVisualStyleBackColor = true;
@@ -675,7 +674,7 @@ namespace WindowsFormsApplication1
             // 
             // button22
             // 
-            this.button22.Location = new System.Drawing.Point(467, 125);
+            this.button22.Location = new System.Drawing.Point(127, 190);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(75, 23);
             this.button22.TabIndex = 64;
@@ -685,7 +684,7 @@ namespace WindowsFormsApplication1
             // 
             // button23
             // 
-            this.button23.Location = new System.Drawing.Point(547, 195);
+            this.button23.Location = new System.Drawing.Point(554, 191);
             this.button23.Name = "button23";
             this.button23.Size = new System.Drawing.Size(84, 23);
             this.button23.TabIndex = 65;
@@ -695,7 +694,7 @@ namespace WindowsFormsApplication1
             // 
             // button24
             // 
-            this.button24.Location = new System.Drawing.Point(467, 158);
+            this.button24.Location = new System.Drawing.Point(208, 219);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(75, 23);
             this.button24.TabIndex = 66;
@@ -705,7 +704,7 @@ namespace WindowsFormsApplication1
             // 
             // button25
             // 
-            this.button25.Location = new System.Drawing.Point(466, 317);
+            this.button25.Location = new System.Drawing.Point(384, 219);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(75, 23);
             this.button25.TabIndex = 67;
@@ -715,9 +714,9 @@ namespace WindowsFormsApplication1
             // 
             // button26
             // 
-            this.button26.Location = new System.Drawing.Point(547, 158);
+            this.button26.Location = new System.Drawing.Point(208, 191);
             this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(71, 23);
+            this.button26.Size = new System.Drawing.Size(75, 21);
             this.button26.TabIndex = 68;
             this.button26.Text = "Rene GLF";
             this.button26.UseVisualStyleBackColor = true;
@@ -725,7 +724,7 @@ namespace WindowsFormsApplication1
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(271, 219);
+            this.button8.Location = new System.Drawing.Point(289, 219);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(90, 23);
             this.button8.TabIndex = 70;
@@ -735,7 +734,7 @@ namespace WindowsFormsApplication1
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(367, 191);
+            this.button11.Location = new System.Drawing.Point(384, 189);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(75, 23);
             this.button11.TabIndex = 71;
@@ -745,9 +744,9 @@ namespace WindowsFormsApplication1
             // 
             // button28
             // 
-            this.button28.Location = new System.Drawing.Point(548, 257);
+            this.button28.Location = new System.Drawing.Point(466, 189);
             this.button28.Name = "button28";
-            this.button28.Size = new System.Drawing.Size(83, 23);
+            this.button28.Size = new System.Drawing.Size(82, 23);
             this.button28.TabIndex = 72;
             this.button28.Text = "Belarta LMAX";
             this.button28.UseVisualStyleBackColor = true;
@@ -755,7 +754,7 @@ namespace WindowsFormsApplication1
             // 
             // button29
             // 
-            this.button29.Location = new System.Drawing.Point(548, 84);
+            this.button29.Location = new System.Drawing.Point(554, 144);
             this.button29.Name = "button29";
             this.button29.Size = new System.Drawing.Size(75, 23);
             this.button29.TabIndex = 73;
@@ -777,9 +776,9 @@ namespace WindowsFormsApplication1
             // 
             // button30
             // 
-            this.button30.Location = new System.Drawing.Point(547, 125);
+            this.button30.Location = new System.Drawing.Point(127, 219);
             this.button30.Name = "button30";
-            this.button30.Size = new System.Drawing.Size(71, 23);
+            this.button30.Size = new System.Drawing.Size(75, 23);
             this.button30.TabIndex = 75;
             this.button30.Text = "Rene UMA";
             this.button30.UseVisualStyleBackColor = true;
@@ -787,7 +786,7 @@ namespace WindowsFormsApplication1
             // 
             // button31
             // 
-            this.button31.Location = new System.Drawing.Point(548, 224);
+            this.button31.Location = new System.Drawing.Point(554, 226);
             this.button31.Name = "button31";
             this.button31.Size = new System.Drawing.Size(75, 23);
             this.button31.TabIndex = 76;
@@ -797,9 +796,9 @@ namespace WindowsFormsApplication1
             // 
             // button32
             // 
-            this.button32.Location = new System.Drawing.Point(276, 63);
+            this.button32.Location = new System.Drawing.Point(289, 100);
             this.button32.Name = "button32";
-            this.button32.Size = new System.Drawing.Size(85, 29);
+            this.button32.Size = new System.Drawing.Size(90, 25);
             this.button32.TabIndex = 77;
             this.button32.Text = "AutoUpdate";
             this.button32.UseVisualStyleBackColor = true;
@@ -827,9 +826,9 @@ namespace WindowsFormsApplication1
             // 
             // button27
             // 
-            this.button27.Location = new System.Drawing.Point(272, 125);
+            this.button27.Location = new System.Drawing.Point(289, 131);
             this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(89, 23);
+            this.button27.Size = new System.Drawing.Size(90, 23);
             this.button27.TabIndex = 80;
             this.button27.Text = "RJO belarta";
             this.button27.UseVisualStyleBackColor = true;
@@ -856,23 +855,18 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.button22);
             this.Controls.Add(this.button21);
             this.Controls.Add(this.button20);
-            this.Controls.Add(this.button19);
             this.Controls.Add(this.button18);
             this.Controls.Add(this.button17);
-            this.Controls.Add(this.button16);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button9);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.RJOButton);
-            this.Controls.Add(this.OSL);
             this.Controls.Add(this.checkBoxAllDates);
             this.Controls.Add(this.BrockerComboBox);
             this.Controls.Add(this.label6);
@@ -937,13 +931,10 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox BrockerComboBox;
         private System.Windows.Forms.CheckBox checkBoxAllDates;
-        private System.Windows.Forms.Button OSL;
         private System.Windows.Forms.Button RJOButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.ToolStripMenuItem cpCostToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateOpenToolStripMenuItem;
@@ -953,10 +944,8 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
@@ -987,6 +976,12 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.ToolStripMenuItem aBNPositionParsingToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aBNFTParsingToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem updateABNSheetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oSLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oSLParsingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oSLFeesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oSLACIToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oSLBalanceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oSLDEXParsingToolStripMenuItem;
     }
 }
 

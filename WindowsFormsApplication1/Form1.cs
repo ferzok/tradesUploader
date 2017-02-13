@@ -3707,11 +3707,7 @@ break;*/
         }
 
 
-        private void OSL_Click(object sender, EventArgs e)
-        {
-            FORTSReconciliation("OPEN", null,true);
-        }
-
+       
         private void FORTSReconciliation(string cp, string identify,bool maltaentity)
         {
             DateTime reportdate = InputDate.Value; //todo Get report date from xml Processing date
@@ -8754,6 +8750,239 @@ private DateTime getDateFromPdfRJO(string txt)
             abn = null;
             GC.Collect();
             GC.WaitForPendingFinalizers();
+        }
+
+        private void oSLParsingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FORTSReconciliation("OPEN", null, true);
+        }
+
+        private void oSLFeesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //   const string conStr = "https://backoffice-recon.exante.eu:443/api/v1.5/accounts/"; // "ZAM1452.001/trade";
+            //   var token = GetToken("https://authdb-recon.exante.eu/api/1.0/auth/session", "backoffice");
+            const string conStr = "https://backoffice.exante.eu:443/api/v1.5/accounts/"; // "ZAM1452.001/trade";
+            string token = GetToken("https://authdb.exante.eu/api/1.0/auth/session", "backoffice", "prod");
+
+            DateTime reportdate = InputDate.Value;
+            var db = new EXANTE_Entities(_currentConnection);
+            DateTime nextdate = reportdate.AddDays(1);
+            var cptradefromDb = (from ft in db.FT
+                                 where ft.valid == 1 && ft.brocker == "OPEN" &&
+                                       ft.Type == "AF" &&
+                                       ft.ReportDate >= reportdate.Date && ft.ReportDate < (nextdate.Date) &&
+                                       ft.ValueCCY != 0
+                                       && ft.Reference == null
+                                 group ft by new { ft.account_id, ft.symbol, ft.ccy }
+                                     into g
+                                     select new
+                                     {
+                                         g.Key.account_id,
+                                         g.Key.symbol,
+                                         BOSymbol = g.Key.symbol,
+                                         value = g.Sum(t => t.value),
+                                         g.Key.ccy,
+                                         ValueCCY = g.Sum(t => t.ValueCCY)
+                                     }).ToList();
+            int tradesqty = 0;
+            foreach (var VARIABLE in cptradefromDb)
+            {
+                var p = new FTjson();
+                p.operationType = "COMMISSION";
+                p.comment = "Additional fees from cp:  " + VARIABLE.BOSymbol + "  for " + reportdate.ToShortDateString();
+                p.asset = VARIABLE.ccy;
+                p.symbolId = VARIABLE.BOSymbol;
+                //               p.asset = VARIABLE.counterccy;
+                p.accountId = VARIABLE.account_id;
+                p.amount = Math.Round((double)VARIABLE.value, 2).ToString();
+                p.timestamp = reportdate.ToString("yyyy-MM-dd HH:mm:ss");
+
+                string requestFTload = JsonConvert.SerializeObject(p);
+                if (!SendJson(requestFTload, conStr + VARIABLE.account_id + "/transaction", token))
+                 {
+                    LogTextBox.AppendText("\r\n Error in sending Left side VM to BO for : " + VARIABLE.account_id + " " +
+                                          VARIABLE.symbol);
+                }
+            }
+            if (tradesqty > 0)
+            {
+                db.SaveChanges();
+                db.Dispose();
+                LogTextBox.AppendText("\r\n Uploaded trades for " + reportdate.ToShortDateString() + ": " +
+                                      tradesqty.ToString() + "/" + cptradefromDb.Count);
+            }
+        }
+
+        private void oSLACIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //   const string conStr = "https://backoffice-recon.exante.eu:443/api/v1.5/accounts/"; // "ZAM1452.001/trade";
+            //   var token = GetToken("https://authdb-recon.exante.eu/api/1.0/auth/session", "backoffice");
+            const string conStr = "https://backoffice.exante.eu:443/api/v1.5/accounts/"; // "ZAM1452.001/trade";
+            string token = GetToken("https://authdb.exante.eu/api/1.0/auth/session", "backoffice", "prod");
+
+            DateTime reportdate = InputDate.Value;
+            var db = new EXANTE_Entities(_currentConnection);
+            DateTime nextdate = reportdate.AddDays(1);
+            var cptradefromDb = (from ft in db.FT
+                                 where ft.valid == 1 && ft.brocker == "OPEN" &&
+                                       ft.Type == "AI" &&
+                                       ft.ReportDate >= reportdate.Date && ft.ReportDate < (nextdate.Date) &&
+                                       ft.ValueCCY != 0
+                                       && ft.Reference == null
+                                 group ft by new { ft.account_id, ft.symbol, ft.ccy }
+                                     into g
+                                     select new
+                                     {
+                                         g.Key.account_id,
+                                         g.Key.symbol,
+                                         BOSymbol = g.Key.symbol,
+                                         value = g.Sum(t => t.value),
+                                         g.Key.ccy,
+                                         ValueCCY = g.Sum(t => t.ValueCCY)
+                                     }).ToList();
+            int tradesqty = 0;
+            foreach (var VARIABLE in cptradefromDb)
+            {
+                var p = new FTjson();
+                p.operationType = "COUPON PAYMENT";
+                p.comment = "Accrued interest from cp:  " + VARIABLE.BOSymbol + "  for " +
+                            reportdate.ToShortDateString();
+                p.asset = VARIABLE.ccy;
+                p.symbolId = VARIABLE.BOSymbol;
+                //               p.asset = VARIABLE.counterccy;
+                p.accountId = VARIABLE.account_id;
+                p.amount = Math.Round((double)VARIABLE.value, 2).ToString();
+                p.timestamp = reportdate.ToString("yyyy-MM-dd HH:mm:ss");
+
+                string requestFTload = JsonConvert.SerializeObject(p);
+                if (!SendJson(requestFTload, conStr + VARIABLE.account_id + "/transaction", token))
+                {
+                    LogTextBox.AppendText("\r\n Error in sending interest to BO for : " + VARIABLE.account_id + " " +
+                                          VARIABLE.symbol);
+                }
+            }
+            if (tradesqty > 0)
+            {
+                db.SaveChanges();
+                db.Dispose();
+                LogTextBox.AppendText("\r\n Uploaded trades for " + reportdate.ToShortDateString() + ": " +
+                                      tradesqty.ToString() + "/" + cptradefromDb.Count);
+            }
+        }
+
+        private void oSLBalanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GetRowBalance();
+        }
+
+        private void oSLDEXParsingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = openFileDialog2.ShowDialog();
+            if (result == DialogResult.OK) // Test result.
+            {
+                var db = new EXANTE_Entities(_currentConnection);
+                var reader = new StreamReader(openFileDialog2.FileName);
+                var allfromfile = new List<CpTrade>();
+                string lineFromFile = reader.ReadLine();
+                if (lineFromFile != null)
+                {
+                    while (!reader.EndOfStream &&
+                           !lineFromFile.Contains("F U T U R E S / O P T I O N S    C O N F I R M A T I O N S"))
+                    {
+                        lineFromFile = reader.ReadLine();
+                    }
+                    if (!reader.EndOfStream)
+                    {
+                        lineFromFile = reader.ReadLine();
+                        lineFromFile = reader.ReadLine();
+                        if (lineFromFile.Contains("The following option positions have expired."))
+                            lineFromFile = reader.ReadLine();
+                        while (!reader.EndOfStream && !lineFromFile.Contains("Recap Of Confirm Activity") &&
+                               !lineFromFile.Contains("Total Value in Base Currency") &&
+                               !lineFromFile.Contains("F U T U R E S  /  O P T I O N S    O P E N    P O S I T I O N S"))
+                        {
+                            DateTime tradedate = DateTime.ParseExact(lineFromFile.Substring(0, 8).Replace(" ", "0"),
+                                                                     "dd/MM/yy", CultureInfo.CurrentCulture);
+                            double qty = OSLExtractQty(lineFromFile);
+                            string symbol = lineFromFile.Substring(33, 32).TrimStart().TrimEnd();
+                            string OptionType = lineFromFile.Substring(55, 1).Trim();
+                            string OptionStrike = lineFromFile.Substring(57, 9).Trim();
+                            string ccy = lineFromFile.Substring(94, 3);
+                            double price = Convert.ToDouble(lineFromFile.Substring(72, 6).Trim());
+                            DateTime valuedate = DateTime.ParseExact(lineFromFile.Substring(33, 5), "MMMyy",
+                                                                     CultureInfo.CurrentCulture);
+                            string ExchFeeCcy = "";
+                            double ExchangeFees = 0;
+                            string ClearingFeeCcy = "";
+                            double Fee = 0;
+
+                            lineFromFile = reader.ReadLine();
+                            string vt = lineFromFile.Substring(2, 1);
+
+                            while (!reader.EndOfStream && !lineFromFile.Contains("COMMISSION") &&
+                                   !lineFromFile.Contains("TOTAL FEES") && lineFromFile.Substring(2, 1) != "/" &&
+                                   !lineFromFile.Contains(
+                                       "F U T U R E S  /  O P T I O N S    O P E N    P O S I T I O N S"))
+                            {
+                                lineFromFile = reader.ReadLine();
+                            }
+
+                            if (lineFromFile.Contains("COMMISSION"))
+                            {
+                                ExchFeeCcy = lineFromFile.Substring(94, 3).Trim();
+                                ExchangeFees = -Convert.ToDouble(lineFromFile.Substring(103, 12).Trim());
+                            }
+                            lineFromFile = reader.ReadLine();
+
+                            while (!reader.EndOfStream && !lineFromFile.Contains("COMMISSION") &&
+                                   !lineFromFile.Contains("TOTAL FEES") && lineFromFile.Substring(2, 1) != "/" &&
+                                   !lineFromFile.Contains(
+                                       "F U T U R E S  /  O P T I O N S    O P E N    P O S I T I O N S"))
+                            {
+                                lineFromFile = reader.ReadLine();
+                            }
+
+                            if (lineFromFile.Contains("TOTAL FEES"))
+                            {
+                                ClearingFeeCcy = lineFromFile.Substring(94, 3).Trim();
+                                Fee = -Convert.ToDouble(lineFromFile.Substring(103, 12).Trim());
+                            }
+
+                            allfromfile.Add(new CpTrade
+                            {
+                                ReportDate = InputDate.Value.Date,
+                                account = "DEX2565",
+                                BrokerId = "OPEN",
+                                Symbol = symbol,
+                                Qty = qty,
+                                Price = price,
+                                ccy = ccy,
+                                ValueDate = valuedate,
+                                TradeDate = tradedate,
+                                Type = (OptionType == "") ? "FU" : "OP",
+                                ExchFeeCcy = ExchFeeCcy,
+                                ExchangeFees = ExchangeFees,
+                                ClearingFeeCcy = ClearingFeeCcy,
+                                Fee = Fee,
+                                Timestamp = DateTime.Now,
+                                valid = 1,
+                                username = "script"
+                            });
+                            if (lineFromFile.Substring(2, 1) != "/" &&
+                                !lineFromFile.Contains("F U T U R E S  /  O P T I O N S    O P E N    P O S I T I O N S"))
+                            {
+                                lineFromFile = reader.ReadLine();
+                            }
+                        }
+                    }
+                    foreach (CpTrade cpTrade in allfromfile)
+                    {
+                        db.CpTrades.Add(cpTrade);
+                    }
+                    fn.SaveDBChanges(ref db);
+                    db.Dispose();
+                }
+            }
         }
 
     }
