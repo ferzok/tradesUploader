@@ -169,11 +169,29 @@ namespace WindowsFormsApplication1
             SaveDBChanges(ref db);
         }
 
-        public  void SendToDb<T>(ref EXANTE_Entities db, List<T> data)
+        public  void SendToDb<T>(ref EXANTE_Entities db, List<T> data,int batchsize=0)
         {
-            foreach (T VARIABLE in data)
+            if (batchsize == 0)
             {
-                db.Set(typeof (T)).Add(VARIABLE);
+                foreach (T VARIABLE in data)
+                {
+                    db.Set(typeof(T)).Add(VARIABLE);
+                }
+            }
+            else
+            {
+                for (int ii = 0; ii <data.Count/batchsize; ii++)
+                {
+                    for (int i = 0; i < batchsize; i++)
+                    {
+                        db.Set(typeof (T)).Add(data[batchsize*(ii)+i]);
+                    }
+                    SaveDBChanges(ref db);
+                }
+                for (int i = batchsize * (data.Count / batchsize); i < data.Count; i++)
+                {
+                    db.Set(typeof(T)).Add(data[i]);
+                }
             }
             SaveDBChanges(ref db);
         }

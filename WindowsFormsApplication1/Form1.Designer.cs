@@ -47,7 +47,6 @@ namespace WindowsFormsApplication1
             this.label4 = new System.Windows.Forms.Label();
             this.comboBoxEnviroment = new System.Windows.Forms.ComboBox();
             this.VMOSL = new System.Windows.Forms.Button();
-            this.Mac = new System.Windows.Forms.Button();
             this.LEK = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.PostToRecon = new System.Windows.Forms.Button();
@@ -59,7 +58,6 @@ namespace WindowsFormsApplication1
             this.uploadFTBOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fastmatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cFHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cFHReconciliationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cFHBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.atonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vMAtonToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,6 +73,18 @@ namespace WindowsFormsApplication1
             this.oSLACIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oSLBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oSLDEXParsingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.macquarieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.macParsingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.macBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.macPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.macEmirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.macEmir2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bloombergToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.corporateActionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iSPRIMEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mT4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mT4ParsingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mT4SendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.BrockerComboBox = new System.Windows.Forms.ComboBox();
@@ -82,17 +92,8 @@ namespace WindowsFormsApplication1
             this.RJOButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
@@ -109,6 +110,7 @@ namespace WindowsFormsApplication1
             this.button33 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.button27 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -181,7 +183,7 @@ namespace WindowsFormsApplication1
             this.MultyTradesCheckBox.AutoSize = true;
             this.MultyTradesCheckBox.Checked = true;
             this.MultyTradesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MultyTradesCheckBox.Location = new System.Drawing.Point(11, 125);
+            this.MultyTradesCheckBox.Location = new System.Drawing.Point(19, 142);
             this.MultyTradesCheckBox.Name = "MultyTradesCheckBox";
             this.MultyTradesCheckBox.Size = new System.Drawing.Size(80, 17);
             this.MultyTradesCheckBox.TabIndex = 18;
@@ -193,7 +195,7 @@ namespace WindowsFormsApplication1
             this.CliffCheckBox.AutoSize = true;
             this.CliffCheckBox.Checked = true;
             this.CliffCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CliffCheckBox.Location = new System.Drawing.Point(11, 144);
+            this.CliffCheckBox.Location = new System.Drawing.Point(19, 161);
             this.CliffCheckBox.Name = "CliffCheckBox";
             this.CliffCheckBox.Size = new System.Drawing.Size(43, 17);
             this.CliffCheckBox.TabIndex = 19;
@@ -203,7 +205,7 @@ namespace WindowsFormsApplication1
             // noparsingCheckbox
             // 
             this.noparsingCheckbox.AutoSize = true;
-            this.noparsingCheckbox.Location = new System.Drawing.Point(11, 167);
+            this.noparsingCheckbox.Location = new System.Drawing.Point(19, 184);
             this.noparsingCheckbox.Name = "noparsingCheckbox";
             this.noparsingCheckbox.Size = new System.Drawing.Size(97, 17);
             this.noparsingCheckbox.TabIndex = 20;
@@ -213,7 +215,7 @@ namespace WindowsFormsApplication1
             // SkipspreadcheckBox
             // 
             this.SkipspreadcheckBox.AutoSize = true;
-            this.SkipspreadcheckBox.Location = new System.Drawing.Point(11, 189);
+            this.SkipspreadcheckBox.Location = new System.Drawing.Point(19, 206);
             this.SkipspreadcheckBox.Name = "SkipspreadcheckBox";
             this.SkipspreadcheckBox.Size = new System.Drawing.Size(87, 17);
             this.SkipspreadcheckBox.TabIndex = 21;
@@ -222,10 +224,10 @@ namespace WindowsFormsApplication1
             // 
             // LogTextBox
             // 
-            this.LogTextBox.Location = new System.Drawing.Point(12, 289);
+            this.LogTextBox.Location = new System.Drawing.Point(12, 279);
             this.LogTextBox.Multiline = true;
             this.LogTextBox.Name = "LogTextBox";
-            this.LogTextBox.Size = new System.Drawing.Size(447, 93);
+            this.LogTextBox.Size = new System.Drawing.Size(447, 122);
             this.LogTextBox.TabIndex = 22;
             // 
             // label4
@@ -250,23 +252,13 @@ namespace WindowsFormsApplication1
             // 
             // VMOSL
             // 
-            this.VMOSL.Location = new System.Drawing.Point(127, 160);
+            this.VMOSL.Location = new System.Drawing.Point(127, 161);
             this.VMOSL.Name = "VMOSL";
-            this.VMOSL.Size = new System.Drawing.Size(75, 24);
+            this.VMOSL.Size = new System.Drawing.Size(75, 23);
             this.VMOSL.TabIndex = 27;
             this.VMOSL.Text = "VM";
             this.VMOSL.UseVisualStyleBackColor = true;
             this.VMOSL.Click += new System.EventHandler(this.VmClick);
-            // 
-            // Mac
-            // 
-            this.Mac.Location = new System.Drawing.Point(289, 248);
-            this.Mac.Name = "Mac";
-            this.Mac.Size = new System.Drawing.Size(90, 23);
-            this.Mac.TabIndex = 28;
-            this.Mac.Text = "Mac";
-            this.Mac.UseVisualStyleBackColor = true;
-            this.Mac.Click += new System.EventHandler(this.button7_Click);
             // 
             // LEK
             // 
@@ -306,7 +298,7 @@ namespace WindowsFormsApplication1
             this.procedures});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(649, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(473, 24);
             this.menuStrip1.TabIndex = 36;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -321,11 +313,14 @@ namespace WindowsFormsApplication1
             this.cFHToolStripMenuItem,
             this.atonToolStripMenuItem,
             this.aBNToolStripMenuItem,
-            this.oSLToolStripMenuItem});
+            this.oSLToolStripMenuItem,
+            this.macquarieToolStripMenuItem,
+            this.bloombergToolStripMenuItem,
+            this.iSPRIMEToolStripMenuItem,
+            this.mT4ToolStripMenuItem});
             this.procedures.Name = "procedures";
             this.procedures.Size = new System.Drawing.Size(45, 20);
             this.procedures.Text = "Func";
-            this.procedures.Click += new System.EventHandler(this.procedures_Click);
             // 
             // bOFTUploadingToolStripMenuItem
             // 
@@ -365,23 +360,15 @@ namespace WindowsFormsApplication1
             // cFHToolStripMenuItem
             // 
             this.cFHToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cFHReconciliationToolStripMenuItem,
             this.cFHBalanceToolStripMenuItem});
             this.cFHToolStripMenuItem.Name = "cFHToolStripMenuItem";
             this.cFHToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.cFHToolStripMenuItem.Text = "CFH";
             // 
-            // cFHReconciliationToolStripMenuItem
-            // 
-            this.cFHReconciliationToolStripMenuItem.Name = "cFHReconciliationToolStripMenuItem";
-            this.cFHReconciliationToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.cFHReconciliationToolStripMenuItem.Text = "CFH Reconciliation";
-            this.cFHReconciliationToolStripMenuItem.Click += new System.EventHandler(this.cFHReconciliationToolStripMenuItem_Click);
-            // 
             // cFHBalanceToolStripMenuItem
             // 
             this.cFHBalanceToolStripMenuItem.Name = "cFHBalanceToolStripMenuItem";
-            this.cFHBalanceToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.cFHBalanceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cFHBalanceToolStripMenuItem.Text = "CFH Balance";
             this.cFHBalanceToolStripMenuItem.Click += new System.EventHandler(this.cFHBalanceToolStripMenuItem_Click);
             // 
@@ -494,6 +481,98 @@ namespace WindowsFormsApplication1
             this.oSLDEXParsingToolStripMenuItem.Text = "OSL DEX Parsing";
             this.oSLDEXParsingToolStripMenuItem.Click += new System.EventHandler(this.oSLDEXParsingToolStripMenuItem_Click);
             // 
+            // macquarieToolStripMenuItem
+            // 
+            this.macquarieToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.macParsingToolStripMenuItem,
+            this.macBalanceToolStripMenuItem,
+            this.macPositionToolStripMenuItem,
+            this.macEmirToolStripMenuItem,
+            this.macEmir2ToolStripMenuItem});
+            this.macquarieToolStripMenuItem.Name = "macquarieToolStripMenuItem";
+            this.macquarieToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.macquarieToolStripMenuItem.Text = "Macquarie";
+            // 
+            // macParsingToolStripMenuItem
+            // 
+            this.macParsingToolStripMenuItem.Name = "macParsingToolStripMenuItem";
+            this.macParsingToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.macParsingToolStripMenuItem.Text = "Mac parsing";
+            this.macParsingToolStripMenuItem.Click += new System.EventHandler(this.macParsingToolStripMenuItem_Click);
+            // 
+            // macBalanceToolStripMenuItem
+            // 
+            this.macBalanceToolStripMenuItem.Name = "macBalanceToolStripMenuItem";
+            this.macBalanceToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.macBalanceToolStripMenuItem.Text = "Mac Balance";
+            this.macBalanceToolStripMenuItem.Click += new System.EventHandler(this.macBalanceToolStripMenuItem_Click);
+            // 
+            // macPositionToolStripMenuItem
+            // 
+            this.macPositionToolStripMenuItem.Name = "macPositionToolStripMenuItem";
+            this.macPositionToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.macPositionToolStripMenuItem.Text = "Mac Position";
+            this.macPositionToolStripMenuItem.Click += new System.EventHandler(this.macPositionToolStripMenuItem_Click);
+            // 
+            // macEmirToolStripMenuItem
+            // 
+            this.macEmirToolStripMenuItem.Name = "macEmirToolStripMenuItem";
+            this.macEmirToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.macEmirToolStripMenuItem.Text = "Mac Emir";
+            this.macEmirToolStripMenuItem.Click += new System.EventHandler(this.macEmirToolStripMenuItem_Click);
+            // 
+            // macEmir2ToolStripMenuItem
+            // 
+            this.macEmir2ToolStripMenuItem.Name = "macEmir2ToolStripMenuItem";
+            this.macEmir2ToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.macEmir2ToolStripMenuItem.Text = "Mac Emir 2";
+            this.macEmir2ToolStripMenuItem.Click += new System.EventHandler(this.macEmir2ToolStripMenuItem_Click);
+            // 
+            // bloombergToolStripMenuItem
+            // 
+            this.bloombergToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.corporateActionsToolStripMenuItem});
+            this.bloombergToolStripMenuItem.Name = "bloombergToolStripMenuItem";
+            this.bloombergToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.bloombergToolStripMenuItem.Text = "Bloomberg";
+            // 
+            // corporateActionsToolStripMenuItem
+            // 
+            this.corporateActionsToolStripMenuItem.Name = "corporateActionsToolStripMenuItem";
+            this.corporateActionsToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.corporateActionsToolStripMenuItem.Text = "Corporate Actions";
+            this.corporateActionsToolStripMenuItem.Click += new System.EventHandler(this.corporateActionsToolStripMenuItem_Click);
+            // 
+            // iSPRIMEToolStripMenuItem
+            // 
+            this.iSPRIMEToolStripMenuItem.Name = "iSPRIMEToolStripMenuItem";
+            this.iSPRIMEToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.iSPRIMEToolStripMenuItem.Text = "IS-PRIME";
+            this.iSPRIMEToolStripMenuItem.Click += new System.EventHandler(this.iSPRIMEToolStripMenuItem_Click);
+            // 
+            // mT4ToolStripMenuItem
+            // 
+            this.mT4ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mT4ParsingToolStripMenuItem,
+            this.mT4SendToolStripMenuItem});
+            this.mT4ToolStripMenuItem.Name = "mT4ToolStripMenuItem";
+            this.mT4ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.mT4ToolStripMenuItem.Text = "MT4";
+            // 
+            // mT4ParsingToolStripMenuItem
+            // 
+            this.mT4ParsingToolStripMenuItem.Name = "mT4ParsingToolStripMenuItem";
+            this.mT4ParsingToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.mT4ParsingToolStripMenuItem.Text = "MT4 Parsing";
+            this.mT4ParsingToolStripMenuItem.Click += new System.EventHandler(this.mT4ParsingToolStripMenuItem_Click);
+            // 
+            // mT4SendToolStripMenuItem
+            // 
+            this.mT4SendToolStripMenuItem.Name = "mT4SendToolStripMenuItem";
+            this.mT4SendToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.mT4SendToolStripMenuItem.Text = "MT4 Send";
+            this.mT4SendToolStripMenuItem.Click += new System.EventHandler(this.mT4SendToolStripMenuItem_Click);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -525,7 +604,7 @@ namespace WindowsFormsApplication1
             // checkBoxAllDates
             // 
             this.checkBoxAllDates.AutoSize = true;
-            this.checkBoxAllDates.Location = new System.Drawing.Point(11, 209);
+            this.checkBoxAllDates.Location = new System.Drawing.Point(19, 226);
             this.checkBoxAllDates.Name = "checkBoxAllDates";
             this.checkBoxAllDates.Size = new System.Drawing.Size(66, 17);
             this.checkBoxAllDates.TabIndex = 40;
@@ -562,26 +641,6 @@ namespace WindowsFormsApplication1
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(208, 248);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 45;
-            this.button4.Text = "Mac bal";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click_1);
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(464, 316);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 50;
-            this.button9.Text = "bloomberg";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(208, 131);
@@ -592,66 +651,6 @@ namespace WindowsFormsApplication1
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.NissanButtonClick);
             // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(127, 248);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 53;
-            this.button10.Text = "Mac position";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click_1);
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(385, 248);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(74, 23);
-            this.button12.TabIndex = 54;
-            this.button12.Text = "IS-PRIME";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click_2);
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(466, 115);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
-            this.button13.TabIndex = 55;
-            this.button13.Text = "Mac";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // button14
-            // 
-            this.button14.Location = new System.Drawing.Point(466, 144);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 33);
-            this.button14.TabIndex = 56;
-            this.button14.Text = "Mac Emir";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
-            // button17
-            // 
-            this.button17.Location = new System.Drawing.Point(548, 346);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(73, 25);
-            this.button17.TabIndex = 59;
-            this.button17.Text = "MT4";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
-            // 
-            // button18
-            // 
-            this.button18.Location = new System.Drawing.Point(466, 224);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(75, 25);
-            this.button18.TabIndex = 60;
-            this.button18.Text = "MT send";
-            this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.button18_Click);
-            // 
             // button20
             // 
             this.button20.Location = new System.Drawing.Point(384, 160);
@@ -661,16 +660,6 @@ namespace WindowsFormsApplication1
             this.button20.Text = "RJO Cash";
             this.button20.UseVisualStyleBackColor = true;
             this.button20.Click += new System.EventHandler(this.button20_Click);
-            // 
-            // button21
-            // 
-            this.button21.Location = new System.Drawing.Point(466, 346);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(75, 23);
-            this.button21.TabIndex = 63;
-            this.button21.Text = "belarta";
-            this.button21.UseVisualStyleBackColor = true;
-            this.button21.Click += new System.EventHandler(this.BelartaClick);
             // 
             // button22
             // 
@@ -684,9 +673,9 @@ namespace WindowsFormsApplication1
             // 
             // button23
             // 
-            this.button23.Location = new System.Drawing.Point(554, 191);
+            this.button23.Location = new System.Drawing.Point(289, 71);
             this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(84, 23);
+            this.button23.Size = new System.Drawing.Size(90, 23);
             this.button23.TabIndex = 65;
             this.button23.Text = "Updating links";
             this.button23.UseVisualStyleBackColor = true;
@@ -708,7 +697,7 @@ namespace WindowsFormsApplication1
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(75, 23);
             this.button25.TabIndex = 67;
-            this.button25.Text = "IB Belarta";
+            this.button25.Text = "Belarta IB";
             this.button25.UseVisualStyleBackColor = true;
             this.button25.Click += new System.EventHandler(this.button25_Click);
             // 
@@ -744,19 +733,19 @@ namespace WindowsFormsApplication1
             // 
             // button28
             // 
-            this.button28.Location = new System.Drawing.Point(466, 189);
+            this.button28.Location = new System.Drawing.Point(289, 248);
             this.button28.Name = "button28";
-            this.button28.Size = new System.Drawing.Size(82, 23);
+            this.button28.Size = new System.Drawing.Size(90, 23);
             this.button28.TabIndex = 72;
             this.button28.Text = "Belarta LMAX";
             this.button28.UseVisualStyleBackColor = true;
-            this.button28.Click += new System.EventHandler(this.button28_Click);
+            this.button28.Click += new System.EventHandler(this.LmaxClick);
             // 
             // button29
             // 
-            this.button29.Location = new System.Drawing.Point(554, 144);
+            this.button29.Location = new System.Drawing.Point(197, 71);
             this.button29.Name = "button29";
-            this.button29.Size = new System.Drawing.Size(75, 23);
+            this.button29.Size = new System.Drawing.Size(86, 23);
             this.button29.TabIndex = 73;
             this.button29.Text = "Post FT";
             this.button29.UseVisualStyleBackColor = true;
@@ -767,7 +756,7 @@ namespace WindowsFormsApplication1
             this.checkBoxMalta.AutoSize = true;
             this.checkBoxMalta.Checked = true;
             this.checkBoxMalta.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxMalta.Location = new System.Drawing.Point(12, 232);
+            this.checkBoxMalta.Location = new System.Drawing.Point(20, 249);
             this.checkBoxMalta.Name = "checkBoxMalta";
             this.checkBoxMalta.Size = new System.Drawing.Size(52, 17);
             this.checkBoxMalta.TabIndex = 74;
@@ -786,7 +775,7 @@ namespace WindowsFormsApplication1
             // 
             // button31
             // 
-            this.button31.Location = new System.Drawing.Point(554, 226);
+            this.button31.Location = new System.Drawing.Point(127, 247);
             this.button31.Name = "button31";
             this.button31.Size = new System.Drawing.Size(75, 23);
             this.button31.TabIndex = 76;
@@ -806,7 +795,7 @@ namespace WindowsFormsApplication1
             // 
             // button33
             // 
-            this.button33.Location = new System.Drawing.Point(548, 289);
+            this.button33.Location = new System.Drawing.Point(384, 247);
             this.button33.Name = "button33";
             this.button33.Size = new System.Drawing.Size(75, 23);
             this.button33.TabIndex = 78;
@@ -816,9 +805,9 @@ namespace WindowsFormsApplication1
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(548, 317);
+            this.button15.Location = new System.Drawing.Point(385, 71);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 23);
+            this.button15.Size = new System.Drawing.Size(74, 23);
             this.button15.TabIndex = 79;
             this.button15.Text = "Post PerFee";
             this.button15.UseVisualStyleBackColor = true;
@@ -834,9 +823,20 @@ namespace WindowsFormsApplication1
             this.button27.UseVisualStyleBackColor = true;
             this.button27.Click += new System.EventHandler(this.RJO_belarta_click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(208, 249);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 81;
+            this.button1.Text = "CFH";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.CfhParsingClick);
+            // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(649, 413);
+            this.ClientSize = new System.Drawing.Size(473, 413);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button27);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.button33);
@@ -853,17 +853,8 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.button24);
             this.Controls.Add(this.button23);
             this.Controls.Add(this.button22);
-            this.Controls.Add(this.button21);
             this.Controls.Add(this.button20);
-            this.Controls.Add(this.button18);
-            this.Controls.Add(this.button17);
-            this.Controls.Add(this.button14);
-            this.Controls.Add(this.button13);
-            this.Controls.Add(this.button12);
-            this.Controls.Add(this.button10);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.RJOButton);
@@ -874,7 +865,6 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.PostToRecon);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.LEK);
-            this.Controls.Add(this.Mac);
             this.Controls.Add(this.VMOSL);
             this.Controls.Add(this.comboBoxEnviroment);
             this.Controls.Add(this.label4);
@@ -920,7 +910,6 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBoxEnviroment;
         private System.Windows.Forms.Button VMOSL;
-        private System.Windows.Forms.Button Mac;
         private System.Windows.Forms.Button LEK;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button PostToRecon;
@@ -934,20 +923,11 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button RJOButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button9;
         private System.Windows.Forms.ToolStripMenuItem cpCostToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateOpenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uploadFTBOToolStripMenuItem;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.ToolStripMenuItem fastmatchToolStripMenuItem;
         private System.Windows.Forms.Button button23;
@@ -955,7 +935,6 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button button25;
         private System.Windows.Forms.Button button26;
         private System.Windows.Forms.ToolStripMenuItem cFHToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cFHReconciliationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cFHBalanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem atonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vMAtonToolStripMenuItem1;
@@ -982,6 +961,19 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.ToolStripMenuItem oSLACIToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem oSLBalanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem oSLDEXParsingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem macquarieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem macParsingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem macBalanceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem macPositionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem macEmirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem macEmir2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bloombergToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem corporateActionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem iSPRIMEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mT4ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mT4ParsingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mT4SendToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }
 

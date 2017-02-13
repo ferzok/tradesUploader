@@ -75,7 +75,6 @@ namespace WindowsFormsApplication1
             if (page.Contains("SETTLING TRADE DETAILS"))
             {
                 var listAxiSettlingTrades = new List<Axi_SettlingTrades>();
-                string tempdate;
                 bool flagStop = false;
                 string[] rows;
                 string account;
