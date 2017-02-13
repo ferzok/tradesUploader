@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1af5fb9bc49b44d68ba9b8753fbca0c5" Name="Diagram1" ZoomLevel="74" ShowGrid="true">
+      <Diagram DiagramId="1af5fb9bc49b44d68ba9b8753fbca0c5" Name="Diagram1" ZoomLevel="100" ShowGrid="true">
         <EntityTypeShape EntityType="EXANTE_testModel.Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EXANTE_testModel.Contract" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EXANTE_testModel.Ctrade" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EXANTE_testModel.Price" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EXANTE_testModel.counterparty" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="EXANTE_testModel.CpTrade" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="EXANTE_testModel.CpTrade" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EXANTE_testModel.PenPaperTrade" Width="1.5" PointX="2.75" PointY="7.75" />
         <EntityTypeShape EntityType="EXANTE_testModel.Mapping" Width="1.5" PointX="8.75" PointY="0.75" />
         <EntityTypeShape EntityType="EXANTE_testModel.Reconcilation" Width="1.5" PointX="8.75" PointY="4.75" />
@@ -35,6 +35,9 @@
         <EntityTypeShape EntityType="EXANTE_testModel.Emir_Mapping" Width="1.5" PointX="5.9704383434590129" PointY="29.556449605876789" />
         <EntityTypeShape EntityType="EXANTE_testModel.md_swaps_googlespsh" Width="1.5" PointX="5.69590758424993" PointY="16.762578346190313" />
         <EntityTypeShape EntityType="EXANTE_testModel.RJO_listccy" Width="1.5" PointX="6.4511414963990177" PointY="8.9901759666344976" />
+        <EntityTypeShape EntityType="EXANTE_testModel.Axi_SettlingTrades" Width="1.5" PointX="6.5508799527543031" PointY="25.882290151846732" />
+        <EntityTypeShape EntityType="EXANTE_testModel.Axi_Trades" Width="1.5" PointX="1.15303785221327" PointY="15.730823255950037" />
+        <EntityTypeShape EntityType="EXANTE_testModel.Axi_RolloverTrades" Width="1.5" PointX="6.547857136720725" PointY="5.4802546228655871" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

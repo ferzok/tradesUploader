@@ -45,5 +45,8 @@ namespace WindowsFormsApplication1
         public string transferId { get; set; }
         public string clientCounterparty { get; set; }
         public string exanteCounterparty { get; set; }
+        public string uuid { get; set; }
+        public string parentUuid { get; set; }
+        public Nullable<bool> entityMalta { get; set; }
     }
 }

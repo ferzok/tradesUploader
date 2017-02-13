@@ -16,7 +16,7 @@ namespace WindowsFormsApplication1
     public partial class EXANTE_Entities : DbContext
     {
         public EXANTE_Entities(string s)
-            : base(s)
+            : base("name=EXANTE_Entities")
         {
         }
     
@@ -55,5 +55,8 @@ namespace WindowsFormsApplication1
         public DbSet<Emir_Mapping> Emir_Mapping { get; set; }
         public DbSet<md_swaps_googlespsh> md_swaps_googlespsh { get; set; }
         public DbSet<RJO_listccy> RJO_listccy { get; set; }
+        public DbSet<Axi_SettlingTrades> Axi_SettlingTrades { get; set; }
+        public DbSet<Axi_Trades> Axi_Trades { get; set; }
+        public DbSet<Axi_RolloverTrades> Axi_RolloverTrades { get; set; }
     }
 }

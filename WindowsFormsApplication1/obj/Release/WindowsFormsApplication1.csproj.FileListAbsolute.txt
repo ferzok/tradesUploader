@@ -39,4 +39,4 @@ C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\bin\Release\itextsharp.x
 C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\bin\Release\Newtonsoft.Json.xml
 C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.exe.manifest
 C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.application
-C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\bin\Release\AxiPdfParser.cs

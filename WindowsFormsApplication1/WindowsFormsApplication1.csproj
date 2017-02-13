@@ -105,6 +105,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABN.cs" />
     <Compile Include="ABNReconResult.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -117,12 +118,26 @@
     <Compile Include="ADSSCashGroupped.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="AxiPdfParser.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Axi_RolloverTrades.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Axi_SettlingTrades.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Axi_Trades.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bloomberg.cs" />
     <Compile Include="CashMapping.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ColumnMapping.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="CommonFunctions.cs" />
     <Compile Include="Contract.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -218,6 +233,7 @@
     <Compile Include="RowBalance.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="VariationMargin.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

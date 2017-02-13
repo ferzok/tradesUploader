@@ -5,6 +5,9 @@
     <EntitySet Name="ABNReconResults" EntityType="EXANTE_testModel.Store.ABNReconResults" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="Accounts" EntityType="EXANTE_testModel.Store.Accounts" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="ADSSCashGroupped" EntityType="EXANTE_testModel.Store.ADSSCashGroupped" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="Axi_RolloverTrades" EntityType="EXANTE_testModel.Store.Axi_RolloverTrades" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="Axi_SettlingTrades" EntityType="EXANTE_testModel.Store.Axi_SettlingTrades" store:Type="Tables" Schema="EXANTE_test" />
+    <EntitySet Name="Axi_Trades" EntityType="EXANTE_testModel.Store.Axi_Trades" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="CashMapping" EntityType="EXANTE_testModel.Store.CashMapping" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="ColumnMapping" EntityType="EXANTE_testModel.Store.ColumnMapping" store:Type="Tables" Schema="EXANTE_test" />
     <EntitySet Name="Contracts" EntityType="EXANTE_testModel.Store.Contracts" store:Type="Tables" Schema="EXANTE_test" />
@@ -103,6 +106,66 @@
     <Property Name="NAV" Type="double" />
     <Property Name="Interest" Type="double" />
   </EntityType>
+  <EntityType Name="Axi_RolloverTrades">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="TradeNumber" Type="bigint" />
+    <Property Name="TradeDate" Type="date" />
+    <Property Name="NearDate" Type="date" />
+    <Property Name="FarDate" Type="date" />
+    <Property Name="CcyPair" Type="varchar" MaxLength="7" />
+    <Property Name="Direction" Type="varchar" MaxLength="10" />
+    <Property Name="Ccy1" Type="varchar" MaxLength="3" />
+    <Property Name="Ccy1Amount" Type="double" />
+    <Property Name="TradeRate" Type="double" />
+    <Property Name="FarTradeRate" Type="double" />
+    <Property Name="Ccy2Amount" Type="double" />
+    <Property Name="Reportdate" Type="date" />
+    <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Account" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Axi_SettlingTrades">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="TradeNumber" Type="bigint" />
+    <Property Name="TradeCode" Type="varchar" MaxLength="16" />
+    <Property Name="Product" Type="varchar" MaxLength="16" />
+    <Property Name="TradeDate" Type="date" />
+    <Property Name="ValueDate" Type="date" />
+    <Property Name="ccyPair" Type="varchar" MaxLength="7" />
+    <Property Name="direction" Type="varchar" MaxLength="4" />
+    <Property Name="ccy1" Type="varchar" MaxLength="3" />
+    <Property Name="cc1Amount" Type="double" />
+    <Property Name="TradeRate" Type="double" />
+    <Property Name="ccy2Amount" Type="double" />
+    <Property Name="ConsolidationRate" Type="double" />
+    <Property Name="RealizedPnL" Type="double" />
+    <Property Name="EUR" Type="varchar" MaxLength="1" />
+    <Property Name="Reportdate" Type="date" />
+    <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Account" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Axi_Trades">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="TradeNumber" Type="bigint" />
+    <Property Name="TradeCode" Type="varchar" MaxLength="10" />
+    <Property Name="Product" Type="varchar" MaxLength="10" />
+    <Property Name="TradeDate" Type="date" />
+    <Property Name="ValueDate" Type="date" />
+    <Property Name="CcyPair" Type="varchar" MaxLength="7" />
+    <Property Name="Direction" Type="varchar" MaxLength="4" />
+    <Property Name="Ccy1" Type="varchar" MaxLength="3" />
+    <Property Name="Ccy1Amount" Type="double" />
+    <Property Name="TradeRate" Type="double" />
+    <Property Name="Ccy2Amount" Type="double" />
+    <Property Name="Account" Type="varchar" MaxLength="20" />
+    <Property Name="ReportDate" Type="date" />
+    <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
   <EntityType Name="CashMapping">
     <Key>
       <PropertyRef Name="fullid" />
@@ -160,7 +223,7 @@
     <Property Name="ReportDateFormat" Type="varchar" MaxLength="10" />
     <Property Name="cAccount" Type="int" />
     <Property Name="cInterest" Type="int" />
-    <Property Name="TimeFormat" Type="varchar" MaxLength="10" />
+    <Property Name="TimeFormat" Type="varchar" MaxLength="20" />
     <Property Name="cTradeId" Type="int" />
   </EntityType>
   <EntityType Name="Contracts">
@@ -303,6 +366,7 @@
     <Property Name="Interest" Type="double" />
     <Property Name="account" Type="varchar" MaxLength="50" />
     <Property Name="TradeId" Type="varchar" MaxLength="20" />
+    <Property Name="Exchange" Type="varchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Ctrades">
     <Key>
@@ -539,7 +603,7 @@
     <Property Name="ccy" Type="varchar" MaxLength="3" />
     <Property Name="value" Type="double" />
     <Property Name="brocker" Type="varchar" MaxLength="15" />
-    <Property Name="Type" Type="varchar" MaxLength="10" />
+    <Property Name="Type" Type="varchar" MaxLength="30" />
     <Property Name="Comment" Type="varchar" MaxLength="80" />
     <Property Name="Reference" Type="bigint" />
     <Property Name="User" Type="varchar" MaxLength="20" />
@@ -590,6 +654,9 @@
     <Property Name="transferId" Type="varchar" MaxLength="100" />
     <Property Name="clientCounterparty" Type="varchar" MaxLength="50" />
     <Property Name="exanteCounterparty" Type="varchar" MaxLength="50" />
+    <Property Name="uuid" Type="varchar" MaxLength="50" />
+    <Property Name="parentUuid" Type="varchar" MaxLength="50" />
+    <Property Name="entityMalta" Type="bool" />
   </EntityType>
   <EntityType Name="InitialTrades">
     <Key>
@@ -622,6 +689,7 @@
     <Property Name="AccruedInterest" Type="double" />
     <Property Name="Account" Type="varchar" MaxLength="50" />
     <Property Name="TradeId" Type="varchar" MaxLength="20" />
+    <Property Name="Exchange" Type="varchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Mapping">
     <Key>

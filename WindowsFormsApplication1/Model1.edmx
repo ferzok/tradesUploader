@@ -10,6 +10,9 @@
           <EntitySet Name="ABNReconResults" EntityType="EXANTE_testModel.Store.ABNReconResults" store:Type="Tables" Schema="EXANTE_test" />
           <EntitySet Name="Accounts" EntityType="EXANTE_testModel.Store.Accounts" store:Type="Tables" Schema="EXANTE_test" />
           <EntitySet Name="ADSSCashGroupped" EntityType="EXANTE_testModel.Store.ADSSCashGroupped" store:Type="Tables" Schema="EXANTE_test" />
+          <EntitySet Name="Axi_RolloverTrades" EntityType="EXANTE_testModel.Store.Axi_RolloverTrades" store:Type="Tables" Schema="EXANTE_test" />
+          <EntitySet Name="Axi_SettlingTrades" EntityType="EXANTE_testModel.Store.Axi_SettlingTrades" store:Type="Tables" Schema="EXANTE_test" />
+          <EntitySet Name="Axi_Trades" EntityType="EXANTE_testModel.Store.Axi_Trades" store:Type="Tables" Schema="EXANTE_test" />
           <EntitySet Name="CashMapping" EntityType="EXANTE_testModel.Store.CashMapping" store:Type="Tables" Schema="EXANTE_test" />
           <EntitySet Name="ColumnMapping" EntityType="EXANTE_testModel.Store.ColumnMapping" store:Type="Tables" Schema="EXANTE_test" />
           <EntitySet Name="Contracts" EntityType="EXANTE_testModel.Store.Contracts" store:Type="Tables" Schema="EXANTE_test" />
@@ -107,6 +110,66 @@
           <Property Name="ExcessShortage" Type="double" />
           <Property Name="NAV" Type="double" />
           <Property Name="Interest" Type="double" />
+        </EntityType>
+        <EntityType Name="Axi_RolloverTrades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="TradeNumber" Type="bigint" />
+          <Property Name="TradeDate" Type="date" />
+          <Property Name="NearDate" Type="date" />
+          <Property Name="FarDate" Type="date" />
+          <Property Name="CcyPair" Type="varchar" MaxLength="7" />
+          <Property Name="Direction" Type="varchar" MaxLength="10" />
+          <Property Name="Ccy1" Type="varchar" MaxLength="3" />
+          <Property Name="Ccy1Amount" Type="double" />
+          <Property Name="TradeRate" Type="double" />
+          <Property Name="FarTradeRate" Type="double" />
+          <Property Name="Ccy2Amount" Type="double" />
+          <Property Name="Reportdate" Type="date" />
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Account" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Axi_SettlingTrades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="TradeNumber" Type="bigint" />
+          <Property Name="TradeCode" Type="varchar" MaxLength="16" />
+          <Property Name="Product" Type="varchar" MaxLength="16" />
+          <Property Name="TradeDate" Type="date" />
+          <Property Name="ValueDate" Type="date" />
+          <Property Name="ccyPair" Type="varchar" MaxLength="7" />
+          <Property Name="direction" Type="varchar" MaxLength="4" />
+          <Property Name="ccy1" Type="varchar" MaxLength="3" />
+          <Property Name="cc1Amount" Type="double" />
+          <Property Name="TradeRate" Type="double" />
+          <Property Name="ccy2Amount" Type="double" />
+          <Property Name="ConsolidationRate" Type="double" />
+          <Property Name="RealizedPnL" Type="double" />
+          <Property Name="EUR" Type="varchar" MaxLength="1" />
+          <Property Name="Reportdate" Type="date" />
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Account" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Axi_Trades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="TradeNumber" Type="bigint" />
+          <Property Name="TradeCode" Type="varchar" MaxLength="10" />
+          <Property Name="Product" Type="varchar" MaxLength="10" />
+          <Property Name="TradeDate" Type="date" />
+          <Property Name="ValueDate" Type="date" />
+          <Property Name="CcyPair" Type="varchar" MaxLength="7" />
+          <Property Name="Direction" Type="varchar" MaxLength="4" />
+          <Property Name="Ccy1" Type="varchar" MaxLength="3" />
+          <Property Name="Ccy1Amount" Type="double" />
+          <Property Name="TradeRate" Type="double" />
+          <Property Name="Ccy2Amount" Type="double" />
+          <Property Name="Account" Type="varchar" MaxLength="20" />
+          <Property Name="ReportDate" Type="date" />
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="CashMapping">
           <Key>
@@ -308,6 +371,7 @@
           <Property Name="Interest" Type="double" />
           <Property Name="account" Type="varchar" MaxLength="50" />
           <Property Name="TradeId" Type="varchar" MaxLength="20" />
+          <Property Name="Exchange" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Ctrades">
           <Key>
@@ -595,6 +659,9 @@
           <Property Name="transferId" Type="varchar" MaxLength="100" />
           <Property Name="clientCounterparty" Type="varchar" MaxLength="50" />
           <Property Name="exanteCounterparty" Type="varchar" MaxLength="50" />
+          <Property Name="uuid" Type="varchar" MaxLength="50" />
+          <Property Name="parentUuid" Type="varchar" MaxLength="50" />
+          <Property Name="entityMalta" Type="bool" />
         </EntityType>
         <EntityType Name="InitialTrades">
           <Key>
@@ -627,6 +694,7 @@
           <Property Name="AccruedInterest" Type="double" />
           <Property Name="Account" Type="varchar" MaxLength="50" />
           <Property Name="TradeId" Type="varchar" MaxLength="20" />
+          <Property Name="Exchange" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Mapping">
           <Key>
@@ -821,6 +889,9 @@
           <EntitySet Name="Emir_Mapping" EntityType="EXANTE_testModel.Emir_Mapping" />
           <EntitySet Name="md_swaps_googlespsh" EntityType="EXANTE_testModel.md_swaps_googlespsh" />
           <EntitySet Name="RJO_listccy" EntityType="EXANTE_testModel.RJO_listccy" />
+          <EntitySet Name="Axi_SettlingTrades" EntityType="EXANTE_testModel.Axi_SettlingTrades" />
+          <EntitySet Name="Axi_Trades" EntityType="EXANTE_testModel.Axi_Trades" />
+          <EntitySet Name="Axi_RolloverTrades" EntityType="EXANTE_testModel.Axi_RolloverTrades" />
         </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -945,6 +1016,7 @@
           <Property Type="Double" Name="Interest" />
           <Property Type="String" Name="account" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="TradeId" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Exchange" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PenPaperTrade">
           <Key>
@@ -1132,6 +1204,9 @@
           <Property Type="String" Name="transferId" />
           <Property Type="String" Name="clientCounterparty" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="exanteCounterparty" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="uuid" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="parentUuid" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="entityMalta" />
         </EntityType>
         <EntityType Name="DBBORecon_mapping">
           <Key>
@@ -1225,6 +1300,7 @@
           <Property Type="Double" Name="AccruedInterest" />
           <Property Type="String" Name="Account" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="TradeId" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Exchange" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="param">
           <Key>
@@ -1571,6 +1647,66 @@
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="valid" />
         </EntityType>
+        <EntityType Name="Axi_SettlingTrades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int64" Name="TradeNumber" />
+          <Property Type="String" Name="TradeCode" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Product" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="TradeDate" />
+          <Property Type="DateTime" Name="ValueDate" />
+          <Property Type="String" Name="ccyPair" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="direction" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ccy1" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="cc1Amount" />
+          <Property Type="Double" Name="TradeRate" />
+          <Property Type="Double" Name="ccy2Amount" />
+          <Property Type="Double" Name="ConsolidationRate" />
+          <Property Type="Double" Name="RealizedPnL" />
+          <Property Type="String" Name="EUR" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Reportdate" />
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Account" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Axi_Trades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int64" Name="TradeNumber" />
+          <Property Type="String" Name="TradeCode" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Product" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="TradeDate" />
+          <Property Type="DateTime" Name="ValueDate" />
+          <Property Type="String" Name="CcyPair" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Direction" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Ccy1" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Ccy1Amount" />
+          <Property Type="Double" Name="TradeRate" />
+          <Property Type="Double" Name="Ccy2Amount" />
+          <Property Type="String" Name="Account" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ReportDate" />
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Axi_RolloverTrades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int64" Name="TradeNumber" />
+          <Property Type="DateTime" Name="TradeDate" />
+          <Property Type="DateTime" Name="NearDate" />
+          <Property Type="DateTime" Name="FarDate" />
+          <Property Type="String" Name="CcyPair" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Direction" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Ccy1" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Ccy1Amount" />
+          <Property Type="Double" Name="TradeRate" />
+          <Property Type="Double" Name="FarTradeRate" />
+          <Property Type="Double" Name="Ccy2Amount" />
+          <Property Type="DateTime" Name="Reportdate" />
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Account" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1671,6 +1807,7 @@
           <EntitySetMapping Name="CpTrades">
             <EntityTypeMapping TypeName="EXANTE_testModel.CpTrade">
               <MappingFragment StoreEntitySet="CpTrades">
+                <ScalarProperty Name="Exchange" ColumnName="Exchange" />
                 <ScalarProperty Name="TradeId" ColumnName="TradeId" />
                 <ScalarProperty Name="account" ColumnName="account" />
                 <ScalarProperty Name="Interest" ColumnName="Interest" />
@@ -1867,6 +2004,9 @@
           <EntitySetMapping Name="Ftboes">
             <EntityTypeMapping TypeName="EXANTE_testModel.Ftbo">
               <MappingFragment StoreEntitySet="Ftbo">
+                <ScalarProperty Name="entityMalta" ColumnName="entityMalta" />
+                <ScalarProperty Name="parentUuid" ColumnName="parentUuid" />
+                <ScalarProperty Name="uuid" ColumnName="uuid" />
                 <ScalarProperty Name="exanteCounterparty" ColumnName="exanteCounterparty" />
                 <ScalarProperty Name="clientCounterparty" ColumnName="clientCounterparty" />
                 <ScalarProperty Name="transferId" ColumnName="transferId" />
@@ -1967,6 +2107,7 @@
           <EntitySetMapping Name="InitialTrades">
             <EntityTypeMapping TypeName="EXANTE_testModel.InitialTrade">
               <MappingFragment StoreEntitySet="InitialTrades">
+                <ScalarProperty Name="Exchange" ColumnName="Exchange" />
                 <ScalarProperty Name="TradeId" ColumnName="TradeId" />
                 <ScalarProperty Name="Account" ColumnName="Account" />
                 <ScalarProperty Name="AccruedInterest" ColumnName="AccruedInterest" />
@@ -2351,6 +2492,69 @@
                 <ScalarProperty Name="valid" ColumnName="valid" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Ccy" ColumnName="Ccy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Axi_SettlingTrades">
+            <EntityTypeMapping TypeName="EXANTE_testModel.Axi_SettlingTrades">
+              <MappingFragment StoreEntitySet="Axi_SettlingTrades">
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Reportdate" ColumnName="Reportdate" />
+                <ScalarProperty Name="EUR" ColumnName="EUR" />
+                <ScalarProperty Name="RealizedPnL" ColumnName="RealizedPnL" />
+                <ScalarProperty Name="ConsolidationRate" ColumnName="ConsolidationRate" />
+                <ScalarProperty Name="ccy2Amount" ColumnName="ccy2Amount" />
+                <ScalarProperty Name="TradeRate" ColumnName="TradeRate" />
+                <ScalarProperty Name="cc1Amount" ColumnName="cc1Amount" />
+                <ScalarProperty Name="ccy1" ColumnName="ccy1" />
+                <ScalarProperty Name="direction" ColumnName="direction" />
+                <ScalarProperty Name="ccyPair" ColumnName="ccyPair" />
+                <ScalarProperty Name="ValueDate" ColumnName="ValueDate" />
+                <ScalarProperty Name="TradeDate" ColumnName="TradeDate" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="TradeCode" ColumnName="TradeCode" />
+                <ScalarProperty Name="TradeNumber" ColumnName="TradeNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Axi_Trades">
+            <EntityTypeMapping TypeName="EXANTE_testModel.Axi_Trades">
+              <MappingFragment StoreEntitySet="Axi_Trades">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Ccy2Amount" ColumnName="Ccy2Amount" />
+                <ScalarProperty Name="TradeRate" ColumnName="TradeRate" />
+                <ScalarProperty Name="Ccy1Amount" ColumnName="Ccy1Amount" />
+                <ScalarProperty Name="Ccy1" ColumnName="Ccy1" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="CcyPair" ColumnName="CcyPair" />
+                <ScalarProperty Name="ValueDate" ColumnName="ValueDate" />
+                <ScalarProperty Name="TradeDate" ColumnName="TradeDate" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="TradeCode" ColumnName="TradeCode" />
+                <ScalarProperty Name="TradeNumber" ColumnName="TradeNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Axi_RolloverTrades">
+            <EntityTypeMapping TypeName="EXANTE_testModel.Axi_RolloverTrades">
+              <MappingFragment StoreEntitySet="Axi_RolloverTrades">
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Reportdate" ColumnName="Reportdate" />
+                <ScalarProperty Name="Ccy2Amount" ColumnName="Ccy2Amount" />
+                <ScalarProperty Name="FarTradeRate" ColumnName="FarTradeRate" />
+                <ScalarProperty Name="TradeRate" ColumnName="TradeRate" />
+                <ScalarProperty Name="Ccy1Amount" ColumnName="Ccy1Amount" />
+                <ScalarProperty Name="Ccy1" ColumnName="Ccy1" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="CcyPair" ColumnName="CcyPair" />
+                <ScalarProperty Name="FarDate" ColumnName="FarDate" />
+                <ScalarProperty Name="NearDate" ColumnName="NearDate" />
+                <ScalarProperty Name="TradeDate" ColumnName="TradeDate" />
+                <ScalarProperty Name="TradeNumber" ColumnName="TradeNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -31,6 +31,9 @@
     <EntitySet Name="Emir_Mapping" EntityType="EXANTE_testModel.Emir_Mapping" />
     <EntitySet Name="md_swaps_googlespsh" EntityType="EXANTE_testModel.md_swaps_googlespsh" />
     <EntitySet Name="RJO_listccy" EntityType="EXANTE_testModel.RJO_listccy" />
+    <EntitySet Name="Axi_SettlingTrades" EntityType="EXANTE_testModel.Axi_SettlingTrades" />
+    <EntitySet Name="Axi_Trades" EntityType="EXANTE_testModel.Axi_Trades" />
+    <EntitySet Name="Axi_RolloverTrades" EntityType="EXANTE_testModel.Axi_RolloverTrades" />
   </EntityContainer>
   <EntityType Name="Account">
     <Key>
@@ -155,6 +158,7 @@
     <Property Type="Double" Name="Interest" />
     <Property Type="String" Name="account" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="TradeId" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Exchange" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="PenPaperTrade">
     <Key>
@@ -342,6 +346,9 @@
     <Property Type="String" Name="transferId" />
     <Property Type="String" Name="clientCounterparty" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="exanteCounterparty" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="uuid" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="parentUuid" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="entityMalta" />
   </EntityType>
   <EntityType Name="DBBORecon_mapping">
     <Key>
@@ -435,6 +442,7 @@
     <Property Type="Double" Name="AccruedInterest" />
     <Property Type="String" Name="Account" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="TradeId" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Exchange" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="param">
     <Key>
@@ -780,5 +788,65 @@
     <Property Type="String" Name="Ccy" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="Int32" Name="valid" />
+  </EntityType>
+  <EntityType Name="Axi_SettlingTrades">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int64" Name="TradeNumber" />
+    <Property Type="String" Name="TradeCode" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Product" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TradeDate" />
+    <Property Type="DateTime" Name="ValueDate" />
+    <Property Type="String" Name="ccyPair" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="direction" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ccy1" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="cc1Amount" />
+    <Property Type="Double" Name="TradeRate" />
+    <Property Type="Double" Name="ccy2Amount" />
+    <Property Type="Double" Name="ConsolidationRate" />
+    <Property Type="Double" Name="RealizedPnL" />
+    <Property Type="String" Name="EUR" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="Reportdate" />
+    <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Account" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Axi_Trades">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int64" Name="TradeNumber" />
+    <Property Type="String" Name="TradeCode" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Product" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TradeDate" />
+    <Property Type="DateTime" Name="ValueDate" />
+    <Property Type="String" Name="CcyPair" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Direction" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Ccy1" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="Ccy1Amount" />
+    <Property Type="Double" Name="TradeRate" />
+    <Property Type="Double" Name="Ccy2Amount" />
+    <Property Type="String" Name="Account" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="ReportDate" />
+    <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Axi_RolloverTrades">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int64" Name="TradeNumber" />
+    <Property Type="DateTime" Name="TradeDate" />
+    <Property Type="DateTime" Name="NearDate" />
+    <Property Type="DateTime" Name="FarDate" />
+    <Property Type="String" Name="CcyPair" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Direction" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Ccy1" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="Ccy1Amount" />
+    <Property Type="Double" Name="TradeRate" />
+    <Property Type="Double" Name="FarTradeRate" />
+    <Property Type="Double" Name="Ccy2Amount" />
+    <Property Type="DateTime" Name="Reportdate" />
+    <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Account" MaxLength="30" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

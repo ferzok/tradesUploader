@@ -46,5 +46,6 @@ namespace WindowsFormsApplication1
         public Nullable<double> Interest { get; set; }
         public string account { get; set; }
         public string TradeId { get; set; }
+        public string Exchange { get; set; }
     }
 }

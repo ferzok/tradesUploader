@@ -32,12 +32,9 @@ namespace WindowsFormsApplication1
         private void InitializeComponent()
         {
             this.TradesParser = new System.Windows.Forms.Button();
-            this.TradesParserStatus = new System.Windows.Forms.Label();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Fortsnextday = new System.Windows.Forms.DateTimePicker();
-            this.button1 = new System.Windows.Forms.Button();
             this.InputDate = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -49,7 +46,6 @@ namespace WindowsFormsApplication1
             this.LogTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBoxEnviroment = new System.Windows.Forms.ComboBox();
-            this.UpdateABN = new System.Windows.Forms.Button();
             this.VMOSL = new System.Windows.Forms.Button();
             this.Mac = new System.Windows.Forms.Button();
             this.LEK = new System.Windows.Forms.Button();
@@ -57,19 +53,22 @@ namespace WindowsFormsApplication1
             this.PostToRecon = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.procedures = new System.Windows.Forms.ToolStripMenuItem();
-            this.aBNFTParsingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bOFTUploadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cpCostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadFTBOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fastmatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aBNPositionParsingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cFHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cFHReconciliationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cFHBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.atonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vMAtonToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.atonReconciliationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aBNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aBNParserToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.aBNPositionParsingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.aBNFTParsingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateABNSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.BrockerComboBox = new System.Windows.Forms.ComboBox();
@@ -123,33 +122,15 @@ namespace WindowsFormsApplication1
             this.TradesParser.UseVisualStyleBackColor = true;
             this.TradesParser.Click += new System.EventHandler(this.TradesParser_Click);
             // 
-            // TradesParserStatus
-            // 
-            this.TradesParserStatus.AutoSize = true;
-            this.TradesParserStatus.Location = new System.Drawing.Point(55, 253);
-            this.TradesParserStatus.Name = "TradesParserStatus";
-            this.TradesParserStatus.Size = new System.Drawing.Size(59, 13);
-            this.TradesParserStatus.TabIndex = 1;
-            this.TradesParserStatus.Text = "Not started";
-            // 
             // openFileDialog2
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
             this.openFileDialog2.Multiselect = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 253);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Status:";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(183, 95);
+            this.label2.Location = new System.Drawing.Point(12, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 13);
             this.label2.TabIndex = 3;
@@ -158,25 +139,15 @@ namespace WindowsFormsApplication1
             // Fortsnextday
             // 
             this.Fortsnextday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.Fortsnextday.Location = new System.Drawing.Point(276, 95);
+            this.Fortsnextday.Location = new System.Drawing.Point(105, 84);
             this.Fortsnextday.Name = "Fortsnextday";
-            this.Fortsnextday.Size = new System.Drawing.Size(85, 20);
+            this.Fortsnextday.Size = new System.Drawing.Size(72, 20);
             this.Fortsnextday.TabIndex = 5;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 63);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(164, 26);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "ABNParser";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.ABNReconButtonClick);
             // 
             // InputDate
             // 
             this.InputDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.InputDate.Location = new System.Drawing.Point(104, 95);
+            this.InputDate.Location = new System.Drawing.Point(105, 63);
             this.InputDate.Name = "InputDate";
             this.InputDate.Size = new System.Drawing.Size(72, 20);
             this.InputDate.TabIndex = 8;
@@ -184,11 +155,11 @@ namespace WindowsFormsApplication1
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 95);
+            this.label3.Location = new System.Drawing.Point(12, 63);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 13);
+            this.label3.Size = new System.Drawing.Size(65, 13);
             this.label3.TabIndex = 7;
-            this.label3.Text = "ABN Report Date";
+            this.label3.Text = "Report Date";
             // 
             // openFileDialog1
             // 
@@ -196,7 +167,7 @@ namespace WindowsFormsApplication1
             // 
             // ADSS
             // 
-            this.ADSS.Location = new System.Drawing.Point(271, 150);
+            this.ADSS.Location = new System.Drawing.Point(271, 156);
             this.ADSS.Name = "ADSS";
             this.ADSS.Size = new System.Drawing.Size(90, 25);
             this.ADSS.TabIndex = 14;
@@ -209,7 +180,7 @@ namespace WindowsFormsApplication1
             this.MultyTradesCheckBox.AutoSize = true;
             this.MultyTradesCheckBox.Checked = true;
             this.MultyTradesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MultyTradesCheckBox.Location = new System.Drawing.Point(12, 117);
+            this.MultyTradesCheckBox.Location = new System.Drawing.Point(11, 125);
             this.MultyTradesCheckBox.Name = "MultyTradesCheckBox";
             this.MultyTradesCheckBox.Size = new System.Drawing.Size(80, 17);
             this.MultyTradesCheckBox.TabIndex = 18;
@@ -221,7 +192,7 @@ namespace WindowsFormsApplication1
             this.CliffCheckBox.AutoSize = true;
             this.CliffCheckBox.Checked = true;
             this.CliffCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CliffCheckBox.Location = new System.Drawing.Point(12, 140);
+            this.CliffCheckBox.Location = new System.Drawing.Point(11, 144);
             this.CliffCheckBox.Name = "CliffCheckBox";
             this.CliffCheckBox.Size = new System.Drawing.Size(43, 17);
             this.CliffCheckBox.TabIndex = 19;
@@ -231,7 +202,7 @@ namespace WindowsFormsApplication1
             // noparsingCheckbox
             // 
             this.noparsingCheckbox.AutoSize = true;
-            this.noparsingCheckbox.Location = new System.Drawing.Point(12, 158);
+            this.noparsingCheckbox.Location = new System.Drawing.Point(11, 167);
             this.noparsingCheckbox.Name = "noparsingCheckbox";
             this.noparsingCheckbox.Size = new System.Drawing.Size(97, 17);
             this.noparsingCheckbox.TabIndex = 20;
@@ -241,7 +212,7 @@ namespace WindowsFormsApplication1
             // SkipspreadcheckBox
             // 
             this.SkipspreadcheckBox.AutoSize = true;
-            this.SkipspreadcheckBox.Location = new System.Drawing.Point(13, 175);
+            this.SkipspreadcheckBox.Location = new System.Drawing.Point(11, 189);
             this.SkipspreadcheckBox.Name = "SkipspreadcheckBox";
             this.SkipspreadcheckBox.Size = new System.Drawing.Size(87, 17);
             this.SkipspreadcheckBox.TabIndex = 21;
@@ -276,31 +247,21 @@ namespace WindowsFormsApplication1
             this.comboBoxEnviroment.SelectedIndexChanged += new System.EventHandler(this.comboBoxEnviroment_SelectedIndexChanged);
             this.comboBoxEnviroment.TextChanged += new System.EventHandler(this.comboBoxEnviroment_TextChanged);
             // 
-            // UpdateABN
-            // 
-            this.UpdateABN.Location = new System.Drawing.Point(149, 121);
-            this.UpdateABN.Name = "UpdateABN";
-            this.UpdateABN.Size = new System.Drawing.Size(104, 27);
-            this.UpdateABN.TabIndex = 25;
-            this.UpdateABN.Text = "UpdateABNsheet";
-            this.UpdateABN.UseVisualStyleBackColor = true;
-            this.UpdateABN.Click += new System.EventHandler(this.UpdatungViewCpTrades);
-            // 
             // VMOSL
             // 
-            this.VMOSL.Location = new System.Drawing.Point(149, 156);
+            this.VMOSL.Location = new System.Drawing.Point(138, 156);
             this.VMOSL.Name = "VMOSL";
             this.VMOSL.Size = new System.Drawing.Size(56, 28);
             this.VMOSL.TabIndex = 27;
             this.VMOSL.Text = "VM OSL";
             this.VMOSL.UseVisualStyleBackColor = true;
-            this.VMOSL.Click += new System.EventHandler(this.button6_Click);
+            this.VMOSL.Click += new System.EventHandler(this.VmClick);
             // 
             // Mac
             // 
-            this.Mac.Location = new System.Drawing.Point(149, 248);
+            this.Mac.Location = new System.Drawing.Point(138, 248);
             this.Mac.Name = "Mac";
-            this.Mac.Size = new System.Drawing.Size(38, 27);
+            this.Mac.Size = new System.Drawing.Size(56, 27);
             this.Mac.TabIndex = 28;
             this.Mac.Text = "Mac";
             this.Mac.UseVisualStyleBackColor = true;
@@ -308,9 +269,9 @@ namespace WindowsFormsApplication1
             // 
             // LEK
             // 
-            this.LEK.Location = new System.Drawing.Point(271, 121);
+            this.LEK.Location = new System.Drawing.Point(139, 123);
             this.LEK.Name = "LEK";
-            this.LEK.Size = new System.Drawing.Size(90, 27);
+            this.LEK.Size = new System.Drawing.Size(56, 27);
             this.LEK.TabIndex = 29;
             this.LEK.Text = "Lek";
             this.LEK.UseVisualStyleBackColor = true;
@@ -318,7 +279,7 @@ namespace WindowsFormsApplication1
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(424, 97);
+            this.numericUpDown1.Location = new System.Drawing.Point(105, 110);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(35, 20);
             this.numericUpDown1.TabIndex = 33;
@@ -351,68 +312,53 @@ namespace WindowsFormsApplication1
             // procedures
             // 
             this.procedures.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aBNFTParsingToolStripMenuItem,
             this.bOFTUploadingToolStripMenuItem,
             this.cpCostToolStripMenuItem,
             this.updateOpenToolStripMenuItem,
             this.uploadFTBOToolStripMenuItem,
             this.fastmatchToolStripMenuItem,
-            this.aBNPositionParsingToolStripMenuItem,
             this.cFHToolStripMenuItem,
-            this.atonToolStripMenuItem});
+            this.atonToolStripMenuItem,
+            this.aBNToolStripMenuItem});
             this.procedures.Name = "procedures";
             this.procedures.Size = new System.Drawing.Size(45, 20);
             this.procedures.Text = "Func";
             this.procedures.Click += new System.EventHandler(this.procedures_Click);
             // 
-            // aBNFTParsingToolStripMenuItem
-            // 
-            this.aBNFTParsingToolStripMenuItem.Name = "aBNFTParsingToolStripMenuItem";
-            this.aBNFTParsingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aBNFTParsingToolStripMenuItem.Text = "ABNFTParsing";
-            this.aBNFTParsingToolStripMenuItem.Click += new System.EventHandler(this.aBNFTParsingToolStripMenuItem_Click);
-            // 
             // bOFTUploadingToolStripMenuItem
             // 
             this.bOFTUploadingToolStripMenuItem.Name = "bOFTUploadingToolStripMenuItem";
-            this.bOFTUploadingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bOFTUploadingToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.bOFTUploadingToolStripMenuItem.Text = "BOFTUploading";
             this.bOFTUploadingToolStripMenuItem.Click += new System.EventHandler(this.bOFTUploadingToolStripMenuItem_Click);
             // 
             // cpCostToolStripMenuItem
             // 
             this.cpCostToolStripMenuItem.Name = "cpCostToolStripMenuItem";
-            this.cpCostToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cpCostToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.cpCostToolStripMenuItem.Text = "CpCost";
             this.cpCostToolStripMenuItem.Click += new System.EventHandler(this.cpCostToolStripMenuItem_Click);
             // 
             // updateOpenToolStripMenuItem
             // 
             this.updateOpenToolStripMenuItem.Name = "updateOpenToolStripMenuItem";
-            this.updateOpenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateOpenToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.updateOpenToolStripMenuItem.Text = "Update Open";
             this.updateOpenToolStripMenuItem.Click += new System.EventHandler(this.updateOpenToolStripMenuItem_Click);
             // 
             // uploadFTBOToolStripMenuItem
             // 
             this.uploadFTBOToolStripMenuItem.Name = "uploadFTBOToolStripMenuItem";
-            this.uploadFTBOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uploadFTBOToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.uploadFTBOToolStripMenuItem.Text = "Upload FT BO";
             this.uploadFTBOToolStripMenuItem.Click += new System.EventHandler(this.uploadFTBOToolStripMenuItem_Click);
             // 
             // fastmatchToolStripMenuItem
             // 
             this.fastmatchToolStripMenuItem.Name = "fastmatchToolStripMenuItem";
-            this.fastmatchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fastmatchToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.fastmatchToolStripMenuItem.Text = "Fastmatch";
             this.fastmatchToolStripMenuItem.Click += new System.EventHandler(this.fastmatchToolStripMenuItem_Click);
-            // 
-            // aBNPositionParsingToolStripMenuItem
-            // 
-            this.aBNPositionParsingToolStripMenuItem.Name = "aBNPositionParsingToolStripMenuItem";
-            this.aBNPositionParsingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aBNPositionParsingToolStripMenuItem.Text = "ABNPositionParsing";
-            this.aBNPositionParsingToolStripMenuItem.Click += new System.EventHandler(this.aBNPositionParsingToolStripMenuItem_Click);
             // 
             // cFHToolStripMenuItem
             // 
@@ -420,7 +366,7 @@ namespace WindowsFormsApplication1
             this.cFHReconciliationToolStripMenuItem,
             this.cFHBalanceToolStripMenuItem});
             this.cFHToolStripMenuItem.Name = "cFHToolStripMenuItem";
-            this.cFHToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cFHToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.cFHToolStripMenuItem.Text = "CFH";
             // 
             // cFHReconciliationToolStripMenuItem
@@ -443,7 +389,7 @@ namespace WindowsFormsApplication1
             this.vMAtonToolStripMenuItem1,
             this.atonReconciliationToolStripMenuItem});
             this.atonToolStripMenuItem.Name = "atonToolStripMenuItem";
-            this.atonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.atonToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.atonToolStripMenuItem.Text = "Aton";
             // 
             // vMAtonToolStripMenuItem1
@@ -460,10 +406,49 @@ namespace WindowsFormsApplication1
             this.atonReconciliationToolStripMenuItem.Text = "Aton Reconciliation";
             this.atonReconciliationToolStripMenuItem.Click += new System.EventHandler(this.atonReconciliationToolStripMenuItem_Click);
             // 
+            // aBNToolStripMenuItem
+            // 
+            this.aBNToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aBNParserToolStripMenuItem1,
+            this.aBNPositionParsingToolStripMenuItem1,
+            this.aBNFTParsingToolStripMenuItem1,
+            this.updateABNSheetToolStripMenuItem});
+            this.aBNToolStripMenuItem.Name = "aBNToolStripMenuItem";
+            this.aBNToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.aBNToolStripMenuItem.Text = "ABN";
+            // 
+            // aBNParserToolStripMenuItem1
+            // 
+            this.aBNParserToolStripMenuItem1.Name = "aBNParserToolStripMenuItem1";
+            this.aBNParserToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.aBNParserToolStripMenuItem1.Text = "ABNParser";
+            this.aBNParserToolStripMenuItem1.Click += new System.EventHandler(this.aBNParserToolStripMenuItem1_Click);
+            // 
+            // aBNPositionParsingToolStripMenuItem1
+            // 
+            this.aBNPositionParsingToolStripMenuItem1.Name = "aBNPositionParsingToolStripMenuItem1";
+            this.aBNPositionParsingToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.aBNPositionParsingToolStripMenuItem1.Text = "ABNPositionParsing";
+            this.aBNPositionParsingToolStripMenuItem1.Click += new System.EventHandler(this.aBNPositionParsingToolStripMenuItem1_Click);
+            // 
+            // aBNFTParsingToolStripMenuItem1
+            // 
+            this.aBNFTParsingToolStripMenuItem1.Name = "aBNFTParsingToolStripMenuItem1";
+            this.aBNFTParsingToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.aBNFTParsingToolStripMenuItem1.Text = "ABNFTParsing";
+            this.aBNFTParsingToolStripMenuItem1.Click += new System.EventHandler(this.aBNFTParsingToolStripMenuItem1_Click);
+            // 
+            // updateABNSheetToolStripMenuItem
+            // 
+            this.updateABNSheetToolStripMenuItem.Name = "updateABNSheetToolStripMenuItem";
+            this.updateABNSheetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateABNSheetToolStripMenuItem.Text = "UpdateABNSheet";
+            this.updateABNSheetToolStripMenuItem.Click += new System.EventHandler(this.updateABNSheetToolStripMenuItem_Click);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(375, 99);
+            this.label5.Location = new System.Drawing.Point(12, 109);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 13);
             this.label5.TabIndex = 37;
@@ -491,7 +476,7 @@ namespace WindowsFormsApplication1
             // checkBoxAllDates
             // 
             this.checkBoxAllDates.AutoSize = true;
-            this.checkBoxAllDates.Location = new System.Drawing.Point(13, 195);
+            this.checkBoxAllDates.Location = new System.Drawing.Point(11, 209);
             this.checkBoxAllDates.Name = "checkBoxAllDates";
             this.checkBoxAllDates.Size = new System.Drawing.Size(66, 17);
             this.checkBoxAllDates.TabIndex = 40;
@@ -500,9 +485,9 @@ namespace WindowsFormsApplication1
             // 
             // OSL
             // 
-            this.OSL.Location = new System.Drawing.Point(149, 189);
+            this.OSL.Location = new System.Drawing.Point(138, 191);
             this.OSL.Name = "OSL";
-            this.OSL.Size = new System.Drawing.Size(38, 23);
+            this.OSL.Size = new System.Drawing.Size(56, 23);
             this.OSL.TabIndex = 41;
             this.OSL.Text = "OSL";
             this.OSL.UseVisualStyleBackColor = true;
@@ -510,7 +495,7 @@ namespace WindowsFormsApplication1
             // 
             // RJOButton
             // 
-            this.RJOButton.Location = new System.Drawing.Point(367, 121);
+            this.RJOButton.Location = new System.Drawing.Point(367, 123);
             this.RJOButton.Name = "RJOButton";
             this.RJOButton.Size = new System.Drawing.Size(75, 23);
             this.RJOButton.TabIndex = 42;
@@ -520,9 +505,9 @@ namespace WindowsFormsApplication1
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(212, 155);
+            this.button2.Location = new System.Drawing.Point(201, 155);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(41, 29);
+            this.button2.Size = new System.Drawing.Size(64, 29);
             this.button2.TabIndex = 43;
             this.button2.Text = "Send";
             this.button2.UseVisualStyleBackColor = true;
@@ -530,7 +515,7 @@ namespace WindowsFormsApplication1
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(271, 179);
+            this.button3.Location = new System.Drawing.Point(271, 189);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(90, 25);
             this.button3.TabIndex = 44;
@@ -540,7 +525,7 @@ namespace WindowsFormsApplication1
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(193, 245);
+            this.button4.Location = new System.Drawing.Point(200, 248);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(65, 26);
             this.button4.TabIndex = 45;
@@ -550,9 +535,9 @@ namespace WindowsFormsApplication1
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(193, 188);
+            this.button5.Location = new System.Drawing.Point(201, 191);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(65, 24);
+            this.button5.Size = new System.Drawing.Size(64, 24);
             this.button5.TabIndex = 46;
             this.button5.Text = "OSL Fees";
             this.button5.UseVisualStyleBackColor = true;
@@ -560,9 +545,9 @@ namespace WindowsFormsApplication1
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(201, 218);
+            this.button7.Location = new System.Drawing.Point(201, 219);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(57, 23);
+            this.button7.Size = new System.Drawing.Size(64, 23);
             this.button7.TabIndex = 48;
             this.button7.Text = "OSL Bal";
             this.button7.UseVisualStyleBackColor = true;
@@ -570,9 +555,9 @@ namespace WindowsFormsApplication1
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(271, 248);
+            this.button9.Location = new System.Drawing.Point(367, 248);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(52, 23);
+            this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 50;
             this.button9.Text = "bloomberg";
             this.button9.UseVisualStyleBackColor = true;
@@ -580,7 +565,7 @@ namespace WindowsFormsApplication1
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(367, 210);
+            this.button6.Location = new System.Drawing.Point(367, 219);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 52;
@@ -590,9 +575,9 @@ namespace WindowsFormsApplication1
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(329, 248);
+            this.button10.Location = new System.Drawing.Point(271, 248);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
+            this.button10.Size = new System.Drawing.Size(90, 26);
             this.button10.TabIndex = 53;
             this.button10.Text = "Mac position";
             this.button10.UseVisualStyleBackColor = true;
@@ -600,9 +585,9 @@ namespace WindowsFormsApplication1
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(410, 248);
+            this.button12.Location = new System.Drawing.Point(201, 123);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(48, 23);
+            this.button12.Size = new System.Drawing.Size(64, 23);
             this.button12.TabIndex = 54;
             this.button12.Text = "IS-PRIME";
             this.button12.UseVisualStyleBackColor = true;
@@ -670,7 +655,7 @@ namespace WindowsFormsApplication1
             // 
             // button20
             // 
-            this.button20.Location = new System.Drawing.Point(367, 152);
+            this.button20.Location = new System.Drawing.Point(367, 157);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(75, 23);
             this.button20.TabIndex = 62;
@@ -740,7 +725,7 @@ namespace WindowsFormsApplication1
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(271, 211);
+            this.button8.Location = new System.Drawing.Point(271, 219);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(90, 23);
             this.button8.TabIndex = 70;
@@ -750,13 +735,13 @@ namespace WindowsFormsApplication1
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(367, 181);
+            this.button11.Location = new System.Drawing.Point(367, 191);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(75, 23);
             this.button11.TabIndex = 71;
             this.button11.Text = "Axi";
             this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click_2);
+            this.button11.Click += new System.EventHandler(this.AxiButtonClick);
             // 
             // button28
             // 
@@ -783,7 +768,7 @@ namespace WindowsFormsApplication1
             this.checkBoxMalta.AutoSize = true;
             this.checkBoxMalta.Checked = true;
             this.checkBoxMalta.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxMalta.Location = new System.Drawing.Point(12, 215);
+            this.checkBoxMalta.Location = new System.Drawing.Point(12, 232);
             this.checkBoxMalta.Name = "checkBoxMalta";
             this.checkBoxMalta.Size = new System.Drawing.Size(52, 17);
             this.checkBoxMalta.TabIndex = 74;
@@ -842,9 +827,9 @@ namespace WindowsFormsApplication1
             // 
             // button27
             // 
-            this.button27.Location = new System.Drawing.Point(467, 55);
+            this.button27.Location = new System.Drawing.Point(272, 125);
             this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(75, 23);
+            this.button27.Size = new System.Drawing.Size(89, 23);
             this.button27.TabIndex = 80;
             this.button27.Text = "RJO belarta";
             this.button27.UseVisualStyleBackColor = true;
@@ -897,7 +882,6 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.LEK);
             this.Controls.Add(this.Mac);
             this.Controls.Add(this.VMOSL);
-            this.Controls.Add(this.UpdateABN);
             this.Controls.Add(this.comboBoxEnviroment);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.LogTextBox);
@@ -908,11 +892,8 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.ADSS);
             this.Controls.Add(this.InputDate);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.Fortsnextday);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.TradesParserStatus);
             this.Controls.Add(this.TradesParser);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -928,14 +909,11 @@ namespace WindowsFormsApplication1
 
         #endregion
 
-       
+
         private System.Windows.Forms.Button TradesParser;
-        private System.Windows.Forms.Label TradesParserStatus;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker Fortsnextday;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DateTimePicker InputDate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
@@ -947,7 +925,6 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.TextBox LogTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBoxEnviroment;
-        private System.Windows.Forms.Button UpdateABN;
         private System.Windows.Forms.Button VMOSL;
         private System.Windows.Forms.Button Mac;
         private System.Windows.Forms.Button LEK;
@@ -955,8 +932,6 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button PostToRecon;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem procedures;
-        private System.Windows.Forms.ToolStripMenuItem aBNPositionParsingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aBNFTParsingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bOFTUploadingToolStripMenuItem;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
@@ -1007,6 +982,11 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button button33;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button27;
+        private System.Windows.Forms.ToolStripMenuItem aBNToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aBNParserToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem aBNPositionParsingToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem aBNFTParsingToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem updateABNSheetToolStripMenuItem;
     }
 }
 
