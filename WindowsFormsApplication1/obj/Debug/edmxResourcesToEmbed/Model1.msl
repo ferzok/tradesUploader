@@ -178,6 +178,8 @@
     <EntitySetMapping Name="Mappings">
       <EntityTypeMapping TypeName="EXANTE_testModel.Mapping">
         <MappingFragment StoreEntitySet="Mapping">
+          <ScalarProperty Name="ccy2forFORTS" ColumnName="ccy2forFORTS" />
+          <ScalarProperty Name="ccy1forFORTS" ColumnName="ccy1forFORTS" />
           <ScalarProperty Name="calendar" ColumnName="calendar" />
           <ScalarProperty Name="UseDayInTicker" ColumnName="UseDayInTicker" />
           <ScalarProperty Name="MtyStrike" ColumnName="MtyStrike" />

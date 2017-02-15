@@ -75,9 +75,10 @@ namespace WindowsFormsApplication1
             {
                 FullTrade fullTrade = listofaccountpositions[i];
                 double valueccy = 0;
+                string counterccy = null;
                 if (fullTrade.Value == 0)
                 {
-                    double currentAtomOfVM = getatomofVM(fullTrade.Symbol, VMDate);
+                    double currentAtomOfVM = getatomofVM(fullTrade.Symbol, VMDate,ref counterccy);
                     double priceFromDb = GetPrice(VMDate, fullTrade.Symbol);
                     double closeAtomOfVM = Math.Round(Math.Round(currentAtomOfVM*priceFromDb, 5), 2,
                                                       MidpointRounding.AwayFromZero);
@@ -95,12 +96,11 @@ namespace WindowsFormsApplication1
                         if ((listofaccountpositions[j].Value == 0) &&
                             (listofaccountpositions[j].Symbol == fullTrade.Symbol))
                         {
-                            double t0 = currentAtomOfVM*listofaccountpositions[j].Price;
-                            double t1 = Math.Round(currentAtomOfVM*listofaccountpositions[j].Price, 2,
-                                                   MidpointRounding.AwayFromZero);
-                            double t2 = closeAtomOfVM - t1;
-                            double t3 = listofaccountpositions[j].Qty*t2;
-                            double t4 = Math.Round(t3, 2);
+                            //double t0 = currentAtomOfVM*listofaccountpositions[j].Price;
+                           // double t1 = Math.Round(currentAtomOfVM*listofaccountpositions[j].Price, 2,MidpointRounding.AwayFromZero);
+                           // double t2 = closeAtomOfVM - t1;
+                           // double t3 = listofaccountpositions[j].Qty*t2;
+                           // double t4 = Math.Round(t3, 2);
 
 
                             listofaccountpositions[j].Value =
@@ -120,6 +120,7 @@ namespace WindowsFormsApplication1
                 }
                 i++;
                 valueccy = GetValueccy(VMDate, fullTrade.Symbol);
+                
                 db.FT.Add(new FT
                     {
                         cp = Brocker,
@@ -140,7 +141,8 @@ namespace WindowsFormsApplication1
                         BOSymbol = fullTrade.Symbol,
                         GrossPositionIndicator = null,
                         JOURNALACCOUNTCODE = null,
-                        ValueCCY = -Math.Round(fullTrade.Value*valueccy, 2, MidpointRounding.AwayFromZero)
+                        ValueCCY = -Math.Round(fullTrade.Value*valueccy, 2, MidpointRounding.AwayFromZero),
+                        counterccy = counterccy
                     });
             }
             fn.SaveDBChanges(ref db);
@@ -162,19 +164,18 @@ namespace WindowsFormsApplication1
             else key = symbol;
 
 
-            List<int?> map =
+            List<Mapping> map =
                 (from ct in db.Mappings
                  where ct.valid == 1 && ct.Brocker == "OPEN" && ct.Type == "FORTS" && ct.BOSymbol == key
-                 select ct.Round).ToList();
+                 select ct).ToList();
 
-            if ((map.Count > 0) && (map[0] == 1))
+            if ((map.Count > 0) && (map[0].Round == 1))
             {
-                double? ccyrateFromDblinq =
-                    (from ct in db.Prices
-                     where
-                         ct.Valid == 1 && ct.Type == "FORTS" && ct.Ticker.Contains("USDRUB") &&
-                         ct.Date == VMDate.Date
-                     select ct.Price1).ToList()[0];
+                double? ccyrateFromDblinq = GetCcyrateFromDb(VMDate.Date, db, map[0].ccy1forFORTS);
+                if (map[0].ccy2forFORTS!=null)
+                {
+                    ccyrateFromDblinq = ccyrateFromDblinq/GetCcyrateFromDb(VMDate.Date, db, map[0].ccy2forFORTS);
+                }
                 db.Dispose();
                 return (double) (1/ccyrateFromDblinq);
             }
@@ -206,7 +207,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private double getatomofVM(string symbol, DateTime VMDate)
+        private double getatomofVM(string symbol, DateTime VMDate,ref string counterccy)
         {
             var db = new EXANTE_Entities(_connstring);
             double atomvalue = 0;
@@ -225,32 +226,48 @@ namespace WindowsFormsApplication1
                 atomvalue = (double) (map[0].MtyPrice/map[0].MtyVolume);
                 if (map[0].Round == 1)
                 {
-                    IQueryable<Price> ccyrateFromDblinq =
-                        (from ct in db.Prices
-                         where
-                             ct.Valid == 1 && ct.Type == "FORTS" && ct.Ticker.Contains("USDRUB") &&
-                             ct.Date == VMDate.Date
-                         select ct);
-                    double ccyrateFromDb = 0;
-                    if (!ccyrateFromDblinq.Any())
+                    var ccyrateFromDb = GetCcyrateFromDb(VMDate, db, map[0].ccy1forFORTS);
+                    atomvalue = Math.Round((atomvalue*ccyrateFromDb), 5, MidpointRounding.AwayFromZero);
+                    if (map[0].ccy2forFORTS != null)
                     {
-                        //  updateFORTSccyrates(VMDate.ToString("dd.MM.yyyy"));
-                        ccyrateFromDb =
-                            (double) (from ct in db.Prices
-                                      where
-                                          ct.Valid == 1 && ct.Type == "FORTS" && ct.Ticker.Contains("USDRUB") &&
-                                          ct.Date == VMDate.Date
-                                      select ct).ToList()[0].Price1;
+                        atomvalue = Math.Round((atomvalue/GetCcyrateFromDb(VMDate, db, map[0].ccy2forFORTS)), 5,
+                                               MidpointRounding.AwayFromZero);
+                        counterccy = map[0].ccy2forFORTS.Substring(3, 3);
                     }
                     else
                     {
-                        ccyrateFromDb = (double) ccyrateFromDblinq.ToList()[0].Price1;
+                        counterccy = map[0].ccy1forFORTS.Substring(3, 3);
                     }
-                    atomvalue = Math.Round((atomvalue*ccyrateFromDb), 5, MidpointRounding.AwayFromZero);
                 }
             }
             db.Dispose();
             return atomvalue;
+        }
+
+        private static double GetCcyrateFromDb(DateTime VMDate, EXANTE_Entities db, string ccy)
+        {
+            IQueryable<Price> ccyrateFromDblinq =
+                (from ct in db.Prices
+                 where
+                     ct.Valid == 1 && ct.Type == "FORTS" && ct.Ticker.Contains(ccy) &&
+                     ct.Date == VMDate.Date
+                 select ct);
+            double ccyrateFromDb = 0;
+            if (!ccyrateFromDblinq.Any())
+            {
+              //  updateFORTSccyrates(VMDate.ToString("dd.MM.yyyy"));
+                ccyrateFromDb =
+                    (double) (from ct in db.Prices
+                              where
+                                  ct.Valid == 1 && ct.Type == "FORTS" && ct.Ticker.Contains(ccy) &&
+                                  ct.Date == VMDate.Date
+                              select ct).ToList()[0].Price1;
+            }
+            else
+            {
+                ccyrateFromDb = (double) ccyrateFromDblinq.ToList()[0].Price1;
+            }
+            return ccyrateFromDb;
         }
 
         private List<FullTrade> Getlistofaccountposition(DateTime fortsDate, string Brocker)
@@ -315,7 +332,7 @@ namespace WindowsFormsApplication1
                 select ct.Price1;
             if (!lastprice.Any())
             {
-             PostLog("\r\n" + "There is no prices for " + ": " + symbol + ". VM can be incorrect!");
+             PostLog("There is no prices for " + ": " + symbol + ". VM can be incorrect!");
                 return 0;
             }
             else
@@ -394,7 +411,7 @@ namespace WindowsFormsApplication1
             else key = currentInstrument;
             if (!map.TryGetValue(key, out symbolvalue))
             {
-              PostLog("\r\n" + "New Symbol: " + key);
+              PostLog("New Symbol: " + key);
             }
             else
             {
@@ -487,7 +504,7 @@ namespace WindowsFormsApplication1
         public void updateFORTSccyrates(DateTime DateCalculation)
         {
             DateTime TimeStart = DateTime.Now;
-            PostLog("\r\n" + TimeStart + ": " + "Getting ccy prices from MOEX");
+            PostLog(TimeStart + ": " + "Getting ccy prices from MOEX");
             string Date = DateCalculation.ToString("yyyy-MM-dd");
 
             // const string initialstring = "http://moex.com/ru/derivatives/currency-rate.aspx?currency=";
@@ -496,6 +513,8 @@ namespace WindowsFormsApplication1
             var listccy = new List<string>();
             listccy.Add("USD/RUB");
             listccy.Add("EUR/RUB");
+            listccy.Add("USD/JPY");
+            listccy.Add("JPY/RUB");
             var db = new EXANTE_Entities(_connstring);
             foreach (string ccy in listccy)
             {
@@ -528,7 +547,7 @@ namespace WindowsFormsApplication1
             db.Dispose();
 
             DateTime TimeEndUpdating = DateTime.Now;
-           PostLog("\r\n" + TimeEndUpdating + ": " + "CCY FORTS rates for " + Date + "uploaded. Time:" + (TimeEndUpdating - TimeStart).ToString());
+           PostLog(TimeEndUpdating + ": " + "CCY FORTS rates for " + Date + "uploaded. Time:" + (TimeEndUpdating - TimeStart).ToString());
         }
         private static void GetHtmlPage(string url)
         {

@@ -709,6 +709,8 @@
     <Property Name="MtyStrike" Type="double" />
     <Property Name="UseDayInTicker" Type="bool" />
     <Property Name="calendar" Type="tinyint" />
+    <Property Name="ccy1forFORTS" Type="varchar" MaxLength="6" />
+    <Property Name="ccy2forFORTS" Type="varchar" MaxLength="6" />
   </EntityType>
   <EntityType Name="md_swaps_googlespsh">
     <Key>

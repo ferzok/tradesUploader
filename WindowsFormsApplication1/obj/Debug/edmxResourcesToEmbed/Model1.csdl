@@ -221,6 +221,8 @@
     <Property Type="Double" Name="MtyStrike" />
     <Property Type="Boolean" Name="UseDayInTicker" />
     <Property Type="SByte" Name="calendar" />
+    <Property Type="String" Name="ccy1forFORTS" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ccy2forFORTS" MaxLength="6" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Reconcilation">
     <Key>

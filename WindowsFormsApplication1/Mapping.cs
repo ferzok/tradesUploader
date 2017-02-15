@@ -28,5 +28,7 @@ namespace WindowsFormsApplication1
         public Nullable<double> MtyStrike { get; set; }
         public Nullable<bool> UseDayInTicker { get; set; }
         public Nullable<sbyte> calendar { get; set; }
+        public string ccy1forFORTS { get; set; }
+        public string ccy2forFORTS { get; set; }
     }
 }

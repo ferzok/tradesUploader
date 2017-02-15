@@ -268,7 +268,7 @@ namespace WindowsFormsApplication1
             this.LEK.TabIndex = 29;
             this.LEK.Text = "Lek";
             this.LEK.UseVisualStyleBackColor = true;
-            this.LEK.Click += new System.EventHandler(this.button8_Click);
+            this.LEK.Click += new System.EventHandler(this.LekParsingClick);
             // 
             // numericUpDown1
             // 
@@ -689,7 +689,7 @@ namespace WindowsFormsApplication1
             this.button24.TabIndex = 66;
             this.button24.Text = "Rene RUEQ";
             this.button24.UseVisualStyleBackColor = true;
-            this.button24.Click += new System.EventHandler(this.button24_Click);
+            this.button24.Click += new System.EventHandler(this.ReneRueQClick);
             // 
             // button25
             // 
@@ -699,7 +699,7 @@ namespace WindowsFormsApplication1
             this.button25.TabIndex = 67;
             this.button25.Text = "Belarta IB";
             this.button25.UseVisualStyleBackColor = true;
-            this.button25.Click += new System.EventHandler(this.button25_Click);
+            this.button25.Click += new System.EventHandler(this.BelartaIbClick);
             // 
             // button26
             // 
@@ -709,7 +709,7 @@ namespace WindowsFormsApplication1
             this.button26.TabIndex = 68;
             this.button26.Text = "Rene GLF";
             this.button26.UseVisualStyleBackColor = true;
-            this.button26.Click += new System.EventHandler(this.button26_Click);
+            this.button26.Click += new System.EventHandler(this.ReneGlfClick);
             // 
             // button8
             // 
@@ -771,7 +771,7 @@ namespace WindowsFormsApplication1
             this.button30.TabIndex = 75;
             this.button30.Text = "Rene UMA";
             this.button30.UseVisualStyleBackColor = true;
-            this.button30.Click += new System.EventHandler(this.button30_Click);
+            this.button30.Click += new System.EventHandler(this.ReneUmaClick);
             // 
             // button31
             // 

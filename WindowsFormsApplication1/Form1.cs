@@ -76,7 +76,7 @@ namespace WindowsFormsApplication1
             db.Dispose();
         }
         private  CommonFunctions fn = new CommonFunctions(_currentConnection);
-      
+        
         private void TradesParser_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog2.ShowDialog();
@@ -907,18 +907,18 @@ namespace WindowsFormsApplication1
             return reclist;
         }
 
-        private static List<Trade> Samesidetrades(double qty, List<Form1.Trade> trades)
+        private static List<Form1.Trade> Samesidetrades(double qty, List<Form1.Trade> trades)
         {
             List<Form1.Trade> possibleletrades;
             if (qty > 0)
             {
-                IEnumerable<Trade> allpossibleletrades =
+                IEnumerable<Form1.Trade> allpossibleletrades =
                     trades.Where(item => (item.qty > 0 && Math.Abs(item.qty) <= Math.Abs(qty)));
                 possibleletrades = allpossibleletrades.OrderByDescending(o => o.qty).ToList();
             }
             else
             {
-                IEnumerable<Trade> allpossibleletrade =
+                IEnumerable<Form1.Trade> allpossibleletrade =
                     trades.Where(item => (item.qty < 0 && Math.Abs(item.qty) <= Math.Abs(qty)));
                 possibleletrades = allpossibleletrade.OrderBy(o => o.qty).ToList();
             }
@@ -2072,13 +2072,13 @@ namespace WindowsFormsApplication1
         }
 
         private void VmClick(object sender, EventArgs e)
-        {
+        { 
             var vm = new VariationMargin(_currentConnection);
             vm.MessageRecived += (s) => Invoke(new Action(() => LogTextBox.AppendText(s + "\r\n")));
             vm.updateFORTSccyrates(InputDate.Value);
-            vm.calcualteVM(InputDate.Value, "M&L");
+           vm.calcualteVM(InputDate.Value, "M&L");
             vm.calcualteVM(InputDate.Value, "MOEX");
-            vm.calcualteVM(InputDate.Value, "EXANTE");
+          vm.calcualteVM(InputDate.Value, "EXANTE");
             vm.calcualteVM(InputDate.Value, "MOEX-SPECTRA");
             vm.calcualteVM(InputDate.Value, "OPEN");
             vm.calcualteVM(InputDate.Value, "INSTANT");
@@ -2192,7 +2192,7 @@ namespace WindowsFormsApplication1
             return results;
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void LekParsingClick(object sender, EventArgs e)
         {
            DateTime reportdate = InputDate.Value; //todo Get report date from xml Processing date
            var db = new EXANTE_Entities(_currentConnection);
@@ -3501,6 +3501,7 @@ break;*/
                         ExchangeFees = initTrade.ExchangeFees,
                         Fee = fee,
                         BOSymbol = BOSymbol,
+                        Exchange = initTrade.Exchange,
                         //?BOTradeNumber = 
                         value = value,
                         Timestamp = DateTime.UtcNow,
@@ -4722,7 +4723,7 @@ break;*/
                     {
                         p.operationType = "VARIATION MARGIN";
                         p.comment = "VM " + VARIABLE.BOSymbol+ " " + reportdate.ToShortDateString();
-                        p.asset = "USD";
+                        p.asset = VARIABLE.counterccy;
                     }
                     else
                     {
@@ -7256,7 +7257,7 @@ break;*/
                                   (TimeEndUpdating - TimeStart).ToString());
         }
 
-        private void button24_Click(object sender, EventArgs e)
+        private void ReneRueQClick(object sender, EventArgs e)
         {
             DateTime reportdate = InputDate.Value; //todo Get report date from xml Processing date
             var db = new EXANTE_Entities(_currentConnection);
@@ -7288,40 +7289,12 @@ break;*/
             }
             else
             {
-                DateTime nextdate = reportdate.AddDays(1);
-                Dictionary<string, CommonFunctions.Map> symbolmap = getMapping("Renesource");
-                double? MtyVolume = 1;
-                double? MtyPrice = 1;
-                double? Leverage = 1;
-                IQueryable<CpTrade> cptradefromDb = from cptrade in db.CpTrades
-                                                    where cptrade.valid == 1 && cptrade.BrokerId == "Renesource" &&
-                                                          cptrade.ReportDate >= reportdate.Date &&
-                                                          cptrade.ReportDate < (nextdate.Date) &&
-                                                          cptrade.BOTradeNumber == null
-                                                    select cptrade;
-                IQueryable<Contract> contractrow =
-                    from ct in db.Contracts
-                    where ct.valid == 1
-                    select ct;
-                Dictionary<string, Contract> contractdetails = contractrow.ToDictionary(k => k.id, k => k);
-
-                foreach (CpTrade cpTrade in cptradefromDb)
-                {
-                    var valuedate = (DateTime) cpTrade.ValueDate;
-                    if (cpTrade.BOSymbol == null)
-                    {
-                        cpTrade.BOSymbol = GetSymbolLek(symbolmap, cpTrade.Symbol, ref MtyVolume, contractdetails,
-                                                        ref MtyPrice, ref valuedate, ref Leverage);
-                        cpTrade.Price = cpTrade.Price*MtyPrice;
-                        cpTrade.Qty = cpTrade.Qty*MtyVolume;
-                        cpTrade.ValueDate = valuedate;
-                    }
-                }
+                UpdatingBOSymbol(reportdate.Date,"Renesource",ref db);
             }
             RecProcess(reportdate, "Renesource",true);
         }
 
-        private void button25_Click(object sender, EventArgs e)
+        private void BelartaIbClick(object sender, EventArgs e)
         {
             var db = new EXANTE_Entities(_currentConnection);
             if (!noparsingCheckbox.Checked)
@@ -7343,7 +7316,7 @@ break;*/
            RecProcess(InputDate.Value, "BelartaIB", false);
         }
 
-        private void button26_Click(object sender, EventArgs e)
+        private void ReneGlfClick(object sender, EventArgs e)
         {
             DateTime reportdate = InputDate.Value; //todo Get report date from xml Processing date
             var db = new EXANTE_Entities(_currentConnection);
@@ -7375,36 +7348,7 @@ break;*/
             }
             else
             {
-                DateTime nextdate = reportdate.AddDays(1);
-                Dictionary<string, CommonFunctions.Map> symbolmap = getMapping("Renesource");
-                double? MtyVolume = 1;
-                double? MtyPrice = 1;
-                double? Leverage = 1;
-                IQueryable<CpTrade> cptradefromDb = from cptrade in db.CpTrades
-                                                    where cptrade.valid == 1 && cptrade.BrokerId == "Renesource" &&
-                                                          cptrade.ReportDate >= reportdate.Date &&
-                                                          cptrade.ReportDate < (nextdate.Date) &&
-                                                          cptrade.BOTradeNumber == null
-                                                    select cptrade;
-                IQueryable<Contract> contractrow =
-                    from ct in db.Contracts
-                    where ct.valid == 1
-                    select ct;
-                Dictionary<string, Contract> contractdetails = contractrow.ToDictionary(k => k.id, k => k);
-
-                foreach (CpTrade cpTrade in cptradefromDb)
-                {
-                    var valuedate = (DateTime) cpTrade.ValueDate;
-                    if (cpTrade.BOSymbol == null)
-                    {
-                        cpTrade.BOSymbol = GetSymbolLek(symbolmap, cpTrade.Symbol, ref MtyVolume, contractdetails,
-                                                        ref MtyPrice, ref valuedate, ref Leverage);
-                        cpTrade.Price = cpTrade.Price*MtyPrice;
-                        cpTrade.Qty = cpTrade.Qty*MtyVolume;
-                        cpTrade.ValueDate = valuedate;
-                    }
-                }
-                fn.SaveDBChanges(ref db);
+                UpdatingBOSymbol(reportdate.Date, "Renesource", ref db);
             }
             RecProcess(reportdate, "Renesource",true);
         }
@@ -7775,7 +7719,7 @@ break;*/
             }
         }
 
-        private void button30_Click(object sender, EventArgs e)
+        private void ReneUmaClick(object sender, EventArgs e)
         {
           FORTSReconciliation("Renesource", "UMAC0288",true);
           var db = new EXANTE_Entities(_currentConnection);
@@ -8158,105 +8102,58 @@ break;*/
 
         private void RJO_belarta_click(object sender, EventArgs e)
         {
-           parsingProcess("RJOBelarta");
+           var db = new EXANTE_Entities(_currentConnection);
+           if (!noparsingCheckbox.Checked)
+            {
+               DialogResult result = openFileDialog2.ShowDialog();
+               if (result == DialogResult.OK) // Test result.
+               {
+                   foreach (string oFilename in openFileDialog2.FileNames)
+                   {
+                       var rjobelartapdf = new RJOBelarta(_currentConnection);
+                       rjobelartapdf.MessageRecived += (s) => Invoke(new Action(() => LogTextBox.AppendText(s + "\r\n")));
+                       List<InitialTrade> lInitTrades=rjobelartapdf.RJOBelartaPdfParsing(oFilename, ref db);
+                       List<CpTrade> lCptrades = OpenConverting(lInitTrades, "RJOBelarta");
+                       fn.SendToDb(ref db,lCptrades);
+                       rjobelartapdf = null;
+                       GC.Collect();
+                       GC.WaitForPendingFinalizers();
+                   }
+                   fn.SaveDBChanges(ref db);
+                db.Dispose();
+               }
+           }
+            else
+            {
+                UpdatingBOSymbol(InputDate.Value, "RJOBelarta", ref db);
+            }
            RecProcess(InputDate.Value, "RJOBelarta", false);
         }
 
         private void parsingProcess(string brokername)
         {
-           DateTime TimeStart = DateTime.Now;
            var db = new EXANTE_Entities(_currentConnection);
-           DialogResult result = openFileDialog2.ShowDialog();
-           if (result == DialogResult.OK) // Test result.
+           if (!noparsingCheckbox.Checked)
             {
-                foreach (string oFilename in openFileDialog2.FileNames)
-                {
-                    Dictionary<string, long> checkId = (from ct in db.CpTrades
-                                                        where
-                                                            ct.TradeDate.ToString().Contains("2016-") &&
-                                                            ct.BrokerId == "RJOBelarta"
-                                                        select ct).ToDictionary(k => k.exchangeOrderId.ToString(),
-                                                                                k => k.FullId);
-                    var reader = new PdfReader(oFilename);
-                    int count = reader.NumberOfPages;
-                    string txt = "";
-                    var i = 1;
-                    txt = PdfTextExtractor.GetTextFromPage(reader, i, new LocationTextExtractionStrategy());
-                    var reportdate = getDateFromPdfRJO(txt.Substring(txt.IndexOf("STATEMENT DATE:") + 15, 10));
-                    var account = txt.Substring(txt.IndexOf("ACCOUNT:") + 8, 10).Trim();
-                    int indexStart = txt.IndexOf("T R A D E S   C O N F I R M A T I O N S");
-                    if (indexStart < 0) return;
-                    txt = txt.Substring(indexStart);
-                    ParsingToTrades(ref txt,ref db,reportdate,account);
-
-
-                    
-                    var dicCpCtrades = new Dictionary<string, List<CpTrade>>();
-                  
-                    
-                    txt = PdfTextExtractor.GetTextFromPage(reader, i, new LocationTextExtractionStrategy());
-                    while (i < count && !txt.Contains("NEW TRADING ACTIVITY"))
-                    {
-                        i++;
-                        txt = PdfTextExtractor.GetTextFromPage(reader, i, new LocationTextExtractionStrategy());
-                    }
-                   
-
-                    DateTime TimeEnd = DateTime.Now;
-                    LogTextBox.AppendText("\r\n" + TimeEnd.ToLongTimeString() + ": " + dicCpCtrades.Count +
-                                          " trades Axi uploading completed." +
-                                          (TimeEnd - TimeStart).ToString());
-                    LogTextBox.AppendText("\r\n" + oFilename);
-
-                }
-                fn.SaveDBChanges(ref db);
+               DialogResult result = openFileDialog2.ShowDialog();
+               if (result == DialogResult.OK) // Test result.
+               {
+                   foreach (string oFilename in openFileDialog2.FileNames)
+                   {
+                       var rjobelartapdf = new RJOBelarta(_currentConnection);
+                       rjobelartapdf.MessageRecived += (s) => Invoke(new Action(() => LogTextBox.AppendText(s + "\r\n")));
+                       rjobelartapdf.RJOBelartaPdfParsing(oFilename, ref db);
+                       rjobelartapdf = null;
+                       GC.Collect();
+                       GC.WaitForPendingFinalizers();
+                   }
+                   fn.SaveDBChanges(ref db);
                 db.Dispose();
-            }
+               }
+           }
         }
 
-private DateTime getDateFromPdfRJO(string txt)
-{
- 	return DateTime.ParseExact(txt.Trim(), "dd-MMM-yy", CultureInfo.InvariantCulture);
-}
-
-        private void ParsingToTrades(ref string txt, ref EXANTE_Entities db,DateTime reportdate,string account)
-        {
-            string[] rows;
-            rows = txt.Split('\n');
-            int j = 4;
-            while (j <= rows.Count() && !rows[j].Contains("TOTAL"))
-            {
-                string[] tabs = rows[j].Split(' ');
-                var TradeDate = getDateFromPdfRJO(tabs[0]);
-                db.InitialTrades.Add(new InitialTrade{
-                    Account = account,
-                    BrokerId = "RJOBelarta",
-                    ReportDate = reportdate.Date,
-                    TradeDate = getDateFromPdfRJO(tabs[0]),
-                    Exchange = tabs[1],
-                    Qty = getQtyFromRjoPdf(tabs),
-
-                    ccy=null,
-                    ClearingFeeCcy =null,
-                    Comment =null,
-                    cp_id =null,
-                    ExchangeFees = null,
-                    exchangeOrderId = null,
-                    ExchFeeCcy = null
-                });
-                txt = txt + tabs[1];
-                j++;
-            }
-        }
-
-        private double? getQtyFromRjoPdf(string[] tabs)
-        {
-            
-            
-            throw new NotImplementedException();
-        }
-
-       private void aBNParserToolStripMenuItem1_Click(object sender, EventArgs e)
+      private void aBNParserToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (!noparsingCheckbox.Checked)
             {
@@ -8999,15 +8896,16 @@ private DateTime getDateFromPdfRJO(string txt)
 
             foreach (CpTrade cpTrade in cptradefromDb)
             {
-                if (cpTrade.BOSymbol == null && symbolmap.ContainsKey(cpTrade.Symbol))
+                if (cpTrade.BOSymbol == null && symbolmap.ContainsKey(cpTrade.Symbol+cpTrade.Type))
                 {
-                    var valuedate = (DateTime)cpTrade.ValueDate;
+                    DateTime valuedate = new DateTime(2011, 01, 01);
+                    if(cpTrade.ValueDate!=null) valuedate= (DateTime)cpTrade.ValueDate;
                     if (cpTrade.BOSymbol == null)
                     {
                         double? MtyVolume=1;
                         double? MtyPrice=1;
                         double? Leverage=1;
-                        cpTrade.BOSymbol = GetSymbolLek(symbolmap, cpTrade.Symbol, ref MtyVolume, contractdetails,
+                        cpTrade.BOSymbol = GetSymbolLek(symbolmap, cpTrade.Symbol+cpTrade.Type, ref MtyVolume, contractdetails,
                                                         ref MtyPrice, ref valuedate, ref Leverage);
                         cpTrade.Price = cpTrade.Price * MtyPrice;
                         cpTrade.Qty = cpTrade.Qty * MtyVolume;

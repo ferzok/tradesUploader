@@ -714,6 +714,8 @@
           <Property Name="MtyStrike" Type="double" />
           <Property Name="UseDayInTicker" Type="bool" />
           <Property Name="calendar" Type="tinyint" />
+          <Property Name="ccy1forFORTS" Type="varchar" MaxLength="6" />
+          <Property Name="ccy2forFORTS" Type="varchar" MaxLength="6" />
         </EntityType>
         <EntityType Name="md_swaps_googlespsh">
           <Key>
@@ -1079,6 +1081,8 @@
           <Property Type="Double" Name="MtyStrike" />
           <Property Type="Boolean" Name="UseDayInTicker" />
           <Property Type="SByte" Name="calendar" />
+          <Property Type="String" Name="ccy1forFORTS" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ccy2forFORTS" MaxLength="6" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Reconcilation">
           <Key>
@@ -1890,6 +1894,8 @@
           <EntitySetMapping Name="Mappings">
             <EntityTypeMapping TypeName="EXANTE_testModel.Mapping">
               <MappingFragment StoreEntitySet="Mapping">
+                <ScalarProperty Name="ccy2forFORTS" ColumnName="ccy2forFORTS" />
+                <ScalarProperty Name="ccy1forFORTS" ColumnName="ccy1forFORTS" />
                 <ScalarProperty Name="calendar" ColumnName="calendar" />
                 <ScalarProperty Name="UseDayInTicker" ColumnName="UseDayInTicker" />
                 <ScalarProperty Name="MtyStrike" ColumnName="MtyStrike" />

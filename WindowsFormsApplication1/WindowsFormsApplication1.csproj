@@ -227,6 +227,7 @@
     <Compile Include="Reconcilation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="RJOBelarta.cs" />
     <Compile Include="RJO_listccy.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

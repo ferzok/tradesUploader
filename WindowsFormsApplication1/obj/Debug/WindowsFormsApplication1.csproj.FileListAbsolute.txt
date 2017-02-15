@@ -124,3 +124,4 @@ C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Debug\WindowsFormsAp
 C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.application
 C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Dropbox\GHCG\tradesUploader\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
